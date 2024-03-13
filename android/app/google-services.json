@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "832808556224",
+    "project_id": "hiwetaan",
+    "storage_bucket": "hiwetaan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832808556224:android:f9b4f54ac3983d2d72ff25",
+        "android_client_info": {
+          "package_name": "com.example.hiwetaan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAywYGCPO5Y2pVKvLMBns_yOGi35M11G40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
