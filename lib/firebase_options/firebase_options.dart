@@ -13,6 +13,7 @@ class DefaultFirebaseConfig{
          projectId: 'hiwetaan',
          messagingSenderId:'832808556224',
          iosBundleId: 'com.example.hiwetaan',
+         storageBucket:'hiwetaan.appspot.com'
        );
      }else{
        //android
@@ -21,9 +22,7 @@ class DefaultFirebaseConfig{
          apiKey: 'AIzaSyAywYGCPO5Y2pVKvLMBns_yOGi35M11G40',
          projectId:'com.example.hiwetaan',
          messagingSenderId: '832808556224',
-
-
-
+         storageBucket:'hiwetaan.appspot.com'
        );
      }
      }
