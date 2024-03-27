@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hiwetaan/screens/home_screen.dart';
 import 'package:hiwetaan/screens/my_card/widget/qr_code.dart';
 
 import 'package:line_icons/line_icons.dart';
@@ -9,6 +10,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../main.dart';
+import '../../nav_bar.dart';
 
 class MyCard extends StatefulWidget {
   @override
@@ -64,12 +66,13 @@ class _MyCardState extends State<MyCard> {
           physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 IconButton(
-                    icon: Icon(LineIcons.bell, size:30.0),
+                    icon: Icon(LineIcons.arrowLeft, size:30.0),
                     onPressed: () {
-                      // Navigator.pushNamed(context, notificationsViewRoute);
+                      Navigator.of(context).pushReplacement(CupertinoPageRoute(
+                          builder: (BuildContext context) => Home()));
                     }
                 ),
               ],

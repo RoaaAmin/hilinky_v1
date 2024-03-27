@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hiwetaan/screens/home_screen.dart';
 import 'package:hiwetaan/screens/login_screen.dart';
+import 'package:hiwetaan/screens/my_card/myCard.dart';
 import 'package:hiwetaan/screens/signup_screen.dart';
 import 'auth.dart';
 
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         'homeScreen': (context) =>   HomeScreen(),
         'signupScreen': (context) =>  SignupScreen(),
         'loginScreen':  (context) =>  LoginScreen(),
+        'myCard': (context) =>  MyCard(),
       },
 
     );

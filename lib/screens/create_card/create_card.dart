@@ -183,8 +183,11 @@ class _CreateCardState extends State<CreateCard> {
           print('Card saved');
           Navigator.of(context).pop();
         });
-        Navigator.of(context).pushReplacement(
-            CupertinoPageRoute(builder: (BuildContext context) => MyCard()));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyCard()),
+        );
+
       }
     } else {
       showInSnackBar('You have to fill all the fields ', Colors.red,
