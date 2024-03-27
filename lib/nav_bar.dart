@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hiwetaan/screens/home_screen.dart';
+import 'package:hiwetaan/screens/my_card/myCard.dart';
 
 
 
@@ -14,11 +15,11 @@ class _HomeState extends State<Home> {
   int currentIndex = 0;
 
   List myScreenList = [
-    //HomeScreen(),
     HomeScreen(),
+    MyCard(),
     //SearchPagePremiumScreen(),
     //Notifications(),
-   // QRScannerPage(),
+    // QRScannerPage(),
     //Edit(),
    // FollowedScreen(),
     //terms(),

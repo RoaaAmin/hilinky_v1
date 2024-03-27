@@ -181,7 +181,7 @@ class _CreateCardState extends State<CreateCard> {
           "TimeStamp": DateTime.now(),
         }).then((value) async {
           print('Card saved');
-          // Navigator.of(context).pop();
+          Navigator.of(context).pop();
         });
         Navigator.of(context).pushReplacement(
             CupertinoPageRoute(builder: (BuildContext context) => MyCard()));
