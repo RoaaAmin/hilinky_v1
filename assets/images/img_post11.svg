@@ -1,0 +1,35 @@
+<svg width="360" height="230" viewBox="0 0 360 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_27_29310)">
+<path d="M0 15.0183C0 6.72391 6.72391 0 15.0183 0H344.982C353.276 0 360 6.72391 360 15.0183V214.584C360 222.878 353.276 229.602 344.982 229.602H15.0183C6.72393 229.602 0 222.878 0 214.584V15.0183Z" fill="white"/>
+<rect x="-0.71987" width="360.439" height="229.279" fill="#C4C4C4"/>
+<g filter="url(#filter0_b_27_29310)">
+<g clip-path="url(#clip1_27_29310)">
+<g filter="url(#filter1_b_27_29310)">
+<circle cx="27.0329" cy="207.252" r="12.0146" fill="black" fill-opacity="0.5"/>
+</g>
+<circle cx="26.9275" cy="203.906" r="3.16174" fill="white"/>
+<path d="M21.4838 210.795C21.9068 208.982 23.5227 207.7 25.3839 207.7H28.4711C30.3323 207.7 31.9482 208.982 32.3712 210.795L32.8294 212.759H21.0256L21.4838 210.795Z" fill="white"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_b_27_29310" x="-5.00609" y="175.213" width="64.078" height="64.078" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImageFix" stdDeviation="10"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_27_29310"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_27_29310" result="shape"/>
+</filter>
+<filter id="filter1_b_27_29310" x="11.0134" y="191.233" width="32.039" height="32.039" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImageFix" stdDeviation="2"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_27_29310"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_27_29310" result="shape"/>
+</filter>
+<clipPath id="clip0_27_29310">
+<path d="M0 15.0183C0 6.72391 6.72391 0 15.0183 0H344.982C353.276 0 360 6.72391 360 15.0183V214.584C360 222.878 353.276 229.602 344.982 229.602H15.0183C6.72393 229.602 0 222.878 0 214.584V15.0183Z" fill="white"/>
+</clipPath>
+<clipPath id="clip1_27_29310">
+<rect x="15.0183" y="195.238" width="24.0292" height="24.0292" rx="12" fill="white"/>
+</clipPath>
+</defs>
+</svg>

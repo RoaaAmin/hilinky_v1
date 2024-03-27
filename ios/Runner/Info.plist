@@ -47,5 +47,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+            <string>HiLinky/Wetaan App Need Photos Permission To Pick Pictures.</string>
+    <key>NSCameraUsageDescription</key>
+        	<string>HiLinky/Wetaan App Need Camera Permission To Pick Pictures.</string>
+
 </dict>
 </plist>
