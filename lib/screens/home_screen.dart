@@ -4,12 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hiwetaan/components/context.dart';
 import 'package:line_icons/line_icons.dart';
-
-
-
 import '../auth.dart';
+import 'Profile/profile.dart';
 import 'create_card/create_card.dart';
 import 'login_screen.dart';
+import 'my_card/myCard.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -183,8 +182,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
-                  // Navigator.of(context).push(CupertinoPageRoute(
-                  //     builder: (BuildContext context) => MyCard()));
+                  Navigator.of(context).push(CupertinoPageRoute(
+                      builder: (BuildContext context) => MyCard()));
                 }),
             ListTile(
                 leading: const Icon(
@@ -196,11 +195,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
-                  // Navigator.of(context).push(
-                  //   CupertinoPageRoute(
-                  //     builder: (BuildContext context) => profiletest(),
-                  //   ),
-                  // );
+                  Navigator.of(context).push(
+                    CupertinoPageRoute(
+                      builder: (BuildContext context) => profiletest(),
+                    ),
+                  );
                 }),
             ListTile(
                 leading: const Icon(

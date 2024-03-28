@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hiwetaan/screens/Profile/profile.dart';
 import 'package:hiwetaan/screens/home_screen.dart';
 import 'package:hiwetaan/screens/my_card/myCard.dart';
-
-
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -17,6 +16,7 @@ class _HomeState extends State<Home> {
   List myScreenList = [
     HomeScreen(),
     MyCard(),
+    profiletest(),
     //SearchPagePremiumScreen(),
     //Notifications(),
     // QRScannerPage(),
@@ -47,48 +47,6 @@ class _HomeState extends State<Home> {
           ],
         ),
         body: myScreenList[currentIndex]
-//         extendBody: true,
-//         bottomNavigationBar: Padding(
-//           padding: const EdgeInsets.only(bottom: 10),
-//           child: DotNavigationBar(
-//             backgroundColor: Colors.blueGrey[100],
-//             currentIndex: currentIndex,
-//             dotIndicatorColor: Colors.black,
-//             unselectedItemColor: Colors.black,
-//             selectedItemColor: Colors.orange,
-//             onTap: (index) {
-//               currentIndex = index;
-//               setState(() {});
-//             },
-//             items: [
-//               /// home
-//               DotNavigationBarItem(
-//                 icon: const Icon(Icons.home),
-//               ),
-
-//               /// search
-//               DotNavigationBarItem(
-//                 icon: const Icon(Icons.search),
-//               ),
-
-//               /// scan
-//               DotNavigationBarItem(
-//                 icon: const Icon(Icons.qr_code),
-//               ),
-
-// //followed
-//               DotNavigationBarItem(
-//                 icon: const Icon(Icons.person_add_alt_1),
-//               ),
-
-//               /// Marcket
-//               DotNavigationBarItem(
-//                 icon: const Icon(Icons.shopping_bag_outlined),
-//               ),
-//             ],
-//           ),
-//         ),
-//         body: myScreenList[currentIndex]
         );
   }
 }
