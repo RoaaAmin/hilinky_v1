@@ -77,36 +77,38 @@ class EditState extends State<Edit> {
         .then((value) {
       setState(() {
         userData = value;
+        FirstName = value.data()!['FirstName'];
+        LastName = value.data()!['LastName'];
         sUserName = value['sUserName'];
         email = value['sUserEmail'];
         phoneNumber = value['sUserPhoneNumber'];
         nationality = value['sNationality'];
         city = value['sCity'];
         lodaing = false;
+        image = value.data()!['UserProfileImage'];
         getPosts();
       });
     });
   }
 
-  void getCardInfo() async {
-    await FirebaseFirestore.instance
-        .collection('Cards')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .get()
-        .then(
-      (value) {
-        setState(() {
-          FirstName = value.data()!['FirstName'];
-          LastName = value.data()!['LastName'];
-          image = value.data()!['ImageURL'];
-        });
-      },
-    );
-  }
+  // void getCardInfo() async {
+  //   await FirebaseFirestore.instance
+  //       .collection('Cards')
+  //       .doc(FirebaseAuth.instance.currentUser!.uid)
+  //       .get()
+  //       .then(
+  //     (value) {
+  //       setState(() {
+  //
+  //         image = value.data()!['ImageURL'];
+  //       });
+  //     },
+  //   );
+  // }
 
   @override
   void initState() {
-    getCardInfo();
+    //getCardInfo();
     getUserData();
     getUserInfo();
     super.initState();
