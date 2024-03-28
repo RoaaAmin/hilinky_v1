@@ -77,7 +77,6 @@ class EditState extends State<Edit> {
         .then((value) {
       setState(() {
         userData = value;
-
         sUserName = value['sUserName'];
         email = value['sUserEmail'];
         phoneNumber = value['sUserPhoneNumber'];
@@ -157,6 +156,7 @@ class EditState extends State<Edit> {
                           onChanged: (value) => FirstName = value,
                           controller: TextEditingController(text: FirstName),
                           decoration: InputDecoration(
+                            labelText: 'First Name',
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10))),
@@ -216,19 +216,6 @@ class EditState extends State<Edit> {
                             }
                             return null;
                           },
-                        ),
-                        const SizedBox(
-                          height: 90,
-                        ),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Location",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                            ),
-                          ],
                         ),
                         SizedBox(
                           height: 10,
@@ -326,7 +313,9 @@ class EditState extends State<Edit> {
                     ),
                   ),
                   // const location(),
-
+                  SizedBox(
+                    height: 10,
+                  ),
                   ElevatedButton(
                     onPressed: () async {
                       //    Validate returns true if the form is valid, or false otherwise.
@@ -335,6 +324,8 @@ class EditState extends State<Edit> {
                             .collection('Users')
                             .doc(FirebaseAuth.instance.currentUser!.uid)
                             .update({
+                          'FirstName': FirstName,
+                          'LastName': LastName,
                           'sUserName': sUserName,
                           'sUserEmail': email,
                           'sUserPhoneNumber': phoneNumber,
@@ -358,6 +349,7 @@ class EditState extends State<Edit> {
                       fixedSize: const Size(150, 40),
                       elevation: 0,
                     ),
+
                     child: const Text(
                       'Save',
                       style: TextStyle(color: Colors.white),

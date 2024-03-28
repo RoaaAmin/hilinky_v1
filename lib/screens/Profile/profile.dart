@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hiwetaan/components/context.dart';
+import 'package:hiwetaan/screens/Profile/edit_card.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../auth.dart';
@@ -298,7 +299,7 @@ class profiletestState extends State<profiletest> {
                         border: Border.all(style: BorderStyle.solid),
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20)),
-                    height: 181,
+                    height: 280,
                     width: 361,
                     child: Column(
                       children: [
@@ -328,12 +329,13 @@ class profiletestState extends State<profiletest> {
                             ),
                             TextButton(
                                 onPressed: () {
-                                  context.pushPage(Edit());
+                                 context.pushPage(Edit());
                                 },
                                 child: const Text(
                                   "Edit Profile Information",
                                   style: TextStyle(color: Colors.black),
                                 )),
+
                           ],
                         ),
                         Row(
@@ -351,7 +353,7 @@ class profiletestState extends State<profiletest> {
                                 ),
                                 Container(
                                   padding:
-                                      const EdgeInsets.only(left: 11, top: 11),
+                                  const EdgeInsets.only(left: 11, top: 11),
                                   child: const Icon(
                                     Icons.my_library_books_rounded,
                                     size: 20,
@@ -362,13 +364,48 @@ class profiletestState extends State<profiletest> {
                             ),
                             TextButton(
                                 onPressed: () {
-                                  context.pushPage(const Notifications());
+                                  context.pushPage(EditCard());
                                 },
                                 child: const Text(
-                                  "Notifications",
+                                  "Edit Card Information",
                                   style: TextStyle(color: Colors.black),
                                 )),
-                            const Text("ON")
+
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Stack(
+                              children: [
+                                Container(
+                                //   padding: const EdgeInsets.only(right: 15),
+                                //   child: const Icon(
+                                //     Icons.circle_outlined,
+                                //     // grade: 3.3,
+                                //     color: Colors.blueGrey,
+                                //     size: 40,
+                                //   ),
+                                // ),
+                                // Container(
+                                //   padding:
+                                //       const EdgeInsets.only(left: 11, top: 11),
+                                //   child: const Icon(
+                                //     Icons.my_library_books_rounded,
+                                //     size: 20,
+                                //     color: Colors.orange,
+                                //   ),
+                                ),
+                              ],
+                            ),
+                            // TextButton(
+                            //     onPressed: () {
+                            //       context.pushPage(const Notifications());
+                            //     },
+                            //     child: const Text(
+                            //       "Notifications",
+                            //       style: TextStyle(color: Colors.black),
+                            //     )),
+                            // const Text("ON")
                           ],
                         ),
                         Row(
@@ -406,23 +443,6 @@ class profiletestState extends State<profiletest> {
                             const Text("English(US)")
                           ],
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 20, right: 20, top: 10, bottom: 8),
-                    decoration: BoxDecoration(
-                        border: Border.all(style: BorderStyle.solid),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20)),
-                    height: 130,
-                    width: 361,
-                    child: Column(
-                      children: [
                         Row(
                           children: [
                             Stack(
@@ -459,14 +479,14 @@ class profiletestState extends State<profiletest> {
                                       return SizedBox(
                                         height: 250,
                                         width:
-                                            MediaQuery.of(context).size.width,
+                                        MediaQuery.of(context).size.width,
                                         // *
                                         //     0.8,
                                         child: Padding(
                                           padding: EdgeInsets.all(20.0),
                                           child: Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                             children: <Widget>[
                                               Text(
                                                 "Theme",
@@ -478,13 +498,13 @@ class profiletestState extends State<profiletest> {
                                                 //       .pushPage(profiletest());
                                                 // },
                                                 titleAlignment:
-                                                    ListTileTitleAlignment
-                                                        .center,
+                                                ListTileTitleAlignment
+                                                    .center,
                                                 // textAlign: TextAlign.end,
                                                 title: const Text(
                                                   'Light Mode',
                                                   style:
-                                                      TextStyle(fontSize: 16),
+                                                  TextStyle(fontSize: 16),
                                                 ),
 
                                                 leading: Radio(
@@ -503,13 +523,13 @@ class profiletestState extends State<profiletest> {
                                                 //       .pushPage(profiletest());
                                                 // },
                                                 titleAlignment:
-                                                    ListTileTitleAlignment
-                                                        .center,
+                                                ListTileTitleAlignment
+                                                    .center,
                                                 // textAlign: TextAlign.end,
                                                 title: const Text(
                                                   'Dark Mode',
                                                   style:
-                                                      TextStyle(fontSize: 16),
+                                                  TextStyle(fontSize: 16),
                                                 ),
 
                                                 leading: Radio(
@@ -528,13 +548,13 @@ class profiletestState extends State<profiletest> {
                                                 //       .pushPage(profiletest());
                                                 // },
                                                 titleAlignment:
-                                                    ListTileTitleAlignment
-                                                        .center,
+                                                ListTileTitleAlignment
+                                                    .center,
                                                 // textAlign: TextAlign.end,
                                                 title: const Text(
                                                   'System Default',
                                                   style:
-                                                      TextStyle(fontSize: 16),
+                                                  TextStyle(fontSize: 16),
                                                 ),
 
                                                 leading: Radio(
@@ -566,40 +586,6 @@ class profiletestState extends State<profiletest> {
                         ),
                         Row(
                           children: [
-                            // Stack(
-                            //   children: [
-                            //     Container(
-                            //       padding: const EdgeInsets.only(right: 15),
-                            //       child: const Icon(
-                            //         Icons.circle_outlined,
-                            //         // grade: 3.3,
-                            //         color: Colors.blueGrey,
-                            //         size: 40,
-                            //       ),
-                            //     ),
-                            //     Container(
-                            //       padding:
-                            //           const EdgeInsets.only(left: 11, top: 11),
-                            //       child: const Icon(
-                            //         Icons.my_library_books_rounded,
-                            //         size: 20,
-                            //         color: Colors.orange,
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
-                            // TextButton(
-                            //     onPressed: () {
-                            //     //  context.pushPage(const Activity());
-                            //     },
-                            //     child: const Text(
-                            //       "Activity",
-                            //       style: TextStyle(color: Colors.black),
-                            //     )),
-                          ],
-                        ),
-                        Row(
-                          children: [
                             Stack(
                               children: [
                                 Container(
@@ -613,7 +599,7 @@ class profiletestState extends State<profiletest> {
                                 ),
                                 Container(
                                   padding:
-                                      const EdgeInsets.only(left: 11, top: 11),
+                                  const EdgeInsets.only(left: 11, top: 11),
                                   child: const Icon(
                                     Icons.my_library_books_rounded,
                                     size: 20,
@@ -638,6 +624,235 @@ class profiletestState extends State<profiletest> {
                       ],
                     ),
                   ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Container(
+                  //   padding: const EdgeInsets.only(
+                  //       left: 20, right: 20, top: 10, bottom: 8),
+                  //   decoration: BoxDecoration(
+                  //       border: Border.all(style: BorderStyle.solid),
+                  //       color: Colors.white,
+                  //       borderRadius: BorderRadius.circular(20)),
+                  //   height: 130,
+                  //   width: 361,
+                  //   child: Column(
+                  //     children: [
+                  //       Row(
+                  //         children: [
+                  //           Stack(
+                  //             children: [
+                  //               Container(
+                  //                 padding: const EdgeInsets.only(right: 15),
+                  //                 child: const Icon(
+                  //                   Icons.circle_outlined,
+                  //                   // grade: 3.3,
+                  //                   color: Colors.blueGrey,
+                  //                   size: 40,
+                  //                 ),
+                  //               ),
+                  //               Container(
+                  //                 padding: EdgeInsets.only(left: 11, top: 11),
+                  //                 child: Icon(
+                  //                   Icons.my_library_books_rounded,
+                  //                   size: 20,
+                  //                   color: Colors.orange,
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //           TextButton(
+                  //               onPressed: () {
+                  //                 showBottomSheet(
+                  //                   shape: Border.symmetric(),
+                  //                   // strokeAlign:
+                  //                   //     BorderSide.strokeAlignOutside,
+                  //
+                  //                   // color: Colors.black),
+                  //                   context: context,
+                  //                   builder: (context) {
+                  //                     return SizedBox(
+                  //                       height: 250,
+                  //                       width:
+                  //                           MediaQuery.of(context).size.width,
+                  //                       // *
+                  //                       //     0.8,
+                  //                       child: Padding(
+                  //                         padding: EdgeInsets.all(20.0),
+                  //                         child: Column(
+                  //                           mainAxisAlignment:
+                  //                               MainAxisAlignment.start,
+                  //                           children: <Widget>[
+                  //                             Text(
+                  //                               "Theme",
+                  //                               style: TextStyle(fontSize: 24),
+                  //                             ),
+                  //                             ListTile(
+                  //                               // onTap: () {
+                  //                               //   context
+                  //                               //       .pushPage(profiletest());
+                  //                               // },
+                  //                               titleAlignment:
+                  //                                   ListTileTitleAlignment
+                  //                                       .center,
+                  //                               // textAlign: TextAlign.end,
+                  //                               title: const Text(
+                  //                                 'Light Mode',
+                  //                                 style:
+                  //                                     TextStyle(fontSize: 16),
+                  //                               ),
+                  //
+                  //                               leading: Radio(
+                  //                                 value: 1,
+                  //                                 groupValue: selectedOption,
+                  //                                 onChanged: (value) {
+                  //                                   setState(() {
+                  //                                     selectedOption = value!;
+                  //                                   });
+                  //                                 },
+                  //                               ),
+                  //                             ),
+                  //                             ListTile(
+                  //                               //    onTap: () {
+                  //                               //   context
+                  //                               //       .pushPage(profiletest());
+                  //                               // },
+                  //                               titleAlignment:
+                  //                                   ListTileTitleAlignment
+                  //                                       .center,
+                  //                               // textAlign: TextAlign.end,
+                  //                               title: const Text(
+                  //                                 'Dark Mode',
+                  //                                 style:
+                  //                                     TextStyle(fontSize: 16),
+                  //                               ),
+                  //
+                  //                               leading: Radio(
+                  //                                 value: 2,
+                  //                                 groupValue: selectedOption,
+                  //                                 onChanged: (value) {
+                  //                                   setState(() {
+                  //                                     selectedOption = value!;
+                  //                                   });
+                  //                                 },
+                  //                               ),
+                  //                             ),
+                  //                             ListTile(
+                  //                               //    onTap: () {
+                  //                               //   context
+                  //                               //       .pushPage(profiletest());
+                  //                               // },
+                  //                               titleAlignment:
+                  //                                   ListTileTitleAlignment
+                  //                                       .center,
+                  //                               // textAlign: TextAlign.end,
+                  //                               title: const Text(
+                  //                                 'System Default',
+                  //                                 style:
+                  //                                     TextStyle(fontSize: 16),
+                  //                               ),
+                  //
+                  //                               leading: Radio(
+                  //                                 value: 3,
+                  //                                 groupValue: selectedOption,
+                  //                                 onChanged: (value) {
+                  //                                   setState(() {
+                  //                                     selectedOption = value!;
+                  //                                   });
+                  //                                 },
+                  //                               ),
+                  //
+                  //                               //System Default
+                  //                             )
+                  //                           ],
+                  //                         ),
+                  //                       ),
+                  //                     );
+                  //                     // return SelectingSheet(keyword: text);
+                  //                   },
+                  //                 );
+                  //               },
+                  //               child: const Text(
+                  //                 "Theme",
+                  //                 style: TextStyle(color: Colors.black),
+                  //               )),
+                  //           const Text("Light Mode")
+                  //         ],
+                  //       ),
+                  //       Row(
+                  //         children: [
+                  //           // Stack(
+                  //           //   children: [
+                  //           //     Container(
+                  //           //       padding: const EdgeInsets.only(right: 15),
+                  //           //       child: const Icon(
+                  //           //         Icons.circle_outlined,
+                  //           //         // grade: 3.3,
+                  //           //         color: Colors.blueGrey,
+                  //           //         size: 40,
+                  //           //       ),
+                  //           //     ),
+                  //           //     Container(
+                  //           //       padding:
+                  //           //           const EdgeInsets.only(left: 11, top: 11),
+                  //           //       child: const Icon(
+                  //           //         Icons.my_library_books_rounded,
+                  //           //         size: 20,
+                  //           //         color: Colors.orange,
+                  //           //       ),
+                  //           //     ),
+                  //           //   ],
+                  //           // ),
+                  //           // TextButton(
+                  //           //     onPressed: () {
+                  //           //     //  context.pushPage(const Activity());
+                  //           //     },
+                  //           //     child: const Text(
+                  //           //       "Activity",
+                  //           //       style: TextStyle(color: Colors.black),
+                  //           //     )),
+                  //         ],
+                  //       ),
+                  //       Row(
+                  //         children: [
+                  //           Stack(
+                  //             children: [
+                  //               Container(
+                  //                 padding: const EdgeInsets.only(right: 15),
+                  //                 child: const Icon(
+                  //                   Icons.circle_outlined,
+                  //                   // grade: 3.3,
+                  //                   color: Colors.blueGrey,
+                  //                   size: 40,
+                  //                 ),
+                  //               ),
+                  //               Container(
+                  //                 padding:
+                  //                     const EdgeInsets.only(left: 11, top: 11),
+                  //                 child: const Icon(
+                  //                   Icons.my_library_books_rounded,
+                  //                   size: 20,
+                  //                   color: Colors.orange,
+                  //                 ),
+                  //               ),
+                  //             ],
+                  //           ),
+                  //           TextButton(
+                  //               onPressed: () {
+                  //                 FirebaseAuth.instance.signOut();
+                  //                 Navigator.of(context).push(MaterialPageRoute(
+                  //                   builder: (context) => Auth(),
+                  //                 ));
+                  //               },
+                  //               child: const Text(
+                  //                 "Log Out",
+                  //                 style: TextStyle(color: Colors.black),
+                  //               )),
+                  //         ],
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
 
