@@ -383,3 +383,5 @@ class EditState extends State<EditCard> {
         ));
   }
 }
+/// update links
+/// check for image 

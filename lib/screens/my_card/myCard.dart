@@ -6,10 +6,6 @@ import 'package:hiwetaan/screens/home_screen.dart';
 import 'package:hiwetaan/screens/my_card/widget/qr_code.dart';
 
 import 'package:line_icons/line_icons.dart';
-
-import 'package:loading_indicator/loading_indicator.dart';
-
-import '../../main.dart';
 import '../../nav_bar.dart';
 
 class MyCard extends StatefulWidget {
