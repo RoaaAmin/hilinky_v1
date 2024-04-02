@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hiwetaan/components/context.dart';
 import 'package:hiwetaan/screens/Profile/edit_card.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../auth.dart';
@@ -29,6 +32,14 @@ class profiletestState extends State<profiletest> {
   Map<String, dynamic> Links = {};
   var UserProfileImage;
 
+  Future getImage(ImageSource source) async {
+    var image = await ImagePicker.platform
+        .getImageFromSource(source: source); //pickImage
+    print('printing source of image $source');
+    setState(() {
+      selectedImage = File(image!.path);
+    });
+  }
   void getLinks() async {
     await FirebaseFirestore.instance
         .collection('Cards')
@@ -81,6 +92,8 @@ class profiletestState extends State<profiletest> {
   var Position = '';
   var CompanyName = '';
   var uniqueUserName = '';
+  var image;
+  File? selectedImage;
 
   void getUserInfo() async {
     var user = await FirebaseFirestore.instance
@@ -100,10 +113,13 @@ class profiletestState extends State<profiletest> {
         .then((value) {
       setState(() {
         userData = value;
+        image = value.data()!['UserProfileImage'];
         getPosts();
       });
     });
   }
+
+
 
   void getCardInfo() async {
     await FirebaseFirestore.instance
@@ -205,7 +221,7 @@ class profiletestState extends State<profiletest> {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       image: DecorationImage(
-                        image: NetworkImage(UserProfileImage ?? ''),
+                        image: NetworkImage(image ?? ''),
                         fit: BoxFit.cover,
                         alignment: Alignment.center,
                       ),
@@ -299,7 +315,7 @@ class profiletestState extends State<profiletest> {
                         border: Border.all(style: BorderStyle.solid),
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20)),
-                    height: 280,
+                    height: 230,
                     width: 361,
                     child: Column(
                       children: [
@@ -367,7 +383,7 @@ class profiletestState extends State<profiletest> {
                                   context.pushPage(EditCard());
                                 },
                                 child: const Text(
-                                  "Edit Card Information",
+                                  "Edit My Card ",
                                   style: TextStyle(color: Colors.black),
                                 )),
 
@@ -443,147 +459,147 @@ class profiletestState extends State<profiletest> {
                             const Text("English(US)")
                           ],
                         ),
-                        Row(
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(right: 15),
-                                  child: const Icon(
-                                    Icons.circle_outlined,
-                                    // grade: 3.3,
-                                    color: Colors.blueGrey,
-                                    size: 40,
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(left: 11, top: 11),
-                                  child: Icon(
-                                    Icons.my_library_books_rounded,
-                                    size: 20,
-                                    color: Colors.orange,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  showBottomSheet(
-                                    shape: Border.symmetric(),
-                                    // strokeAlign:
-                                    //     BorderSide.strokeAlignOutside,
-
-                                    // color: Colors.black),
-                                    context: context,
-                                    builder: (context) {
-                                      return SizedBox(
-                                        height: 250,
-                                        width:
-                                        MediaQuery.of(context).size.width,
-                                        // *
-                                        //     0.8,
-                                        child: Padding(
-                                          padding: EdgeInsets.all(20.0),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                            children: <Widget>[
-                                              Text(
-                                                "Theme",
-                                                style: TextStyle(fontSize: 24),
-                                              ),
-                                              ListTile(
-                                                // onTap: () {
-                                                //   context
-                                                //       .pushPage(profiletest());
-                                                // },
-                                                titleAlignment:
-                                                ListTileTitleAlignment
-                                                    .center,
-                                                // textAlign: TextAlign.end,
-                                                title: const Text(
-                                                  'Light Mode',
-                                                  style:
-                                                  TextStyle(fontSize: 16),
-                                                ),
-
-                                                leading: Radio(
-                                                  value: 1,
-                                                  groupValue: selectedOption,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      selectedOption = value!;
-                                                    });
-                                                  },
-                                                ),
-                                              ),
-                                              ListTile(
-                                                //    onTap: () {
-                                                //   context
-                                                //       .pushPage(profiletest());
-                                                // },
-                                                titleAlignment:
-                                                ListTileTitleAlignment
-                                                    .center,
-                                                // textAlign: TextAlign.end,
-                                                title: const Text(
-                                                  'Dark Mode',
-                                                  style:
-                                                  TextStyle(fontSize: 16),
-                                                ),
-
-                                                leading: Radio(
-                                                  value: 2,
-                                                  groupValue: selectedOption,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      selectedOption = value!;
-                                                    });
-                                                  },
-                                                ),
-                                              ),
-                                              ListTile(
-                                                //    onTap: () {
-                                                //   context
-                                                //       .pushPage(profiletest());
-                                                // },
-                                                titleAlignment:
-                                                ListTileTitleAlignment
-                                                    .center,
-                                                // textAlign: TextAlign.end,
-                                                title: const Text(
-                                                  'System Default',
-                                                  style:
-                                                  TextStyle(fontSize: 16),
-                                                ),
-
-                                                leading: Radio(
-                                                  value: 3,
-                                                  groupValue: selectedOption,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      selectedOption = value!;
-                                                    });
-                                                  },
-                                                ),
-
-                                                //System Default
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                      // return SelectingSheet(keyword: text);
-                                    },
-                                  );
-                                },
-                                child: const Text(
-                                  "Theme",
-                                  style: TextStyle(color: Colors.black),
-                                )),
-                            const Text("Light Mode")
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     Stack(
+                        //       children: [
+                        //         Container(
+                        //           padding: const EdgeInsets.only(right: 15),
+                        //           child: const Icon(
+                        //             Icons.circle_outlined,
+                        //             // grade: 3.3,
+                        //             color: Colors.blueGrey,
+                        //             size: 40,
+                        //           ),
+                        //         ),
+                        //         Container(
+                        //           padding: EdgeInsets.only(left: 11, top: 11),
+                        //           child: Icon(
+                        //             Icons.my_library_books_rounded,
+                        //             size: 20,
+                        //             color: Colors.orange,
+                        //           ),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //     TextButton(
+                        //         onPressed: () {
+                        //           showBottomSheet(
+                        //             shape: Border.symmetric(),
+                        //             // strokeAlign:
+                        //             //     BorderSide.strokeAlignOutside,
+                        //
+                        //             // color: Colors.black),
+                        //             context: context,
+                        //             builder: (context) {
+                        //               return SizedBox(
+                        //                 height: 250,
+                        //                 width:
+                        //                 MediaQuery.of(context).size.width,
+                        //                 // *
+                        //                 //     0.8,
+                        //                 // child: Padding(
+                        //                 //   padding: EdgeInsets.all(20.0),
+                        //                 //   child: Column(
+                        //                 //     mainAxisAlignment:
+                        //                 //     MainAxisAlignment.start,
+                        //                 //     children: <Widget>[
+                        //                 //       Text(
+                        //                 //         "Theme",
+                        //                 //         style: TextStyle(fontSize: 24),
+                        //                 //       ),
+                        //                 //       ListTile(
+                        //                 //         // onTap: () {
+                        //                 //         //   context
+                        //                 //         //       .pushPage(profiletest());
+                        //                 //         // },
+                        //                 //         titleAlignment:
+                        //                 //         ListTileTitleAlignment
+                        //                 //             .center,
+                        //                 //         // textAlign: TextAlign.end,
+                        //                 //         title: const Text(
+                        //                 //           'Light Mode',
+                        //                 //           style:
+                        //                 //           TextStyle(fontSize: 16),
+                        //                 //         ),
+                        //                 //
+                        //                 //         leading: Radio(
+                        //                 //           value: 1,
+                        //                 //           groupValue: selectedOption,
+                        //                 //           onChanged: (value) {
+                        //                 //             setState(() {
+                        //                 //               selectedOption = value!;
+                        //                 //             });
+                        //                 //           },
+                        //                 //         ),
+                        //                 //       ),
+                        //                 //       ListTile(
+                        //                 //         //    onTap: () {
+                        //                 //         //   context
+                        //                 //         //       .pushPage(profiletest());
+                        //                 //         // },
+                        //                 //         titleAlignment:
+                        //                 //         ListTileTitleAlignment
+                        //                 //             .center,
+                        //                 //         // textAlign: TextAlign.end,
+                        //                 //         title: const Text(
+                        //                 //           'Dark Mode',
+                        //                 //           style:
+                        //                 //           TextStyle(fontSize: 16),
+                        //                 //         ),
+                        //                 //
+                        //                 //         leading: Radio(
+                        //                 //           value: 2,
+                        //                 //           groupValue: selectedOption,
+                        //                 //           onChanged: (value) {
+                        //                 //             setState(() {
+                        //                 //               selectedOption = value!;
+                        //                 //             });
+                        //                 //           },
+                        //                 //         ),
+                        //                 //       ),
+                        //                 //       ListTile(
+                        //                 //         //    onTap: () {
+                        //                 //         //   context
+                        //                 //         //       .pushPage(profiletest());
+                        //                 //         // },
+                        //                 //         titleAlignment:
+                        //                 //         ListTileTitleAlignment
+                        //                 //             .center,
+                        //                 //         // textAlign: TextAlign.end,
+                        //                 //         title: const Text(
+                        //                 //           'System Default',
+                        //                 //           style:
+                        //                 //           TextStyle(fontSize: 16),
+                        //                 //         ),
+                        //                 //
+                        //                 //         leading: Radio(
+                        //                 //           value: 3,
+                        //                 //           groupValue: selectedOption,
+                        //                 //           onChanged: (value) {
+                        //                 //             setState(() {
+                        //                 //               selectedOption = value!;
+                        //                 //             });
+                        //                 //           },
+                        //                 //         ),
+                        //                 //
+                        //                 //         //System Default
+                        //                 //       )
+                        //                 //     ],
+                        //                 //   ),
+                        //                 // ),
+                        //               );
+                        //               // return SelectingSheet(keyword: text);
+                        //             },
+                        //           );
+                        //         },
+                        //         child: const Text(
+                        //           "Theme",
+                        //           style: TextStyle(color: Colors.black),
+                        //         )),
+                        //     const Text("Light Mode")
+                        //   ],
+                        // ),
                         Row(
                           children: [
                             Stack(

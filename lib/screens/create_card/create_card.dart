@@ -183,11 +183,7 @@ class _CreateCardState extends State<CreateCard> {
           print('Card saved');
           Navigator.of(context).pop();
         });
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MyCard()),
-        );
-
+        Navigator.pushNamed(context, 'myCard');
       }
     } else {
       showInSnackBar('You have to fill all the fields ', Colors.red,
@@ -200,7 +196,7 @@ class _CreateCardState extends State<CreateCard> {
       height: 100.0,
       width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.symmetric(
-        horizontal: 95,
+        horizontal: 80,
         vertical: 20,
       ),
       child: Column(
@@ -240,7 +236,7 @@ class _CreateCardState extends State<CreateCard> {
       height: 100.0,
       width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.symmetric(
-        horizontal: 95,
+        horizontal: 80,
         vertical: 20,
       ),
       child: Column(
@@ -280,7 +276,7 @@ class _CreateCardState extends State<CreateCard> {
       height: 100.0,
       width: MediaQuery.of(context).size.width,
       margin: EdgeInsets.symmetric(
-        horizontal: 95,
+        horizontal: 80,
         vertical: 20,
       ),
       child: Column(

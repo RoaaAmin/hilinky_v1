@@ -1,10 +1,16 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hiwetaan/components/context.dart';
 import 'package:hiwetaan/screens/Profile/profile.dart';
+import 'package:image_picker/image_picker.dart';
 
+import '../../core/utils/size_utils.dart';
+import '../create_card/widgets/socialMedia.dart';
 import 'image_picker.dart';
 
 class EditCard extends StatefulWidget {
@@ -23,6 +29,168 @@ class EditState extends State<EditCard> {
   List<DocumentSnapshot<Map<String, dynamic>>> postsDocs = [];
   bool postsFetched = false;
   DocumentSnapshot<Map<String, dynamic>>? userData;
+  Map<String, String> links = {};
+
+  bool editMode = false;
+  String editModeImageURL = '';
+  String editModeImageURLLogo = '';
+  String editModeImageURLPortfilio = '';
+
+
+  File? selectedImage;
+  File? selectedLogo;
+  File? selectedPortfolio;
+
+  var selectedImageURL;
+  var selectedLogoURL;
+  var selectedPortfolioURL;
+
+  Widget bottomSheet() {
+    return Container(
+      height: 100.0,
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.symmetric(
+        horizontal: 80,
+        vertical: 20,
+      ),
+      child: Column(
+        children: <Widget>[
+          Text(
+            "",
+            style: TextStyle(
+              fontSize: 20.0,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+            TextButton.icon(
+              icon: Icon(Icons.camera, color: Colors.amber[800]),
+              onPressed: () {
+                getImage(ImageSource.camera);
+              },
+              label: Text("Camera"),
+            ),
+            TextButton.icon(
+              icon: Icon(Icons.image, color: Colors.amber[800]),
+              onPressed: () {
+                getImage(ImageSource.gallery);
+              },
+              label: Text("Gallery"),
+            ),
+          ])
+        ],
+      ),
+    );
+  }
+
+  Widget bottomSheetLogo() {
+    return Container(
+      height: 100.0,
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.symmetric(
+        horizontal: 80,
+        vertical: 20,
+      ),
+      child: Column(
+        children: <Widget>[
+          Text(
+            "",
+            style: TextStyle(
+              fontSize: 20.0,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+            TextButton.icon(
+              icon: Icon(Icons.camera, color: Colors.amber[800]),
+              onPressed: () {
+                getLogo(ImageSource.camera);
+              },
+              label: Text("Camera"),
+            ),
+            TextButton.icon(
+              icon: Icon(Icons.image, color: Colors.amber[800]),
+              onPressed: () {
+                getLogo(ImageSource.gallery);
+              },
+              label: Text("Gallery"),
+            ),
+          ])
+        ],
+      ),
+    );
+  }
+
+  Widget bottomSheetPortfolio() {
+    return Container(
+      height: 100.0,
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.symmetric(
+        horizontal: 80,
+        vertical: 20,
+      ),
+      child: Column(
+        children: <Widget>[
+          Text(
+            "",
+            style: TextStyle(
+              fontSize: 20.0,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+            TextButton.icon(
+              icon: Icon(Icons.camera, color: Colors.amber[800]),
+              onPressed: () {
+                getPortfolio(ImageSource.camera);
+              },
+              label: Text("Camera"),
+            ),
+            TextButton.icon(
+              icon: Icon(Icons.image, color: Colors.amber[800]),
+              onPressed: () {
+                getPortfolio(ImageSource.gallery);
+              },
+              label: Text("Gallery"),
+            ),
+          ])
+        ],
+      ),
+    );
+  }
+
+  Future getImage(ImageSource source) async {
+    var image = await ImagePicker.platform
+        .getImageFromSource(source: source); //pickImage
+    print('printing source of image $source');
+    setState(() {
+      selectedImage = File(image!.path);
+    });
+  }
+
+  Future getLogo(ImageSource source) async {
+    var image1 = await ImagePicker.platform
+        .getImageFromSource(source: source); //pickImage
+    print('printing source of image $source');
+    setState(() {
+      selectedLogo = File(image1!.path);
+    });
+  }
+
+  Future getPortfolio(ImageSource source) async {
+    var image = await ImagePicker.platform
+        .getImageFromSource(source: source); //pickImage
+    print('printing source of image $source');
+    setState(() {
+      selectedPortfolio = File(image!.path);
+    });
+  }
 
   getPosts() async {
     final user = FirebaseAuth.instance.currentUser;
@@ -71,7 +239,6 @@ class EditState extends State<EditCard> {
       uniqueUserName = user.data()!['uniqueUserName'];
     });
   }
-
   getUserData() async {
     await FirebaseFirestore.instance
         .collection('Users')
@@ -94,22 +261,30 @@ class EditState extends State<EditCard> {
         .collection('Cards')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
-        .then(
-          (value) {
-        setState(() {
-          FirstName = value.data()!['FirstName'];
-          MiddleName = value.data()!['MiddleName'];
-          LastName = value.data()!['LastName'];
-          image = value.data()!['ImageURL'];
-          Prefix= value.data()!['Prefix'];
-          Position= value.data()!['Position'];
-          Email = value.data()!['Email'];
-          PhoneNumber = value.data()!['PhoneNumber'];
-          CompanyName = value.data()!['CompanyName'];
-        });
-      },
-    );
+        .then((value) {
+      setState(() {
+        FirstName = value.data()!['FirstName'];
+        MiddleName = value.data()!['MiddleName'];
+        LastName = value.data()!['LastName'];
+        image = value.data()!['ImageURL'];
+        Prefix = value.data()!['Prefix'];
+        Position = value.data()!['Position'];
+        Email = value.data()!['Email'];
+        PhoneNumber = value.data()!['PhoneNumber'];
+        CompanyName = value.data()!['CompanyName'];
+        links = value.data()!['links'];
+        selectedImageURL = value.data()!['imageURL'];
+        selectedLogoURL = value.data()!['logoURL'];
+        selectedPortfolioURL = value.data()!['portfolioURL'];
+
+        // Initialize image URLs with their latest values from Firestore
+        selectedImageURL = selectedImageURL;
+        selectedLogoURL = selectedLogoURL;
+        selectedPortfolioURL = selectedPortfolioURL;
+      });
+    });
   }
+
 
   @override
   void initState() {
@@ -135,25 +310,12 @@ class EditState extends State<EditCard> {
               },
               icon: const Icon(Icons.arrow_back_ios)),
         ),
+
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: ListView(
             children: [
-              CircleAvatar(
-                radius: 100,
-                foregroundImage: NetworkImage(image),
-              ),
-
-              TextButton(
-                  onPressed: () async {
-                    await controller.getImage();
-                    setState(() {});
-                  },
-                  child: const Text("Pick Image")),
-
-              const SizedBox(
-                height: 5,
-              ),
+              SizedBox(height: 10,),
               Form(
                 key: _formKey,
                 child: Column(
@@ -336,38 +498,321 @@ class EditState extends State<EditCard> {
                   ],
                 ),
               ),
-              // const location(),
-              SizedBox(height: 10,),
+              SizedBox(height: 30),
+              Text(
+                'Choose links to edit',
+                style: GoogleFonts.robotoCondensed(
+                    fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+              SocialMedia(
+                saved: links,
+                paddin: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+              ),
+              Padding(
+                padding: getPadding(
+                  top: 16,
+                  // right: 74,
+                ),
+              ),
+              SizedBox(height: 10),
+              Visibility(
+                visible: editMode,
+                child: Container(
+                  height: 150,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(6),
+                    image: DecorationImage(
+                      image: NetworkImage(editModeImageURL),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                replacement: GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: ((builder) => bottomSheet()),
+                    );
+                  },
+                  child: selectedImage != null
+                      ? Container(
+                    height: 150,
+                    width: MediaQuery.of(context).size.width,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: Image.file(
+                        selectedImage!,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
+                      : Container(
+                    height: 150,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Center(
+                      child: selectedImage != null
+                          ? Image.file(
+                        selectedImage!,
+                        height: 150,
+                        width: MediaQuery.of(context).size.width,
+                        fit: BoxFit.cover,
+                      )
+                          : Image.network(
+                        image ?? '',
+                        height: 150,
+                        width: MediaQuery.of(context).size.width,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Visibility(
+                    visible: editMode,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6),
+                        image: DecorationImage(
+                          image: NetworkImage(editModeImageURLLogo),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    replacement: GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: ((builder) => bottomSheetLogo()),
+                        );
+                      },
+                      child: selectedLogo != null
+                          ? Container(
+                        height: 150,
+                        width: 150,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: Image.file(
+                            selectedLogo!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )
+                          : Container(
+                        height: 170,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Center(
+                          child: selectedLogo != null
+                              ? Image.file(
+                            selectedLogo!,
+                            height: 150,
+                            width: 150,
+                            fit: BoxFit.cover,
+                          )
+                              : Image.network(
+                            image ?? '',
+                            height: 170,
+                           // width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Visibility(
+                    visible: editMode,
+                    child: Container(
+                      height: 150,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6),
+                        image: DecorationImage(
+                          image: NetworkImage(editModeImageURLPortfilio),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    replacement: GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: ((builder) => bottomSheetPortfolio()),
+                        );
+                      },
+                      child: selectedPortfolio != null
+                          ? Container(
+                        height: 150,
+                        width: MediaQuery.of(context).size.width,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: Image.file(
+                            selectedPortfolio!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )
+                          : Container(
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Center(
+                          child: selectedPortfolio != null
+                              ? Image.file(
+                            selectedPortfolio!,
+                            height: 150,
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover,
+                          )
+                              : Image.network(
+                            image ?? '',
+                            height: 150,
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              //update card data
               ElevatedButton(
                 onPressed: () async {
-                  //    Validate returns true if the form is valid, or false otherwise.
                   if (_formKey.currentState!.validate()) {
-                    await FirebaseFirestore.instance
-                        .collection('Cards')
-                        .doc(FirebaseAuth.instance.currentUser!.uid)
-                        .update({
-                      'Prefix': Prefix,
-                      'FirstName': FirstName,
-                      'MiddleName': MiddleName,
-                      'LastName': LastName,
-                      'Position': Position,
-                      'CompanyName': CompanyName,
-                      'Email': Email,
-                      'PhoneNumber': PhoneNumber,
-                    });
+                    // Check if any image is selected
+                    if (selectedImage != null || selectedLogo != null || selectedPortfolio != null) {
+                      // Upload images to Firebase Storage and get their URLs
+                      String? imageURL;
+                      String? logoURL;
+                      String? portfolioURL;
 
+                      // Inside the onPressed method of the ElevatedButton
+                      if (selectedImage != null) {
+                        // Upload selectedImage
+                        Reference ref = FirebaseStorage.instance
+                            .ref()
+                            .child('card_images')
+                            .child(FirebaseAuth.instance.currentUser!.uid + '_image.jpg');
+
+                        await ref.putFile(selectedImage!);
+                        imageURL = await ref.getDownloadURL();
+                        setState(() {
+                          selectedImageURL = imageURL;
+                        });
+                      }
+
+                      if (selectedLogo != null) {
+                        // Upload selectedLogo
+                        Reference ref = FirebaseStorage.instance
+                            .ref()
+                            .child('card_images')
+                            .child(FirebaseAuth.instance.currentUser!.uid + '_logo.jpg');
+
+                        await ref.putFile(selectedLogo!);
+                        logoURL = await ref.getDownloadURL();
+                        setState(() {
+                          selectedLogoURL = logoURL;
+                        });
+                      }
+
+                      if (selectedPortfolio != null) {
+                        // Upload selectedPortfolio
+                        Reference ref = FirebaseStorage.instance
+                            .ref()
+                            .child('card_images')
+                            .child(FirebaseAuth.instance.currentUser!.uid + '_portfolio.jpg');
+
+                        await ref.putFile(selectedPortfolio!);
+                        portfolioURL = await ref.getDownloadURL();
+                        setState(() {
+                          selectedPortfolioURL = portfolioURL;
+                        });
+                      }
+
+                      // Update user's card information in Firestore, including only the updated fields
+                      await FirebaseFirestore.instance
+                          .collection('Cards')
+                          .doc(FirebaseAuth.instance.currentUser!.uid)
+                          .update({
+                        'Prefix': Prefix,
+                        'FirstName': FirstName,
+                        'MiddleName': MiddleName,
+                        'LastName': LastName,
+                        'Position': Position,
+                        'CompanyName': CompanyName,
+                        'Email': Email,
+                        'PhoneNumber': PhoneNumber,
+                        'links': links,
+                        if (imageURL != null) 'imageURL': imageURL,
+                        if (logoURL != null) 'logoURL': logoURL,
+                        if (portfolioURL != null) 'portfolioURL': portfolioURL,
+                      });
+                    } else {
+                      // If no image is selected, update card information without changing the images
+                      await FirebaseFirestore.instance
+                          .collection('Cards')
+                          .doc(FirebaseAuth.instance.currentUser!.uid)
+                          .update({
+                        'Prefix': Prefix,
+                        'FirstName': FirstName,
+                        'MiddleName': MiddleName,
+                        'LastName': LastName,
+                        'Position': Position,
+                        'CompanyName': CompanyName,
+                        'Email': Email,
+                        'PhoneNumber': PhoneNumber,
+                        'links': links,
+                      });
+                    }
+
+                    // Show success message
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text(
-                            'Your Information Has Been Saved Successfully'),
+                        content: Text('Your card information has been saved successfully'),
                         backgroundColor: Color.fromARGB(255, 149, 181, 236),
                       ),
                     );
+
+                    // Navigate back to profile page
                     context.pushPage(profiletest());
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  // shape: const (),
                   padding: const EdgeInsets.all(5),
                   backgroundColor: const Color.fromARGB(255, 2, 84, 86),
                   fixedSize: const Size(150, 40),
@@ -377,11 +822,14 @@ class EditState extends State<EditCard> {
                   'Save',
                   style: TextStyle(color: Colors.white),
                 ),
-              ),
-            ],
-          ),
-        ));
+              )
+
+
+
+            ]
+    )));
+
   }
 }
 /// update links
-/// check for image 
+/// images not changes with latest updates

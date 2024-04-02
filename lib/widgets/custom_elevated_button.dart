@@ -19,6 +19,7 @@ class CustomElevatedButton extends BaseButton {
     bool? isDisabled,
     double? height,
     double? width,
+
     required String text,
   }) : super(
     text: text,
@@ -52,7 +53,10 @@ class CustomElevatedButton extends BaseButton {
     height: this.height ?? getVerticalSize(59),
     width: this.width ?? double.maxFinite,
     margin: margin,
-    decoration: decoration,
+    decoration: BoxDecoration(
+       // Replace Colors.blue with the desired color
+      borderRadius: BorderRadius.circular(8), // Example border radius
+    ),
     child: ElevatedButton(
       style: buttonStyle,
       onPressed: isDisabled ?? false ? null : onTap ?? () {},

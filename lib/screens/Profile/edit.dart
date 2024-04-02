@@ -1,9 +1,14 @@
+
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hiwetaan/components/context.dart';
 import 'package:hiwetaan/screens/Profile/profile.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'image_picker.dart';
 
@@ -22,6 +27,7 @@ class EditState extends State<Edit> {
   final _formKey = GlobalKey<FormState>();
   List<DocumentSnapshot<Map<String, dynamic>>> postsDocs = [];
   bool postsFetched = false;
+  // File? selectedImage;
   DocumentSnapshot<Map<String, dynamic>>? userData;
 
   getPosts() async {
@@ -46,6 +52,54 @@ class EditState extends State<Edit> {
     }
   }
 
+  Future getImage(ImageSource source) async {
+    var image = await ImagePicker.platform
+        .getImageFromSource(source: source); //pickImage
+    print('printing source of image $source');
+    setState(() {
+      selectedImage = File(image!.path);
+    });
+  }
+  Widget bottomSheet() {
+    return Container(
+      height: 100.0,
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.symmetric(
+        horizontal: 80,
+        vertical: 20,
+      ),
+      child: Column(
+        children: <Widget>[
+          Text(
+            "",
+            style: TextStyle(
+              fontSize: 20.0,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+            TextButton.icon(
+              icon: Icon(Icons.camera, color: Colors.amber[800]),
+              onPressed: () {
+                getImage(ImageSource.camera);
+              },
+              label: Text("Camera"),
+            ),
+            TextButton.icon(
+              icon: Icon(Icons.image, color: Colors.amber[800]),
+              onPressed: () {
+                getImage(ImageSource.gallery);
+              },
+              label: Text("Gallery"),
+            ),
+          ])
+        ],
+      ),
+    );
+  }
+
   var lodaing = true;
   var FirstName = '';
   var LastName = '';
@@ -54,6 +108,7 @@ class EditState extends State<Edit> {
   var email = '';
   var phoneNumber = '';
   var image;
+  File? selectedImage;
 
   // add them to sign up
   var nationality = '';
@@ -116,212 +171,269 @@ class EditState extends State<Edit> {
 
   @override
   Widget build(BuildContext context) {
-    dynamic myImage = const AssetImage("assets/images/avatary.png");
+    // dynamic myImage = const AssetImage("assets/images/avatary.png");
     // Build a Form widget using the _formKey created above.
     return lodaing
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.grey,
-              leading: IconButton(
-                  onPressed: () {
-                    context.pushPage(profiletest());
-                  },
-                  icon: const Icon(Icons.arrow_back_ios)),
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: ListView(
-                children: [
-                  CircleAvatar(
-                    radius: 100,
-                    foregroundImage: NetworkImage(image),
-                  ),
-
-                  TextButton(
-                      onPressed: () async {
-                        await controller.getImage();
-                        setState(() {});
-                      },
-                      child: const Text("Pick Image")),
-
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        TextFormField(
-                          onChanged: (value) => FirstName = value,
-                          controller: TextEditingController(text: FirstName),
-                          decoration: InputDecoration(
-                            labelText: 'First Name',
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                          ),
-                          //   autofillHints:,
-                          cursorColor: Colors.black,
-                          // The validator receives the text that the user has entered.
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          onChanged: (value) => LastName = value,
-                          controller: TextEditingController(text: LastName),
-                          decoration: InputDecoration(
-                            labelText: 'Last Name',
-                            // hintText: 'name',
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                          ),
-                          //   autofillHints:,
-                          cursorColor: Colors.black,
-                          // The validator receives the text that the user has entered.
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          onChanged: (value) => sUserName = value,
-                          controller: TextEditingController(text: sUserName),
-                          decoration: const InputDecoration(
-                            labelText: 'Username',
-                            //  hintText: 'name',
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                          ),
-                          //   autofillHints:,
-                          cursorColor: Colors.black,
-                          // The validator receives the text that the user has entered.
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          onChanged: (value) => email = value,
-                          controller: TextEditingController(text: email),
-                          decoration: const InputDecoration(
-                            labelText: 'Email',
-                            // hintText: 'name',
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                          ),
-                          //   autofillHints:,
-                          cursorColor: Colors.black,
-                          // The validator receives the text that the user has entered.
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          onChanged: (value) => phoneNumber = value,
-                          controller: TextEditingController(text: phoneNumber),
-                          decoration: const InputDecoration(
-                            label: Text("Phone Number"),
-
-                            // hintText: 'name',
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                          ),
-                          //   autofillHints:,
-                          cursorColor: Colors.black,
-                          // The validator receives the text that the user has entered.
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          onChanged: (value) => nationality = value,
-                          controller: TextEditingController(text: nationality),
-                          decoration: const InputDecoration(
-                            label: Text("Nationality"),
-
-                            // hintText: 'name',
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                          ),
-                          //   autofillHints:,
-                          cursorColor: Colors.black,
-                          // The validator receives the text that the user has entered.
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          onChanged: (value) => city = value,
-                          controller: TextEditingController(text: city),
-                          decoration: const InputDecoration(
-                            label: Text("City"),
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                          ),
-                          cursorColor: Colors.black,
-                          // The validator receives the text that the user has entered.
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                        ),
-                      ],
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.grey,
+          leading: IconButton(
+              onPressed: () {
+                context.pushPage(profiletest());
+              },
+              icon: const Icon(Icons.arrow_back_ios)),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ListView(
+              children: [
+                if (!lodaing)
+                  Container(
+                    child: ClipOval(
+                      child: selectedImage != null
+                          ? Image.file(
+                        selectedImage!,
+                        height: 325,
+                        width: 325,
+                        fit: BoxFit.cover,
+                      )
+                          : Image.network(
+                        image ?? '',
+                        height: 325,
+                        width: 325,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                  // const location(),
-                  SizedBox(
-                    height: 10,
+                TextButton(
+                    onPressed: ()  {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: ((builder) => bottomSheet()),
+                      );
+                    },
+                    child: const Text("Pick Image")),
+
+                const SizedBox(
+                  height: 5,
+                ),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      TextFormField(
+                        onChanged: (value) => FirstName = value,
+                        controller: TextEditingController(text: FirstName),
+                        decoration: InputDecoration(
+                          labelText: 'First Name',
+                          border: OutlineInputBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(10))),
+                        ),
+                        //   autofillHints:,
+                        cursorColor: Colors.black,
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        onChanged: (value) => LastName = value,
+                        controller: TextEditingController(text: LastName),
+                        decoration: InputDecoration(
+                          labelText: 'Last Name',
+                          // hintText: 'name',
+                          border: OutlineInputBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(10))),
+                        ),
+                        //   autofillHints:,
+                        cursorColor: Colors.black,
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        onChanged: (value) => sUserName = value,
+                        controller: TextEditingController(text: sUserName),
+                        decoration: const InputDecoration(
+                          labelText: 'Username',
+                          //  hintText: 'name',
+                          border: OutlineInputBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(10))),
+                        ),
+                        //   autofillHints:,
+                        cursorColor: Colors.black,
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        onChanged: (value) => email = value,
+                        controller: TextEditingController(text: email),
+                        decoration: const InputDecoration(
+                          labelText: 'Email',
+                          // hintText: 'name',
+                          border: OutlineInputBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(10))),
+                        ),
+                        //   autofillHints:,
+                        cursorColor: Colors.black,
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        onChanged: (value) => phoneNumber = value,
+                        controller: TextEditingController(text: phoneNumber),
+                        decoration: const InputDecoration(
+                          label: Text("Phone Number"),
+
+                          // hintText: 'name',
+                          border: OutlineInputBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(10))),
+                        ),
+                        //   autofillHints:,
+                        cursorColor: Colors.black,
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        onChanged: (value) => nationality = value,
+                        controller: TextEditingController(text: nationality),
+                        decoration: const InputDecoration(
+                          label: Text("Nationality"),
+
+                          // hintText: 'name',
+                          border: OutlineInputBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(10))),
+                        ),
+                        //   autofillHints:,
+                        cursorColor: Colors.black,
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        onChanged: (value) => city = value,
+                        controller: TextEditingController(text: city),
+                        decoration: const InputDecoration(
+                          label: Text("City"),
+                          border: OutlineInputBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(10))),
+                        ),
+                        cursorColor: Colors.black,
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      //    Validate returns true if the form is valid, or false otherwise.
-                      if (_formKey.currentState!.validate()) {
+                ),
+                // const location(),
+                SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      // Upload image to Firebase Storage
+                      if (selectedImage != null) {
+                        // Upload the image to Firebase Storage
+                        Reference ref = FirebaseStorage.instance
+                            .ref()
+                            .child('user_images')
+                            .child(FirebaseAuth.instance.currentUser!.uid + '.jpg');
+
+                        UploadTask uploadTask = ref.putFile(selectedImage!);
+
+                        await uploadTask.whenComplete(() async {
+                          // Get the URL of the uploaded image
+                          String selectedImage = await ref.getDownloadURL();
+
+                          // Update user's information in Firestore with the image URL
+                          await FirebaseFirestore.instance
+                              .collection('Users')
+                              .doc(FirebaseAuth.instance.currentUser!.uid)
+                              .update({
+                            'FirstName': FirstName,
+                            'LastName': LastName,
+                            'sUserName': sUserName,
+                            'sUserEmail': email,
+                            'sUserPhoneNumber': phoneNumber,
+                            'sNationality': nationality,
+                            'sCity': city,
+                            'UserProfileImage': selectedImage,
+                          });
+
+
+                          // Show success message
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Your information has been saved successfully'),
+                              backgroundColor: Color.fromARGB(255, 149, 181, 236),
+                            ),
+                          );
+
+                          // Navigate back to profile page
+                          context.pushPage(profiletest());
+                        });
+                      } else {
+                        // If no image selected, update user's information without changing the image
                         await FirebaseFirestore.instance
                             .collection('Users')
                             .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -334,31 +446,35 @@ class EditState extends State<Edit> {
                           'sNationality': nationality,
                           'sCity': city,
                         });
+
+                        // Show success message
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text(
-                                'Your Information Has Been Saved Successfully'),
+                            content: Text('Your information has been saved successfully'),
                             backgroundColor: Color.fromARGB(255, 149, 181, 236),
                           ),
                         );
+
+                        // Navigate back to profile page
                         context.pushPage(profiletest());
                       }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      // shape: const (),
-                      padding: const EdgeInsets.all(5),
-                      backgroundColor: const Color.fromARGB(255, 2, 84, 86),
-                      fixedSize: const Size(150, 40),
-                      elevation: 0,
-                    ),
-
-                    child: const Text(
-                      'Save',
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    }
+                  },
+                  // Button styling and text
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(5),
+                    backgroundColor: const Color.fromARGB(255, 2, 84, 86),
+                    fixedSize: const Size(150, 40),
+                    elevation: 0,
                   ),
-                ],
-              ),
-            ));
+                  child: const Text(
+                    'Save',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+
+              ]
+          ),
+        ));
   }
 }

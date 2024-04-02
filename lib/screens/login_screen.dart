@@ -16,7 +16,6 @@ import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_image_view.dart';
 import '../widgets/custom_text_form_field.dart';
 
-
 class LoginScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _LoginScreenState();
@@ -67,211 +66,211 @@ class _LoginScreenState extends State<LoginScreen> {
     mediaQueryData = MediaQuery.of(context);
 
     return SafeArea(
-      child: Scaffold(
-      backgroundColor: appTheme.gray50,
-        resizeToAvoidBottomInset: false,
-        appBar: CustomAppBar(
-          leadingWidth: double.maxFinite,
-          leading: AppbarImage(
-            svgPath: ImageConstant.imgBack,
-            margin: getMargin(
-              left: 11,
-              top: 12,
-              right: 351,
-              bottom: 12,
+        child: Scaffold(
+            backgroundColor: appTheme.gray50,
+            resizeToAvoidBottomInset: false,
+            appBar: CustomAppBar(
+              leadingWidth: double.maxFinite,
+              leading: AppbarImage(
+                svgPath: ImageConstant.imgBack,
+                margin: getMargin(
+                  left: 11,
+                  top: 12,
+                  right: 351,
+                  bottom: 12,
+                ),
+              ),
             ),
-          ),
-        ),
-        body: Form(
-         //key: _scaffoldKey,
-          child: Container(
-            width: double.maxFinite,
-            padding: getPadding(
-              left: 24,
-              top: 21,
-              right: 24,
-              bottom: 21,
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-              Padding(
-              padding: getPadding(
-              left: 1,
-              ),
-              child: Text(
-                "Welcome Back!",
-                style: theme.textTheme.displaySmall,
-              ),
-          ),
-          Container(
-              width: getHorizontalSize(302),
-              margin: getMargin(
-                left: 1,
-                top: 13,
-                right: 41,
-              ),
-              child: Text(
-                "Happy to see you again , enter your account details",
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-               style: theme.textTheme.bodyLarge!.copyWith(
-                 height: 1.56,
-               ),
-              ),
-          ),
-          Padding(
-              padding: getPadding(
-                left: 1,
-                top: 25,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "Email or Username",
-                    style: theme.textTheme.titleMedium,
-                  ),
-                  CustomTextFormField(
-                    controller: _emailController,
-                    margin: getMargin(
-                      top: 4,
+            body: Form(
+              //key: _scaffoldKey,
+                child: Container(
+                    width: double.maxFinite,
+                    padding: getPadding(
+                      left: 24,
+                      top: 21,
+                      right: 24,
+                      bottom: 21,
                     ),
-                    hintText: "Example@Example.com",
-                    hintStyle: theme.textTheme.titleSmall!,
-                    textInputType: TextInputType.emailAddress,
-                  ),
-                ],
-              ),
-          ),
-                  Container(
-                    height: getVerticalSize(99),
-                    width: getHorizontalSize(349),
-                    margin: getMargin(
-                      top: 23,
-                    ),
-                      child: Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          Align(
-                            alignment: Alignment.center,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Password",
-                                  style: theme.textTheme.titleMedium,
+                    child: SingleChildScrollView(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: getPadding(
+                                left: 1,
+                              ),
+                              child: Text(
+                                "Welcome Back!",
+                                style: theme.textTheme.displaySmall,
+                              ),
+                            ),
+                            Container(
+                              width: getHorizontalSize(302),
+                              margin: getMargin(
+                                left: 1,
+                                top: 13,
+                                right: 41,
+                              ),
+                              child: Text(
+                                "Happy to see you again , enter your account details",
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: theme.textTheme.bodyLarge!.copyWith(
+                                  height: 1.56,
                                 ),
-                                CustomTextFormField(
-                                  controller: _passwordController,
-                                  obscureText: obscureText,
-                                  margin: getMargin(
-                                    top: 3,
+                              ),
+                            ),
+                            Padding(
+                              padding: getPadding(
+                                left: 1,
+                                top: 25,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Email or Username",
+                                    style: theme.textTheme.titleMedium,
                                   ),
-                                  hintText: "Your Password",
-                                  hintStyle: CustomTextStyles.titleMediumGray90002,
-                                  textInputType: TextInputType.visiblePassword,
-                                  suffix: GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        obscureText = !obscureText;
-                                      });
-                                    },
-                                    child: Container(
-                                      margin: getMargin(
-                                        left: 30,
-                                        top: 15,
-                                        right: 16,
-                                        bottom: 15,
-                                      ),
-                                    child: CustomImageView(
-                                      svgPath: obscureText
-                                          ? ImageConstant.imgAkariconseyeClose// Closed eye SVG
-                                          : ImageConstant.imgAkariconseyeopen  // Open eye SVG
+                                  CustomTextFormField(
+                                    controller: _emailController,
+                                    margin: getMargin(
+                                      top: 4,
+                                    ),
+                                    hintText: "Example@Example.com",
+                                    hintStyle: theme.textTheme.titleSmall!,
+                                    textInputType: TextInputType.emailAddress,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: getVerticalSize(99),
+                              width: getHorizontalSize(349),
+                              margin: getMargin(
+                                top: 23,
+                              ),
+                              child: Stack(
+                                alignment: Alignment.bottomRight,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Password",
+                                          style: theme.textTheme.titleMedium,
+                                        ),
+                                        CustomTextFormField(
+                                          controller: _passwordController,
+                                          obscureText: obscureText,
+                                          margin: getMargin(
+                                            top: 3,
+                                          ),
+                                          hintText: "Your Password",
+                                          hintStyle: CustomTextStyles.titleMediumGray90002,
+                                          textInputType: TextInputType.visiblePassword,
+                                          suffix: GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                obscureText = !obscureText;
+                                              });
+                                            },
+                                            child: Container(
+                                              margin: getMargin(
+                                                left: 30,
+                                                top: 15,
+                                                right: 16,
+                                                bottom: 15,
+                                              ),
+                                              child: CustomImageView(
+                                                  svgPath: obscureText
+                                                      ? ImageConstant.imgAkariconseyeClose// Closed eye SVG
+                                                      : ImageConstant.imgAkariconseyeopen  // Open eye SVG
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () async {
+                                sendRecoveryPass();
+                              },
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Padding(
+                                  padding: getPadding(
+                                    top: 17,
+                                    right: 4,
+                                  ),
+                                  child: Text(
+                                    "Forgot Password?",
+                                    style: CustomTextStyles.labelLargeInterDeeporange300.copyWith(
+                                      decoration: TextDecoration.underline,
                                     ),
                                   ),
                                 ),
-                                )
-                              ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                  ),
-                  GestureDetector(
-                    onTap: () async {
-                      sendRecoveryPass();
-                    },
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: getPadding(
-                          top: 17,
-                          right: 4,
-                        ),
-                        child: Text(
-                          "Forgot Password?",
-                          style: CustomTextStyles.labelLargeInterDeeporange300.copyWith(
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  CustomElevatedButton(
-                    onTap: loginValidation,
-                    text: "Login",
-                    margin: getMargin(
-                      top: 22,
-                    ),
-                  ),
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: getPadding(
-                    top: 25,
-                    bottom: 5,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: "Don’t have an account",
-                              style: CustomTextStyles.labelLargeInterBluegray300,
+                            CustomElevatedButton(
+                              onTap: loginValidation,
+                              text: "Login",
+                              margin: getMargin(
+                                top: 22,
+                              ),
                             ),
-                            TextSpan(
-                              text: "?",
-                              style: CustomTextStyles.bodyMediumInterBluegray300,
-                            ),
-                            TextSpan(
-                              text: " ",
-                              style: CustomTextStyles.bodyMediumInterBluegray300,
-                            ),
-                          ],
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                      GestureDetector(
-                        onTap: openSignupScreen,
-                        child: Text(
-                          "Sign up Now",
-                          style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
-                            decoration: TextDecoration.underline,
-    ),
-    ),
-    ),
-    ],
-    ),
-    ),)]),
-            ))))
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: getPadding(
+                                  top: 25,
+                                  bottom: 5,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: "Don’t have an account",
+                                            style: CustomTextStyles.labelLargeInterBluegray300,
+                                          ),
+                                          TextSpan(
+                                            text: "?",
+                                            style: CustomTextStyles.bodyMediumInterBluegray300,
+                                          ),
+                                          TextSpan(
+                                            text: " ",
+                                            style: CustomTextStyles.bodyMediumInterBluegray300,
+                                          ),
+                                        ],
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                    GestureDetector(
+                                      onTap: openSignupScreen,
+                                      child: Text(
+                                        "Sign up Now",
+                                        style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),)]),
+                    ))))
     );
   }
 
@@ -298,7 +297,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> signInWithEmail(String email) async {
     try {
       UserCredential userCredentials =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: _passwordController.text,
       );
@@ -351,7 +350,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // Check if input is an email
       if (input.contains('@') && input.contains('.com')) {
         UserCredential userCredentials =
-            await FirebaseAuth.instance.signInWithEmailAndPassword(
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: input,
           password: _passwordController.text,
         );
@@ -387,7 +386,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   uniqueUserName = userDataInfo.data()!['uniqueUserName'];
                   sUserPhoneNumber = userDataInfo.data()!['sUserPhoneNumber'];
                   sUserNotificationToken =
-                      userDataInfo.data()!['sUserNotificationToken'];
+                  userDataInfo.data()!['sUserNotificationToken'];
                 });
               });
             });
@@ -413,7 +412,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (userSnapshot.docs.isNotEmpty) {
           String userEmail = userSnapshot.docs[0].get('sUserEmail');
           UserCredential userCredentials =
-              await FirebaseAuth.instance.signInWithEmailAndPassword(
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: userEmail,
             password: _passwordController.text,
           );
@@ -449,7 +448,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     uniqueUserName = userDataInfo.data()!['uniqueUserName'];
                     sUserPhoneNumber = userDataInfo.data()!['sUserPhoneNumber'];
                     sUserNotificationToken =
-                        userDataInfo.data()!['sUserNotificationToken'];
+                    userDataInfo.data()!['sUserNotificationToken'];
                   });
                 });
               });

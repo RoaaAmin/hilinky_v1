@@ -124,14 +124,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.orange,
-        foregroundColor: Colors.white,
-        onPressed: () {
-        //  context.pushPage(CreatePost());
-        },
-        child: const Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.orange,
+      //   foregroundColor: Colors.white,
+      //   onPressed: () {
+      //   //  context.pushPage(CreatePost());
+      //   },
+      //   child: const Icon(Icons.add),
+      // ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
