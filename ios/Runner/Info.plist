@@ -41,16 +41,18 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-	<key>NSPhotoLibraryUsageDescription</key>
-    <string>HiLinky/Wetaan App Need Photos Permission To Pick Pictures.</string>
-    <key>NSCameraUsageDescription</key>
-    <string>HiLinky/Wetaan App Need Camera Permission To Pick Pictures.</string>
+    	<key>UIViewControllerBasedStatusBarAppearance</key>
+    	<false/>
+    	<key>CADisableMinimumFrameDurationOnPhone</key>
+    	<true/>
+    	<key>UIApplicationSupportsIndirectInputEvents</key>
+    	<true/>
+    	<key>NSPhotoLibraryUsageDescription</key>
+        <string>HiLinky App Need Photos Permission To Pick Pictures.</string>
+        <key>NSCameraUsageDescription</key>
+        <string>This app needs camera access to scan QR codes and pick pictures.</string>
+        <key>io.flutter.embedded_views_preview</key>
+        <true/>
 
 </dict>
 </plist>

@@ -15,6 +15,7 @@ import 'edit.dart';
 import 'language.dart';
 import 'notifications.dart';
 
+// profile like settings page
 class profiletest extends StatefulWidget {
   profiletest({
     super.key,

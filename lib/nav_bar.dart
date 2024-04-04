@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hiwetaan/screens/Profile/profile.dart';
+import 'package:hiwetaan/screens/QRScannerPage.dart';
 import 'package:hiwetaan/screens/home_screen.dart';
 import 'package:hiwetaan/screens/my_card/myCard.dart';
 
@@ -19,7 +20,7 @@ class _HomeState extends State<Home> {
     profiletest(),
     //SearchPagePremiumScreen(),
     //Notifications(),
-    // QRScannerPage(),
+    //QRScannerPage(),
     //Edit(),
    // FollowedScreen(),
     //terms(),

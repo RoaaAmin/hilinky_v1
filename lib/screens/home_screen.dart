@@ -6,6 +6,7 @@ import 'package:hiwetaan/components/context.dart';
 import 'package:line_icons/line_icons.dart';
 import '../auth.dart';
 import 'Profile/profile.dart';
+import 'QRScannerPage.dart';
 import 'create_card/create_card.dart';
 import 'login_screen.dart';
 import 'my_card/myCard.dart';
@@ -124,14 +125,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.orange,
-      //   foregroundColor: Colors.white,
-      //   onPressed: () {
-      //   //  context.pushPage(CreatePost());
-      //   },
-      //   child: const Icon(Icons.add),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.orange,
+        foregroundColor: Colors.white,
+        onPressed: () {
+         context.pushPage(QRScannerPage());
+        },
+        child: const Icon(Icons.qr_code_scanner),
+      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
