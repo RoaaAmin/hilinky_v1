@@ -45,6 +45,7 @@ class EditState extends State<EditCard> {
   var selectedLogoURL;
   var selectedPortfolioURL;
 
+
   Widget bottomSheet() {
     return Container(
       height: 100.0,
@@ -124,6 +125,12 @@ class EditState extends State<EditCard> {
       ),
     );
   }
+  void updateLinks(Map<String, String> updatedLinks) {
+    setState(() {
+      links = updatedLinks;
+    });
+    print('Updated Links: $links');
+  }
 
   Widget bottomSheetPortfolio() {
     return Container(
@@ -175,11 +182,11 @@ class EditState extends State<EditCard> {
   }
 
   Future getLogo(ImageSource source) async {
-    var image1 = await ImagePicker.platform
+    var image = await ImagePicker.platform
         .getImageFromSource(source: source); //pickImage
     print('printing source of image $source');
     setState(() {
-      selectedLogo = File(image1!.path);
+      selectedLogo = File(image!.path);
     });
   }
 
@@ -225,7 +232,9 @@ class EditState extends State<EditCard> {
   var Email = '';
   var PhoneNumber = '';
   var CompanyName ='';
-  var image;
+  var imageURL;
+  var imageLogo;
+  var imagePortfolio;
   // add them to sign up
   var nationality = '';
   var city = '';
@@ -266,24 +275,19 @@ class EditState extends State<EditCard> {
         FirstName = value.data()!['FirstName'];
         MiddleName = value.data()!['MiddleName'];
         LastName = value.data()!['LastName'];
-        image = value.data()!['ImageURL'];
+        imageURL = value.data()!['ImageURL'];
         Prefix = value.data()!['Prefix'];
         Position = value.data()!['Position'];
         Email = value.data()!['Email'];
         PhoneNumber = value.data()!['PhoneNumber'];
         CompanyName = value.data()!['CompanyName'];
-        links = value.data()!['links'];
-        selectedImageURL = value.data()!['imageURL'];
-        selectedLogoURL = value.data()!['logoURL'];
-        selectedPortfolioURL = value.data()!['portfolioURL'];
-
-        // Initialize image URLs with their latest values from Firestore
-        selectedImageURL = selectedImageURL;
-        selectedLogoURL = selectedLogoURL;
-        selectedPortfolioURL = selectedPortfolioURL;
+        links = value.data()!['Links'];
+        imageLogo = value.data()!['LogoURL'];
+        imagePortfolio = value.data()!['PortfolioURL'];
       });
     });
   }
+
 
 
   @override
@@ -505,9 +509,8 @@ class EditState extends State<EditCard> {
                     fontSize: 25, fontWeight: FontWeight.bold),
               ),
               SocialMedia(
-                saved: links,
-                paddin: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                initialLinks: links,
+                onLinksUpdated: updateLinks, // Pass the callback function
               ),
               Padding(
                 padding: getPadding(
@@ -567,7 +570,7 @@ class EditState extends State<EditCard> {
                         fit: BoxFit.cover,
                       )
                           : Image.network(
-                        image ?? '',
+                        imageURL ?? '',
                         height: 150,
                         width: MediaQuery.of(context).size.width,
                         fit: BoxFit.cover,
@@ -579,7 +582,7 @@ class EditState extends State<EditCard> {
 
               SizedBox(height: 10),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Visibility(
                     visible: editMode,
@@ -631,24 +634,20 @@ class EditState extends State<EditCard> {
                             fit: BoxFit.cover,
                           )
                               : Image.network(
-                            image ?? '',
+                            imageLogo ?? '',
                             height: 170,
-                           // width: MediaQuery.of(context).size.width,
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
                     ),
                   ),
-
-
                   SizedBox(
                     width: 10,
                   ),
                   Visibility(
                     visible: editMode,
                     child: Container(
-                      height: 150,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(6),
@@ -696,7 +695,7 @@ class EditState extends State<EditCard> {
                             fit: BoxFit.cover,
                           )
                               : Image.network(
-                            image ?? '',
+                            imagePortfolio ?? '',
                             height: 150,
                             width: MediaQuery.of(context).size.width,
                             fit: BoxFit.cover,
@@ -707,6 +706,7 @@ class EditState extends State<EditCard> {
                   ),
                 ],
               ),
+
               SizedBox(
                 height: 20,
               ),
@@ -714,6 +714,7 @@ class EditState extends State<EditCard> {
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
+
                     // Check if any image is selected
                     if (selectedImage != null || selectedLogo != null || selectedPortfolio != null) {
                       // Upload images to Firebase Storage and get their URLs
@@ -732,7 +733,7 @@ class EditState extends State<EditCard> {
                         await ref.putFile(selectedImage!);
                         imageURL = await ref.getDownloadURL();
                         setState(() {
-                          selectedImageURL = imageURL;
+                          imageURL = imageURL;
                         });
                       }
 
@@ -745,8 +746,9 @@ class EditState extends State<EditCard> {
 
                         await ref.putFile(selectedLogo!);
                         logoURL = await ref.getDownloadURL();
+                        print('Logo URL: $logoURL'); // Debugging statement
                         setState(() {
-                          selectedLogoURL = logoURL;
+                          imageLogo = logoURL;
                         });
                       }
 
@@ -759,8 +761,9 @@ class EditState extends State<EditCard> {
 
                         await ref.putFile(selectedPortfolio!);
                         portfolioURL = await ref.getDownloadURL();
+                        print('Portfolio URL: $portfolioURL'); // Debugging statement
                         setState(() {
-                          selectedPortfolioURL = portfolioURL;
+                          imagePortfolio = portfolioURL;
                         });
                       }
 
@@ -777,30 +780,13 @@ class EditState extends State<EditCard> {
                         'CompanyName': CompanyName,
                         'Email': Email,
                         'PhoneNumber': PhoneNumber,
-                        'links': links,
-                        if (imageURL != null) 'imageURL': imageURL,
-                        if (logoURL != null) 'logoURL': logoURL,
-                        if (portfolioURL != null) 'portfolioURL': portfolioURL,
-                      });
-                    } else {
-                      // If no image is selected, update card information without changing the images
-                      await FirebaseFirestore.instance
-                          .collection('Cards')
-                          .doc(FirebaseAuth.instance.currentUser!.uid)
-                          .update({
-                        'Prefix': Prefix,
-                        'FirstName': FirstName,
-                        'MiddleName': MiddleName,
-                        'LastName': LastName,
-                        'Position': Position,
-                        'CompanyName': CompanyName,
-                        'Email': Email,
-                        'PhoneNumber': PhoneNumber,
-                        'links': links,
+                        'Links': links,
+                        if (imageURL != null) 'ImageURL': imageURL,
+                        if (logoURL != null) 'LogoURL': logoURL,
+                        if (portfolioURL != null) 'PortfolioURL': portfolioURL,
                       });
                     }
 
-                    // Show success message
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Your card information has been saved successfully'),
@@ -832,4 +818,4 @@ class EditState extends State<EditCard> {
   }
 }
 /// update links
-/// images not changes with latest updates
+/// images not changes with latest updates (logo and portfolio)

@@ -1,13 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../core/utils/size_utils.dart';
 
-
 class SocialMedia extends StatefulWidget {
-  SocialMedia({super.key, required this.paddin, required this.saved});
+  final Map<String, String> initialLinks;
+  final Function(Map<String, String>) onLinksUpdated;
+  SocialMedia({
+    Key? key,
+    required this.initialLinks,
+    required this.onLinksUpdated,
+    this.paddin, // Declare padding as an optional parameter
+  })  : saved = initialLinks,
+        super(key: key);
 
-  var paddin;
+  final EdgeInsetsGeometry? paddin; // Declare padding as an optional parameter
+
   Map<String, String> saved;
 
   @override
@@ -144,10 +154,11 @@ class _SocialMediaState extends State<SocialMedia> {
             showModalBottomSheet(
               context: context,
               builder: ((builder) => Padding(
-                    padding: widget.paddin,
-                    child: bottomSheetLinks(index, name),
-                  )),
+                padding: widget.paddin ?? EdgeInsets.zero, // Use widget.paddin if not null, otherwise use EdgeInsets.zero
+                child: bottomSheetLinks(index, name),
+              )),
             );
+
           },
           icon: socialMediaIcons[index],
         );
@@ -182,9 +193,13 @@ class _SocialMediaState extends State<SocialMedia> {
                 TextButton(
                   onPressed: () {
                     setState(() {
-                      Navigator.of(context).pop();
+                      links[name] = entredLink.text;
+                      widget.onLinksUpdated(links); // Pass updated links to parent widget
                     });
+                    Navigator.of(context).pop();
+                    entredLink.clear();
                   },
+
                   child: const Text("Cancel"),
                 ),
                 const SizedBox(width: 10),
