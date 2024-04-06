@@ -32,6 +32,7 @@ class EditState extends State<EditCard> {
   Map<String, String> links = {};
 
   bool editMode = false;
+
   String editModeImageURL = '';
   String editModeImageURLLogo = '';
   String editModeImageURLPortfilio = '';
@@ -44,6 +45,10 @@ class EditState extends State<EditCard> {
   var selectedImageURL;
   var selectedLogoURL;
   var selectedPortfolioURL;
+
+  var imageURL;
+  var logoURL;
+  var portfolioURL;
 
 
   Widget bottomSheet() {
@@ -232,10 +237,6 @@ class EditState extends State<EditCard> {
   var Email = '';
   var PhoneNumber = '';
   var CompanyName ='';
-  var imageURL;
-  var imageLogo;
-  var imagePortfolio;
-  // add them to sign up
   var nationality = '';
   var city = '';
 
@@ -276,14 +277,14 @@ class EditState extends State<EditCard> {
         MiddleName = value.data()!['MiddleName'];
         LastName = value.data()!['LastName'];
         imageURL = value.data()!['ImageURL'];
+        logoURL = value.data()!['LogoURL'];
+        portfolioURL = value.data()!['PortfolioURL'];
         Prefix = value.data()!['Prefix'];
         Position = value.data()!['Position'];
         Email = value.data()!['Email'];
         PhoneNumber = value.data()!['PhoneNumber'];
         CompanyName = value.data()!['CompanyName'];
         links = value.data()!['Links'];
-        imageLogo = value.data()!['LogoURL'];
-        imagePortfolio = value.data()!['PortfolioURL'];
       });
     });
   }
@@ -581,124 +582,127 @@ class EditState extends State<EditCard> {
               ),
 
               SizedBox(height: 10),
+
               Row(
-               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Visibility(
-                    visible: editMode,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6),
-                        image: DecorationImage(
-                          image: NetworkImage(editModeImageURLLogo),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    replacement: GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: ((builder) => bottomSheetLogo()),
-                        );
-                      },
-                      child: selectedLogo != null
-                          ? Container(
-                        height: 150,
-                        width: 150,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: Image.file(
-                            selectedLogo!,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      )
-                          : Container(
-                        height: 170,
+                  Expanded(
+                    child: Visibility(
+                      visible: editMode,
+                      child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 2,
-                          ),
                           borderRadius: BorderRadius.circular(6),
+                          image: DecorationImage(
+                            image: NetworkImage(editModeImageURLLogo),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        child: Center(
-                          child: selectedLogo != null
-                              ? Image.file(
-                            selectedLogo!,
-                            height: 150,
-                            width: 150,
-                            fit: BoxFit.cover,
-                          )
-                              : Image.network(
-                            imageLogo ?? '',
-                            height: 170,
-                            fit: BoxFit.cover,
+                      ),
+                      replacement: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: ((builder) => bottomSheetLogo()),
+                          );
+                        },
+                        child: selectedLogo != null
+                            ? Container(
+                          height: 150,
+                          width: 150,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: Image.file(
+                              selectedLogo!,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                            : Container(
+                          height: 170,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Center(
+                            child: selectedLogo != null
+                                ? Image.file(
+                              selectedLogo!,
+                              height: 150,
+                              width: 150,
+                              fit: BoxFit.cover,
+                            )
+                                : Image.network(
+                              logoURL ?? '',
+                              height: 170,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Visibility(
-                    visible: editMode,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6),
-                        image: DecorationImage(
-                          image: NetworkImage(editModeImageURLPortfilio),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    replacement: GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: ((builder) => bottomSheetPortfolio()),
-                        );
-                      },
-                      child: selectedPortfolio != null
-                          ? Container(
-                        height: 150,
-                        width: MediaQuery.of(context).size.width,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: Image.file(
-                            selectedPortfolio!,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      )
-                          : Container(
-                        height: 150,
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Visibility(
+                      visible: editMode,
+                      child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 2,
-                          ),
                           borderRadius: BorderRadius.circular(6),
+                          image: DecorationImage(
+                            image: NetworkImage(editModeImageURLPortfilio),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        child: Center(
-                          child: selectedPortfolio != null
-                              ? Image.file(
-                            selectedPortfolio!,
-                            height: 150,
-                            width: MediaQuery.of(context).size.width,
-                            fit: BoxFit.cover,
-                          )
-                              : Image.network(
-                            imagePortfolio ?? '',
-                            height: 150,
-                            width: MediaQuery.of(context).size.width,
-                            fit: BoxFit.cover,
+                      ),
+                      replacement: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: ((builder) => bottomSheetPortfolio()),
+                          );
+                        },
+                        child: selectedPortfolio != null
+                            ? Container(
+                          height: 150,
+                          width: 150,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: Image.file(
+                              selectedPortfolio!,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                            : Container(
+                          height: 170,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Center(
+                            child: selectedPortfolio != null
+                                ? Image.file(
+                              selectedPortfolio!,
+                              height: 150,
+                              width: 150,
+                              fit: BoxFit.cover,
+                            )
+                                : Image.network(
+                              portfolioURL ?? '',
+
+                              height: 170,
+                              width: 170,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -714,7 +718,6 @@ class EditState extends State<EditCard> {
               ElevatedButton(
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-
                     // Check if any image is selected
                     if (selectedImage != null || selectedLogo != null || selectedPortfolio != null) {
                       // Upload images to Firebase Storage and get their URLs
@@ -748,7 +751,7 @@ class EditState extends State<EditCard> {
                         logoURL = await ref.getDownloadURL();
                         print('Logo URL: $logoURL'); // Debugging statement
                         setState(() {
-                          imageLogo = logoURL;
+                          selectedLogoURL = logoURL;
                         });
                       }
 
@@ -763,7 +766,7 @@ class EditState extends State<EditCard> {
                         portfolioURL = await ref.getDownloadURL();
                         print('Portfolio URL: $portfolioURL'); // Debugging statement
                         setState(() {
-                          imagePortfolio = portfolioURL;
+                          portfolioURL = portfolioURL;
                         });
                       }
 
