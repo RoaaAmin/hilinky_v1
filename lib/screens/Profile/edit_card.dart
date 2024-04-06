@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hiwetaan/components/context.dart';
 import 'package:hiwetaan/screens/Profile/profile.dart';
+import 'package:hiwetaan/screens/Profile/updateSocialMEdia.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../core/utils/size_utils.dart';
@@ -136,6 +137,7 @@ class EditState extends State<EditCard> {
     });
     print('Updated Links: $links');
   }
+
 
   Widget bottomSheetPortfolio() {
     return Container(
@@ -509,9 +511,11 @@ class EditState extends State<EditCard> {
                 style: GoogleFonts.robotoCondensed(
                     fontSize: 25, fontWeight: FontWeight.bold),
               ),
+
               SocialMedia(
-                initialLinks: links,
-                onLinksUpdated: updateLinks, // Pass the callback function
+                saved: links,
+                paddin: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
               ),
               Padding(
                 padding: getPadding(
@@ -721,75 +725,62 @@ class EditState extends State<EditCard> {
                     // Check if any image is selected
                     if (selectedImage != null || selectedLogo != null || selectedPortfolio != null) {
                       // Upload images to Firebase Storage and get their URLs
-                      String? imageURL;
-                      String? logoURL;
-                      String? portfolioURL;
-
-                      // Inside the onPressed method of the ElevatedButton
                       if (selectedImage != null) {
-                        // Upload selectedImage
-                        Reference ref = FirebaseStorage.instance
-                            .ref()
-                            .child('card_images')
-                            .child(FirebaseAuth.instance.currentUser!.uid + '_image.jpg');
-
-                        await ref.putFile(selectedImage!);
-                        imageURL = await ref.getDownloadURL();
-                        setState(() {
-                          imageURL = imageURL;
-                        });
+                        final imageRef = FirebaseStorage.instance.ref().child('images').child('user_image.jpg');
+                        final uploadTask = imageRef.putFile(selectedImage!);
+                        final snapshot = await uploadTask.whenComplete(() => null);
+                        imageURL = await snapshot.ref.getDownloadURL();
                       }
 
                       if (selectedLogo != null) {
-                        // Upload selectedLogo
-                        Reference ref = FirebaseStorage.instance
-                            .ref()
-                            .child('card_images')
-                            .child(FirebaseAuth.instance.currentUser!.uid + '_logo.jpg');
-
-                        await ref.putFile(selectedLogo!);
-                        logoURL = await ref.getDownloadURL();
-                        print('Logo URL: $logoURL'); // Debugging statement
-                        setState(() {
-                          selectedLogoURL = logoURL;
-                        });
+                        final logoRef = FirebaseStorage.instance.ref().child('images').child('user_logo.jpg');
+                        final uploadTask = logoRef.putFile(selectedLogo!);
+                        final snapshot = await uploadTask.whenComplete(() => null);
+                        logoURL = await snapshot.ref.getDownloadURL();
                       }
 
                       if (selectedPortfolio != null) {
-                        // Upload selectedPortfolio
-                        Reference ref = FirebaseStorage.instance
-                            .ref()
-                            .child('card_images')
-                            .child(FirebaseAuth.instance.currentUser!.uid + '_portfolio.jpg');
-
-                        await ref.putFile(selectedPortfolio!);
-                        portfolioURL = await ref.getDownloadURL();
-                        print('Portfolio URL: $portfolioURL'); // Debugging statement
-                        setState(() {
-                          portfolioURL = portfolioURL;
-                        });
+                        final portfolioRef = FirebaseStorage.instance.ref().child('images').child('user_portfolio.jpg');
+                        final uploadTask = portfolioRef.putFile(selectedPortfolio!);
+                        final snapshot = await uploadTask.whenComplete(() => null);
+                        portfolioURL = await snapshot.ref.getDownloadURL();
                       }
-
-                      // Update user's card information in Firestore, including only the updated fields
-                      await FirebaseFirestore.instance
-                          .collection('Cards')
-                          .doc(FirebaseAuth.instance.currentUser!.uid)
-                          .update({
-                        'Prefix': Prefix,
-                        'FirstName': FirstName,
-                        'MiddleName': MiddleName,
-                        'LastName': LastName,
-                        'Position': Position,
-                        'CompanyName': CompanyName,
-                        'Email': Email,
-                        'PhoneNumber': PhoneNumber,
-                        'Links': links,
-                        if (imageURL != null) 'ImageURL': imageURL,
-                        if (logoURL != null) 'LogoURL': logoURL,
-                        if (portfolioURL != null) 'PortfolioURL': portfolioURL,
-                      });
                     }
 
+                    // Fetch existing card data from Firestore
+                    DocumentSnapshot<Map<String, dynamic>> cardSnapshot = await FirebaseFirestore.instance
+                        .collection('Cards')
+                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .get();
+
+                    // Extract existing card data
+                    Map<String, dynamic> existingData = cardSnapshot.data() ?? {};
+
+                    // Merge updated links with existing data
+                    Map<String, dynamic> updatedData = {
+                      ...existingData, // Spread existing data
+                      'Prefix': Prefix,
+                      'FirstName': FirstName,
+                      'MiddleName': MiddleName,
+                      'LastName': LastName,
+                      'Position': Position,
+                      'CompanyName': CompanyName,
+                      'Email': Email,
+                      'PhoneNumber': PhoneNumber,
+                      'Links': links, // Update links in Firestore
+                      // Include other fields to update here...
+                      'ImageURL': imageURL, // Update imageURL
+                      'LogoURL': logoURL,   // Update logoURL
+                      'PortfolioURL': portfolioURL, // Update portfolioURL
+                    };
+
+                    // Update user's card information in Firestore
+                    await FirebaseFirestore.instance
+                        .collection('Cards')
+                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .update(updatedData);
+
+                    // Show a snackbar to indicate successful save
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Your card information has been saved successfully'),
@@ -812,6 +803,8 @@ class EditState extends State<EditCard> {
                   style: TextStyle(color: Colors.white),
                 ),
               )
+
+
 
 
 

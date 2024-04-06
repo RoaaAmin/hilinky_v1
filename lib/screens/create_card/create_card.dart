@@ -588,13 +588,9 @@ class _CreateCardState extends State<CreateCard> {
                           fontSize: 25, fontWeight: FontWeight.bold),
                     ),
                     SocialMedia(
-                      initialLinks: links,
-                      onLinksUpdated: (updatedLinks) {
-                        setState(() {
-                          links = updatedLinks; // Update links in EditCard widget's state
-                        });
-                      },
-                      // Other parameters...
+                      saved: links,
+                      paddin: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
                     ),
 
                     Padding(

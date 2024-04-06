@@ -1,23 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../core/utils/size_utils.dart';
 
 class SocialMedia extends StatefulWidget {
-  final Map<String, String> initialLinks;
-  final Function(Map<String, String>) onLinksUpdated;
-  SocialMedia({
-    Key? key,
-    required this.initialLinks,
-    required this.onLinksUpdated,
-    this.paddin, // Declare padding as an optional parameter
-  })  : saved = initialLinks,
-        super(key: key);
+  SocialMedia({super.key, required this.paddin, required this.saved});
 
-  final EdgeInsetsGeometry? paddin; // Declare padding as an optional parameter
-
+  var paddin;
   Map<String, String> saved;
 
   @override
@@ -82,20 +71,6 @@ class _SocialMediaState extends State<SocialMedia> {
       itemBuilder: (context, index) {
         var name;
 
-        ///  'facebook': '',0
-        //     'twitter': '',1
-        //     'linkedin': '',2
-        //     'youtube': '',3
-        //     'instagram': '',4
-        //     'telegram': '',5
-        //     'whatsapp': '',6
-        //     'github': '',7
-        //     'discord': '',8
-        //     'figma': '',9
-        //     'dribbble': '',10
-        //     'behance': '',11
-        //     'location': '',12
-
         if (index == 0) {
           name = 'facebook';
         }
@@ -154,11 +129,10 @@ class _SocialMediaState extends State<SocialMedia> {
             showModalBottomSheet(
               context: context,
               builder: ((builder) => Padding(
-                padding: widget.paddin ?? EdgeInsets.zero, // Use widget.paddin if not null, otherwise use EdgeInsets.zero
+                padding: widget.paddin,
                 child: bottomSheetLinks(index, name),
               )),
             );
-
           },
           icon: socialMediaIcons[index],
         );
@@ -193,13 +167,9 @@ class _SocialMediaState extends State<SocialMedia> {
                 TextButton(
                   onPressed: () {
                     setState(() {
-                      links[name] = entredLink.text;
-                      widget.onLinksUpdated(links); // Pass updated links to parent widget
+                      Navigator.of(context).pop();
                     });
-                    Navigator.of(context).pop();
-                    entredLink.clear();
                   },
-
                   child: const Text("Cancel"),
                 ),
                 const SizedBox(width: 10),
