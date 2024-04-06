@@ -115,6 +115,14 @@ class _CreateCardState extends State<CreateCard> {
   }
 
   uploadCard() async {
+    showInSnackBar(
+      'Please wait while the card is being created...',
+      Colors.green,
+      Colors.white,
+      10,
+      context,
+      _scaffoldKey,
+    );
     if (selectedImage != null) {
       String imageURL = editMode ? editModeImageURL : '';
       String logoURL = editMode ? editModeImageURLLogo : '';
