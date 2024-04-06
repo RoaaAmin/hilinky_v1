@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hiwetaan/components/context.dart';
 import 'package:hiwetaan/screens/Profile/profile.dart';
-import 'package:hiwetaan/screens/Profile/updateSocialMEdia.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../core/utils/size_utils.dart';
