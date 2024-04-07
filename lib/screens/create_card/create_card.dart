@@ -113,8 +113,125 @@ class _CreateCardState extends State<CreateCard> {
 
     return userCity; // Return the user's city
   }
-
   uploadCard() async {
+    // Check if the widget is mounted before showing the snackbar
+    if (mounted) {
+      showInSnackBar(
+        'Please wait while the card is being created...',
+        Colors.green,
+        Colors.white,
+        4,
+        context,
+        _scaffoldKey,
+      );
+    }
+
+    // Check if required fields are filled
+    if (firstName != null &&
+        lastName != null &&
+        position != null &&
+        email != null &&
+        phoneNumber != null) {
+      String imageURL = editMode ? editModeImageURL : '';
+      String logoURL = editMode ? editModeImageURLLogo : '';
+      String portfolioURL = editMode ? editModeImageURLPortfilio : '';
+
+      try {
+        // Upload selected image
+        if (selectedImage != null && selectedLogo != null && selectedPortfolio != null) {
+          // Upload selected image
+          var imageUploadTask = FirebaseStorage.instance
+              .ref('Cards/')
+              .child(randomAlphaNumeric(9) + '.jpg')
+              .putFile(selectedImage!);
+          imageURL = await (await imageUploadTask).ref.getDownloadURL();
+
+          // Upload selected logo
+          var logoUploadTask = FirebaseStorage.instance
+              .ref('Cards/')
+              .child(randomAlphaNumeric(9) + '_logo.jpg')
+              .putFile(selectedLogo!);
+          logoURL = await (await logoUploadTask).ref.getDownloadURL();
+
+          // Upload selected portfolio
+          var portfolioUploadTask = FirebaseStorage.instance
+              .ref('Cards/')
+              .child(randomAlphaNumeric(9) + '_portfolio.jpg')
+              .putFile(selectedPortfolio!);
+          portfolioURL = await (await portfolioUploadTask).ref.getDownloadURL();
+        } else {
+          // Handle the case when one of the variables is null
+          print('One of the selected files is null');
+        }
+
+        if (editMode) {
+          // Update card if in edit mode
+          await widget.card.reference.update({
+            "ImageURL": imageURL,
+            "LogoURL": logoURL,
+            "PortfolioURL": portfolioURL,
+          });
+        } else {
+          // Fetch the selected city from getuser function
+          String selectedCity = await getuser();
+          // Upload card details
+          await FirebaseFirestore.instance
+              .collection('Cards')
+              .doc(FirebaseAuth.instance.currentUser!.uid)
+              .set({
+            "ImageURL": imageURL,
+            "LogoURL": logoURL,
+            "PortfolioURL": portfolioURL,
+            "Prefix": prefix ?? '',
+            "FirstName": firstName ?? '',
+            "MiddleName": middleName ?? '',
+            "LastName": lastName ?? '',
+            "Position": position ?? '',
+            "CompanyName": companyName ?? '',
+            "Email": email ?? '',
+            "PhoneNumber": phoneNumber ?? '',
+            "Links": links ?? {},
+            "cardId": uuid.v4(),
+            "PostedByUID": FirebaseAuth.instance.currentUser!.uid,
+            "City": selectedCity,
+            "TimeStamp": DateTime.now(),
+          });
+
+          print('Card saved');
+          // Navigate to the 'myCard' screen
+          Navigator.pushNamed(context, 'myCard');
+        }
+      } catch (e) {
+        // Handle errors
+        print('Error uploading card: $e');
+        if (mounted) {
+          // Show error message if widget is still mounted
+          showInSnackBar(
+            'Error uploading card. Please try again later.',
+            Colors.red,
+            Colors.white,
+            3,
+            context,
+            _scaffoldKey,
+          );
+        }
+      }
+    } else {
+      // Show error message if required fields or images are not filled
+      if (mounted) {
+        showInSnackBar(
+          'Please fill all the required fields and select images',
+          Colors.red,
+          Colors.white,
+          3,
+          context,
+          _scaffoldKey,
+        );
+      }
+    }
+  }
+
+  /*uploadCard() async {
     showInSnackBar(
       'Please wait while the card is being created...',
       Colors.green,
@@ -197,7 +314,7 @@ class _CreateCardState extends State<CreateCard> {
       showInSnackBar('You have to fill all the fields ', Colors.red,
           Colors.white, 3, context, _scaffoldKey);
     }
-  }
+  }*/
 
   Widget bottomSheet() {
     return Container(
