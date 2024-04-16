@@ -101,18 +101,18 @@ class EditState extends State<Edit> {
   }
 
   var lodaing = true;
-  var FirstName = '';
-  var LastName = '';
-  var uniqueUserName = '';
-  var sUserName = '';
-  var email = '';
-  var phoneNumber = '';
+  var FirstName;
+  var LastName;
+  var uniqueUserName;
+  var sUserName ;
+  var email ;
+  var phoneNumber;
   var image;
   File? selectedImage;
 
   // add them to sign up
-  var nationality = '';
-  var city = '';
+  var nationality ;
+  var city ;
 
   void getUserInfo() async {
     var user = await FirebaseFirestore.instance
