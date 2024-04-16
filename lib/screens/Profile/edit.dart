@@ -176,15 +176,6 @@ class EditState extends State<Edit> {
     return lodaing
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.grey,
-          leading: IconButton(
-              onPressed: () {
-                context.pushPage(profiletest());
-              },
-              icon: const Icon(Icons.arrow_back_ios)),
-        ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: ListView(
