@@ -15,8 +15,9 @@ class _HomeState extends State<Home> {
   int currentIndex = 0;
 
   List myScreenList = [
+    //AboutUs(),
+    Container(),
     HomeScreen(),
-    MyCard(),
     profiletest(),
     //SearchPagePremiumScreen(),
     //Notifications(),
@@ -41,10 +42,11 @@ class _HomeState extends State<Home> {
           type: BottomNavigationBarType.fixed,
           selectedIconTheme: const IconThemeData(size: 20),
           items: const [
+
+            BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "About Us"),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(icon: Icon(Icons.credit_card), label: "My Card"),
             BottomNavigationBarItem(
-                icon: Icon(Icons.edit_note), label: "Profile"),
+                icon: Icon(Icons.settings), label: "Settings"),
           ],
         ),
         body: myScreenList[currentIndex]

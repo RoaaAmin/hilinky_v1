@@ -85,13 +85,6 @@ class _MyCardState extends State<MyCard> {
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.only(top: 1.0, bottom: 20.0),
-                          child: Text(
-                            "my Card",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                            ),
-                          ),
                         ),
 
                         Container(

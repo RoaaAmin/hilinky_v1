@@ -199,7 +199,7 @@ class _CreateCardState extends State<CreateCard> {
 
           print('Card saved');
           // Navigate to the 'myCard' screen
-          Navigator.pushNamed(context, 'myCard');
+          Navigator.pushNamed(context, 'homeScreen');
         }
       } catch (e) {
         // Handle errors
