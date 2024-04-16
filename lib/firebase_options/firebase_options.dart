@@ -20,7 +20,7 @@ class DefaultFirebaseConfig{
        return const FirebaseOptions(
          appId: '1:832808556224:android:f9b4f54ac3983d2d72ff25',
          apiKey: 'AIzaSyAywYGCPO5Y2pVKvLMBns_yOGi35M11G40',
-         projectId:'com.example.hiwetaan',
+         projectId:'hiwetaan',
          messagingSenderId: '832808556224',
          storageBucket:'hiwetaan.appspot.com'
        );

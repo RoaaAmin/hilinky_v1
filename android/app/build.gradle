@@ -1,3 +1,4 @@
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -73,4 +74,10 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation("com.google.firebase:firebase-analytics")
+}
+// Conditionally apply the Google services plugin
+if (!project.plugins.hasPlugin('com.google.gms.google-services')) {
+    plugins {
+        id 'com.google.gms.google-services' version '4.4.1' apply false
+    }
 }
