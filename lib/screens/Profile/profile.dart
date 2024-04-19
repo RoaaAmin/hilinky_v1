@@ -14,8 +14,6 @@ import '../../nav_bar.dart';
 import 'edit.dart';
 import 'language.dart';
 import 'notifications.dart';
-
-// profile like settings page
 class profiletest extends StatefulWidget {
   profiletest({
     super.key,
@@ -32,6 +30,7 @@ class profiletest extends StatefulWidget {
 class profiletestState extends State<profiletest> {
   Map<String, dynamic> Links = {};
   var UserProfileImage;
+  int selectedOption = 1;
 
   Future getImage(ImageSource source) async {
     var image = await ImagePicker.platform
@@ -41,6 +40,8 @@ class profiletestState extends State<profiletest> {
       selectedImage = File(image!.path);
     });
   }
+
+
   void getLinks() async {
     await FirebaseFirestore.instance
         .collection('Cards')
@@ -171,7 +172,6 @@ class profiletestState extends State<profiletest> {
   // Note: This is a GlobalKey<FormState>,
   // not a GlobalKey<profiletestState>.
   final _formKey = GlobalKey<FormState>();
-  int selectedOption = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -450,14 +450,25 @@ class profiletestState extends State<profiletest> {
                               ],
                             ),
                             TextButton(
-                                onPressed: () {
-                                  context.pushPage(language());
-                                },
-                                child: const Text(
-                                  "Language",
-                                  style: TextStyle(color: Colors.black),
-                                )),
-                            const Text("English(US)")
+                              onPressed: () {
+                                // Navigate to the Language page and pass the callback function
+                                context.pushPage(Language(
+                                  // onLanguageSelected: (int language) {
+                                  //   setState(() {
+                                  //     selectedOption = language; // Update the selected language
+                                  //   });
+                                  // },
+                                ));
+                              },
+                              child: const Text(
+                                "Language",
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                            // Text(
+                            //   (selectedOption == 2 ? "arabic_language" : "english_language"),
+                            //   style: TextStyle(color: Colors.black),
+                            // ),
                           ],
                         ),
                         // Row(

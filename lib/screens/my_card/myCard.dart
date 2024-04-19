@@ -2,11 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hiwetaan/components/context.dart';
 import 'package:hiwetaan/screens/home_screen.dart';
 import 'package:hiwetaan/screens/my_card/widget/qr_code.dart';
 
 import 'package:line_icons/line_icons.dart';
 import '../../nav_bar.dart';
+import '../QRScannerPage.dart';
 
 class MyCard extends StatefulWidget {
   @override
@@ -99,6 +101,12 @@ class _MyCardState extends State<MyCard> {
             flowList(context),
           ],
         ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.pushPage(QRScannerPage());
+        },
+        child: Icon(Icons.qr_code_scanner),
+      ),
     );
   }
 

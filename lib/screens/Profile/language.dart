@@ -1,191 +1,95 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:hiwetaan/components/context.dart';
-import 'package:hiwetaan/screens/Profile/profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class language extends StatefulWidget {
-   language({super.key});
+class Language extends StatefulWidget {
+  const Language({Key? key}) : super(key: key);
 
   @override
-  State<language> createState() => _languageState();
+  _LanguageState createState() => _LanguageState();
 }
 
-class _languageState extends State<language> {
-  int selectedOption=1;
+class _LanguageState extends State<Language> {
+  int selectedOption = 1; // Default to English (US)
+  late SharedPreferences prefs;
 
+  @override
+  void initState() {
+    super.initState();
+    _loadSelectedLanguage();
+  }
+
+  Future<void> _loadSelectedLanguage() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      selectedOption = prefs.getInt('selectedOption') ?? 1; // Default to English (US)
+    });
+  }
+
+  Future<void> _saveSelectedLanguage(int value) async {
+    await prefs.setInt('selectedOption', value);
+    setState(() {
+      selectedOption = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-       appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.grey,
-          title: const Center(
-            child: Text(
-              "Language",
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.grey,
+        title: const Center(
+          child: Text(
+            "Language",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
           ),
-           leading: IconButton(
-                onPressed: () {
-                  context.pop( profiletest());
-                },
-                icon: const Icon(Icons.arrow_back_ios))
-        
         ),
-      body:    Column(
-   mainAxisAlignment: MainAxisAlignment.start,
- 
-  children: <Widget>[
-    ListTile(
-      titleAlignment: ListTileTitleAlignment.center,
-      // textAlign: TextAlign.end,
-      title: const Text('English (US)'),
-    
-      
-      leading:   Radio(
-        value: 1,
-        groupValue: selectedOption,
-        onChanged: (value) {
-          setState(() {
-            selectedOption = value!;
-          });
-        },
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
       ),
-      
-    ),
-   ListTile(
-      titleAlignment: ListTileTitleAlignment.center,
-      // textAlign: TextAlign.end,
-      title: const Text('English (US)'),
-    
-      
-      leading:   Radio(
-        value: 2,
-        groupValue: selectedOption,
-        onChanged: (value) {
-          setState(() {
-            selectedOption = value!;
-          });
-        },
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          ListTile(
+            titleAlignment: ListTileTitleAlignment.center,
+            title: const Text('English (US)'),
+            leading: Radio(
+              value: 1,
+              groupValue: selectedOption,
+              onChanged: (value) {
+                _saveSelectedLanguage(value!);
+                if (value == 1) {
+                  context.setLocale(Locale('en'));
+                }
+              },
+            ),
+          ),
+          ListTile(
+            titleAlignment: ListTileTitleAlignment.center,
+            title: const Text('Arabic').tr(),
+            leading: Radio(
+              value: 2,
+              groupValue: selectedOption,
+              onChanged: (value) {
+                _saveSelectedLanguage(value!);
+                if (value == 2) {
+                  context.setLocale(Locale('ar'));
+                }
+              },
+            ),
+          ),
+        ],
       ),
-      
-    ),
-
-    ListTile(
-      titleAlignment: ListTileTitleAlignment.center,
-      // textAlign: TextAlign.end,
-      title: const Text('English (US)'),
-    
-      
-      leading:   Radio(
-        value: 3,
-        groupValue: selectedOption,
-        onChanged: (value) {
-          setState(() {
-            selectedOption = value!;
-          });
-        },
-      ),
-      
-    ),
-
-    ListTile(
-      titleAlignment: ListTileTitleAlignment.center,
-      // textAlign: TextAlign.end,
-      title: const Text('English (US)'),
-    
-      
-      leading:   Radio(
-        value: 4,
-        groupValue: selectedOption,
-        onChanged: (value) {
-          setState(() {
-            selectedOption = value!;
-          });
-        },
-      ),
-      
-    ),
-
-    ListTile(
-      titleAlignment: ListTileTitleAlignment.center,
-      // textAlign: TextAlign.end,
-      title: const Text('English (US)'),
-    
-      
-      leading:   Radio(
-        value: 5,
-        groupValue: selectedOption,
-        onChanged: (value) {
-          setState(() {
-            selectedOption = value!;
-          });
-        },
-      ),
-      
-    ),
-
-    ListTile(
-      titleAlignment: ListTileTitleAlignment.center,
-      // textAlign: TextAlign.end,
-      title: const Text('English (US)'),
-    
-      
-      leading:   Radio(
-        value: 6,
-        groupValue: selectedOption,
-        onChanged: (value) {
-          setState(() {
-            selectedOption = value!;
-          });
-        },
-      ),
-      
-    ),
-
-
-    ListTile(
-      titleAlignment: ListTileTitleAlignment.center,
-      // textAlign: TextAlign.end,
-      title: const Text('English (US)'),
-    
-      
-      leading:   Radio(
-        value: 7,
-        groupValue: selectedOption,
-        onChanged: (value) {
-          setState(() {
-            selectedOption = value!;
-          });
-        },
-      ),
-      
-    ),
-
-    ListTile(
-      titleAlignment: ListTileTitleAlignment.center,
-      // textAlign: TextAlign.end,
-      title: const Text('English (US)'),
-    
-      
-      leading:   Radio(
-        value: 8,
-        groupValue: selectedOption,
-        onChanged: (value) {
-          setState(() {
-            selectedOption = value!;
-          });
-        },
-      ),
-      
-    ),
-    
-  ],
-),
     );
   }
 }
