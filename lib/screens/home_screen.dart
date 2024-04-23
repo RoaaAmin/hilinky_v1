@@ -6,7 +6,7 @@ import 'package:hiwetaan/components/context.dart';
 import 'package:line_icons/line_icons.dart';
 import '../auth.dart';
 import 'Profile/profile.dart';
-import 'QRScannerPage.dart';
+import 'Scanner/QRScannerPage.dart';
 import 'create_card/create_card.dart';
 import 'login_screen.dart';
 import 'my_card/myCard.dart';

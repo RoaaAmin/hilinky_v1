@@ -328,13 +328,7 @@ class EditState extends State<EditCard> {
                       ),
                       //   autofillHints:,
                       cursorColor: Colors.black,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
+
                     ),
                     SizedBox(
                       height: 10,
@@ -373,12 +367,6 @@ class EditState extends State<EditCard> {
                       //   autofillHints:,
                       cursorColor: Colors.black,
                       // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
                     ),
                     SizedBox(
                       height: 10,
@@ -438,13 +426,6 @@ class EditState extends State<EditCard> {
                             BorderRadius.all(Radius.circular(10))),
                       ),
                       cursorColor: Colors.black,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
                     ),
                     SizedBox(
                       height: 10,
@@ -745,7 +726,16 @@ class EditState extends State<EditCard> {
                     // Extract existing card data
                     Map<String, dynamic> existingData = cardSnapshot.data() ?? {};
 
+                    // Get existing links
+                    Map<String, String> existingLinks = Map<String, String>.from(existingData['Links'] ?? {});
+
                     // Merge updated links with existing data
+                    Map<String, String> updatedLinks = {
+                      ...existingLinks, // Spread existing links
+                      ...links, // New links
+                    };
+
+                    // Merge updated data
                     Map<String, dynamic> updatedData = {
                       ...existingData, // Spread existing data
                       'Prefix': Prefix,
@@ -756,7 +746,7 @@ class EditState extends State<EditCard> {
                       'CompanyName': CompanyName,
                       'Email': Email,
                       'PhoneNumber': PhoneNumber,
-                      'Links': links, // Update links in Firestore
+                      'Links': updatedLinks, // Updated links in Firestore
                       // Include other fields to update here...
                       'ImageURL': imageURL, // Update imageURL
                       'LogoURL': logoURL,   // Update logoURL
@@ -777,7 +767,7 @@ class EditState extends State<EditCard> {
                       ),
                     );
 
-                    // Navigate back to profile page
+                    // Navigate back to the profile page
                     context.pushPage(profiletest());
                   }
                 },
@@ -797,10 +787,10 @@ class EditState extends State<EditCard> {
 
 
 
+
             ]
     )));
 
   }
 }
 /// update links
-/// images not changes with latest updates (logo and portfolio)
