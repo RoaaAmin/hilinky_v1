@@ -1,3 +1,5 @@
+
+```dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -61,458 +63,392 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
+  void signIn(String email, String password) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // Do something after successful sign-in, like navigating to another screen
+      // Navigator.of(context).pushReplacementNamed('homeScreen');
+    } on FirebaseAuthException catch (e) {
+      // Handle sign-in errors, display error message to the user
+      print('Failed to sign in: ${e.message}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
 
     return SafeArea(
-        child: Scaffold(
-            backgroundColor: appTheme.gray50,
-            resizeToAvoidBottomInset: false,
-            appBar: CustomAppBar(
-              leadingWidth: double.maxFinite,
-              leading: AppbarImage(
-                svgPath: ImageConstant.imgBack,
-                margin: getMargin(
-                  left: 11,
-                  top: 12,
-                  right: 351,
-                  bottom: 12,
-                ),
+      child: Scaffold(
+        backgroundColor: appTheme.gray50,
+        resizeToAvoidBottomInset: false,
+        appBar: CustomAppBar(
+          leadingWidth: double.maxFinite,
+          leading: AppbarImage(
+            svgPath: ImageConstant.imgBack,
+            margin: getMargin(
+              left: 11,
+              top: 12,
+              right: 351,
+              bottom: 12,
+            ),
+          ),
+        ),
+        body: Form(
+          key: _scaffoldKey,
+          child: Container(
+            width: double.maxFinite,
+            padding: getPadding(
+              left: 24,
+              top: 21,
+              right: 24,
+              bottom: 21,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: getPadding(
+                      left: 1,
+                    ),
+                    child: Text(
+                      "Welcome Back!",
+                      style: theme.textTheme.displaySmall,
+                    ),
+                  ),
+                  Container(
+                    width: getHorizontalSize(302),
+                    margin: getMargin(
+                      left: 1,
+                      top: 13,
+                      right: 41,
+                    ),
+                    child: Text(
+                      "Happy to see you again, enter your account details",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodyLarge!.copyWith(
+                        height: 1.56,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: getPadding(
+                      left: 1,
+                      top: 25,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Email or Username",
+                          style: theme.textTheme.titleMedium,
+                        ),
+                        CustomTextFormField(
+                          controller: _emailController,
+                          margin: getMargin(
+                            top: 4,
+                          ),
+                          hintText: "Example@Example.com",
+                          hintStyle: theme.textTheme.titleSmall!,
+                          textInputType: TextInputType.emailAddress,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: getVerticalSize(99),
+                    width: getHorizontalSize(349),
+                    margin: getMargin(
+                      top: 23,
+                    ),
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment:
+                            MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Password",
+                                style: theme.textTheme.titleMedium,
+                              ),
+                              CustomTextFormField(
+                                controller: _passwordController,
+                                obscureText: obscureText,
+                                margin: getMargin(
+                                  top: 3,
+                                ),
+                                hintText: "Your Password",
+                                hintStyle: CustomTextStyles.titleMediumGray90002,
+                                textInputType: TextInputType.visiblePassword,
+                                suffix: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      obscureText = !obscureText;
+                                    });
+                                  },
+                                  child: Container(
+                                    margin: getMargin(
+                                      left: 30,
+                                      top: 15,
+                                      right: 16,
+                                      bottom: 15,
+                                    ),
+                                    child: CustomImageView(
+                                        svgPath: obscureText
+                                            ? ImageConstant.imgAkariconseyeClose// Closed eye SVG
+                                            : ImageConstant.imgAkariconseyeopen  // Open eye SVG
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      sendRecoveryPass();
+                    },
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: getPadding(
+                          top: 17,
+                          right: 4,
+                        ),
+                        child: Text(
+                          "Forgot Password?",
+                          style: CustomTextStyles.labelLargeInterDeeporange300.copyWith(
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  CustomElevatedButton(
+                    onTap: () {
+                      // Validate and sign in
+                      if (_emailController.text.trim().isEmpty || _passwordController.text.isEmpty) {
+                        showInSnackBar('Email and Password cannot be empty.', Colors.red, Colors.white, 2, context, _scaffoldKey);
+                      } else {
+                        signIn(_emailController.text.trim(), _passwordController.text);
+                      }
+                    },
+                    text: "Login",
+                    margin: getMargin(
+                      top: 22,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: getPadding(
+                        top: 25,
+                        bottom: 5,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "Don’t have an account",
+                                  style: CustomTextStyles.labelLargeInterBluegray300,
+                                ),
+                                TextSpan(
+                                  text: "?",
+                                  style: CustomTextStyles.bodyMediumInterBluegray300,
+                                ),
+                                TextSpan(
+                                  text: " ",
+                                  style: CustomTextStyles.bodyMediumInterBluegray300,
+                                ),
+                              ],
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                          GestureDetector(
+                            onTap: openSignupScreen,
+                            child: Text(
+                              "Sign up Now",
+                              style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            body: Form(
-              //key: _scaffoldKey,
-                child: Container(
-                    width: double.maxFinite,
-                    padding: getPadding(
-                      left: 24,
-                      top: 21,
-                      right: 24,
-                      bottom: 21,
-                    ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: getPadding(
-                                left: 1,
-                              ),
-                              child: Text(
-                                "Welcome Back!",
-                                style: theme.textTheme.displaySmall,
-                              ),
-                            ),
-                            Container(
-                              width: getHorizontalSize(302),
-                              margin: getMargin(
-                                left: 1,
-                                top: 13,
-                                right: 41,
-                              ),
-                              child: Text(
-                                "Happy to see you again , enter your account details",
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: theme.textTheme.bodyLarge!.copyWith(
-                                  height: 1.56,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: getPadding(
-                                left: 1,
-                                top: 25,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Email or Username",
-                                    style: theme.textTheme.titleMedium,
-                                  ),
-                                  CustomTextFormField(
-                                    controller: _emailController,
-                                    margin: getMargin(
-                                      top: 4,
-                                    ),
-                                    hintText: "Example@Example.com",
-                                    hintStyle: theme.textTheme.titleSmall!,
-                                    textInputType: TextInputType.emailAddress,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              height: getVerticalSize(99),
-                              width: getHorizontalSize(349),
-                              margin: getMargin(
-                                top: 23,
-                              ),
-                              child: Stack(
-                                alignment: Alignment.bottomRight,
-                                children: [
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Password",
-                                          style: theme.textTheme.titleMedium,
-                                        ),
-                                        CustomTextFormField(
-                                          controller: _passwordController,
-                                          obscureText: obscureText,
-                                          margin: getMargin(
-                                            top: 3,
-                                          ),
-                                          hintText: "Your Password",
-                                          hintStyle: CustomTextStyles.titleMediumGray90002,
-                                          textInputType: TextInputType.visiblePassword,
-                                          suffix: GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                obscureText = !obscureText;
-                                              });
-                                            },
-                                            child: Container(
-                                              margin: getMargin(
-                                                left: 30,
-                                                top: 15,
-                                                right: 16,
-                                                bottom: 15,
-                                              ),
-                                              child: CustomImageView(
-                                                  svgPath: obscureText
-                                                      ? ImageConstant.imgAkariconseyeClose// Closed eye SVG
-                                                      : ImageConstant.imgAkariconseyeopen  // Open eye SVG
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () async {
-                                sendRecoveryPass();
-                              },
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Padding(
-                                  padding: getPadding(
-                                    top: 17,
-                                    right: 4,
-                                  ),
-                                  child: Text(
-                                    "Forgot Password?",
-                                    style: CustomTextStyles.labelLargeInterDeeporange300.copyWith(
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            CustomElevatedButton(
-                              onTap: loginValidation,
-                              text: "Login",
-                              margin: getMargin(
-                                top: 22,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Padding(
-                                padding: getPadding(
-                                  top: 25,
-                                  bottom: 5,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    RichText(
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: "Don’t have an account",
-                                            style: CustomTextStyles.labelLargeInterBluegray300,
-                                          ),
-                                          TextSpan(
-                                            text: "?",
-                                            style: CustomTextStyles.bodyMediumInterBluegray300,
-                                          ),
-                                          TextSpan(
-                                            text: " ",
-                                            style: CustomTextStyles.bodyMediumInterBluegray300,
-                                          ),
-                                        ],
-                                      ),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    GestureDetector(
-                                      onTap: openSignupScreen,
-                                      child: Text(
-                                        "Sign up Now",
-                                        style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),)]),
-                    ))))
+          ),
+        ),
+      ),
     );
   }
+}
+void loginValidation() {
+  String input = _emailController.text.trim();
+  if (input.contains('@') && input.contains('.com')) {
+    signInWithEmail(input);
+  } else {
+    signInWithUserName(input);
+  }
+}
 
-  // void loginValidation(){
-  //   if(_emailController.text==null||_emailController.text.contains('@')==false||_emailController.text.contains('.com')==false){
-  //     showInSnackBar('Invalid Email/Username', Colors.red, Colors.white, 2, context, _scaffoldKey);
-  //   }else if(_passwordController.text==null||_passwordController.text.length<6){
-  //     showInSnackBar('Invalid Password', Colors.red, Colors.white, 2, context, _scaffoldKey);
-  //   }else{
-  //     print('Validation Completed');
-  //     signIn();
-  //   }
-  // }
+Future<void> signInWithEmail(String email) async {
+  try {
+    UserCredential userCredentials =
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: _passwordController.text,
+    );
 
-  void loginValidation() {
+    if (userCredentials.user?.uid != null) {
+      if (!userCredentials.user!.emailVerified) {
+        clearControllers();
+      } else {
+        // Handle successful login
+      }
+    }
+  } on FirebaseAuthException catch (e) {
+    showInSnackBar(
+        'Login failed, incorrect account information.', Colors.red, Colors.white, 2, context, _scaffoldKey);
+  }
+}
+
+Future<void> signInWithUserName(String username) async {
+  try {
+    QuerySnapshot userSnapshot = await FirebaseFirestore.instance
+        .collection('Users')
+        .where('uniqueUserName', isEqualTo: username)
+        .get();
+
+    if (userSnapshot.docs.isNotEmpty) {
+      String userEmail = userSnapshot.docs[0].get('sUserEmail');
+      await signInWithEmail(userEmail);
+    } else {
+      showInSnackBar(
+          'No user found with the provided email/username.', Colors.red, Colors.white, 2, context, _scaffoldKey);
+    }
+  } catch (e) {
+    showInSnackBar('An error occurred while logging in.', Colors.red, Colors.white, 2, context, _scaffoldKey);
+  }
+}
+
+Future<void> signIn(String userEmail) async {
+  print('Authentication Started.......');
+  try {
     String input = _emailController.text.trim();
     if (input.contains('@') && input.contains('.com')) {
-      signIn(input);
+      // Already handled in signInWithEmail
     } else {
-      signInWithUserName(input);
+      input = userEmail;
     }
-  }
 
-  Future<void> signInWithEmail(String email) async {
-    try {
-      UserCredential userCredentials =
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: _passwordController.text,
-      );
-
-      if (userCredentials.user?.uid != null) {
-        //await updateNotificationToken(userCredentials.user!.uid);
-        if (!userCredentials.user!.emailVerified) {
-          clearControllers();
-          //await sendEmailVerification(userCredentials.user!);
-        } else {
-          // await navigateToAuthPage(userCredentials.user!.uid);
-        }
-      }
-    } on FirebaseAuthException catch (e) {
-      showInSnackBar('Login failed, incorrect account information.', Colors.red,
-          Colors.white, 2, context, _scaffoldKey);
-    }
-  }
-
-  Future<void> signInWithUserName(String username) async {
-    try {
-      QuerySnapshot userSnapshot = await FirebaseFirestore.instance
-          .collection('Users')
-          .where('uniqueUserName', isEqualTo: username)
-          .get();
-
-      if (userSnapshot.docs.isNotEmpty) {
-        String userEmail = userSnapshot.docs[0].get('sUserEmail');
-        await signIn(userEmail);
-      } else {
-        showInSnackBar('No user found with the provided email/username.',
-            Colors.red, Colors.white, 2, context, _scaffoldKey);
-      }
-    } catch (e) {
-      showInSnackBar('An error occurred while logging in.', Colors.red,
-          Colors.white, 2, context, _scaffoldKey);
-    }
-  }
-
-  Future signIn(String userEmail) async {
-    print('Authentication Started.......');
-    try {
-      String input = _emailController.text.trim();
-      if (input.contains('@') && input.contains('.com')) {
-        String input=_emailController.text.trim();
-      } else {
-        input=userEmail;
-      }
-
-      // Check if input is an email
-      if (input.contains('@') && input.contains('.com')) {
-        UserCredential userCredentials =
+    UserCredential userCredentials =
         await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: input,
-          password: _passwordController.text,
-        );
+      email: input,
+      password: _passwordController.text,
+    );
 
-        if (userCredentials.user?.uid != null) {
+    if (userCredentials.user?.uid != null) {
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(userCredentials.user!.uid)
+          .update({'FBNotificationToken': notificationToken});
+
+      if (!userCredentials.user!.emailVerified) {
+        clearControllers();
+        await userCredentials.user?.sendEmailVerification();
+        await FirebaseAuth.instance.signOut().then((value) {
+          showInSnackBar(
+              'Oops, Your email is not verified, Please verify your email',
+              Colors.amber[800]!,
+              Colors.white,
+              3,
+              context,
+              _scaffoldKey);
+        }).then((metaData) async {
           await FirebaseFirestore.instance
               .collection('Users')
               .doc(userCredentials.user!.uid)
-              .update({
-            'FBNotificationToken': notificationToken,
+              .get()
+              .then((userDataInfo) {
+            setState(() {
+              sUserID = userCredentials.user!.uid;
+              sUserEmail = userDataInfo.data()!['sUserEmail'];
+              uniqueUserName = userDataInfo.data()!['uniqueUserName'];
+              sUserPhoneNumber = userDataInfo.data()!['sUserPhoneNumber'];
+              sUserNotificationToken = userDataInfo.data()!['sUserNotificationToken'];
+            });
           });
-
-          if (userCredentials.user?.emailVerified == false) {
-            clearControllers();
-            await userCredentials.user?.sendEmailVerification();
-            await FirebaseAuth.instance.signOut().then((value) {
-              showInSnackBar(
-                  'Oops, Your email is not verified, Please verify your email',
-                  Colors.amber[800]!,
-                  Colors.white,
-                  3,
-                  context,
-                  _scaffoldKey);
-            }).then((metaData) async {
-              await FirebaseFirestore.instance
-                  .collection('Users')
-                  .doc(userCredentials.user!.uid)
-                  .get()
-                  .then((userDataInfo) {
-                setState(() {
-                  sUserID = userCredentials.user!.uid;
-                  sUserEmail = userDataInfo.data()!['sUserEmail'];
-                  uniqueUserName = userDataInfo.data()!['uniqueUserName'];
-                  sUserPhoneNumber = userDataInfo.data()!['sUserPhoneNumber'];
-                  sUserNotificationToken =
-                  userDataInfo.data()!['sUserNotificationToken'];
-                });
-              });
-            });
-          } else {
-            await FirebaseFirestore.instance
-                .collection('Users')
-                .doc(userCredentials.user?.uid)
-                .get()
-                .then((userDoc) {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              Navigator.of(context).pushReplacement(CupertinoPageRoute(
-                  builder: (BuildContext context) => Auth()));
-            });
-          }
-        }
+        });
       } else {
-        // Check if input is a username
-        QuerySnapshot userSnapshot = await FirebaseFirestore.instance
+        await FirebaseFirestore.instance
             .collection('Users')
-            .where('uniqueUserName', isEqualTo: input)
-            .get();
+            .doc(userCredentials.user?.uid)
+            .get()
+            .then((userDoc) {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          Navigator.of(context).pushReplacement(CupertinoPageRoute(builder: (BuildContext context) => Auth()));
+        });
+      }
+    }
+  } on FirebaseAuthException catch (e) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    showInSnackBar(
+        'Login failed, incorrect account information.', Colors.red, Colors.white, 3, context, _scaffoldKey);
+  }
+}
 
-        if (userSnapshot.docs.isNotEmpty) {
-          String userEmail = userSnapshot.docs[0].get('sUserEmail');
-          UserCredential userCredentials =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: userEmail,
-            password: _passwordController.text,
-          );
+clearControllers() {
+  _emailController.clear();
+  _passwordController.clear();
+}
 
-          if (userCredentials.user?.uid != null) {
-            await FirebaseFirestore.instance
-                .collection('Users')
-                .doc(userCredentials.user!.uid)
-                .update({
-              'FBNotificationToken': notificationToken,
-            });
-
-            if (userCredentials.user?.emailVerified == false) {
-              clearControllers();
-              await userCredentials.user?.sendEmailVerification();
-              await FirebaseAuth.instance.signOut().then((value) {
-                showInSnackBar(
-                    'Oops, Your email is not verified, Please verify your email',
-                    Colors.amber[800]!,
-                    Colors.white,
-                    3,
-                    context,
-                    _scaffoldKey);
-              }).then((metaData) async {
-                await FirebaseFirestore.instance
-                    .collection('Users')
-                    .doc(userCredentials.user!.uid)
-                    .get()
-                    .then((userDataInfo) {
-                  setState(() {
-                    sUserID = userCredentials.user!.uid;
-                    sUserEmail = userDataInfo.data()!['sUserEmail'];
-                    uniqueUserName = userDataInfo.data()!['uniqueUserName'];
-                    sUserPhoneNumber = userDataInfo.data()!['sUserPhoneNumber'];
-                    sUserNotificationToken =
-                    userDataInfo.data()!['sUserNotificationToken'];
-                  });
-                });
-              });
-            } else {
-              await FirebaseFirestore.instance
-                  .collection('Users')
-                  .doc(userCredentials.user?.uid)
-                  .get()
-                  .then((userDoc) {
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                Navigator.of(context).pushReplacement(CupertinoPageRoute(
-                    builder: (BuildContext context) => Auth()));
-              });
-            }
-          }
-        } else {
-          // No user found with the provided email/username
-          // Handle this case (e.g., show an error message)
-          return;
+sendRecoveryPass() async {
+  if (_emailController.text == null ||
+      !_emailController.text.contains('@') ||
+      !_emailController.text.contains('.com')) {
+    showInSnackBar('Invalid Email or Username', Colors.red, Colors.white, 2, context, _scaffoldKey);
+  } else {
+    await FirebaseFirestore.instance
+        .collection('Users')
+        .where('sUserEmail', isEqualTo: _emailController.text)
+        .get()
+        .then((whereResult) async {
+      if (whereResult == null || whereResult.docs.isEmpty) {
+        showInSnackBar('There is no record for this email', Colors.red, Colors.white, 3, context, _scaffoldKey);
+        _passwordController.clear();
+      } else {
+        try {
+          await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailController.text).then((metaData) {
+            showInSnackBar('Reset password email has been sent', Colors.green, Colors.white, 2, context, _scaffoldKey);
+            _passwordController.clear();
+          });
+        } catch (e) {
+          showInSnackBar('There is no record for this email', Colors.red, Colors.white, 3, context, _scaffoldKey);
         }
       }
-    } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      showInSnackBar('Login failed, incorrect account information.', Colors.red,
-          Colors.white, 3, context, _scaffoldKey);
-    }
-  }
-
-  clearControllers() {
-    _emailController.clear();
-    _passwordController.clear();
-  }
-
-  sendRecoveryPass() async {
-    if (_emailController.text == null ||
-        _emailController.text.contains('@') == false ||
-        _emailController.text.contains('.com') == false) {
-      showInSnackBar('Invalid Email or Username', Colors.red, Colors.white, 2,
-          context, _scaffoldKey);
-    } else {
-      await FirebaseFirestore.instance
-          .collection('Users')
-          .where('sUserEmail', isEqualTo: _emailController.text)
-          .get()
-          .then((whereResult) async {
-        if (whereResult == null && whereResult.docs.isEmpty) {
-          showInSnackBar('There is no record for this email', Colors.red,
-              Colors.white, 3, context, _scaffoldKey);
-          _passwordController.clear();
-        } else {
-          try {
-            await FirebaseAuth.instance
-                .sendPasswordResetEmail(email: _emailController.text)
-                .then((metaData) {
-              showInSnackBar('Reset password email has been sent', Colors.green,
-                  Colors.white, 2, context, _scaffoldKey);
-              _passwordController.clear();
-            });
-          } catch (e) {
-            showInSnackBar('There is no record for this email', Colors.red,
-                Colors.white, 3, context, _scaffoldKey);
-          }
-        }
-      });
-    }
+    });
   }
 }
