@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hiwetaan/screens/home_screen.dart';
-import 'package:hiwetaan/screens/login_screen.dart';
+import 'package:hilinky/screens/home_screen.dart';
+import 'package:hilinky/screens/login_screen.dart';
 
 import 'nav_bar.dart';
 

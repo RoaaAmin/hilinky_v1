@@ -1,11 +1,12 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hiwetaan/components/context.dart';
-import 'package:hiwetaan/screens/Profile/edit_card.dart';
+import 'package:hilinky/components/context.dart';
+import 'package:hilinky/screens/Profile/edit_card.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,8 +15,6 @@ import '../../nav_bar.dart';
 import 'edit.dart';
 import 'language.dart';
 import 'notifications.dart';
-
-// profile like settings page
 class profiletest extends StatefulWidget {
   profiletest({
     super.key,
@@ -32,6 +31,7 @@ class profiletest extends StatefulWidget {
 class profiletestState extends State<profiletest> {
   Map<String, dynamic> Links = {};
   var UserProfileImage;
+  int selectedOption = 1;
 
   Future getImage(ImageSource source) async {
     var image = await ImagePicker.platform
@@ -41,13 +41,15 @@ class profiletestState extends State<profiletest> {
       selectedImage = File(image!.path);
     });
   }
+
+
   void getLinks() async {
     await FirebaseFirestore.instance
         .collection('Cards')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
         .then(
-      (value) {
+          (value) {
         setState(() {
           UserProfileImage = value.data()!['ImageURL'];
           print('-----------------------------------------------');
@@ -128,7 +130,7 @@ class profiletestState extends State<profiletest> {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
         .then(
-      (value) {
+          (value) {
         setState(() {
           FirstName = value.data()!['FirstName'];
           LastName = value.data()!['LastName'];
@@ -171,7 +173,6 @@ class profiletestState extends State<profiletest> {
   // Note: This is a GlobalKey<FormState>,
   // not a GlobalKey<profiletestState>.
   final _formKey = GlobalKey<FormState>();
-  int selectedOption = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -186,7 +187,7 @@ class profiletestState extends State<profiletest> {
           foregroundColor: Colors.grey,
           title: Center(
             child: Text(
-              "My Profile",
+        context.tr("My Profile"),
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -196,8 +197,8 @@ class profiletestState extends State<profiletest> {
           leading: IconButton(
               icon: Icon(Icons.arrow_back_ios_new),
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Home(),
-                  ))),
+                builder: (context) => Home(),
+              ))),
           actions: [
             // TextButton(
             //   onPressed: () {
@@ -243,7 +244,7 @@ class profiletestState extends State<profiletest> {
                   Text(
                     "$FirstName" + " $LastName",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
+                  ).tr(),
                   Text(
                     "$Position - $CompanyName",
                     style: TextStyle(color: Colors.grey),
@@ -258,51 +259,51 @@ class profiletestState extends State<profiletest> {
                       SizedBox(
                         height: 40,
                         child: Links.isEmpty
-                            ? Text('No links')
+                            ? Text(context.tr('No links'))
                             : ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true,
-                                itemCount: Links.length,
-                                itemBuilder: (context, index) {
-                                  return Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.rectangle,
-                                          gradient: LinearGradient(
-                                              colors: [
-                                                Colors.orange,
-                                                Colors.deepOrange
-                                              ],
-                                              end: Alignment.topLeft,
-                                              begin: Alignment.bottomRight),
-                                        ),
-                                        width: 35,
-                                        height: 35,
-                                        child: Center(
-                                          child: IconButton(
-                                            isSelected: true,
-                                            iconSize: 20,
-                                            onPressed: () {
-                                              final Uri url =
-                                                  Uri.parse(values[index]);
-                                              _launchUrl(url);
-                                            },
-                                            icon: Icon(l[keys[index]]!.icon),
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 15,
-                                      )
-                                    ],
-                                  );
-                                },
-                              ),
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemCount: Links.length,
+                          itemBuilder: (context, index) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.rectangle,
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          Colors.orange,
+                                          Colors.deepOrange
+                                        ],
+                                        end: Alignment.topLeft,
+                                        begin: Alignment.bottomRight),
+                                  ),
+                                  width: 35,
+                                  height: 35,
+                                  child: Center(
+                                    child: IconButton(
+                                      isSelected: true,
+                                      iconSize: 20,
+                                      onPressed: () {
+                                        final Uri url =
+                                        Uri.parse(values[index]);
+                                        _launchUrl(url);
+                                      },
+                                      icon: Icon(l[keys[index]]!.icon),
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 15,
+                                )
+                              ],
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -335,7 +336,7 @@ class profiletestState extends State<profiletest> {
                                 ),
                                 Container(
                                   padding:
-                                      const EdgeInsets.only(left: 11, top: 11),
+                                  const EdgeInsets.only(left: 11, top: 11),
                                   child: const Icon(
                                     Icons.my_library_books_rounded,
                                     size: 20,
@@ -346,12 +347,12 @@ class profiletestState extends State<profiletest> {
                             ),
                             TextButton(
                                 onPressed: () {
-                                 context.pushPage(Edit());
+                                  context.pushPage(Edit());
                                 },
-                                child: const Text(
-                                  "Edit Profile Information",
+                                child:  Text(context.tr(
+                                  "Edit Profile Information"),
                                   style: TextStyle(color: Colors.black),
-                                )),
+                                ).tr()),
 
                           ],
                         ),
@@ -383,8 +384,8 @@ class profiletestState extends State<profiletest> {
                                 onPressed: () {
                                   context.pushPage(EditCard());
                                 },
-                                child: const Text(
-                                  "Edit My Card ",
+                                child:  Text(context.tr(
+                                  "Edit My Card"),
                                   style: TextStyle(color: Colors.black),
                                 )),
 
@@ -395,22 +396,22 @@ class profiletestState extends State<profiletest> {
                             Stack(
                               children: [
                                 Container(
-                                //   padding: const EdgeInsets.only(right: 15),
-                                //   child: const Icon(
-                                //     Icons.circle_outlined,
-                                //     // grade: 3.3,
-                                //     color: Colors.blueGrey,
-                                //     size: 40,
-                                //   ),
-                                // ),
-                                // Container(
-                                //   padding:
-                                //       const EdgeInsets.only(left: 11, top: 11),
-                                //   child: const Icon(
-                                //     Icons.my_library_books_rounded,
-                                //     size: 20,
-                                //     color: Colors.orange,
-                                //   ),
+                                  //   padding: const EdgeInsets.only(right: 15),
+                                  //   child: const Icon(
+                                  //     Icons.circle_outlined,
+                                  //     // grade: 3.3,
+                                  //     color: Colors.blueGrey,
+                                  //     size: 40,
+                                  //   ),
+                                  // ),
+                                  // Container(
+                                  //   padding:
+                                  //       const EdgeInsets.only(left: 11, top: 11),
+                                  //   child: const Icon(
+                                  //     Icons.my_library_books_rounded,
+                                  //     size: 20,
+                                  //     color: Colors.orange,
+                                  //   ),
                                 ),
                               ],
                             ),
@@ -440,7 +441,7 @@ class profiletestState extends State<profiletest> {
                                 ),
                                 Container(
                                   padding:
-                                      const EdgeInsets.only(left: 11, top: 11),
+                                  const EdgeInsets.only(left: 11, top: 11),
                                   child: const Icon(
                                     Icons.my_library_books_rounded,
                                     size: 20,
@@ -450,14 +451,25 @@ class profiletestState extends State<profiletest> {
                               ],
                             ),
                             TextButton(
-                                onPressed: () {
-                                  context.pushPage(language());
-                                },
-                                child: const Text(
-                                  "Language",
-                                  style: TextStyle(color: Colors.black),
-                                )),
-                            const Text("English(US)")
+                              onPressed: () {
+                                // Navigate to the Language page and pass the callback function
+                                context.pushPage(Language(
+                                  // onLanguageSelected: (int language) {
+                                  //   setState(() {
+                                  //     selectedOption = language; // Update the selected language
+                                  //   });
+                                  // },
+                                ));
+                              },
+                              child:  Text(context.tr(
+                                "Language"),
+                                style: TextStyle(color: Colors.black),
+                              ).tr(),
+                            ),
+                            // Text(
+                            //   (selectedOption == 2 ? "arabic_language" : "english_language"),
+                            //   style: TextStyle(color: Colors.black),
+                            // ),
                           ],
                         ),
                         // Row(
@@ -632,10 +644,10 @@ class profiletestState extends State<profiletest> {
                                     builder: (context) => Auth(),
                                   ));
                                 },
-                                child: const Text(
-                                  "Log Out",
+                                child:  Text(context.tr(
+                                  "Log Out"),
                                   style: TextStyle(color: Colors.black),
-                                )),
+                                ).tr()),
                           ],
                         ),
                       ],

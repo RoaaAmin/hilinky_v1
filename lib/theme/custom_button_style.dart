@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:hiwetaan/theme/theme_helper.dart';
+import 'package:hilinky/theme/theme_helper.dart';
 
 import '../core/utils/size_utils.dart';
 

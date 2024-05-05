@@ -1,0 +1,31 @@
+{
+  "ar": {
+    "Select Your Language":"اختر اللغة",
+    "Arabic": "العربية",
+    "English":"الإنجليزية",
+    "About Us" : "حول التطبيق",
+    "Home" : "الرئيسية",
+    "Settings": "الإعدادات",
+    "Home Screen" : "الشاشةالرئيسية",
+    "Start your journey by creating your card" : "ابدأ رحلتك بإنشاء بطاقتك",
+    "Create Card": "إنشاء بطاقة",
+    "My Profile" : "ملفي الشخصي",
+    "Edit Profile Information" : "تعديل معلومات الملف الشخصي",
+    "Edit My Card" :"تعديل بطاقتي",
+    "Language" : "اللغة",
+    "Camera": "الكاميرا",
+    "Gallery": "المعرض",
+    "Pick Image": "اختر الصورة",
+    "First Name": "الاسم الأول",
+    "Last Name": "الاسم الأخير",
+    "Username": "اسم المستخدم",
+    "Email": "البريد الإلكتروني",
+    "Phone Number": "رقم الهاتف",
+    "Nationality": "الجنسية",
+    "City": "المدينة",
+    "Your information has been saved successfully": "تم حفظ معلوماتك بنجاح",
+    "Save": "حفظ",
+    "Log Out" :"تسجيل الخروج",
+    "Please enter some text": "الرجاء إدخال نص"
+  }
+}

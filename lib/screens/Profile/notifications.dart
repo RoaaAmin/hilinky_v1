@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:hiwetaan/components/context.dart';
-import 'package:hiwetaan/screens/Profile/profile.dart';
+import 'package:hilinky/components/context.dart';
+import 'package:hilinky/screens/Profile/profile.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});

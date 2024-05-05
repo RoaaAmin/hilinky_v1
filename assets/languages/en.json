@@ -1,0 +1,33 @@
+{
+  "en": {
+
+     "Select Your Language": "Select Your Language",
+    "Arabic": "Arabic",
+    "English":"English",
+    "About Us" : "About Us",
+    "Home" : "Home",
+    "Settings": "Settings",
+    "Home Screen" : "Home Screen",
+    "Start your journey by creating your card" : "Start your journey by creating your card",
+    "Create Card": "Create Card",
+    "My Profile" : "My Profile",
+    "Edit Profile Information" : "Edit Profile Information",
+    "Edit My Card" :"Edit My Card",
+    "Language" : "Language",
+    "Camera": "Camera",
+    "Gallery": "Gallery",
+    "Pick Image": "Pick Image",
+    "First Name": "First Name",
+    "Last Name": "Last Name",
+    "Username": "Username",
+    "Email": "Email",
+    "Phone Number": "Phone Number",
+    "Nationality": "Nationality",
+    "City": "City",
+    "Your information has been saved successfully": "Your information has been saved successfully",
+    "Save": "Save",
+    "Log Out": "Log Out",
+    "Please enter some text": "Please enter some text"
+
+  }
+}

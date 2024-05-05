@@ -1,11 +1,13 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:hiwetaan/screens/home_screen.dart';
-import 'package:hiwetaan/screens/login_screen.dart';
-import 'package:hiwetaan/screens/my_card/myCard.dart';
-import 'package:hiwetaan/screens/signup_screen.dart';
+import 'package:hilinky/screens/home_screen.dart';
+import 'package:hilinky/screens/login_screen.dart';
+import 'package:hilinky/screens/my_card/myCard.dart';
+import 'package:hilinky/screens/signup_screen.dart';
+import 'package:hilinky/translations/codegen_loader.g.dart';
 import 'auth.dart';
 
 import 'firebase_options/firebase_options.dart';
@@ -25,11 +27,23 @@ String sCity= ' ';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseConfig.platformOptions,
   );
 
-  runApp(const MyApp());
+  runApp(
+    EasyLocalization(
+      path: 'assets/languages',
+      supportedLocales: [
+        Locale('en'),
+        Locale('ar'),
+      ],
+      fallbackLocale: Locale('en'),
+      assetLoader: CodegenLoader(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -38,6 +52,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      supportedLocales: context.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
+      locale: context.locale,
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

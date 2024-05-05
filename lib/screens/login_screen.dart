@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -101,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 left: 1,
                               ),
                               child: Text(
-                                "Welcome Back!",
+                                context.tr("Welcome Back!"),
                                 style: theme.textTheme.displaySmall,
                               ),
                             ),
@@ -113,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 right: 41,
                               ),
                               child: Text(
-                                "Happy to see you again , enter your account details",
+                                context.tr("Happy to see you again, enter your account details"),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: theme.textTheme.bodyLarge!.copyWith(
@@ -131,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Email or Username",
+                                    context.tr("Email or Username"),
                                     style: theme.textTheme.titleMedium,
                                   ),
                                   CustomTextFormField(
@@ -139,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     margin: getMargin(
                                       top: 4,
                                     ),
-                                    hintText: "Example@Example.com",
+                                    hintText: context.tr("Example@Example.com"),
                                     hintStyle: theme.textTheme.titleSmall!,
                                     textInputType: TextInputType.emailAddress,
                                   ),
@@ -163,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Password",
+                                          context.tr("Password"),
                                           style: theme.textTheme.titleMedium,
                                         ),
                                         CustomTextFormField(
@@ -172,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           margin: getMargin(
                                             top: 3,
                                           ),
-                                          hintText: "Your Password",
+                                          hintText: context.tr("Your Password"),
                                           hintStyle: CustomTextStyles.titleMediumGray90002,
                                           textInputType: TextInputType.visiblePassword,
                                           suffix: GestureDetector(
@@ -214,7 +215,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     right: 4,
                                   ),
                                   child: Text(
-                                    "Forgot Password?",
+                                    context.tr("Forgot Password?"),
                                     style: CustomTextStyles.labelLargeInterDeeporange300.copyWith(
                                       decoration: TextDecoration.underline,
                                     ),
@@ -224,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             CustomElevatedButton(
                               onTap: loginValidation,
-                              text: "Login",
+                              text: context.tr("Login"),
                               margin: getMargin(
                                 top: 22,
                               ),
@@ -243,11 +244,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                       text: TextSpan(
                                         children: [
                                           TextSpan(
-                                            text: "Don’t have an account",
+                                            text:context.tr( "Don’t have an account"),
                                             style: CustomTextStyles.labelLargeInterBluegray300,
                                           ),
                                           TextSpan(
-                                            text: "?",
+                                            text: context.tr("?"),
                                             style: CustomTextStyles.bodyMediumInterBluegray300,
                                           ),
                                           TextSpan(
@@ -261,7 +262,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     GestureDetector(
                                       onTap: openSignupScreen,
                                       child: Text(
-                                        "Sign up Now",
+                                        context.tr("Sign up Now"),
                                         style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
                                           decoration: TextDecoration.underline,
                                         ),
@@ -312,7 +313,7 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       }
     } on FirebaseAuthException catch (e) {
-      showInSnackBar('Login failed, incorrect account information.', Colors.red,
+      showInSnackBar(context.tr('Login failed, incorrect account information.'), Colors.red,
           Colors.white, 2, context, _scaffoldKey);
     }
   }
@@ -328,11 +329,11 @@ class _LoginScreenState extends State<LoginScreen> {
         String userEmail = userSnapshot.docs[0].get('sUserEmail');
         await signIn(userEmail);
       } else {
-        showInSnackBar('No user found with the provided email/username.',
+        showInSnackBar(context.tr('No user found with the provided email/username.'),
             Colors.red, Colors.white, 2, context, _scaffoldKey);
       }
     } catch (e) {
-      showInSnackBar('An error occurred while logging in.', Colors.red,
+      showInSnackBar(context.tr('An error occurred while logging in.'), Colors.red,
           Colors.white, 2, context, _scaffoldKey);
     }
   }
@@ -368,7 +369,7 @@ class _LoginScreenState extends State<LoginScreen> {
             await userCredentials.user?.sendEmailVerification();
             await FirebaseAuth.instance.signOut().then((value) {
               showInSnackBar(
-                  'Oops, Your email is not verified, Please verify your email',
+                  context.tr('Oops, Your email is not verified, Please verify your email'),
                   Colors.amber[800]!,
                   Colors.white,
                   3,
@@ -430,7 +431,7 @@ class _LoginScreenState extends State<LoginScreen> {
               await userCredentials.user?.sendEmailVerification();
               await FirebaseAuth.instance.signOut().then((value) {
                 showInSnackBar(
-                    'Oops, Your email is not verified, Please verify your email',
+                    context.tr('Oops, Your email is not verified, Please verify your email'),
                     Colors.amber[800]!,
                     Colors.white,
                     3,
@@ -472,7 +473,7 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      showInSnackBar('Login failed, incorrect account information.', Colors.red,
+      showInSnackBar(context.tr('Login failed, incorrect account information.'), Colors.red,
           Colors.white, 3, context, _scaffoldKey);
     }
   }
@@ -486,7 +487,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (_emailController.text == null ||
         _emailController.text.contains('@') == false ||
         _emailController.text.contains('.com') == false) {
-      showInSnackBar('Invalid Email or Username', Colors.red, Colors.white, 2,
+      showInSnackBar(context.tr('Invalid Email or Username'), Colors.red, Colors.white, 2,
           context, _scaffoldKey);
     } else {
       await FirebaseFirestore.instance
@@ -495,7 +496,7 @@ class _LoginScreenState extends State<LoginScreen> {
           .get()
           .then((whereResult) async {
         if (whereResult == null && whereResult.docs.isEmpty) {
-          showInSnackBar('There is no record for this email', Colors.red,
+          showInSnackBar(context.tr('There is no record for this email'), Colors.red,
               Colors.white, 3, context, _scaffoldKey);
           _passwordController.clear();
         } else {
@@ -503,12 +504,12 @@ class _LoginScreenState extends State<LoginScreen> {
             await FirebaseAuth.instance
                 .sendPasswordResetEmail(email: _emailController.text)
                 .then((metaData) {
-              showInSnackBar('Reset password email has been sent', Colors.green,
+              showInSnackBar(context.tr('Reset password email has been sent'), Colors.green,
                   Colors.white, 2, context, _scaffoldKey);
               _passwordController.clear();
             });
           } catch (e) {
-            showInSnackBar('There is no record for this email', Colors.red,
+            showInSnackBar(context.tr('There is no record for this email'), Colors.red,
                 Colors.white, 3, context, _scaffoldKey);
           }
         }

@@ -2,12 +2,13 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hiwetaan/components/context.dart';
-import 'package:hiwetaan/screens/Profile/profile.dart';
+import 'package:hilinky/components/context.dart';
+import 'package:hilinky/screens/Profile/profile.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'image_picker.dart';
@@ -54,12 +55,15 @@ class EditState extends State<Edit> {
 
   Future getImage(ImageSource source) async {
     var image = await ImagePicker.platform
-        .getImageFromSource(source: source); //pickImage
+        .getImage(source: source); //pickImage
     print('printing source of image $source');
-    setState(() {
-      selectedImage = File(image!.path);
-    });
+    if (image != null) {
+      setState(() {
+        selectedImage = File(image.path);
+      });
+    }
   }
+
   Widget bottomSheet() {
     return Container(
       height: 100.0,
@@ -85,14 +89,14 @@ class EditState extends State<Edit> {
               onPressed: () {
                 getImage(ImageSource.camera);
               },
-              label: Text("Camera"),
+              label: Text(context.tr("Camera")),
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getImage(ImageSource.gallery);
               },
-              label: Text("Gallery"),
+              label: Text(context.tr("Gallery")),
             ),
           ])
         ],
@@ -176,15 +180,6 @@ class EditState extends State<Edit> {
     return lodaing
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.grey,
-          leading: IconButton(
-              onPressed: () {
-                context.pushPage(profiletest());
-              },
-              icon: const Icon(Icons.arrow_back_ios)),
-        ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: ListView(
@@ -214,7 +209,7 @@ class EditState extends State<Edit> {
                         builder: ((builder) => bottomSheet()),
                       );
                     },
-                    child: const Text("Pick Image")),
+                    child:  Text(context.tr("Pick Image"))),
 
                 const SizedBox(
                   height: 5,
@@ -228,7 +223,7 @@ class EditState extends State<Edit> {
                         onChanged: (value) => FirstName = value,
                         controller: TextEditingController(text: FirstName),
                         decoration: InputDecoration(
-                          labelText: 'First Name',
+                          labelText: context.tr('First Name'),
                           border: OutlineInputBorder(
                               borderRadius:
                               BorderRadius.all(Radius.circular(10))),
@@ -238,7 +233,7 @@ class EditState extends State<Edit> {
                         // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return context.tr("Please enter some text");
                           }
                           return null;
                         },
@@ -250,7 +245,7 @@ class EditState extends State<Edit> {
                         onChanged: (value) => LastName = value,
                         controller: TextEditingController(text: LastName),
                         decoration: InputDecoration(
-                          labelText: 'Last Name',
+                          labelText: context.tr('Last Name'),
                           // hintText: 'name',
                           border: OutlineInputBorder(
                               borderRadius:
@@ -261,7 +256,7 @@ class EditState extends State<Edit> {
                         // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return context.tr("Please enter some text");
                           }
                           return null;
                         },
@@ -272,8 +267,8 @@ class EditState extends State<Edit> {
                       TextFormField(
                         onChanged: (value) => sUserName = value,
                         controller: TextEditingController(text: sUserName),
-                        decoration: const InputDecoration(
-                          labelText: 'Username',
+                        decoration:  InputDecoration(
+                          labelText: context.tr('Username'),
                           //  hintText: 'name',
                           border: OutlineInputBorder(
                               borderRadius:
@@ -284,7 +279,7 @@ class EditState extends State<Edit> {
                         // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return context.tr("Please enter some text");
                           }
                           return null;
                         },
@@ -295,8 +290,8 @@ class EditState extends State<Edit> {
                       TextFormField(
                         onChanged: (value) => email = value,
                         controller: TextEditingController(text: email),
-                        decoration: const InputDecoration(
-                          labelText: 'Email',
+                        decoration:  InputDecoration(
+                          labelText: context.tr('Email'),
                           // hintText: 'name',
                           border: OutlineInputBorder(
                               borderRadius:
@@ -307,7 +302,7 @@ class EditState extends State<Edit> {
                         // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return context.tr("Please enter some text");
                           }
                           return null;
                         },
@@ -318,8 +313,8 @@ class EditState extends State<Edit> {
                       TextFormField(
                         onChanged: (value) => phoneNumber = value,
                         controller: TextEditingController(text: phoneNumber),
-                        decoration: const InputDecoration(
-                          label: Text("Phone Number"),
+                        decoration:  InputDecoration(
+                          label: Text(context.tr("Phone Number")),
 
                           // hintText: 'name',
                           border: OutlineInputBorder(
@@ -331,7 +326,7 @@ class EditState extends State<Edit> {
                         // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return context.tr("Please enter some text");
                           }
                           return null;
                         },
@@ -342,8 +337,8 @@ class EditState extends State<Edit> {
                       TextFormField(
                         onChanged: (value) => nationality = value,
                         controller: TextEditingController(text: nationality),
-                        decoration: const InputDecoration(
-                          label: Text("Nationality"),
+                        decoration:  InputDecoration(
+                          label: Text(context.tr("Nationality")),
 
                           // hintText: 'name',
                           border: OutlineInputBorder(
@@ -355,7 +350,7 @@ class EditState extends State<Edit> {
                         // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return context.tr("Please enter some text");
                           }
                           return null;
                         },
@@ -366,8 +361,8 @@ class EditState extends State<Edit> {
                       TextFormField(
                         onChanged: (value) => city = value,
                         controller: TextEditingController(text: city),
-                        decoration: const InputDecoration(
-                          label: Text("City"),
+                        decoration:  InputDecoration(
+                          label: Text(context.tr("City")),
                           border: OutlineInputBorder(
                               borderRadius:
                               BorderRadius.all(Radius.circular(10))),
@@ -376,7 +371,7 @@ class EditState extends State<Edit> {
                         // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return context.tr("Please enter some text");
                           }
                           return null;
                         },
@@ -391,7 +386,7 @@ class EditState extends State<Edit> {
                 ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      // Upload image to Firebase Storage
+                      // Check if selectedImage is not null before using it
                       if (selectedImage != null) {
                         // Upload the image to Firebase Storage
                         Reference ref = FirebaseStorage.instance
@@ -403,7 +398,7 @@ class EditState extends State<Edit> {
 
                         await uploadTask.whenComplete(() async {
                           // Get the URL of the uploaded image
-                          String selectedImage = await ref.getDownloadURL();
+                          String selectedImageUrl = await ref.getDownloadURL();
 
                           // Update user's information in Firestore with the image URL
                           await FirebaseFirestore.instance
@@ -417,14 +412,13 @@ class EditState extends State<Edit> {
                             'sUserPhoneNumber': phoneNumber,
                             'sNationality': nationality,
                             'sCity': city,
-                            'UserProfileImage': selectedImage,
+                            'UserProfileImage': selectedImageUrl,
                           });
-
 
                           // Show success message
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Your information has been saved successfully'),
+                            SnackBar(
+                              content: Text(context.tr('Your information has been saved successfully')),
                               backgroundColor: Color.fromARGB(255, 149, 181, 236),
                             ),
                           );
@@ -449,8 +443,8 @@ class EditState extends State<Edit> {
 
                         // Show success message
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Your information has been saved successfully'),
+                          SnackBar(
+                            content: Text(context.tr("Your information has been saved successfully")),
                             backgroundColor: Color.fromARGB(255, 149, 181, 236),
                           ),
                         );
@@ -467,11 +461,12 @@ class EditState extends State<Edit> {
                     fixedSize: const Size(150, 40),
                     elevation: 0,
                   ),
-                  child: const Text(
-                    'Save',
+                  child:  Text(
+                    context.tr('Save'),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
+
 
               ]
           ),

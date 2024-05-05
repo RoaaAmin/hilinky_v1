@@ -6,8 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hiwetaan/components/context.dart';
-import 'package:hiwetaan/screens/create_card/widgets/socialMedia.dart';
+import 'package:hilinky/components/context.dart';
+import 'package:hilinky/screens/create_card/widgets/socialMedia.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
 

@@ -1,12 +1,13 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hiwetaan/components/context.dart';
-import 'package:hiwetaan/screens/Profile/profile.dart';
+import 'package:hilinky/components/context.dart';
+import 'package:hilinky/screens/Profile/profile.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../core/utils/size_utils.dart';
@@ -76,14 +77,14 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getImage(ImageSource.camera);
               },
-              label: Text("Camera"),
+              label: Text(context.tr("Camera")),
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getImage(ImageSource.gallery);
               },
-              label: Text("Gallery"),
+              label: Text(context.tr("Gallery")),
             ),
           ])
         ],
@@ -116,14 +117,14 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getLogo(ImageSource.camera);
               },
-              label: Text("Camera"),
+              label: Text(context.tr("Camera")),
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getLogo(ImageSource.gallery);
               },
-              label: Text("Gallery"),
+              label: Text(context.tr("Gallery")),
             ),
           ])
         ],
@@ -163,14 +164,14 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getPortfolio(ImageSource.camera);
               },
-              label: Text("Camera"),
+              label: Text(context.tr("Camera")),
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getPortfolio(ImageSource.gallery);
               },
-              label: Text("Gallery"),
+              label: Text(context.tr("Gallery")),
             ),
           ])
         ],
@@ -307,510 +308,488 @@ class EditState extends State<EditCard> {
     return lodaing
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.grey,
-          leading: IconButton(
-              onPressed: () {
-                context.pushPage(profiletest());
-              },
-              icon: const Icon(Icons.arrow_back_ios)),
-        ),
-
         body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: ListView(
-            children: [
-              SizedBox(height: 10,),
-              Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    TextFormField(
-                      onChanged: (value) => Prefix = value,
-                      controller: TextEditingController(text: Prefix),
-                      decoration: InputDecoration(
-                        labelText: 'Prefix',
-                        border: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(10))),
-                      ),
-                      //   autofillHints:,
-                      cursorColor: Colors.black,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      onChanged: (value) => FirstName = value,
-                      controller: TextEditingController(text: FirstName),
-                      decoration: InputDecoration(
-                        labelText: 'First Name',
-                        border: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(10))),
-                      ),
-                      //   autofillHints:,
-                      cursorColor: Colors.black,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      onChanged: (value) => MiddleName = value,
-                      controller: TextEditingController(text: MiddleName),
-                      decoration: InputDecoration(
-                        labelText: 'Middle Name',
-                        border: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(10))),
-                      ),
-                      //   autofillHints:,
-                      cursorColor: Colors.black,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      onChanged: (value) => LastName = value,
-                      controller: TextEditingController(text: LastName),
-                      decoration: InputDecoration(
-                        labelText: 'Last Name',
-                        border: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(10))),
-                      ),
-                      //   autofillHints:,
-                      cursorColor: Colors.black,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      onChanged: (value) => Position = value,
-                      controller: TextEditingController(text: Position),
-                      decoration: const InputDecoration(
-                        labelText: 'Position',
-                        //  hintText: 'name',
-                        border: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(10))),
-                      ),
-                      //   autofillHints:,
-                      cursorColor: Colors.black,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      onChanged: (value) => CompanyName = value,
-                      controller: TextEditingController(text: CompanyName),
-                      decoration: const InputDecoration(
-                        label: Text("CompanyName"),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(10))),
-                      ),
-                      cursorColor: Colors.black,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      onChanged: (value) => Email = value,
-                      controller: TextEditingController(text: Email),
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        // hintText: 'name',
-                        border: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(10))),
-                      ),
-                      //   autofillHints:,
-                      cursorColor: Colors.black,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      onChanged: (value) => PhoneNumber = value,
-                      controller: TextEditingController(text: PhoneNumber),
-                      decoration: const InputDecoration(
-                        label: Text("Phone Number"),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(10))),
-                      ),
-                      //   autofillHints:,
-                      cursorColor: Colors.black,
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 30),
-              Text(
-                'Choose links to edit',
-                style: GoogleFonts.robotoCondensed(
-                    fontSize: 25, fontWeight: FontWeight.bold),
-              ),
-
-              SocialMedia(
-                saved: links,
-                paddin: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom),
-              ),
-              Padding(
-                padding: getPadding(
-                  top: 16,
-                  // right: 74,
-                ),
-              ),
-              SizedBox(height: 10),
-              Visibility(
-                visible: editMode,
-                child: Container(
-                  height: 150,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(6),
-                    image: DecorationImage(
-                      image: NetworkImage(editModeImageURL),
-                      fit: BoxFit.cover,
+            padding: const EdgeInsets.all(20.0),
+            child: ListView(
+                children: [
+                  SizedBox(height: 10,),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        TextFormField(
+                          onChanged: (value) => Prefix = value,
+                          controller: TextEditingController(text: Prefix),
+                          decoration: InputDecoration(
+                            labelText: context.tr("Prefix"),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.black,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => FirstName = value,
+                          controller: TextEditingController(text: FirstName),
+                          decoration: InputDecoration(
+                            labelText: context.tr('First Name'),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.black,
+                          // The validator receives the text that the user has entered.
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return context.tr('Please enter some text');
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => MiddleName = value,
+                          controller: TextEditingController(text: MiddleName),
+                          decoration: InputDecoration(
+                            labelText: context.tr('Middle Name'),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.black,
+                          // The validator receives the text that the user has entered.
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => LastName = value,
+                          controller: TextEditingController(text: LastName),
+                          decoration: InputDecoration(
+                            labelText: context.tr('Last Name'),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.black,
+                          // The validator receives the text that the user has entered.
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return context.tr('Please enter some text');
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => Position = value,
+                          controller: TextEditingController(text: Position),
+                          decoration:  InputDecoration(
+                            labelText: context.tr('Position'),
+                            //  hintText: 'name',
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.black,
+                          // The validator receives the text that the user has entered.
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return context.tr('Please enter some text');
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => CompanyName = value,
+                          controller: TextEditingController(text: CompanyName),
+                          decoration:  InputDecoration(
+                            label: Text(context.tr("CompanyName")),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          cursorColor: Colors.black,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => Email = value,
+                          controller: TextEditingController(text: Email),
+                          decoration:  InputDecoration(
+                            labelText: context.tr('Email'),
+                            // hintText: 'name',
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.black,
+                          // The validator receives the text that the user has entered.
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return context.tr('Please enter some text');
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => PhoneNumber = value,
+                          controller: TextEditingController(text: PhoneNumber),
+                          decoration:  InputDecoration(
+                            label: Text(context.tr("Phone Number")),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.black,
+                          // The validator receives the text that the user has entered.
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return context.tr('Please enter some text');
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                replacement: GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      builder: ((builder) => bottomSheet()),
-                    );
-                  },
-                  child: selectedImage != null
-                      ? Container(
-                    height: 150,
-                    width: MediaQuery.of(context).size.width,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(6),
-                      child: Image.file(
-                        selectedImage!,
-                        fit: BoxFit.cover,
+                  SizedBox(height: 30),
+                  Text(
+                    context.tr('Choose links to edit'),
+                    style: GoogleFonts.robotoCondensed(
+                        fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
+
+                  SocialMedia(
+                    saved: links,
+                    paddin: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                  ),
+                  Padding(
+                    padding: getPadding(
+                      top: 16,
+                      // right: 74,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Visibility(
+                    visible: editMode,
+                    child: Container(
+                      height: 150,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6),
+                        image: DecorationImage(
+                          image: NetworkImage(editModeImageURL),
+                          fit: BoxFit.cover,
+                        ),
                       ),
+                    ),
+                    replacement: GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: ((builder) => bottomSheet()),
+                        );
+                      },
+                      child: selectedImage != null
+                          ? Container(
+                        height: 150,
+                        width: MediaQuery.of(context).size.width,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: Image.file(
+                            selectedImage!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )
+                          : Container(
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Center(
+                          child: selectedImage != null
+                              ? Image.file(
+                            selectedImage!,
+                            height: 150,
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover,
+                          )
+                              : Image.network(
+                            imageURL ?? '',
+                            height: 150,
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Visibility(
+                          visible: editMode,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(6),
+                              image: DecorationImage(
+                                image: NetworkImage(editModeImageURLLogo),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          replacement: GestureDetector(
+                            onTap: () {
+                              showModalBottomSheet(
+                                context: context,
+                                builder: ((builder) => bottomSheetLogo()),
+                              );
+                            },
+                            child: selectedLogo != null
+                                ? Container(
+                              height: 150,
+                              width: 150,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(6),
+                                child: Image.file(
+                                  selectedLogo!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            )
+                                : Container(
+                              height: 170,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Center(
+                                child: selectedLogo != null
+                                    ? Image.file(
+                                  selectedLogo!,
+                                  height: 150,
+                                  width: 150,
+                                  fit: BoxFit.cover,
+                                )
+                                    : Image.network(
+                                  logoURL ?? '',
+                                  height: 170,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: Visibility(
+                          visible: editMode,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(6),
+                              image: DecorationImage(
+                                image: NetworkImage(editModeImageURLPortfilio),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          replacement: GestureDetector(
+                            onTap: () {
+                              showModalBottomSheet(
+                                context: context,
+                                builder: ((builder) => bottomSheetPortfolio()),
+                              );
+                            },
+                            child: selectedPortfolio != null
+                                ? Container(
+                              height: 150,
+                              width: 150,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(6),
+                                child: Image.file(
+                                  selectedPortfolio!,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            )
+                                : Container(
+                              height: 170,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Center(
+                                child: selectedPortfolio != null
+                                    ? Image.file(
+                                  selectedPortfolio!,
+                                  height: 150,
+                                  width: 150,
+                                  fit: BoxFit.cover,
+                                )
+                                    : Image.network(
+                                  portfolioURL ?? '',
+
+                                  height: 170,
+                                  width: 170,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+                  //update card data
+                  ElevatedButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        // Check if any image is selected
+                        if (selectedImage != null || selectedLogo != null || selectedPortfolio != null) {
+                          // Upload images to Firebase Storage and get their URLs
+                          if (selectedImage != null) {
+                            final imageRef = FirebaseStorage.instance.ref().child('images').child('user_image.jpg');
+                            final uploadTask = imageRef.putFile(selectedImage!);
+                            final snapshot = await uploadTask.whenComplete(() => null);
+                            imageURL = await snapshot.ref.getDownloadURL();
+                          }
+
+                          if (selectedLogo != null) {
+                            final logoRef = FirebaseStorage.instance.ref().child('images').child('user_logo.jpg');
+                            final uploadTask = logoRef.putFile(selectedLogo!);
+                            final snapshot = await uploadTask.whenComplete(() => null);
+                            logoURL = await snapshot.ref.getDownloadURL();
+                          }
+
+                          if (selectedPortfolio != null) {
+                            final portfolioRef = FirebaseStorage.instance.ref().child('images').child('user_portfolio.jpg');
+                            final uploadTask = portfolioRef.putFile(selectedPortfolio!);
+                            final snapshot = await uploadTask.whenComplete(() => null);
+                            portfolioURL = await snapshot.ref.getDownloadURL();
+                          }
+                        }
+
+                        // Fetch existing card data from Firestore
+                        DocumentSnapshot<Map<String, dynamic>> cardSnapshot = await FirebaseFirestore.instance
+                            .collection('Cards')
+                            .doc(FirebaseAuth.instance.currentUser!.uid)
+                            .get();
+
+                        // Extract existing card data
+                        Map<String, dynamic> existingData = cardSnapshot.data() ?? {};
+
+                        // Get existing links
+                        Map<String, String> existingLinks = Map<String, String>.from(existingData['Links'] ?? {});
+
+                        // Merge updated links with existing data
+                        Map<String, String> updatedLinks = {
+                          ...existingLinks, // Spread existing links
+                          ...links, // New links
+                        };
+
+                        // Merge updated data
+                        Map<String, dynamic> updatedData = {
+                          ...existingData, // Spread existing data
+                          'Prefix': Prefix,
+                          'FirstName': FirstName,
+                          'MiddleName': MiddleName,
+                          'LastName': LastName,
+                          'Position': Position,
+                          'CompanyName': CompanyName,
+                          'Email': Email,
+                          'PhoneNumber': PhoneNumber,
+                          'Links': updatedLinks, // Updated links in Firestore
+                          // Include other fields to update here...
+                          'ImageURL': imageURL, // Update imageURL
+                          'LogoURL': logoURL,   // Update logoURL
+                          'PortfolioURL': portfolioURL, // Update portfolioURL
+                        };
+
+                        // Update user's card information in Firestore
+                        await FirebaseFirestore.instance
+                            .collection('Cards')
+                            .doc(FirebaseAuth.instance.currentUser!.uid)
+                            .update(updatedData);
+
+                        // Show a snackbar to indicate successful save
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(context.tr('Your card information has been saved successfully')),
+                            backgroundColor: Color.fromARGB(255, 149, 181, 236),
+                          ),
+                        );
+
+                        // Navigate back to the profile page
+                        context.pushPage(profiletest());
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.all(5),
+                      backgroundColor: const Color.fromARGB(255, 2, 84, 86),
+                      fixedSize: const Size(150, 40),
+                      elevation: 0,
+                    ),
+                    child:  Text(
+                      context.tr('Save'),
+                      style: TextStyle(color: Colors.white),
                     ),
                   )
-                      : Container(
-                    height: 150,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Center(
-                      child: selectedImage != null
-                          ? Image.file(
-                        selectedImage!,
-                        height: 150,
-                        width: MediaQuery.of(context).size.width,
-                        fit: BoxFit.cover,
-                      )
-                          : Image.network(
-                        imageURL ?? '',
-                        height: 150,
-                        width: MediaQuery.of(context).size.width,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
-              SizedBox(height: 10),
-
-              Row(
-                children: [
-                  Expanded(
-                    child: Visibility(
-                      visible: editMode,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(6),
-                          image: DecorationImage(
-                            image: NetworkImage(editModeImageURLLogo),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      replacement: GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: ((builder) => bottomSheetLogo()),
-                          );
-                        },
-                        child: selectedLogo != null
-                            ? Container(
-                          height: 150,
-                          width: 150,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
-                            child: Image.file(
-                              selectedLogo!,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        )
-                            : Container(
-                          height: 170,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                              color: Colors.black,
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: Center(
-                            child: selectedLogo != null
-                                ? Image.file(
-                              selectedLogo!,
-                              height: 150,
-                              width: 150,
-                              fit: BoxFit.cover,
-                            )
-                                : Image.network(
-                              logoURL ?? '',
-                              height: 170,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: Visibility(
-                      visible: editMode,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(6),
-                          image: DecorationImage(
-                            image: NetworkImage(editModeImageURLPortfilio),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      replacement: GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: ((builder) => bottomSheetPortfolio()),
-                          );
-                        },
-                        child: selectedPortfolio != null
-                            ? Container(
-                          height: 150,
-                          width: 150,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
-                            child: Image.file(
-                              selectedPortfolio!,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        )
-                            : Container(
-                          height: 170,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                              color: Colors.black,
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: Center(
-                            child: selectedPortfolio != null
-                                ? Image.file(
-                              selectedPortfolio!,
-                              height: 150,
-                              width: 150,
-                              fit: BoxFit.cover,
-                            )
-                                : Image.network(
-                              portfolioURL ?? '',
-
-                              height: 170,
-                              width: 170,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              SizedBox(
-                height: 20,
-              ),
-              //update card data
-              ElevatedButton(
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    // Check if any image is selected
-                    if (selectedImage != null || selectedLogo != null || selectedPortfolio != null) {
-                      // Upload images to Firebase Storage and get their URLs
-                      if (selectedImage != null) {
-                        final imageRef = FirebaseStorage.instance.ref().child('images').child('user_image.jpg');
-                        final uploadTask = imageRef.putFile(selectedImage!);
-                        final snapshot = await uploadTask.whenComplete(() => null);
-                        imageURL = await snapshot.ref.getDownloadURL();
-                      }
-
-                      if (selectedLogo != null) {
-                        final logoRef = FirebaseStorage.instance.ref().child('images').child('user_logo.jpg');
-                        final uploadTask = logoRef.putFile(selectedLogo!);
-                        final snapshot = await uploadTask.whenComplete(() => null);
-                        logoURL = await snapshot.ref.getDownloadURL();
-                      }
-
-                      if (selectedPortfolio != null) {
-                        final portfolioRef = FirebaseStorage.instance.ref().child('images').child('user_portfolio.jpg');
-                        final uploadTask = portfolioRef.putFile(selectedPortfolio!);
-                        final snapshot = await uploadTask.whenComplete(() => null);
-                        portfolioURL = await snapshot.ref.getDownloadURL();
-                      }
-                    }
-
-                    // Fetch existing card data from Firestore
-                    DocumentSnapshot<Map<String, dynamic>> cardSnapshot = await FirebaseFirestore.instance
-                        .collection('Cards')
-                        .doc(FirebaseAuth.instance.currentUser!.uid)
-                        .get();
-
-                    // Extract existing card data
-                    Map<String, dynamic> existingData = cardSnapshot.data() ?? {};
-
-                    // Merge updated links with existing data
-                    Map<String, dynamic> updatedData = {
-                      ...existingData, // Spread existing data
-                      'Prefix': Prefix,
-                      'FirstName': FirstName,
-                      'MiddleName': MiddleName,
-                      'LastName': LastName,
-                      'Position': Position,
-                      'CompanyName': CompanyName,
-                      'Email': Email,
-                      'PhoneNumber': PhoneNumber,
-                      'Links': links, // Update links in Firestore
-                      // Include other fields to update here...
-                      'ImageURL': imageURL, // Update imageURL
-                      'LogoURL': logoURL,   // Update logoURL
-                      'PortfolioURL': portfolioURL, // Update portfolioURL
-                    };
-
-                    // Update user's card information in Firestore
-                    await FirebaseFirestore.instance
-                        .collection('Cards')
-                        .doc(FirebaseAuth.instance.currentUser!.uid)
-                        .update(updatedData);
-
-                    // Show a snackbar to indicate successful save
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Your card information has been saved successfully'),
-                        backgroundColor: Color.fromARGB(255, 149, 181, 236),
-                      ),
-                    );
-
-                    // Navigate back to profile page
-                    context.pushPage(profiletest());
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(5),
-                  backgroundColor: const Color.fromARGB(255, 2, 84, 86),
-                  fixedSize: const Size(150, 40),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  'Save',
-                  style: TextStyle(color: Colors.white),
-                ),
-              )
 
 
 
 
 
-            ]
-    )));
+
+                ]
+            )));
 
   }
 }
 /// update links
-/// images not changes with latest updates (logo and portfolio)
