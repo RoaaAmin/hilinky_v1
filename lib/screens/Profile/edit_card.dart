@@ -580,8 +580,8 @@ class EditState extends State<EditCard> {
                             },
                             child: selectedLogo != null
                                 ? Container(
-                              height: 150,
-                              width: 150,
+                              height: 100,
+                              width: 100,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(6),
                                 child: Image.file(
@@ -792,4 +792,3 @@ class EditState extends State<EditCard> {
 
   }
 }
-/// update links

@@ -90,10 +90,13 @@ class _QrCodeState extends State<QrCode> {
     return SizedBox(
       width: 150,
       height: 150,
+
       child: GestureDetector(
         onTap: openContactInPhone,
         child: cardData != null
             ? QrImageView(
+          // backgroundColor: Colors.white, // Set the background color here
+          foregroundColor: Colors.white, // Set the foreground color here
           data: constructVCard(),
           version: QrVersions.auto,
         )

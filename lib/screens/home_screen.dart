@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:hilinky/components/context.dart';
 import 'package:line_icons/line_icons.dart';
 import '../auth.dart';
+import '../core/utils/image_constant.dart';
+import '../core/utils/size_utils.dart';
+import '../widgets/app_bar/appbar_image.dart';
 import 'Profile/profile.dart';
 import 'Scanner/QRScannerPage.dart';
 import 'create_card/create_card.dart';
@@ -72,25 +75,68 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildDefaultHomeScreen() {
+
     return Scaffold(
+
       appBar: AppBar(
+        leadingWidth: double.maxFinite,
+        leading: AppbarImage(
+          imagePath: ImageConstant.hilinkylogopng,
+          margin: getMargin(
+            // left: 11,
+            right: 6,
+          ),
+        ),
+        shape: ContinuousRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(40),
+          ),
+          side: BorderSide(
+            color: Color(0xFF234E5C),
+          ),
+        ),
         title: Text(context.tr('Home Screen')),
       ),
       body: Center(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              context.tr("Start your journey by creating your card"),
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            Text(context.tr('Start your journey be creating your card'),
+              style: TextStyle(
+                color: Color(0xFF121212),
+                fontSize: 15,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w600,
+                height: 0.21,
+              ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
+
               onPressed: () {
                 context.pushPage(CreateCard());
               },
-              child: Text(context.tr('Create Card')),
-            ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF234E5C),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+              child:Text(
+                context.tr('Create Card'),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w700,
+                  height: 0.07,
+                ),
+              ),
+            )
           ],
         ),
       ),
@@ -99,7 +145,13 @@ class _HomeScreenState extends State<HomeScreen> {
           context.pushPage(QRScannerPage());
         },
         child: Icon(Icons.qr_code_scanner),
+        foregroundColor: Colors.white,
+        backgroundColor: Color(0XFFEE6363),
+        shape: CircleBorder(),
+        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16.0))),
+        // child: Image.asset('../assets/images/QRScanCode.svg'),
       ),
+
     );
   }
 

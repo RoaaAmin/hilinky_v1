@@ -182,716 +182,755 @@ class profiletestState extends State<profiletest> {
     // Build a Form widget using the _formKey created above.
     return Scaffold(
         appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.grey,
-          title: Center(
-            child: Text(
-        context.tr("My Profile"),
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
+          title:Text(
+            context.tr('My Profile'),
+            style: TextStyle(
+              color: Color(0xFF133039),
+              fontSize: 24,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w700,
+              height: 0.05,
+              letterSpacing: -0.48,
             ),
           ),
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios_new),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Home(),
-              ))),
-          actions: [
-            // TextButton(
-            //   onPressed: () {
-            //     context.pushPage(HomeScreen());
-            //   },
-            //   child:  Icon(Icons.share),
-            // ),
-          ],
+          centerTitle: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+        body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('../Progile/screens/assets/images/hilinkybg.svg'), // Replace with your image path
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Column(
                 children: [
-                  Container(
-                    height: 130.0,
-                    width: 130.0,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      image: DecorationImage(
-                        image: NetworkImage(image ?? ''),
-                        fit: BoxFit.cover,
-                        alignment: Alignment.center,
-                      ),
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blueGrey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "$FirstName" + " $LastName",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ).tr(),
-                  Text(
-                    "$Position - $CompanyName",
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        height: 40,
-                        child: Links.isEmpty
-                            ? Text(context.tr('No links'))
-                            : ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          itemCount: Links.length,
-                          itemBuilder: (context, index) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.rectangle,
-                                    gradient: LinearGradient(
-                                        colors: [
-                                          Colors.orange,
-                                          Colors.deepOrange
-                                        ],
-                                        end: Alignment.topLeft,
-                                        begin: Alignment.bottomRight),
-                                  ),
-                                  width: 35,
-                                  height: 35,
-                                  child: Center(
-                                    child: IconButton(
-                                      isSelected: true,
-                                      iconSize: 20,
-                                      onPressed: () {
-                                        final Uri url =
-                                        Uri.parse(values[index]);
-                                        _launchUrl(url);
-                                      },
-                                      icon: Icon(l[keys[index]]!.icon),
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 15,
-                                )
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 20, right: 20, top: 10, bottom: 8),
-                    decoration: BoxDecoration(
-                        border: Border.all(style: BorderStyle.solid),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20)),
-                    height: 230,
-                    width: 361,
-                    child: Column(
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView(
+                      shrinkWrap: true,
                       children: [
-                        Row(
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(right: 15),
-                                  child: const Icon(
-                                    Icons.circle_outlined,
-                                    // grade: 3.3,
-                                    color: Colors.blueGrey,
-                                    size: 40,
-                                  ),
+                            Container(
+                              width: 100,
+                              height: 100,
+                              alignment: Alignment.center,
+                              decoration: ShapeDecoration(
+                                shape: OvalBorder(
+                                  side: BorderSide(width: 1.50, color: Color(0xFF2E8DAC)),
                                 ),
-                                Container(
-                                  padding:
-                                  const EdgeInsets.only(left: 11, top: 11),
-                                  child: const Icon(
-                                    Icons.my_library_books_rounded,
-                                    size: 20,
-                                    color: Colors.orange,
+                                image: DecorationImage(
+                                  image: NetworkImage(image ?? ''),
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.center,
+                                ),
+                                // shape: BoxShape.circle,
+                                // boxShadow: [
+                                //   BoxShadow(
+                                //     color: Colors.blueGrey.withOpacity(0.5),
+                                //     spreadRadius: 5,
+                                //     blurRadius: 7,
+                                //     offset: Offset(0, 3),
+                                //   ),
+                                // ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              context.tr( "$FirstName" + " $LastName"),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF286F8C),
+                                fontSize: 24,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            ),
+                            Text(
+                              context.tr( "$Position - $CompanyName"),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF133039),
+                                fontSize: 15,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                                height: 0,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(
+                                  height: 40,
+                                  child: Links.isEmpty
+                                      ? Text(context.tr('No links'))
+                                      : ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
+                                    itemCount: Links.length,
+                                    itemBuilder: (context, index) {
+                                      return Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            decoration:  BoxDecoration(
+                                              shape: BoxShape.rectangle,
+                                              borderRadius: BorderRadius.circular(8),
+                                              gradient: LinearGradient(
+                                                  colors: [
+                                                    Colors.orange,
+                                                    Colors.deepOrange
+                                                  ],
+                                                  end: Alignment.topLeft,
+                                                  begin: Alignment.bottomRight),
+                                            ),
+                                            width: 35,
+                                            height: 35,
+                                            child: Center(
+                                              child: IconButton(
+                                                isSelected: true,
+                                                iconSize: 20,
+                                                onPressed: () {
+                                                  final Uri url =
+                                                  Uri.parse(values[index]);
+                                                  _launchUrl(url);
+                                                },
+                                                icon: Icon(l[keys[index]]!.icon),
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 15,
+                                          )
+                                        ],
+                                      );
+                                    },
                                   ),
                                 ),
                               ],
                             ),
-                            TextButton(
-                                onPressed: () {
-                                  context.pushPage(Edit());
-                                },
-                                child:  Text(context.tr(
-                                  "Edit Profile Information"),
-                                  style: TextStyle(color: Colors.black),
-                                ).tr()),
-
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(right: 15),
-                                  child: const Icon(
-                                    Icons.circle_outlined,
-                                    // grade: 3.3,
-                                    color: Colors.blueGrey,
-                                    size: 40,
-                                  ),
-                                ),
-                                Container(
-                                  padding:
-                                  const EdgeInsets.only(left: 11, top: 11),
-                                  child: const Icon(
-                                    Icons.my_library_books_rounded,
-                                    size: 20,
-                                    color: Colors.orange,
-                                  ),
-                                ),
-                              ],
+                            const SizedBox(
+                              height: 20,
                             ),
-                            TextButton(
-                                onPressed: () {
-                                  context.pushPage(EditCard());
-                                },
-                                child:  Text(context.tr(
-                                  "Edit My Card"),
-                                  style: TextStyle(color: Colors.black),
-                                )),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 20, top: 10, bottom: 8),
+                              decoration: BoxDecoration(
+                                  border: Border.all(style: BorderStyle.solid,color: Color(0xFF286F8C)),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20)),
+                              height: 215,
+                              width: 361,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            width: 39,
+                                            height: 39,
+                                            decoration: ShapeDecoration(
+                                              shape: OvalBorder(
+                                                side: BorderSide(width: 2, color: Color(0xFF286F8C)),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding:
+                                            const EdgeInsets.only(left: 10, top: 11),
+                                            child: const Icon(
+                                              Icons.person_outline_rounded,
+                                              size: 20,
+                                              color: Color(0xFFEF9D52),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            context.pushPage(Edit());
+                                          },
+                                          child:  Text(
+                                            context.tr("Edit Profile Information"),
+                                            style: TextStyle(color: Color(0xFF141619),
+                                              fontSize: 18,
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              height: 0,
+                                              letterSpacing: -0.10,),
+                                          )),
 
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  //   padding: const EdgeInsets.only(right: 15),
-                                  //   child: const Icon(
-                                  //     Icons.circle_outlined,
-                                  //     // grade: 3.3,
-                                  //     color: Colors.blueGrey,
-                                  //     size: 40,
-                                  //   ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            width: 39,
+                                            height: 39,
+                                            decoration: ShapeDecoration(
+                                              shape: OvalBorder(
+                                                side: BorderSide(width: 2, color: Color(0xFF286F8C)),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding:
+                                            const EdgeInsets.only(left: 10, top: 11),
+                                            child: const Icon(
+                                              Icons.credit_card_outlined,
+                                              size: 20,
+                                              color: Colors.orange,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            context.pushPage(EditCard());
+                                          },
+                                          child:  Text(
+                                            context.tr("Edit My Card"),
+                                            style: TextStyle(color: Color(0xFF141619),
+                                              fontSize: 18,
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              height: 0,
+                                              letterSpacing: -0.10,),
+                                          )),
+
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Stack(
+                                        children: [
+                                          // Container(
+                                          //   width: 39,
+                                          //   height: 39,
+                                          //   decoration: ShapeDecoration(
+                                          //     shape: OvalBorder(
+                                          //       side: BorderSide(width: 2, color: Color(0xFF286F8C)),
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                          // Container(
+                                          //   padding:
+                                          //       const EdgeInsets.only(left: 10, top: 11),
+                                          //   child: const Icon(
+                                          //     Icons.notifications_none_outlined,
+                                          //     size: 20,
+                                          //     color: Colors.orange,
+                                          //   ),
+                                          // ),
+                                        ],
+                                      ),
+                                      // TextButton(
+                                      //     onPressed: () {
+                                      //       context.pushPage(const Notifications());
+                                      //     },
+                                      //     child: const Text(
+                                      //       "Notifications",
+                                      //       style: TextStyle(color: Color(0xFF141619),
+                                      //         fontSize: 18,
+                                      //         fontFamily: 'Inter',
+                                      //         fontWeight: FontWeight.w400,
+                                      //         height: 0,
+                                      //         letterSpacing: -0.10,),
+                                      //     )),
+                                      // const Text("ON")
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            width: 39,
+                                            height: 39,
+                                            decoration: ShapeDecoration(
+                                              shape: OvalBorder(
+                                                side: BorderSide(width: 2, color: Color(0xFF286F8C)),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding:
+                                            const EdgeInsets.only(left: 10, top: 11),
+                                            child: const Icon(
+                                              Icons.language,
+                                              size: 20,
+                                              color: Colors.orange,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            // Navigate to the Language page and pass the callback function
+                                            context.pushPage(Language(
+                                              // onLanguageSelected: (int language) {
+                                              //   setState(() {
+                                              //     selectedOption = language; // Update the selected language
+                                              //   });
+                                              // },
+                                            ));
+                                          },
+                                          child:  Text(
+                                            context.tr( "Language"),
+                                            style: TextStyle(color: Color(0xFF141619),
+                                              fontSize: 18,
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              height: 0,
+                                              letterSpacing: -0.10,),
+                                          )
+                                      ),
+                                      // Text(
+                                      //   (selectedOption == 2 ? "arabic_language" : "english_language"),
+                                      //   style: TextStyle(color: Colors.black),
+                                      // ),
+                                    ],
+                                  ),
+                                  // Row(
+                                  //   children: [
+                                  //     Stack(
+                                  //       children: [
+                                  //         Container(
+                                  //           padding: const EdgeInsets.only(right: 15),
+                                  //           child: const Icon(
+                                  //             Icons.circle_outlined,
+                                  //             // grade: 3.3,
+                                  //             color: Colors.blueGrey,
+                                  //             size: 40,
+                                  //           ),
+                                  //         ),
+                                  //         Container(
+                                  //           padding: EdgeInsets.only(left: 11, top: 11),
+                                  //           child: Icon(
+                                  //             Icons.my_library_books_rounded,
+                                  //             size: 20,
+                                  //             color: Colors.orange,
+                                  //           ),
+                                  //         ),
+                                  //       ],
+                                  //     ),
+                                  //     TextButton(
+                                  //         onPressed: () {
+                                  //           showBottomSheet(
+                                  //             shape: Border.symmetric(),
+                                  //             // strokeAlign:
+                                  //             //     BorderSide.strokeAlignOutside,
+                                  //
+                                  //             // color: Colors.black),
+                                  //             context: context,
+                                  //             builder: (context) {
+                                  //               return SizedBox(
+                                  //                 height: 250,
+                                  //                 width:
+                                  //                 MediaQuery.of(context).size.width,
+                                  //                 // *
+                                  //                 //     0.8,
+                                  //                 // child: Padding(
+                                  //                 //   padding: EdgeInsets.all(20.0),
+                                  //                 //   child: Column(
+                                  //                 //     mainAxisAlignment:
+                                  //                 //     MainAxisAlignment.start,
+                                  //                 //     children: <Widget>[
+                                  //                 //       Text(
+                                  //                 //         "Theme",
+                                  //                 //         style: TextStyle(fontSize: 24),
+                                  //                 //       ),
+                                  //                 //       ListTile(
+                                  //                 //         // onTap: () {
+                                  //                 //         //   context
+                                  //                 //         //       .pushPage(profiletest());
+                                  //                 //         // },
+                                  //                 //         titleAlignment:
+                                  //                 //         ListTileTitleAlignment
+                                  //                 //             .center,
+                                  //                 //         // textAlign: TextAlign.end,
+                                  //                 //         title: const Text(
+                                  //                 //           'Light Mode',
+                                  //                 //           style:
+                                  //                 //           TextStyle(fontSize: 16),
+                                  //                 //         ),
+                                  //                 //
+                                  //                 //         leading: Radio(
+                                  //                 //           value: 1,
+                                  //                 //           groupValue: selectedOption,
+                                  //                 //           onChanged: (value) {
+                                  //                 //             setState(() {
+                                  //                 //               selectedOption = value!;
+                                  //                 //             });
+                                  //                 //           },
+                                  //                 //         ),
+                                  //                 //       ),
+                                  //                 //       ListTile(
+                                  //                 //         //    onTap: () {
+                                  //                 //         //   context
+                                  //                 //         //       .pushPage(profiletest());
+                                  //                 //         // },
+                                  //                 //         titleAlignment:
+                                  //                 //         ListTileTitleAlignment
+                                  //                 //             .center,
+                                  //                 //         // textAlign: TextAlign.end,
+                                  //                 //         title: const Text(
+                                  //                 //           'Dark Mode',
+                                  //                 //           style:
+                                  //                 //           TextStyle(fontSize: 16),
+                                  //                 //         ),
+                                  //                 //
+                                  //                 //         leading: Radio(
+                                  //                 //           value: 2,
+                                  //                 //           groupValue: selectedOption,
+                                  //                 //           onChanged: (value) {
+                                  //                 //             setState(() {
+                                  //                 //               selectedOption = value!;
+                                  //                 //             });
+                                  //                 //           },
+                                  //                 //         ),
+                                  //                 //       ),
+                                  //                 //       ListTile(
+                                  //                 //         //    onTap: () {
+                                  //                 //         //   context
+                                  //                 //         //       .pushPage(profiletest());
+                                  //                 //         // },
+                                  //                 //         titleAlignment:
+                                  //                 //         ListTileTitleAlignment
+                                  //                 //             .center,
+                                  //                 //         // textAlign: TextAlign.end,
+                                  //                 //         title: const Text(
+                                  //                 //           'System Default',
+                                  //                 //           style:
+                                  //                 //           TextStyle(fontSize: 16),
+                                  //                 //         ),
+                                  //                 //
+                                  //                 //         leading: Radio(
+                                  //                 //           value: 3,
+                                  //                 //           groupValue: selectedOption,
+                                  //                 //           onChanged: (value) {
+                                  //                 //             setState(() {
+                                  //                 //               selectedOption = value!;
+                                  //                 //             });
+                                  //                 //           },
+                                  //                 //         ),
+                                  //                 //
+                                  //                 //         //System Default
+                                  //                 //       )
+                                  //                 //     ],
+                                  //                 //   ),
+                                  //                 // ),
+                                  //               );
+                                  //               // return SelectingSheet(keyword: text);
+                                  //             },
+                                  //           );
+                                  //         },
+                                  //         child: const Text(
+                                  //           "Theme",
+                                  //           style: TextStyle(color: Colors.black),
+                                  //         )),
+                                  //     const Text("Light Mode")
+                                  //   ],
                                   // ),
-                                  // Container(
-                                  //   padding:
-                                  //       const EdgeInsets.only(left: 11, top: 11),
-                                  //   child: const Icon(
-                                  //     Icons.my_library_books_rounded,
-                                  //     size: 20,
-                                  //     color: Colors.orange,
-                                  //   ),
-                                ),
-                              ],
-                            ),
-                            // TextButton(
-                            //     onPressed: () {
-                            //       context.pushPage(const Notifications());
-                            //     },
-                            //     child: const Text(
-                            //       "Notifications",
-                            //       style: TextStyle(color: Colors.black),
-                            //     )),
-                            // const Text("ON")
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(right: 15),
-                                  child: const Icon(
-                                    Icons.circle_outlined,
-                                    // grade: 3.3,
-                                    color: Colors.blueGrey,
-                                    size: 40,
+                                  Row(
+                                    children: [
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            width: 39,
+                                            height: 39,
+                                            decoration: ShapeDecoration(
+                                              shape: OvalBorder(
+                                                side: BorderSide(width: 2, color: Color(0xFF286F8C)),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding:
+                                            const EdgeInsets.only(left: 11, top: 11),
+                                            child: const Icon(
+                                              Icons.logout,
+                                              size: 20,
+                                              color: Colors.orange,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            FirebaseAuth.instance.signOut();
+                                            Navigator.of(context).push(MaterialPageRoute(
+                                              builder: (context) => Auth(),
+                                            ));
+                                          },
+                                          child:  Text(
+                                            context.tr("Log Out"),
+                                            style: TextStyle(color: Color(0xFF141619),
+                                              fontSize: 18,
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              height: 0,
+                                              letterSpacing: -0.10,),
+                                          )),
+                                    ],
                                   ),
-                                ),
-                                Container(
-                                  padding:
-                                  const EdgeInsets.only(left: 11, top: 11),
-                                  child: const Icon(
-                                    Icons.my_library_books_rounded,
-                                    size: 20,
-                                    color: Colors.orange,
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                            TextButton(
-                              onPressed: () {
-                                // Navigate to the Language page and pass the callback function
-                                context.pushPage(Language(
-                                  // onLanguageSelected: (int language) {
-                                  //   setState(() {
-                                  //     selectedOption = language; // Update the selected language
-                                  //   });
-                                  // },
-                                ));
-                              },
-                              child:  Text(context.tr(
-                                "Language"),
-                                style: TextStyle(color: Colors.black),
-                              ).tr(),
-                            ),
-                            // Text(
-                            //   (selectedOption == 2 ? "arabic_language" : "english_language"),
-                            //   style: TextStyle(color: Colors.black),
+                            // const SizedBox(
+                            //   height: 20,
+                            // ),
+                            // Container(
+                            //   padding: const EdgeInsets.only(
+                            //       left: 20, right: 20, top: 10, bottom: 8),
+                            //   decoration: BoxDecoration(
+                            //       border: Border.all(style: BorderStyle.solid),
+                            //       color: Colors.white,
+                            //       borderRadius: BorderRadius.circular(20)),
+                            //   height: 130,
+                            //   width: 361,
+                            //   child: Column(
+                            //     children: [
+                            //       Row(
+                            //         children: [
+                            //           Stack(
+                            //             children: [
+                            //               Container(
+                            //                 padding: const EdgeInsets.only(right: 15),
+                            //                 child: const Icon(
+                            //                   Icons.circle_outlined,
+                            //                   // grade: 3.3,
+                            //                   color: Colors.blueGrey,
+                            //                   size: 40,
+                            //                 ),
+                            //               ),
+                            //               Container(
+                            //                 padding: EdgeInsets.only(left: 11, top: 11),
+                            //                 child: Icon(
+                            //                   Icons.my_library_books_rounded,
+                            //                   size: 20,
+                            //                   color: Colors.orange,
+                            //                 ),
+                            //               ),
+                            //             ],
+                            //           ),
+                            //           TextButton(
+                            //               onPressed: () {
+                            //                 showBottomSheet(
+                            //                   shape: Border.symmetric(),
+                            //                   // strokeAlign:
+                            //                   //     BorderSide.strokeAlignOutside,
+                            //
+                            //                   // color: Colors.black),
+                            //                   context: context,
+                            //                   builder: (context) {
+                            //                     return SizedBox(
+                            //                       height: 250,
+                            //                       width:
+                            //                           MediaQuery.of(context).size.width,
+                            //                       // *
+                            //                       //     0.8,
+                            //                       child: Padding(
+                            //                         padding: EdgeInsets.all(20.0),
+                            //                         child: Column(
+                            //                           mainAxisAlignment:
+                            //                               MainAxisAlignment.start,
+                            //                           children: <Widget>[
+                            //                             Text(
+                            //                               "Theme",
+                            //                               style: TextStyle(fontSize: 24),
+                            //                             ),
+                            //                             ListTile(
+                            //                               // onTap: () {
+                            //                               //   context
+                            //                               //       .pushPage(profiletest());
+                            //                               // },
+                            //                               titleAlignment:
+                            //                                   ListTileTitleAlignment
+                            //                                       .center,
+                            //                               // textAlign: TextAlign.end,
+                            //                               title: const Text(
+                            //                                 'Light Mode',
+                            //                                 style:
+                            //                                     TextStyle(fontSize: 16),
+                            //                               ),
+                            //
+                            //                               leading: Radio(
+                            //                                 value: 1,
+                            //                                 groupValue: selectedOption,
+                            //                                 onChanged: (value) {
+                            //                                   setState(() {
+                            //                                     selectedOption = value!;
+                            //                                   });
+                            //                                 },
+                            //                               ),
+                            //                             ),
+                            //                             ListTile(
+                            //                               //    onTap: () {
+                            //                               //   context
+                            //                               //       .pushPage(profiletest());
+                            //                               // },
+                            //                               titleAlignment:
+                            //                                   ListTileTitleAlignment
+                            //                                       .center,
+                            //                               // textAlign: TextAlign.end,
+                            //                               title: const Text(
+                            //                                 'Dark Mode',
+                            //                                 style:
+                            //                                     TextStyle(fontSize: 16),
+                            //                               ),
+                            //
+                            //                               leading: Radio(
+                            //                                 value: 2,
+                            //                                 groupValue: selectedOption,
+                            //                                 onChanged: (value) {
+                            //                                   setState(() {
+                            //                                     selectedOption = value!;
+                            //                                   });
+                            //                                 },
+                            //                               ),
+                            //                             ),
+                            //                             ListTile(
+                            //                               //    onTap: () {
+                            //                               //   context
+                            //                               //       .pushPage(profiletest());
+                            //                               // },
+                            //                               titleAlignment:
+                            //                                   ListTileTitleAlignment
+                            //                                       .center,
+                            //                               // textAlign: TextAlign.end,
+                            //                               title: const Text(
+                            //                                 'System Default',
+                            //                                 style:
+                            //                                     TextStyle(fontSize: 16),
+                            //                               ),
+                            //
+                            //                               leading: Radio(
+                            //                                 value: 3,
+                            //                                 groupValue: selectedOption,
+                            //                                 onChanged: (value) {
+                            //                                   setState(() {
+                            //                                     selectedOption = value!;
+                            //                                   });
+                            //                                 },
+                            //                               ),
+                            //
+                            //                               //System Default
+                            //                             )
+                            //                           ],
+                            //                         ),
+                            //                       ),
+                            //                     );
+                            //                     // return SelectingSheet(keyword: text);
+                            //                   },
+                            //                 );
+                            //               },
+                            //               child: const Text(
+                            //                 "Theme",
+                            //                 style: TextStyle(color: Colors.black),
+                            //               )),
+                            //           const Text("Light Mode")
+                            //         ],
+                            //       ),
+                            //       Row(
+                            //         children: [
+                            //           // Stack(
+                            //           //   children: [
+                            //           //     Container(
+                            //           //       padding: const EdgeInsets.only(right: 15),
+                            //           //       child: const Icon(
+                            //           //         Icons.circle_outlined,
+                            //           //         // grade: 3.3,
+                            //           //         color: Colors.blueGrey,
+                            //           //         size: 40,
+                            //           //       ),
+                            //           //     ),
+                            //           //     Container(
+                            //           //       padding:
+                            //           //           const EdgeInsets.only(left: 11, top: 11),
+                            //           //       child: const Icon(
+                            //           //         Icons.my_library_books_rounded,
+                            //           //         size: 20,
+                            //           //         color: Colors.orange,
+                            //           //       ),
+                            //           //     ),
+                            //           //   ],
+                            //           // ),
+                            //           // TextButton(
+                            //           //     onPressed: () {
+                            //           //     //  context.pushPage(const Activity());
+                            //           //     },
+                            //           //     child: const Text(
+                            //           //       "Activity",
+                            //           //       style: TextStyle(color: Colors.black),
+                            //           //     )),
+                            //         ],
+                            //       ),
+                            //       Row(
+                            //         children: [
+                            //           Stack(
+                            //             children: [
+                            //               Container(
+                            //                 padding: const EdgeInsets.only(right: 15),
+                            //                 child: const Icon(
+                            //                   Icons.circle_outlined,
+                            //                   // grade: 3.3,
+                            //                   color: Colors.blueGrey,
+                            //                   size: 40,
+                            //                 ),
+                            //               ),
+                            //               Container(
+                            //                 padding:
+                            //                     const EdgeInsets.only(left: 11, top: 11),
+                            //                 child: const Icon(
+                            //                   Icons.my_library_books_rounded,
+                            //                   size: 20,
+                            //                   color: Colors.orange,
+                            //                 ),
+                            //               ),
+                            //             ],
+                            //           ),
+                            //           TextButton(
+                            //               onPressed: () {
+                            //                 FirebaseAuth.instance.signOut();
+                            //                 Navigator.of(context).push(MaterialPageRoute(
+                            //                   builder: (context) => Auth(),
+                            //                 ));
+                            //               },
+                            //               child: const Text(
+                            //                 "Log Out",
+                            //                 style: TextStyle(color: Colors.black),
+                            //               )),
+                            //         ],
+                            //       ),
+                            //     ],
+                            //   ),
                             // ),
                           ],
                         ),
-                        // Row(
-                        //   children: [
-                        //     Stack(
-                        //       children: [
-                        //         Container(
-                        //           padding: const EdgeInsets.only(right: 15),
-                        //           child: const Icon(
-                        //             Icons.circle_outlined,
-                        //             // grade: 3.3,
-                        //             color: Colors.blueGrey,
-                        //             size: 40,
-                        //           ),
-                        //         ),
-                        //         Container(
-                        //           padding: EdgeInsets.only(left: 11, top: 11),
-                        //           child: Icon(
-                        //             Icons.my_library_books_rounded,
-                        //             size: 20,
-                        //             color: Colors.orange,
-                        //           ),
-                        //         ),
-                        //       ],
-                        //     ),
-                        //     TextButton(
-                        //         onPressed: () {
-                        //           showBottomSheet(
-                        //             shape: Border.symmetric(),
-                        //             // strokeAlign:
-                        //             //     BorderSide.strokeAlignOutside,
-                        //
-                        //             // color: Colors.black),
-                        //             context: context,
-                        //             builder: (context) {
-                        //               return SizedBox(
-                        //                 height: 250,
-                        //                 width:
-                        //                 MediaQuery.of(context).size.width,
-                        //                 // *
-                        //                 //     0.8,
-                        //                 // child: Padding(
-                        //                 //   padding: EdgeInsets.all(20.0),
-                        //                 //   child: Column(
-                        //                 //     mainAxisAlignment:
-                        //                 //     MainAxisAlignment.start,
-                        //                 //     children: <Widget>[
-                        //                 //       Text(
-                        //                 //         "Theme",
-                        //                 //         style: TextStyle(fontSize: 24),
-                        //                 //       ),
-                        //                 //       ListTile(
-                        //                 //         // onTap: () {
-                        //                 //         //   context
-                        //                 //         //       .pushPage(profiletest());
-                        //                 //         // },
-                        //                 //         titleAlignment:
-                        //                 //         ListTileTitleAlignment
-                        //                 //             .center,
-                        //                 //         // textAlign: TextAlign.end,
-                        //                 //         title: const Text(
-                        //                 //           'Light Mode',
-                        //                 //           style:
-                        //                 //           TextStyle(fontSize: 16),
-                        //                 //         ),
-                        //                 //
-                        //                 //         leading: Radio(
-                        //                 //           value: 1,
-                        //                 //           groupValue: selectedOption,
-                        //                 //           onChanged: (value) {
-                        //                 //             setState(() {
-                        //                 //               selectedOption = value!;
-                        //                 //             });
-                        //                 //           },
-                        //                 //         ),
-                        //                 //       ),
-                        //                 //       ListTile(
-                        //                 //         //    onTap: () {
-                        //                 //         //   context
-                        //                 //         //       .pushPage(profiletest());
-                        //                 //         // },
-                        //                 //         titleAlignment:
-                        //                 //         ListTileTitleAlignment
-                        //                 //             .center,
-                        //                 //         // textAlign: TextAlign.end,
-                        //                 //         title: const Text(
-                        //                 //           'Dark Mode',
-                        //                 //           style:
-                        //                 //           TextStyle(fontSize: 16),
-                        //                 //         ),
-                        //                 //
-                        //                 //         leading: Radio(
-                        //                 //           value: 2,
-                        //                 //           groupValue: selectedOption,
-                        //                 //           onChanged: (value) {
-                        //                 //             setState(() {
-                        //                 //               selectedOption = value!;
-                        //                 //             });
-                        //                 //           },
-                        //                 //         ),
-                        //                 //       ),
-                        //                 //       ListTile(
-                        //                 //         //    onTap: () {
-                        //                 //         //   context
-                        //                 //         //       .pushPage(profiletest());
-                        //                 //         // },
-                        //                 //         titleAlignment:
-                        //                 //         ListTileTitleAlignment
-                        //                 //             .center,
-                        //                 //         // textAlign: TextAlign.end,
-                        //                 //         title: const Text(
-                        //                 //           'System Default',
-                        //                 //           style:
-                        //                 //           TextStyle(fontSize: 16),
-                        //                 //         ),
-                        //                 //
-                        //                 //         leading: Radio(
-                        //                 //           value: 3,
-                        //                 //           groupValue: selectedOption,
-                        //                 //           onChanged: (value) {
-                        //                 //             setState(() {
-                        //                 //               selectedOption = value!;
-                        //                 //             });
-                        //                 //           },
-                        //                 //         ),
-                        //                 //
-                        //                 //         //System Default
-                        //                 //       )
-                        //                 //     ],
-                        //                 //   ),
-                        //                 // ),
-                        //               );
-                        //               // return SelectingSheet(keyword: text);
-                        //             },
-                        //           );
-                        //         },
-                        //         child: const Text(
-                        //           "Theme",
-                        //           style: TextStyle(color: Colors.black),
-                        //         )),
-                        //     const Text("Light Mode")
-                        //   ],
+
+                        // SizedBox(
+                        //   height: 40,
                         // ),
-                        Row(
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(right: 15),
-                                  child: const Icon(
-                                    Icons.circle_outlined,
-                                    // grade: 3.3,
-                                    color: Colors.blueGrey,
-                                    size: 40,
-                                  ),
-                                ),
-                                Container(
-                                  padding:
-                                  const EdgeInsets.only(left: 11, top: 11),
-                                  child: const Icon(
-                                    Icons.my_library_books_rounded,
-                                    size: 20,
-                                    color: Colors.orange,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  FirebaseAuth.instance.signOut();
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => Auth(),
-                                  ));
-                                },
-                                child:  Text(context.tr(
-                                  "Log Out"),
-                                  style: TextStyle(color: Colors.black),
-                                ).tr()),
-                          ],
-                        ),
+                        //tabs(),
                       ],
                     ),
-                  ),
-                  // const SizedBox(
-                  //   height: 20,
-                  // ),
-                  // Container(
-                  //   padding: const EdgeInsets.only(
-                  //       left: 20, right: 20, top: 10, bottom: 8),
-                  //   decoration: BoxDecoration(
-                  //       border: Border.all(style: BorderStyle.solid),
-                  //       color: Colors.white,
-                  //       borderRadius: BorderRadius.circular(20)),
-                  //   height: 130,
-                  //   width: 361,
-                  //   child: Column(
-                  //     children: [
-                  //       Row(
-                  //         children: [
-                  //           Stack(
-                  //             children: [
-                  //               Container(
-                  //                 padding: const EdgeInsets.only(right: 15),
-                  //                 child: const Icon(
-                  //                   Icons.circle_outlined,
-                  //                   // grade: 3.3,
-                  //                   color: Colors.blueGrey,
-                  //                   size: 40,
-                  //                 ),
-                  //               ),
-                  //               Container(
-                  //                 padding: EdgeInsets.only(left: 11, top: 11),
-                  //                 child: Icon(
-                  //                   Icons.my_library_books_rounded,
-                  //                   size: 20,
-                  //                   color: Colors.orange,
-                  //                 ),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //           TextButton(
-                  //               onPressed: () {
-                  //                 showBottomSheet(
-                  //                   shape: Border.symmetric(),
-                  //                   // strokeAlign:
-                  //                   //     BorderSide.strokeAlignOutside,
-                  //
-                  //                   // color: Colors.black),
-                  //                   context: context,
-                  //                   builder: (context) {
-                  //                     return SizedBox(
-                  //                       height: 250,
-                  //                       width:
-                  //                           MediaQuery.of(context).size.width,
-                  //                       // *
-                  //                       //     0.8,
-                  //                       child: Padding(
-                  //                         padding: EdgeInsets.all(20.0),
-                  //                         child: Column(
-                  //                           mainAxisAlignment:
-                  //                               MainAxisAlignment.start,
-                  //                           children: <Widget>[
-                  //                             Text(
-                  //                               "Theme",
-                  //                               style: TextStyle(fontSize: 24),
-                  //                             ),
-                  //                             ListTile(
-                  //                               // onTap: () {
-                  //                               //   context
-                  //                               //       .pushPage(profiletest());
-                  //                               // },
-                  //                               titleAlignment:
-                  //                                   ListTileTitleAlignment
-                  //                                       .center,
-                  //                               // textAlign: TextAlign.end,
-                  //                               title: const Text(
-                  //                                 'Light Mode',
-                  //                                 style:
-                  //                                     TextStyle(fontSize: 16),
-                  //                               ),
-                  //
-                  //                               leading: Radio(
-                  //                                 value: 1,
-                  //                                 groupValue: selectedOption,
-                  //                                 onChanged: (value) {
-                  //                                   setState(() {
-                  //                                     selectedOption = value!;
-                  //                                   });
-                  //                                 },
-                  //                               ),
-                  //                             ),
-                  //                             ListTile(
-                  //                               //    onTap: () {
-                  //                               //   context
-                  //                               //       .pushPage(profiletest());
-                  //                               // },
-                  //                               titleAlignment:
-                  //                                   ListTileTitleAlignment
-                  //                                       .center,
-                  //                               // textAlign: TextAlign.end,
-                  //                               title: const Text(
-                  //                                 'Dark Mode',
-                  //                                 style:
-                  //                                     TextStyle(fontSize: 16),
-                  //                               ),
-                  //
-                  //                               leading: Radio(
-                  //                                 value: 2,
-                  //                                 groupValue: selectedOption,
-                  //                                 onChanged: (value) {
-                  //                                   setState(() {
-                  //                                     selectedOption = value!;
-                  //                                   });
-                  //                                 },
-                  //                               ),
-                  //                             ),
-                  //                             ListTile(
-                  //                               //    onTap: () {
-                  //                               //   context
-                  //                               //       .pushPage(profiletest());
-                  //                               // },
-                  //                               titleAlignment:
-                  //                                   ListTileTitleAlignment
-                  //                                       .center,
-                  //                               // textAlign: TextAlign.end,
-                  //                               title: const Text(
-                  //                                 'System Default',
-                  //                                 style:
-                  //                                     TextStyle(fontSize: 16),
-                  //                               ),
-                  //
-                  //                               leading: Radio(
-                  //                                 value: 3,
-                  //                                 groupValue: selectedOption,
-                  //                                 onChanged: (value) {
-                  //                                   setState(() {
-                  //                                     selectedOption = value!;
-                  //                                   });
-                  //                                 },
-                  //                               ),
-                  //
-                  //                               //System Default
-                  //                             )
-                  //                           ],
-                  //                         ),
-                  //                       ),
-                  //                     );
-                  //                     // return SelectingSheet(keyword: text);
-                  //                   },
-                  //                 );
-                  //               },
-                  //               child: const Text(
-                  //                 "Theme",
-                  //                 style: TextStyle(color: Colors.black),
-                  //               )),
-                  //           const Text("Light Mode")
-                  //         ],
-                  //       ),
-                  //       Row(
-                  //         children: [
-                  //           // Stack(
-                  //           //   children: [
-                  //           //     Container(
-                  //           //       padding: const EdgeInsets.only(right: 15),
-                  //           //       child: const Icon(
-                  //           //         Icons.circle_outlined,
-                  //           //         // grade: 3.3,
-                  //           //         color: Colors.blueGrey,
-                  //           //         size: 40,
-                  //           //       ),
-                  //           //     ),
-                  //           //     Container(
-                  //           //       padding:
-                  //           //           const EdgeInsets.only(left: 11, top: 11),
-                  //           //       child: const Icon(
-                  //           //         Icons.my_library_books_rounded,
-                  //           //         size: 20,
-                  //           //         color: Colors.orange,
-                  //           //       ),
-                  //           //     ),
-                  //           //   ],
-                  //           // ),
-                  //           // TextButton(
-                  //           //     onPressed: () {
-                  //           //     //  context.pushPage(const Activity());
-                  //           //     },
-                  //           //     child: const Text(
-                  //           //       "Activity",
-                  //           //       style: TextStyle(color: Colors.black),
-                  //           //     )),
-                  //         ],
-                  //       ),
-                  //       Row(
-                  //         children: [
-                  //           Stack(
-                  //             children: [
-                  //               Container(
-                  //                 padding: const EdgeInsets.only(right: 15),
-                  //                 child: const Icon(
-                  //                   Icons.circle_outlined,
-                  //                   // grade: 3.3,
-                  //                   color: Colors.blueGrey,
-                  //                   size: 40,
-                  //                 ),
-                  //               ),
-                  //               Container(
-                  //                 padding:
-                  //                     const EdgeInsets.only(left: 11, top: 11),
-                  //                 child: const Icon(
-                  //                   Icons.my_library_books_rounded,
-                  //                   size: 20,
-                  //                   color: Colors.orange,
-                  //                 ),
-                  //               ),
-                  //             ],
-                  //           ),
-                  //           TextButton(
-                  //               onPressed: () {
-                  //                 FirebaseAuth.instance.signOut();
-                  //                 Navigator.of(context).push(MaterialPageRoute(
-                  //                   builder: (context) => Auth(),
-                  //                 ));
-                  //               },
-                  //               child: const Text(
-                  //                 "Log Out",
-                  //                 style: TextStyle(color: Colors.black),
-                  //               )),
-                  //         ],
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                ],
-              ),
-
-              // SizedBox(
-              //   height: 40,
-              // ),
-              //tabs(),
-            ],
-          ),
-        ));
+                  )])));
   }
 
   Future<void> _launchUrl(url) async {

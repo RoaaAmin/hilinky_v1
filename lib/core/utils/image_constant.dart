@@ -74,6 +74,12 @@ class ImageConstant {
 
   static String imageNotFound = 'assets/images/image_not_found.png';
 
+  //logo
+  static String hilinkylogopng = '$imagePath/HilinkyLogo.png';
+  static String HilinkyCard = '$imagePath/imgHilinkyCard.png';
+  static String hilinkyLogoText = '$imagePath/hilinkyLogoText.png';
+
+
   // Search page - premuim images
   static String imgVector = '$imagePath/img_vector.svg';
 

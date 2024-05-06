@@ -5,12 +5,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hilinky/components/context.dart';
 import 'package:hilinky/screens/Profile/profile.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:line_icons/line_icons.dart';
 
+import '../../nav_bar.dart';
+import '../../theme/custom_text_style.dart';
 import 'image_picker.dart';
 
 class Edit extends StatefulWidget {
@@ -18,6 +22,7 @@ class Edit extends StatefulWidget {
 
   @override
   EditState createState() {
+
     return EditState();
   }
 }
@@ -55,15 +60,12 @@ class EditState extends State<Edit> {
 
   Future getImage(ImageSource source) async {
     var image = await ImagePicker.platform
-        .getImage(source: source); //pickImage
+        .getImageFromSource(source: source); //pickImage
     print('printing source of image $source');
-    if (image != null) {
-      setState(() {
-        selectedImage = File(image.path);
-      });
-    }
+    setState(() {
+      selectedImage = File(image!.path);
+    });
   }
-
   Widget bottomSheet() {
     return Container(
       height: 100.0,
@@ -184,6 +186,18 @@ class EditState extends State<Edit> {
           padding: const EdgeInsets.all(20.0),
           child: ListView(
               children: [
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.start,
+                //   children: [
+                //     IconButton(
+                //         icon: Icon(LineIcons.arrowLeft, size:30.0),
+                //         onPressed: () {
+                //           Navigator.of(context).pushReplacement(CupertinoPageRoute(
+                //               builder: (BuildContext context) => Home()));
+                //         }
+                //     ),
+                //   ],
+                // ),
                 if (!lodaing)
                   Container(
                     child: ClipOval(
@@ -217,164 +231,287 @@ class EditState extends State<Edit> {
                 Form(
                   key: _formKey,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextFormField(
-                        onChanged: (value) => FirstName = value,
-                        controller: TextEditingController(text: FirstName),
-                        decoration: InputDecoration(
-                          labelText: context.tr('First Name'),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10))),
-                        ),
-                        //   autofillHints:,
-                        cursorColor: Colors.black,
-                        // The validator receives the text that the user has entered.
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return context.tr("Please enter some text");
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        onChanged: (value) => LastName = value,
-                        controller: TextEditingController(text: LastName),
-                        decoration: InputDecoration(
-                          labelText: context.tr('Last Name'),
-                          // hintText: 'name',
-                          border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10))),
-                        ),
-                        //   autofillHints:,
-                        cursorColor: Colors.black,
-                        // The validator receives the text that the user has entered.
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return context.tr("Please enter some text");
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        onChanged: (value) => sUserName = value,
-                        controller: TextEditingController(text: sUserName),
-                        decoration:  InputDecoration(
-                          labelText: context.tr('Username'),
-                          //  hintText: 'name',
-                          border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10))),
-                        ),
-                        //   autofillHints:,
-                        cursorColor: Colors.black,
-                        // The validator receives the text that the user has entered.
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return context.tr("Please enter some text");
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        onChanged: (value) => email = value,
-                        controller: TextEditingController(text: email),
-                        decoration:  InputDecoration(
-                          labelText: context.tr('Email'),
-                          // hintText: 'name',
-                          border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10))),
-                        ),
-                        //   autofillHints:,
-                        cursorColor: Colors.black,
-                        // The validator receives the text that the user has entered.
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return context.tr("Please enter some text");
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        onChanged: (value) => phoneNumber = value,
-                        controller: TextEditingController(text: phoneNumber),
-                        decoration:  InputDecoration(
-                          label: Text(context.tr("Phone Number")),
+                      // Text(
+                      //   "First Name",
+                      //   style: CustomTextStyles.titleMediumTeal300,
+                      // ),
+                      // TextFormField(
+                      //   onChanged: (value) => FirstName = value,
+                      //   controller: TextEditingController(text: FirstName),
+                      //   decoration: InputDecoration(
+                      //     // labelText: context.tr('First Name'),
+                      //     border: OutlineInputBorder(
+                      //         borderRadius:
+                      //         BorderRadius.all(Radius.circular(10))),
+                      //   ),
+                      //   //   autofillHints:,
+                      //   cursorColor: Colors.black,
+                      //   // The validator receives the text that the user has entered.
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       return context.tr("Please enter some text");
+                      //     }
+                      //     return null;
+                      //   },
+                      // ),
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
+                      // Text(
+                      //   "Last Name",
+                      //   style: CustomTextStyles.titleMediumTeal300,
+                      // ),
+                      // TextFormField(
+                      //   onChanged: (value) => LastName = value,
+                      //   controller: TextEditingController(text: LastName),
+                      //   decoration: InputDecoration(
+                      //     // labelText: context.tr('Last Name'),
+                      //     // hintText: 'name',
+                      //     border: OutlineInputBorder(
+                      //         borderRadius:
+                      //         BorderRadius.all(Radius.circular(10))),
+                      //   ),
+                      //   //   autofillHints:,
+                      //   cursorColor: Colors.black,
+                      //   // The validator receives the text that the user has entered.
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       return context.tr("Please enter some text");
+                      //     }
+                      //     return null;
+                      //   },
+                      // ),
 
-                          // hintText: 'name',
-                          border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10))),
-                        ),
-                        //   autofillHints:,
-                        cursorColor: Colors.black,
-                        // The validator receives the text that the user has entered.
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return context.tr("Please enter some text");
-                          }
-                          return null;
-                        },
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  context.tr("First Name"),
+                                  style: CustomTextStyles.titleMediumTeal300,
+                                ),
+                                SizedBox(
+                                  width: 169,
+                                  height: 54,
+                                  child: TextFormField(
+                                    onChanged: (value) => FirstName = value,
+                                    controller: TextEditingController(text: FirstName),
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        borderSide: BorderSide(color: Color(0xFF4AAAC6)),
+                                      ),
+                                    ),
+                                    cursorColor: Colors.black,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return context.tr("Please enter some text");
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  context.tr("Last Name"),
+                                  style: CustomTextStyles.titleMediumTeal300,
+                                ),
+                                SizedBox(
+                                  width: 169,
+                                  height: 54,
+                                  child: TextFormField(
+                                    onChanged: (value) => LastName = value,
+                                    controller: TextEditingController(text: LastName),
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        borderSide: BorderSide(color: Color(0xFF4AAAC6)),
+                                      ),
+                                    ),
+                                    cursorColor: Colors.black,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return context.tr("Please enter some text");
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
-                        onChanged: (value) => nationality = value,
-                        controller: TextEditingController(text: nationality),
-                        decoration:  InputDecoration(
-                          label: Text(context.tr("Nationality")),
-
-                          // hintText: 'name',
-                          border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10))),
-                        ),
-                        //   autofillHints:,
-                        cursorColor: Colors.black,
-                        // The validator receives the text that the user has entered.
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return context.tr("Please enter some text");
-                          }
-                          return null;
-                        },
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            context.tr("User Name"),
+                            style: CustomTextStyles.titleMediumTeal300,
+                          ),
+                          SizedBox(
+                            width: 354,
+                            height: 54,
+                            child: TextFormField(
+                              onChanged: (value) => sUserName = value,
+                              controller: TextEditingController(text: sUserName),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                ),
+                              ),
+                              cursorColor: Colors.black,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return context.tr("Please enter some text");
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
-                        onChanged: (value) => city = value,
-                        controller: TextEditingController(text: city),
-                        decoration:  InputDecoration(
-                          label: Text(context.tr("City")),
-                          border: OutlineInputBorder(
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10))),
-                        ),
-                        cursorColor: Colors.black,
-                        // The validator receives the text that the user has entered.
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return context.tr("Please enter some text");
-                          }
-                          return null;
-                        },
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            context.tr("Email"),
+                            style: CustomTextStyles.titleMediumTeal300,
+                          ),
+                          SizedBox(
+                            width: 354,
+                            height: 54,
+                            child: TextFormField(
+                              onChanged: (value) => email = value,
+                              controller: TextEditingController(text: email),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                ),
+                              ),
+                              cursorColor: Colors.black,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return context.tr("Please enter some text");
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            context.tr("Phone Number"),
+                            style: CustomTextStyles.titleMediumTeal300,
+                          ),
+                          SizedBox(
+                            width: 354,
+                            height: 54,
+                            child: TextFormField(
+                              onChanged: (value) => phoneNumber = value,
+                              controller: TextEditingController(text: phoneNumber),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                ),
+                              ),
+                              cursorColor: Colors.black,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return context.tr("Please enter some text");
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            context.tr("Nationality"),
+                            style: CustomTextStyles.titleMediumTeal300,
+                          ),
+                          SizedBox(
+                            width: 344,
+                            height: 54,
+                            child: TextFormField(
+                              onChanged: (value) => nationality = value,
+                              controller: TextEditingController(text: nationality),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                ),
+                              ),
+                              cursorColor: Colors.black,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return context.tr("Please enter some text");
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            context.tr("City"),
+                            style: CustomTextStyles.titleMediumTeal300,
+                          ),
+                          SizedBox(
+                            width: 344,
+                            height: 54,
+                            child: TextFormField(
+                              onChanged: (value) => city = value,
+                              controller: TextEditingController(text: city),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                ),
+                              ),
+                              cursorColor: Colors.black,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return context.tr("Please enter some text");
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -386,7 +523,7 @@ class EditState extends State<Edit> {
                 ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      // Check if selectedImage is not null before using it
+                      // Upload image to Firebase Storage
                       if (selectedImage != null) {
                         // Upload the image to Firebase Storage
                         Reference ref = FirebaseStorage.instance
@@ -398,7 +535,7 @@ class EditState extends State<Edit> {
 
                         await uploadTask.whenComplete(() async {
                           // Get the URL of the uploaded image
-                          String selectedImageUrl = await ref.getDownloadURL();
+                          String selectedImage = await ref.getDownloadURL();
 
                           // Update user's information in Firestore with the image URL
                           await FirebaseFirestore.instance
@@ -412,7 +549,7 @@ class EditState extends State<Edit> {
                             'sUserPhoneNumber': phoneNumber,
                             'sNationality': nationality,
                             'sCity': city,
-                            'UserProfileImage': selectedImageUrl,
+                            'UserProfileImage': selectedImage,
                           });
 
                           // Show success message
@@ -466,7 +603,6 @@ class EditState extends State<Edit> {
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-
 
               ]
           ),
