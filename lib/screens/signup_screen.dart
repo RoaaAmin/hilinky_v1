@@ -553,7 +553,7 @@ class _SignupScreenState extends State<SignupScreen> {
       print('Error checking username availability: $e');
     }
   }
-
+//
   Future signup() async {
     DocumentSnapshot<Map<String, dynamic>> userData;
     try {
@@ -641,3 +641,4 @@ class _SignupScreenState extends State<SignupScreen> {
     _emailController.clear();
   }
 }
+//

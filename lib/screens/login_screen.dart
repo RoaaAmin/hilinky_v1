@@ -49,6 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     _firebaseMessaging.getToken().then((String? token) {
       assert(token != null);
+      if(!mounted)return;
       setState(() {
         notificationToken = token;
       });
