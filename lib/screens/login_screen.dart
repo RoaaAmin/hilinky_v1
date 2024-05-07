@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../auth.dart';
 import '../core/utils/image_constant.dart';
 import '../core/utils/size_utils.dart';
@@ -237,47 +238,55 @@ class _LoginScreenState extends State<LoginScreen> {
                                 top: 22,
                               ),
                             ),
-                            // Align(
-                            //   alignment: Alignment.center,
-                            //   child: Padding(
-                            //     padding: getPadding(
-                            //       top: 25,
-                            //       bottom: 5,
-                            //     ),
-                            //     child: Row(
-                            //       mainAxisAlignment: MainAxisAlignment.center,
-                            //       children: [
-                            //         RichText(
-                            //           text: TextSpan(
-                            //             children: [
-                            //               TextSpan(
-                            //                 text: context.tr("Don’t have an account"),
-                            //                 style: CustomTextStyles.labelLargeInterBluegray300,
-                            //               ),
-                            //               TextSpan(
-                            //                 text: context.tr("?"),
-                            //                 style: CustomTextStyles.bodyMediumInterBluegray300,
-                            //               ),
-                            //               TextSpan(
-                            //                 text: " ",
-                            //                 style: CustomTextStyles.bodyMediumInterBluegray300,
-                            //               ),
-                            //             ],
-                            //           ),
-                            //           textAlign: TextAlign.left,
-                            //         ),
-                            //         GestureDetector(
-                            //           onTap: openSignupScreen,
-                            //           child: Text(
-                            //             context.tr("Sign up Now"),
-                            //             style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
-                            //               decoration: TextDecoration.underline,
-                            //             ),
-                            //           ),
-                            //         ),
-                            //       ],
-                            //     ),
-                            //   ),)
+                            Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: getPadding(
+                                  top: 25,
+                                  bottom: 5,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: context.tr("Don’t have an account"),
+                                            style: CustomTextStyles.labelLargeInterBluegray300,
+                                          ),
+                                          TextSpan(
+                                            text: context.tr("?"),
+                                            style: CustomTextStyles.bodyMediumInterBluegray300,
+                                          ),
+                                          TextSpan(
+                                            text: " ",
+                                            style: CustomTextStyles.bodyMediumInterBluegray300,
+                                          ),
+                                        ],
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        String url =
+                                            'https://api.whatsapp.com/send/?phone=966532595204&text=%D8%A3%D9%87%D9%84%D8%A7%20%D8%A8%D9%83%D9%85%20%D8%A3%D9%86%D8%A7%20%D9%85%D9%87%D8%AA%D9%85%20%D9%84%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D8%A8%D8%B7%D8%A7%D9%82%D8%A9%20%D8%A3%D8%B9%D9%85%D8%A7%D9%84%D9%8A%20%D9%84%D9%86%D8%B3%D8%AE%D8%A9%20%D8%B1%D9%82%D9%85%D9%8A%D8%A9%D8%8C%20%D9%83%D9%8A%D9%81%20%D9%8A%D9%85%D9%83%D9%86%D9%86%D9%8A%20%D8%A7%D9%84%D8%AD%D8%B5%D9%88%D9%84%20%D9%86%D8%B3%D8%AE%D8%AA%D9%8A%20%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9';
+                                        if (await canLaunch(url)) {
+                                          await launch(url);
+                                        } else {
+                                          throw 'Could not launch $url';
+                                        }
+                                      },
+                                      child: Text(
+                                        context.tr("Contact Us"),
+                                        style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),)
                           ]),
                     ))))
     );
