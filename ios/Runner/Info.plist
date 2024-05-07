@@ -36,23 +36,25 @@
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-    	<key>UIViewControllerBasedStatusBarAppearance</key>
-    	<false/>
-    	<key>CADisableMinimumFrameDurationOnPhone</key>
-    	<true/>
-    	<key>UIApplicationSupportsIndirectInputEvents</key>
-    	<true/>
-    	<key>NSPhotoLibraryUsageDescription</key>
-        <string>HiLinky App Need Photos Permission To Pick Pictures.</string>
-        <key>NSCameraUsageDescription</key>
-        <string>This app needs camera access to scan QR codes and pick pictures.</string>
-        <key>io.flutter.embedded_views_preview</key>
-        <true/>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
+    <key>CADisableMinimumFrameDurationOnPhone</key>
+    <true/>
+    <key>UIApplicationSupportsIndirectInputEvents</key>
+    <true/>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>HiLinky App needs photos permission to pick pictures.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app needs camera access to scan QR codes and pick pictures.</string>
+    <key>io.flutter.embedded_views_preview</key>
+    <true/>
+    <key>NSContactsUsageDescription</key>
+    <string>HiLinky app requires contacts access to function properly.</string>
 
 </dict>
 </plist>
