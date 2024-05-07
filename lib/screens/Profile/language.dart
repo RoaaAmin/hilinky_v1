@@ -81,6 +81,7 @@ class _LanguageState extends State<Language> {
               onChanged: (value) {
                 _saveSelectedLanguage(value!);
               },
+              activeColor: Colors.orange, // Toggle color
             ),
           ),
           ListTile(
@@ -92,6 +93,7 @@ class _LanguageState extends State<Language> {
               onChanged: (value) {
                 _saveSelectedLanguage(value!);
               },
+              activeColor: Colors.orange, // Toggle color
             ),
           ),
         ],

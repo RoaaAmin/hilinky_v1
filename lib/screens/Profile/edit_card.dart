@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hilinky/components/context.dart';
@@ -456,14 +457,17 @@ class EditState extends State<EditCard> {
                         TextFormField(
                           onChanged: (value) => PhoneNumber = value,
                           controller: TextEditingController(text: PhoneNumber),
-                          decoration:  InputDecoration(
-                            label: Text(context.tr("Phone Number")),
+                          decoration: InputDecoration(
+                            labelText: context.tr("Phone Number"),
                             border: OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                            ),
                           ),
-                          //   autofillHints:,
                           cursorColor: Colors.black,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                          ],
                           // The validator receives the text that the user has entered.
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -472,6 +476,7 @@ class EditState extends State<EditCard> {
                             return null;
                           },
                         ),
+
                       ],
                     ),
                   ),

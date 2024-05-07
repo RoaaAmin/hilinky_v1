@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(context.tr('Start your journey be creating your card'),
+            Text(context.tr('Start your journey by creating your card'),
               style: TextStyle(
                 color: Color(0xFF121212),
                 fontSize: 15,

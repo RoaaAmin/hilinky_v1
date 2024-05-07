@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,7 +12,7 @@ class AboutUs extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title:Text(
-          'About Us',
+        context.tr('About Us'),
           style: TextStyle(
             color: Color(0xFF133039),
             fontSize: 24,
@@ -55,7 +56,7 @@ class AboutUs extends StatelessWidget {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: 'To create and design YOUR Elegant  business card,',
+                          text: context.tr('To create and design YOUR Elegant  business card,'),
                           style: TextStyle(
                             color: Color(0xFF286F8C),
                             fontSize: 14,
@@ -64,7 +65,7 @@ class AboutUs extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: ' We offer the best solutions to transform your traditional business card into a simple and innovative digital experience. \n',
+                          text: context.tr(' We offer the best solutions to transform your traditional business card into a simple and innovative digital experience. \n'),
                           style: TextStyle(
                             color: Color(0xFF495057),
                             fontSize: 14,
@@ -95,7 +96,7 @@ class AboutUs extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                  'Individual ',
+                                context.tr('Individual'),
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     color: Color(0xFF286F8C),
@@ -104,8 +105,9 @@ class AboutUs extends StatelessWidget {
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
+                              SizedBox(height: 10,),
                               Text(
-                                  'Dive into creativity without any strings attached!',
+                                context.tr('Dive into creativity without any strings attached!'),
                                   style: TextStyle(
                                     color: Color(0xFF133039),
                                     fontSize: 14,
@@ -125,7 +127,7 @@ class AboutUs extends StatelessWidget {
                                   ),
                                   SizedBox(width: 8),
                                   Text(
-                                    'One design.',
+                                    context.tr('One design.'),
                                     style: TextStyle(
                                       color: Color(0xFF707070),
                                       fontSize: 12,
@@ -147,7 +149,7 @@ class AboutUs extends StatelessWidget {
                                   ),
                                   SizedBox(width: 8),
                                   Text(
-                                    'Create card.',
+                                    context.tr('Create card.'),
                                     style: TextStyle(
                                       color: Color(0xFF707070),
                                       fontSize: 12,
@@ -169,7 +171,7 @@ class AboutUs extends StatelessWidget {
                                   ),
                                   SizedBox(width: 8),
                                   Text(
-                                    'Edit card.',
+                                    context.tr('Edit card.'),
                                     style: TextStyle(
                                       color: Color(0xFF707070),
                                       fontSize: 12,
@@ -191,7 +193,7 @@ class AboutUs extends StatelessWidget {
                                   ),
                                   SizedBox(width: 8),
                                   Text(
-                                    'Barcode Scanning.',
+                                    context.tr('Barcode Scanning.'),
                                     style: TextStyle(
                                       color: Color(0xFF707070),
                                       fontSize: 12,
@@ -215,7 +217,7 @@ class AboutUs extends StatelessWidget {
                       border: Border.all(style: BorderStyle.solid,color: Color(0xFF286F8C)),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
-                  height: 215,
+                  height: 235,
                   width: 361,
                   child: Column(
                     children: [
@@ -224,7 +226,7 @@ class AboutUs extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Enterprise ',
+                            context.tr('Enterprise'),
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               color: Color(0xFF286F8C),
@@ -233,8 +235,9 @@ class AboutUs extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
+                          SizedBox(height: 10,),
                           Text(
-                            'Empower your enterprise with unparalleled creative control!',
+                            context.tr('Empower your enterprise with unparalleled creative control!'),
                             style: TextStyle(
                               color: Color(0xFF133039),
                               fontSize: 14,
@@ -254,7 +257,7 @@ class AboutUs extends StatelessWidget {
                               ),
                               SizedBox(width: 8),
                               Text(
-                                'Design with company theme.',
+                                context.tr('Design with company theme.'),
                                 style: TextStyle(
                                   color: Color(0xFF707070),
                                   fontSize: 12,
@@ -276,7 +279,7 @@ class AboutUs extends StatelessWidget {
                               ),
                               SizedBox(width: 8),
                               Text(
-                                'Create, Edit, Share, Save Card',
+                                context.tr( 'Create, Edit, Share, Save Card'),
                                 style: TextStyle(
                                   color: Color(0xFF707070),
                                   fontSize: 12,
@@ -298,7 +301,7 @@ class AboutUs extends StatelessWidget {
                               ),
                               SizedBox(width: 8),
                               Text(
-                                'Providing  premium features.',
+                                context.tr('Providing premium features.'),
                                 style: TextStyle(
                                   color: Color(0xFF707070),
                                   fontSize: 12,
@@ -308,8 +311,7 @@ class AboutUs extends StatelessWidget {
                               ),
                             ],
                           ),
-
-                          SizedBox(height: 10),
+                          SizedBox(height: 20),
                           ElevatedButton(
                             onPressed: () async {
                               String url =
@@ -329,7 +331,7 @@ class AboutUs extends StatelessWidget {
                               backgroundColor: Color(0xFFEF9453),
                             ),
                             child: Text(
-                              'Subscribe Now',
+                              context.tr('Subscribe Now'),
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,

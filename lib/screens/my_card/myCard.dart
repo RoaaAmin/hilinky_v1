@@ -174,8 +174,10 @@ class _MyCardState extends State<MyCard> {
                 onTap: ()async{
                   //  showUserBottomSheet(postsDocs[i]);
                 },
+
                 child: Column(
                     children: [
+                      SizedBox(height: 60),
                       Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -385,6 +387,7 @@ class _MyCardState extends State<MyCard> {
                       ),
                     ),
                   ),
+                      SizedBox(height: 5),
                       Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),

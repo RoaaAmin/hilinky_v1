@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:contacts_service/contacts_service.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -29,7 +30,7 @@ class _MyCardState extends State<MyCardState> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scan QR Code'),
+        title: Text(context.tr('Scan QR Code')),
       ),
       body: Column(
         children: <Widget>[
@@ -71,7 +72,7 @@ class _MyCardState extends State<MyCardState> {
     );
     await ContactsService.addContact(newContact);
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Contact information saved to contacts!'),
+      content: Text(context.tr('Contact information saved to contacts!')),
     ));
   }
 

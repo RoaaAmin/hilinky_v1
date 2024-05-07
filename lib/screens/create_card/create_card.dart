@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hilinky/components/context.dart';
 import 'package:hilinky/screens/create_card/widgets/socialMedia.dart';
@@ -117,7 +119,7 @@ class _CreateCardState extends State<CreateCard> {
     // Check if the widget is mounted before showing the snackbar
     if (mounted) {
       showInSnackBar(
-        'Please wait while the card is being created...',
+          context.tr('Please wait while the card is being created...'),
         Colors.green,
         Colors.white,
         4,
@@ -220,7 +222,7 @@ class _CreateCardState extends State<CreateCard> {
       // Show error message if required fields or images are not filled
       if (mounted) {
         showInSnackBar(
-          'Please fill all the required fields and select images',
+            context.tr('Please fill all the required fields and select images'),
           Colors.red,
           Colors.white,
           3,
@@ -341,14 +343,14 @@ class _CreateCardState extends State<CreateCard> {
               onPressed: () {
                 getImage(ImageSource.camera);
               },
-              label: Text("Camera"),
+              label: Text(context.tr("Camera")),
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getImage(ImageSource.gallery);
               },
-              label: Text("Gallery"),
+              label: Text(context.tr("Gallery")),
             ),
           ])
         ],
@@ -381,14 +383,14 @@ class _CreateCardState extends State<CreateCard> {
               onPressed: () {
                 getLogo(ImageSource.camera);
               },
-              label: Text("Camera"),
+              label: Text(context.tr("Camera")),
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getLogo(ImageSource.gallery);
               },
-              label: Text("Gallery"),
+              label: Text(context.tr("Gallery")),
             ),
           ])
         ],
@@ -421,14 +423,14 @@ class _CreateCardState extends State<CreateCard> {
               onPressed: () {
                 getPortfolio(ImageSource.camera);
               },
-              label: Text("Camera"),
+              label: Text(context.tr("Camera")),
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getPortfolio(ImageSource.gallery);
               },
-              label: Text("Gallery"),
+              label: Text(context.tr("Gallery")),
             ),
           ])
         ],
@@ -461,17 +463,17 @@ class _CreateCardState extends State<CreateCard> {
                       CrossAxisAlignment.start, // Align content to start
                   children: [
                     Text(
-                      'Create Card',
+              context.tr('Create Card'),
                       style: GoogleFonts.robotoCondensed(
                           fontSize: 30, fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      'Lorem Ipsum is simply dummy text of the printing',
-                      style: GoogleFonts.robotoCondensed(fontSize: 18),
-                    ),
+                    // Text(
+                    //   'Lorem Ipsum is simply dummy text of the printing',
+                    //   style: GoogleFonts.robotoCondensed(fontSize: 18),
+                    // ),
                     SizedBox(height: 30),
                     Text(
-                      'Personal Details',
+                        context.tr('Personal Details'),
                       style: GoogleFonts.robotoCondensed(
                           fontSize: 25, fontWeight: FontWeight.bold),
                     ),
@@ -494,7 +496,7 @@ class _CreateCardState extends State<CreateCard> {
                             controller: prefixController,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Prefix (optional)',
+                              hintText: context.tr('Prefix (optional)'),
                             ),
                             onChanged: (val) {
                               prefix = val;
@@ -522,8 +524,9 @@ class _CreateCardState extends State<CreateCard> {
                             controller: firstNameController,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'First name',
+                              hintText: context.tr('First Name'),
                             ),
+
                             onChanged: (val) {
                               firstName = val;
                             },
@@ -549,7 +552,7 @@ class _CreateCardState extends State<CreateCard> {
                             controller: middleNameController,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Middle name (optional)',
+                              hintText: context.tr('Middle Name (optional)'),
                             ),
                             onChanged: (val) {
                               middleName = val;
@@ -576,7 +579,7 @@ class _CreateCardState extends State<CreateCard> {
                             controller: lastNameController,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Last name',
+                              hintText: context.tr('Last Name'),
                             ),
                             onChanged: (val) {
                               lastName = val;
@@ -604,7 +607,7 @@ class _CreateCardState extends State<CreateCard> {
                             controller: positionController,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Position',
+                              hintText: context.tr('Position'),
                             ),
                             onChanged: (val) {
                               position = val;
@@ -632,7 +635,7 @@ class _CreateCardState extends State<CreateCard> {
                             controller: companyNameController,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Company name (optional)',
+                              hintText: context.tr('Company Name (optional)'),
                             ),
                             onChanged: (val) {
                               companyName = val;
@@ -643,7 +646,7 @@ class _CreateCardState extends State<CreateCard> {
                     ),
                     SizedBox(height: 30),
                     Text(
-                      'Contact',
+                        context.tr('Contact'),
                       style: GoogleFonts.robotoCondensed(
                           fontSize: 25, fontWeight: FontWeight.bold),
                     ),
@@ -666,7 +669,7 @@ class _CreateCardState extends State<CreateCard> {
                             controller: emailController,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Email',
+                              hintText: context.tr('Email'),
                             ),
                             onChanged: (val) {
                               email = val;
@@ -694,21 +697,25 @@ class _CreateCardState extends State<CreateCard> {
                             controller: phoneNumberController,
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Phone number',
+                              hintText: context.tr('Phone Number'),
                             ),
                             onChanged: (val) {
                               phoneNumber = val;
                             },
-                            keyboardType: TextInputType.phone,
+                            keyboardType: TextInputType.numberWithOptions(decimal: true),
                             style: TextStyle(color: Colors.black),
                             cursorColor: Colors.black,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                            ],
                           ),
                         ),
+
                       ),
                     ),
                     SizedBox(height: 30),
                     Text(
-                      'Choose links to add',
+                        context.tr('Choose links to add'),
                       style: GoogleFonts.robotoCondensed(
                           fontSize: 25, fontWeight: FontWeight.bold),
                     ),
@@ -770,7 +777,7 @@ class _CreateCardState extends State<CreateCard> {
                                     SizedBox(height: 30),
                                     Icon(Icons.account_box, size: 50.0),
                                     Text(
-                                      'Upload your photo',
+                                      context.tr('Upload your photo'),
                                     ),
                                   ],
                                 )),
@@ -831,7 +838,7 @@ class _CreateCardState extends State<CreateCard> {
                                         SizedBox(height: 30),
                                         Icon(Icons.upload, size: 50.0),
                                         Text(
-                                          'Upload logo',
+                                          context.tr('Upload logo'),
                                         ),
                                       ],
                                     )),
@@ -891,7 +898,7 @@ class _CreateCardState extends State<CreateCard> {
                                         SizedBox(height: 30),
                                         Icon(Icons.upload, size: 50.0),
                                         Text(
-                                          'Upload portfolio',
+                                          context.tr('Upload portfolio'),
                                         ),
                                       ],
                                     )),
@@ -913,7 +920,7 @@ class _CreateCardState extends State<CreateCard> {
                               borderRadius: BorderRadius.circular(12)),
                           child: Center(
                               child: Text(
-                            'Continue',
+                                  context.tr('Continue'),
                             style: GoogleFonts.roboto(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,

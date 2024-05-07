@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hilinky/components/context.dart';
 import 'package:hilinky/screens/Profile/profile.dart';
@@ -307,12 +308,12 @@ class EditState extends State<Edit> {
                                       ),
                                     ),
                                     cursorColor: Colors.black,
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return context.tr("Please enter some text");
-                                      }
-                                      return null;
-                                    },
+                                    // validator: (value) {
+                                    //   if (value == null || value.isEmpty) {
+                                    //     return context.tr("Please enter some text");
+                                    //   }
+                                    //   return null;
+                                    // },
                                   ),
                                 ),
                               ],
@@ -340,12 +341,12 @@ class EditState extends State<Edit> {
                                       ),
                                     ),
                                     cursorColor: Colors.black,
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return context.tr("Please enter some text");
-                                      }
-                                      return null;
-                                    },
+                                    // validator: (value) {
+                                    //   if (value == null || value.isEmpty) {
+                                    //     return context.tr("Please enter some text");
+                                    //   }
+                                    //   return null;
+                                    // },
                                   ),
                                 ),
                               ],
@@ -367,8 +368,8 @@ class EditState extends State<Edit> {
                             width: 354,
                             height: 54,
                             child: TextFormField(
-                              onChanged: (value) => sUserName = value,
-                              controller: TextEditingController(text: sUserName),
+                              onChanged: (value) => uniqueUserName = value,
+                              controller: TextEditingController(text: uniqueUserName),
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -439,6 +440,10 @@ class EditState extends State<Edit> {
                                 ),
                               ),
                               cursorColor: Colors.black,
+                              keyboardType: TextInputType.phone,
+                              inputFormatters: <TextInputFormatter>[
+                                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                              ],
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return context.tr("Please enter some text");
@@ -449,6 +454,7 @@ class EditState extends State<Edit> {
                           ),
                         ],
                       ),
+
                       SizedBox(
                         height: 10,
                       ),
@@ -460,7 +466,7 @@ class EditState extends State<Edit> {
                             style: CustomTextStyles.titleMediumTeal300,
                           ),
                           SizedBox(
-                            width: 344,
+                            width: 354,
                             height: 54,
                             child: TextFormField(
                               onChanged: (value) => nationality = value,
@@ -492,7 +498,7 @@ class EditState extends State<Edit> {
                             style: CustomTextStyles.titleMediumTeal300,
                           ),
                           SizedBox(
-                            width: 344,
+                            width: 354,
                             height: 54,
                             child: TextFormField(
                               onChanged: (value) => city = value,
@@ -544,7 +550,7 @@ class EditState extends State<Edit> {
                               .update({
                             'FirstName': FirstName,
                             'LastName': LastName,
-                            'sUserName': sUserName,
+                            'uniqueUserName': uniqueUserName,
                             'sUserEmail': email,
                             'sUserPhoneNumber': phoneNumber,
                             'sNationality': nationality,
@@ -571,7 +577,7 @@ class EditState extends State<Edit> {
                             .update({
                           'FirstName': FirstName,
                           'LastName': LastName,
-                          'sUserName': sUserName,
+                          'uniqueUserName': uniqueUserName,
                           'sUserEmail': email,
                           'sUserPhoneNumber': phoneNumber,
                           'sNationality': nationality,
