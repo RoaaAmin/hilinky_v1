@@ -342,11 +342,11 @@ class profiletestState extends State<profiletest> {
                                           Container(
                                             width: 39,
                                             height: 39,
-                                            decoration: ShapeDecoration(
-                                              shape: OvalBorder(
-                                                side: BorderSide(width: 2, color: Color(0xFF286F8C)),
-                                              ),
-                                            ),
+                                            // decoration: ShapeDecoration(
+                                            //   shape: OvalBorder(
+                                            //     side: BorderSide(width: 2, color: Color(0xFF286F8C)),
+                                            //   ),
+                                            // ),
                                           ),
                                           Container(
                                             padding:
@@ -382,11 +382,11 @@ class profiletestState extends State<profiletest> {
                                           Container(
                                             width: 39,
                                             height: 39,
-                                            decoration: ShapeDecoration(
-                                              shape: OvalBorder(
-                                                side: BorderSide(width: 2, color: Color(0xFF286F8C)),
-                                              ),
-                                            ),
+                                            // decoration: ShapeDecoration(
+                                            //   shape: OvalBorder(
+                                            //     side: BorderSide(width: 2, color: Color(0xFF286F8C)),
+                                            //   ),
+                                            // ),
                                           ),
                                           Container(
                                             padding:
@@ -462,11 +462,11 @@ class profiletestState extends State<profiletest> {
                                           Container(
                                             width: 39,
                                             height: 39,
-                                            decoration: ShapeDecoration(
-                                              shape: OvalBorder(
-                                                side: BorderSide(width: 2, color: Color(0xFF286F8C)),
-                                              ),
-                                            ),
+                                            // decoration: ShapeDecoration(
+                                            //   shape: OvalBorder(
+                                            //     side: BorderSide(width: 2, color: Color(0xFF286F8C)),
+                                            //   ),
+                                            // ),
                                           ),
                                           Container(
                                             padding:
@@ -654,11 +654,11 @@ class profiletestState extends State<profiletest> {
                                           Container(
                                             width: 39,
                                             height: 39,
-                                            decoration: ShapeDecoration(
-                                              shape: OvalBorder(
-                                                side: BorderSide(width: 2, color: Color(0xFF286F8C)),
-                                              ),
-                                            ),
+                                            // decoration: ShapeDecoration(
+                                            //   shape: OvalBorder(
+                                            //     side: BorderSide(width: 2, color: Color(0xFF286F8C)),
+                                            //   ),
+                                            // ),
                                           ),
                                           Container(
                                             padding:
