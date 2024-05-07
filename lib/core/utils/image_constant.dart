@@ -78,6 +78,7 @@ class ImageConstant {
   static String hilinkylogopng = '$imagePath/HilinkyLogo.png';
   static String HilinkyCard = '$imagePath/imgHilinkyCard.png';
   static String hilinkyLogoText = '$imagePath/hilinkyLogoText.png';
+  static String arabicLogo = '$imagePath/Arabic Logo.png';
 
 
   // Search page - premuim images

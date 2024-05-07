@@ -74,7 +74,7 @@ class CodegenLoader extends AssetLoader {
     "Position: ": "المنصب:  ",
     "name:": "الإسم: ",
     "?": "؟",
-  "To create and design YOUR Elegant  business card," : "لإنشاء وتصميم بطاقة العمل الأنيقة الخاصة بك،",
+  "To create and design YOUR Elegant  business card," : "لإنشاء وتصميم بطاقة العمل الرقمية الخاصة بك،",
     " We offer the best solutions to transform your traditional business card into a simple and innovative digital experience. \n":
 
         " نحن نقدم أفضل الحلول لتحويل بطاقة العمل التقليدية الخاصة بك إلى تجربة رقمية بسيطة ومبتكرة.",
@@ -112,7 +112,17 @@ class CodegenLoader extends AssetLoader {
     "Experience seamless contact exchange with NFC business cards.": "تجربة تبادل جهات الاتصال بسهولة باستخدام بطاقات الأعمال بتقنية NFC.",
     "    Order NFC Cards": "      طلب بطاقات NFC   ",
     "Skip All": "تخطى الكل",
-    "Next": "التالي"
+    "Next": "التالي",
+    "Privacy Policy": "سياسة الخصوصية",
+    "This Privacy Policy explains how your personal information is collected, used, and disclosed by the Hilinky application.": "تشرح هذه السياسة الخصوصية كيفية جمع واستخدام وكشف معلوماتك الشخصية من قبل تطبيق Hilinky.",
+    "Information Collection and Use": "جمع واستخدام المعلومات",
+    "We may collect some personal information when you use our application. This information is used to provide and improve our services.": "قد نجمع بعض المعلومات الشخصية عند استخدامك لتطبيقنا. يتم استخدام هذه المعلومات لتقديم خدماتنا وتحسينها.",
+    "We may also collect information that your device sends whenever you use our Service.": "قد نقوم أيضًا بجمع المعلومات التي يرسلها جهازك كلما استخدمت خدمتنا.",
+    "Cookies": "ملفات تعريف الارتباط",
+    "Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers.": "الملفات هي ملفات تحتوي على كمية صغيرة من البيانات التي عادة ما تستخدم كمعرفات فريدة مجهولة.",
+    "Changes to This Privacy Policy": "تغييرات في هذه السياسة الخصوصية",
+    "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.": "قد نقوم بتحديث سياسة الخصوصية الخاصة بنا من وقت لآخر. لذا، يُنصح بمراجعة هذه الصفحة بشكل دوري لأي تغييرات.",
+    "Log Data": "بيانات السجل"
 
 
 
@@ -221,7 +231,17 @@ class CodegenLoader extends AssetLoader {
     "Expand your network and connect with professionals from various fields.": "Expand your network and connect with professionals from various fields.",
     "Experience seamless contact exchange with NFC business cards.": "Experience seamless contact exchange with NFC business cards.",
     "    Order NFC Cards": "    Order NFC Cards",
-    "Next": "Next"
+    "Next": "Next",
+    "Privacy Policy": "Privacy Policy",
+    "This Privacy Policy explains how your personal information is collected, used, and disclosed by the Hilinky application.": "This Privacy Policy explains how your personal information is collected, used, and disclosed by the Hilinky application.",
+    "Information Collection and Use": "Information Collection and Use",
+    "We may collect some personal information when you use our application. This information is used to provide and improve our services.": "We may collect some personal information when you use our application. This information is used to provide and improve our services.",
+    "We may also collect information that your device sends whenever you use our Service.": "We may also collect information that your device sends whenever you use our Service.",
+    "Cookies": "Cookies",
+    "Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers.": "Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers.",
+    "Changes to This Privacy Policy": "Changes to This Privacy Policy",
+    "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.": "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.",
+    "Log Data": "Log Data"
 
 
   };

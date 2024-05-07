@@ -24,7 +24,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   void openSignupScreen() {
-    Navigator.of(context).pushReplacementNamed('signupScreen');
+    Navigator.of(context).pushReplacementNamed('PrivacyPolicyPage');
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
