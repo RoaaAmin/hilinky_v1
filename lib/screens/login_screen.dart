@@ -234,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Checkbox(
                         value: privacyChecked,
@@ -244,26 +244,50 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                         },
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          // Navigate to the privacy and policy page
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PrivacyPolicyPage(),
+                      Container(
+                        width: 200, // Adjust the width as per your requirement
+                        child: GestureDetector(
+                          onTap: () {
+                            // Navigate to the privacy and policy page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PrivacyPolicyPage(),
+                              ),
+                            );
+                          },
+                          child: RichText(
+                            text: TextSpan(
+                              text: 'By ticking this box I agree that I have read the ',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: 'Privacy & Policy',
+                                  style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: Color(0xFFEF9453),
+                                    fontSize: 12,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    decorationColor: Color(0xFFEF9453),
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '.',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
                             ),
-                          );
-                        },
-                        child: Text(
-                          'Privacy & Policy',
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: Color(0xFFEF9453),
-                            fontSize: 12,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w700,
-                            decorationColor: Color(0xFFEF9453), // Change the underline color here
-                            height: 0,
                           ),
                         ),
                       ),
