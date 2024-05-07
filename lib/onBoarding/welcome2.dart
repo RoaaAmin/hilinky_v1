@@ -123,7 +123,15 @@ class Welcome2 extends StatelessWidget {
                                 child: FadeInUp(
                                   delay: const Duration(milliseconds: 1100),
                                   duration: const Duration(milliseconds: 1200),
-                                  child: Text(context.tr('Next')),
+                                  child: Text(
+                                    context.tr('Next'),
+                                    style: TextStyle(
+                                      color: Colors.white, // Set the text color to white
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'Satoshi',
+                                    ),
+                                  ),
                                 ),
                                 style: ElevatedButton.styleFrom(
                                   elevation: 0,
