@@ -74,7 +74,7 @@ class CodegenLoader extends AssetLoader {
     "Position: ": "المنصب:  ",
     "name:": "الإسم: ",
     "?": "؟",
-  "To create and design YOUR Elegant  business card," : "لإنشاء وتصميم بطاقة العمل الأنيقة الخاصة بك،",
+  "To create and design YOUR Elegant  business card," : "لإنشاء وتصميم بطاقة العمل الرقمية الخاصة بك،",
     " We offer the best solutions to transform your traditional business card into a simple and innovative digital experience. \n":
 
         " نحن نقدم أفضل الحلول لتحويل بطاقة العمل التقليدية الخاصة بك إلى تجربة رقمية بسيطة ومبتكرة.",
