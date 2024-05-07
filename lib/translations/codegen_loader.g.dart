@@ -126,7 +126,8 @@ class CodegenLoader extends AssetLoader {
     "Change Password?": "تغيير كلمة المرور؟",
     "Contact Us":"اتصل بنا",
     "Privacy & Policy": "سياسة الخصوصية",
-    "Please accept the privacy policy.":"يرجى قبول سياسة الخصوصية."
+    "Please accept the privacy policy.":"يرجى قبول سياسة الخصوصية.",
+    "By ticking this box I agree that I have read the ": "بالضغط على هذا المربع، أوافق على أنني قرأت "
 
 
 
@@ -249,7 +250,8 @@ class CodegenLoader extends AssetLoader {
   "Change Password?": "Change Password?",
     "Contact Us": "Contact Us",
     "Privacy & Policy":"Privacy & Policy",
-    "Please accept the privacy policy.":"Please accept the privacy policy."
+    "Please accept the privacy policy.":"Please accept the privacy policy.",
+    "By ticking this box I agree that I have read the ":"By ticking this box I agree that I have read the "
 
 
   };

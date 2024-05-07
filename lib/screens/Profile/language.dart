@@ -74,7 +74,7 @@ class _LanguageState extends State<Language> {
         children: <Widget>[
           ListTile(
             titleAlignment: ListTileTitleAlignment.center,
-            title: const Text('English (US)'),
+            title:  Text( context.tr('English (US)')),
             leading: Radio(
               value: 1,
               groupValue: selectedOption,
@@ -86,7 +86,7 @@ class _LanguageState extends State<Language> {
           ),
           ListTile(
             titleAlignment: ListTileTitleAlignment.center,
-            title: const Text('Arabic').tr(),
+            title:  Text( context.tr('Arabic')),
             leading: Radio(
               value: 2,
               groupValue: selectedOption,
