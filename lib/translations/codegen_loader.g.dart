@@ -125,7 +125,8 @@ class CodegenLoader extends AssetLoader {
     "Log Data": "بيانات السجل",
     "Change Password?": "تغيير كلمة المرور؟",
     "Contact Us":"اتصل بنا",
-    "Privacy & Policy": "سياسة الخصوصية"
+    "Privacy & Policy": "سياسة الخصوصية",
+    "Please accept the privacy policy.":"يرجى قبول سياسة الخصوصية."
 
 
 
@@ -247,7 +248,8 @@ class CodegenLoader extends AssetLoader {
     "Log Data": "Log Data",
   "Change Password?": "Change Password?",
     "Contact Us": "Contact Us",
-    "Privacy & Policy":"Privacy & Policy"
+    "Privacy & Policy":"Privacy & Policy",
+    "Please accept the privacy policy.":"Please accept the privacy policy."
 
 
   };

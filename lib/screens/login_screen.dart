@@ -269,13 +269,25 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                  CustomElevatedButton(
-                    onTap: loginValidation,
-                    text: context.tr("Login"),
-                    margin: getMargin(
-                      top: 22,
-                    ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Check if privacy policy is accepted before login
+                      if (privacyChecked) {
+                        loginValidation(); // Call loginValidation function
+                      } else {
+                        showInSnackBar(
+                          context.tr('Please accept the privacy policy.'),
+                          Colors.red,
+                          Colors.white,
+                          3,
+                          context,
+                          _scaffoldKey,
+                        );
+                      }
+                    },
+                    child: Text(context.tr("Login")),
                   ),
+
                   Align(
                     alignment: Alignment.center,
                     child: Padding(
