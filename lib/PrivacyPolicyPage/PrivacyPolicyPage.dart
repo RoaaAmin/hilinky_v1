@@ -27,14 +27,14 @@ class PrivacyPolicyPage extends StatelessWidget {
               context.tr(
                   'This Privacy Policy explains how your personal information is collected, used, and disclosed by the Hilinky application.'),
               style: TextStyle(
-                fontSize: 14.0,
+                fontSize: 12.0,
               ),
             ),
             SizedBox(height: 20.0),
             Text(
               context.tr('Information Collection and Use'),
               style: TextStyle(
-                fontSize: 20.0,
+                fontSize: 12.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -43,7 +43,7 @@ class PrivacyPolicyPage extends StatelessWidget {
               context.tr(
                   'We may collect some personal information when you use our application. This information is used to provide and improve our services.'),
               style: TextStyle(
-                fontSize: 14.0,
+                fontSize: 12.0,
               ),
             ),
             SizedBox(height: 20.0),
@@ -59,7 +59,7 @@ class PrivacyPolicyPage extends StatelessWidget {
               context.tr(
                   'We may also collect information that your device sends whenever you use our Service.'),
               style: TextStyle(
-                fontSize: 14.0,
+                fontSize: 12.0,
               ),
             ),
             SizedBox(height: 20.0),
@@ -75,7 +75,7 @@ class PrivacyPolicyPage extends StatelessWidget {
               context.tr(
                   'Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers.'),
               style: TextStyle(
-                fontSize: 14.0,
+                fontSize: 12.0,
               ),
             ),
             SizedBox(height: 20.0),
@@ -91,7 +91,7 @@ class PrivacyPolicyPage extends StatelessWidget {
               context.tr(
                   'We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.'),
               style: TextStyle(
-                fontSize: 14.0,
+                fontSize: 12.0,
               ),
             ),
           ],
