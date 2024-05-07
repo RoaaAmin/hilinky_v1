@@ -54,11 +54,20 @@ class CustomElevatedButton extends BaseButton {
     width: this.width ?? double.maxFinite,
     margin: margin,
     decoration: BoxDecoration(
-       // Replace Colors.blue with the desired color
-      borderRadius: BorderRadius.circular(8), // Example border radius
+
+      // Replace Colors.blue with the desired color
+      borderRadius: BorderRadius.circular(9), // Example border radius
     ),
     child: ElevatedButton(
-      style: buttonStyle,
+      // style: buttonStyle,
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        backgroundColor: Color(0xFF234E5C),
+        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
       onPressed: isDisabled ?? false ? null : onTap ?? () {},
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
