@@ -309,43 +309,36 @@ class EditState extends State<EditCard> {
     return lodaing
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
-        appBar: AppBar(
-          // leadingWidth: double.maxFinite,
-          // leading: AppbarImage(
-          //   imagePath: ImageConstant.hilinkylogopng,
-          //   margin: getMargin(
-          //     // left: 11,
-          //     right: 6,
-          //   ),
-          // ),
-          // shape: ContinuousRectangleBorder(
-          //   borderRadius: BorderRadius.vertical(
-          //     bottom: Radius.circular(40),
-          //   ),
-          //   side: BorderSide(
-          //     color: Color(0xFF234E5C),
-          //   ),
-          // ),
-          // title: Text(context.tr('Edit card')),
-        ),
         body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: ListView(
                 children: [
                   Text(
                     context.tr('Edit card'),
-                    style: GoogleFonts.robotoCondensed(
-                        fontSize: 30, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF133039),
+                      fontSize: 24,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w700,),
                   ),
+                  SizedBox(height: 10,),
                   Text(
                     'Fill the information to display it in your card.',
-                    style: GoogleFonts.robotoCondensed(fontSize: 18),
+                    style: TextStyle(
+                      color: Color(0xFF7EA9BA),
+                      fontSize: 18,
+                      fontFamily: 'Inter',
+                    ),
                   ),
                   SizedBox(height: 30),
                   Text(
                     context.tr('Personal Details'),
-                    style: GoogleFonts.robotoCondensed(
-                        fontSize: 25, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color: Color(0xFF133039),
+                          fontSize: 20,
+                          fontFamily: 'Inter',
+                      ),
                   ),
                   SizedBox(height: 10,),
                   Form(
