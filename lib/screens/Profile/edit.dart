@@ -368,12 +368,14 @@ class EditState extends State<Edit> {
                             width: 354,
                             height: 54,
                             child: TextFormField(
+                              enabled: false, // Set this to false to make it not writable
                               onChanged: (value) => uniqueUserName = value,
                               controller: TextEditingController(text: uniqueUserName),
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(10)),
                                 ),
+                                hintStyle: TextStyle(color: Colors.black), // Set the text color to black
                               ),
                               cursorColor: Colors.black,
                               validator: (value) {
@@ -386,6 +388,7 @@ class EditState extends State<Edit> {
                           ),
                         ],
                       ),
+
                       SizedBox(
                         height: 10,
                       ),
@@ -400,12 +403,14 @@ class EditState extends State<Edit> {
                             width: 354,
                             height: 54,
                             child: TextFormField(
+                              enabled: false, // Set this to false to make it not writable
                               onChanged: (value) => email = value,
                               controller: TextEditingController(text: email),
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(10)),
                                 ),
+                                hintStyle: TextStyle(color: Colors.black), // Set the text color to black
                               ),
                               cursorColor: Colors.black,
                               validator: (value) {
@@ -418,6 +423,7 @@ class EditState extends State<Edit> {
                           ),
                         ],
                       ),
+
                       SizedBox(
                         height: 10,
                       ),
@@ -477,12 +483,12 @@ class EditState extends State<Edit> {
                                 ),
                               ),
                               cursorColor: Colors.black,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return context.tr("Please enter some text");
-                                }
-                                return null;
-                              },
+                              // validator: (value) {
+                              //   if (value == null || value.isEmpty) {
+                              //     return context.tr("Please enter some text");
+                              //   }
+                              //   return null;
+                              // },
                             ),
                           ),
                         ],
@@ -509,12 +515,12 @@ class EditState extends State<Edit> {
                                 ),
                               ),
                               cursorColor: Colors.black,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return context.tr("Please enter some text");
-                                }
-                                return null;
-                              },
+                              // validator: (value) {
+                              // //   if (value == null || value.isEmpty) {
+                              // //     return context.tr("Please enter some text");
+                              // //   }
+                              // //   return null;
+                              // // },
                             ),
                           ),
                         ],
