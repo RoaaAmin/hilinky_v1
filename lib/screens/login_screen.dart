@@ -243,6 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             privacyChecked = value!;
                           });
                         },
+
                       ),
                       Container(
                         width: 200, // Adjust the width as per your requirement
@@ -293,23 +294,42 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Check if privacy policy is accepted before login
-                      if (privacyChecked) {
-                        loginValidation(); // Call loginValidation function
-                      } else {
-                        showInSnackBar(
-                          context.tr('Please accept the privacy policy.'),
-                          Colors.red,
-                          Colors.white,
-                          3,
-                          context,
-                          _scaffoldKey,
-                        );
-                      }
-                    },
-                    child: Text(context.tr("Login")),
+                  Container(
+                    width: 344,
+                    height: 55, // Adjust the width as per your requirement
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Check if privacy policy is accepted before login
+                        if (privacyChecked) {
+                          loginValidation(); // Call loginValidation function
+                        } else {
+                          showInSnackBar(
+                            context.tr('Please accept the privacy policy.'),
+                            Colors.red,
+                            Colors.white,
+                            3,
+                            context,
+                            _scaffoldKey,
+                          );
+                        }
+                      },
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                        backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF234E5C)),
+                      ),
+                      child: Text(
+                        context.tr("Login"),
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
 
                   Align(
