@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
             BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: context.tr("About Us") ),
             BottomNavigationBarItem(icon: Icon(Icons.home), label: context.tr("Home")),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: context.tr("Settings")),
+                icon: Icon(Icons.person), label: context.tr("My Profile")),
           ],
         ),
       ),

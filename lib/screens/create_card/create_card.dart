@@ -467,10 +467,10 @@ class _CreateCardState extends State<CreateCard> {
                       style: GoogleFonts.robotoCondensed(
                           fontSize: 30, fontWeight: FontWeight.bold),
                     ),
-                    // Text(
-                    //   'Lorem Ipsum is simply dummy text of the printing',
-                    //   style: GoogleFonts.robotoCondensed(fontSize: 18),
-                    // ),
+                    Text(
+                      'Fill the information to display it in your card.',
+                      style: GoogleFonts.robotoCondensed(fontSize: 18),
+                    ),
                     SizedBox(height: 30),
                     Text(
                         context.tr('Personal Details'),

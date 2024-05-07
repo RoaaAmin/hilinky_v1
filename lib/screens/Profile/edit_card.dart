@@ -309,10 +309,44 @@ class EditState extends State<EditCard> {
     return lodaing
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
+        appBar: AppBar(
+          // leadingWidth: double.maxFinite,
+          // leading: AppbarImage(
+          //   imagePath: ImageConstant.hilinkylogopng,
+          //   margin: getMargin(
+          //     // left: 11,
+          //     right: 6,
+          //   ),
+          // ),
+          // shape: ContinuousRectangleBorder(
+          //   borderRadius: BorderRadius.vertical(
+          //     bottom: Radius.circular(40),
+          //   ),
+          //   side: BorderSide(
+          //     color: Color(0xFF234E5C),
+          //   ),
+          // ),
+          // title: Text(context.tr('Edit card')),
+        ),
         body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: ListView(
                 children: [
+                  Text(
+                    context.tr('Edit card'),
+                    style: GoogleFonts.robotoCondensed(
+                        fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Fill the information to display it in your card.',
+                    style: GoogleFonts.robotoCondensed(fontSize: 18),
+                  ),
+                  SizedBox(height: 30),
+                  Text(
+                    context.tr('Personal Details'),
+                    style: GoogleFonts.robotoCondensed(
+                        fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
                   SizedBox(height: 10,),
                   Form(
                     key: _formKey,
@@ -786,11 +820,6 @@ class EditState extends State<EditCard> {
                       style: TextStyle(color: Colors.white),
                     ),
                   )
-
-
-
-
-
 
                 ]
             )));

@@ -14,6 +14,7 @@ import 'package:hilinky/screens/Profile/profile.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
 
+import '../../core/utils/size_utils.dart';
 import '../../nav_bar.dart';
 import '../../theme/custom_text_style.dart';
 import 'image_picker.dart';
@@ -530,7 +531,37 @@ class EditState extends State<Edit> {
                 ),
                 // const location(),
                 SizedBox(
-                  height: 10,
+                  height: 5,
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    // sendRecoveryPass();
+                  },
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: getPadding(
+                        top: 17,
+                        right: 4,
+                      ),
+                      child: Text(
+                        context.tr('Change Password?'),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFFEF9453),
+                          fontSize: 12,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Color(0xFFEF9453), // Change the underline color here
+                          height: 0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
                 ),
                 ElevatedButton(
                   onPressed: () async {

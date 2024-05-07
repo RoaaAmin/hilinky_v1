@@ -11,7 +11,9 @@ import 'package:hilinky/screens/my_card/widget/qr_code.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../core/utils/image_constant.dart';
+import '../../core/utils/size_utils.dart';
 import '../../nav_bar.dart';
+import '../../widgets/app_bar/appbar_image.dart';
 import '../../widgets/custom_image_view.dart';
 import '../Scanner/QRScannerPage.dart';
 // import 'package:page_indicator/page_indicator.dart';
@@ -105,6 +107,25 @@ class _MyCardState extends State<MyCard> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      appBar: AppBar(
+        leadingWidth: double.maxFinite,
+        leading: AppbarImage(
+          imagePath: ImageConstant.hilinkylogopng,
+          margin: getMargin(
+            // left: 11,
+            right: 6,
+          ),
+        ),
+        shape: ContinuousRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(40),
+          ),
+          side: BorderSide(
+            color: Color(0xFF234E5C),
+          ),
+        ),
+        title: Text(context.tr('Home Screen')),
+      ),
       body: ListView(
         shrinkWrap: true,
         physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
@@ -177,7 +198,7 @@ class _MyCardState extends State<MyCard> {
 
                 child: Column(
                     children: [
-                      SizedBox(height: 60),
+                      // SizedBox(height: 60),
                       Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),

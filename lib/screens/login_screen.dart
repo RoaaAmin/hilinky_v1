@@ -49,7 +49,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
     _firebaseMessaging.getToken().then((String? token) {
       assert(token != null);
-      if(!mounted)return;
       setState(() {
         notificationToken = token;
       });
@@ -69,12 +68,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return SafeArea(
         child: Scaffold(
-            backgroundColor: appTheme.gray50,
+            backgroundColor: appTheme.whiteA700,
             resizeToAvoidBottomInset: false,
             appBar: CustomAppBar(
               leadingWidth: double.maxFinite,
               leading: AppbarImage(
-                svgPath: ImageConstant.imgBack,
+                // svgPath: ImageConstant.hilinkyBg_logo,
                 margin: getMargin(
                   left: 11,
                   top: 12,
@@ -165,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         Text(
-                                          context.tr("Password"),
+                                          context.tr( "Password"),
                                           style: theme.textTheme.titleMedium,
                                         ),
                                         CustomTextFormField(
@@ -216,9 +215,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                     right: 4,
                                   ),
                                   child: Text(
-                                    context.tr("Forgot Password?"),
-                                    style: CustomTextStyles.labelLargeInterDeeporange300.copyWith(
+                                    context.tr('Forgot Password?'),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xFFEF9453),
+                                      fontSize: 12,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w700,
                                       decoration: TextDecoration.underline,
+                                      decorationColor: Color(0xFFEF9453), // Change the underline color here
+                                      height: 0,
                                     ),
                                   ),
                                 ),
@@ -231,47 +237,48 @@ class _LoginScreenState extends State<LoginScreen> {
                                 top: 22,
                               ),
                             ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Padding(
-                                padding: getPadding(
-                                  top: 25,
-                                  bottom: 5,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    RichText(
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text:context.tr( "Don’t have an account"),
-                                            style: CustomTextStyles.labelLargeInterBluegray300,
-                                          ),
-                                          TextSpan(
-                                            text: context.tr("?"),
-                                            style: CustomTextStyles.bodyMediumInterBluegray300,
-                                          ),
-                                          TextSpan(
-                                            text: " ",
-                                            style: CustomTextStyles.bodyMediumInterBluegray300,
-                                          ),
-                                        ],
-                                      ),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    GestureDetector(
-                                      onTap: openSignupScreen,
-                                      child: Text(
-                                        context.tr("Sign up Now"),
-                                        style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),)]),
+                            // Align(
+                            //   alignment: Alignment.center,
+                            //   child: Padding(
+                            //     padding: getPadding(
+                            //       top: 25,
+                            //       bottom: 5,
+                            //     ),
+                            //     child: Row(
+                            //       mainAxisAlignment: MainAxisAlignment.center,
+                            //       children: [
+                            //         RichText(
+                            //           text: TextSpan(
+                            //             children: [
+                            //               TextSpan(
+                            //                 text: context.tr("Don’t have an account"),
+                            //                 style: CustomTextStyles.labelLargeInterBluegray300,
+                            //               ),
+                            //               TextSpan(
+                            //                 text: context.tr("?"),
+                            //                 style: CustomTextStyles.bodyMediumInterBluegray300,
+                            //               ),
+                            //               TextSpan(
+                            //                 text: " ",
+                            //                 style: CustomTextStyles.bodyMediumInterBluegray300,
+                            //               ),
+                            //             ],
+                            //           ),
+                            //           textAlign: TextAlign.left,
+                            //         ),
+                            //         GestureDetector(
+                            //           onTap: openSignupScreen,
+                            //           child: Text(
+                            //             context.tr("Sign up Now"),
+                            //             style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
+                            //               decoration: TextDecoration.underline,
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),)
+                          ]),
                     ))))
     );
   }
@@ -510,7 +517,7 @@ class _LoginScreenState extends State<LoginScreen> {
               _passwordController.clear();
             });
           } catch (e) {
-            showInSnackBar(context.tr('There is no record for this email'), Colors.red,
+            showInSnackBar('There is no record for this email', Colors.red,
                 Colors.white, 3, context, _scaffoldKey);
           }
         }
