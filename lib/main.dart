@@ -7,6 +7,7 @@ import 'package:hilinky/screens/login_screen.dart';
 import 'package:hilinky/screens/my_card/myCard.dart';
 import 'package:hilinky/screens/signup_screen.dart';
 import 'package:hilinky/translations/codegen_loader.g.dart';
+import 'PrivacyPolicyPage/PrivacyPolicyPage.dart';
 import 'auth.dart';
 import 'package:sizer/sizer.dart';
 
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
           'signupScreen': (context) =>  SignupScreen(),
           'loginScreen':  (context) =>  LoginScreen(),
           'myCard': (context) =>  MyCard(),
+          'PrivacyPolicyPage' : (context) =>  PrivacyPolicyPage(),
         },
       ),
     );
