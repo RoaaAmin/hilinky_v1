@@ -124,7 +124,8 @@ class CodegenLoader extends AssetLoader {
     "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.": "قد نقوم بتحديث سياسة الخصوصية الخاصة بنا من وقت لآخر. لذا، يُنصح بمراجعة هذه الصفحة بشكل دوري لأي تغييرات.",
     "Log Data": "بيانات السجل",
     "Change Password?": "تغيير كلمة المرور؟",
-    "Contact Us":"اتصل بنا"
+    "Contact Us":"اتصل بنا",
+    "Privacy & Policy": "سياسة الخصوصية"
 
 
 
@@ -245,7 +246,8 @@ class CodegenLoader extends AssetLoader {
     "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.": "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.",
     "Log Data": "Log Data",
   "Change Password?": "Change Password?",
-    "Contact Us": "Contact Us"
+    "Contact Us": "Contact Us",
+    "Privacy & Policy":"Privacy & Policy"
 
 
   };
