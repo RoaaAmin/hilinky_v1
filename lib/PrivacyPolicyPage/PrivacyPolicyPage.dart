@@ -34,7 +34,7 @@ class PrivacyPolicyPage extends StatelessWidget {
             Text(
               context.tr('Information Collection and Use'),
               style: TextStyle(
-                fontSize: 12.0,
+                fontSize: 24.0,
                 fontWeight: FontWeight.bold,
               ),
             ),

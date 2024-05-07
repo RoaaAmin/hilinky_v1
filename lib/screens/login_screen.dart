@@ -5,6 +5,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../PrivacyPolicyPage/PrivacyPolicyPage.dart';
 import '../auth.dart';
 import '../core/utils/image_constant.dart';
 import '../core/utils/size_utils.dart';
@@ -30,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   bool obscureText = true;
+  bool privacyChecked = false;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -68,228 +70,270 @@ class _LoginScreenState extends State<LoginScreen> {
     mediaQueryData = MediaQuery.of(context);
 
     return SafeArea(
-        child: Scaffold(
-            backgroundColor: appTheme.whiteA700,
-            resizeToAvoidBottomInset: false,
-            appBar: CustomAppBar(
-              leadingWidth: double.maxFinite,
-              leading: AppbarImage(
-                // svgPath: ImageConstant.hilinkyBg_logo,
-                margin: getMargin(
-                  left: 11,
-                  top: 12,
-                  right: 351,
-                  bottom: 12,
-                ),
+      child: Scaffold(
+        backgroundColor: appTheme.whiteA700,
+        resizeToAvoidBottomInset: false,
+        appBar: CustomAppBar(
+          leadingWidth: double.maxFinite,
+          leading: AppbarImage(
+            // svgPath: ImageConstant.hilinkyBg_logo,
+            margin: getMargin(
+              left: 11,
+              top: 12,
+              right: 351,
+              bottom: 12,
+            ),
+          ),
+        ),
+        body: Form(
+          //key: _scaffoldKey,
+          child: Container(
+            width: double.maxFinite,
+            padding: getPadding(
+              left: 24,
+              top: 21,
+              right: 24,
+              bottom: 21,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: getPadding(
+                      left: 1,
+                    ),
+                    child: Text(
+                      context.tr("Welcome Back!"),
+                      style: theme.textTheme.displaySmall,
+                    ),
+                  ),
+                  Container(
+                    width: getHorizontalSize(302),
+                    margin: getMargin(
+                      left: 1,
+                      top: 13,
+                      right: 41,
+                    ),
+                    child: Text(
+                      context.tr("Happy to see you again, enter your account details"),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodyLarge!.copyWith(
+                        height: 1.56,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: getPadding(
+                      left: 1,
+                      top: 25,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.tr("Email or Username"),
+                          style: theme.textTheme.titleMedium,
+                        ),
+                        CustomTextFormField(
+                          controller: _emailController,
+                          margin: getMargin(
+                            top: 4,
+                          ),
+                          hintText: context.tr("Example@Example.com"),
+                          hintStyle: theme.textTheme.titleSmall!,
+                          textInputType: TextInputType.emailAddress,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: getVerticalSize(99),
+                    width: getHorizontalSize(349),
+                    margin: getMargin(
+                      top: 23,
+                    ),
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                context.tr("Password"),
+                                style: theme.textTheme.titleMedium,
+                              ),
+                              CustomTextFormField(
+                                controller: _passwordController,
+                                obscureText: obscureText,
+                                margin: getMargin(
+                                  top: 3,
+                                ),
+                                hintText: context.tr("Your Password"),
+                                hintStyle: CustomTextStyles.titleMediumGray90002,
+                                textInputType: TextInputType.visiblePassword,
+                                suffix: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      obscureText = !obscureText;
+                                    });
+                                  },
+                                  child: Container(
+                                    margin: getMargin(
+                                      left: 30,
+                                      top: 15,
+                                      right: 16,
+                                      bottom: 15,
+                                    ),
+                                    child: CustomImageView(
+                                        svgPath: obscureText
+                                            ? ImageConstant.imgAkariconseyeClose // Closed eye SVG
+                                            : ImageConstant.imgAkariconseyeopen // Open eye SVG
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      sendRecoveryPass();
+                    },
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: getPadding(
+                          top: 17,
+                          right: 4,
+                        ),
+                        child: Text(
+                          context.tr('Forgot Password?'),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color(0xFFEF9453),
+                            fontSize: 12,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w700,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Color(0xFFEF9453), // Change the underline color here
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Checkbox(
+                        value: privacyChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            privacyChecked = value!;
+                          });
+                        },
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          // Navigate to the privacy and policy page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PrivacyPolicyPage(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Privacy & Policy',
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Color(0xFFEF9453),
+                            fontSize: 12,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w700,
+                            decorationColor: Color(0xFFEF9453), // Change the underline color here
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  CustomElevatedButton(
+                    onTap: loginValidation,
+                    text: context.tr("Login"),
+                    margin: getMargin(
+                      top: 22,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: getPadding(
+                        top: 25,
+                        bottom: 5,
+                      ),
+                      // child: Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: [
+                      //     RichText(
+                      //       text: TextSpan(
+                      //         children: [
+                      //           TextSpan(
+                      //             text: context.tr("Don’t have an account"),
+                      //             style: CustomTextStyles.labelLargeInterBluegray300,
+                      //           ),
+                      //           TextSpan(
+                      //             text: context.tr("?"),
+                      //             style: CustomTextStyles.bodyMediumInterBluegray300,
+                      //           ),
+                      //           TextSpan(
+                      //             text: " ",
+                      //             style: CustomTextStyles.bodyMediumInterBluegray300,
+                      //           ),
+                      //         ],
+                      //       ),
+                      //       textAlign: TextAlign.left,
+                      //     ),
+                      //     GestureDetector(
+                      //       onTap: () async {
+                      //         String url =
+                      //             'https://api.whatsapp.com/send/?phone=966532595204&text=%D8%A3%D9%87%D9%84%D8%A7%20%D8%A8%D9%83%D9%85%20%D8%A3%D9%86%D8%A7%20%D9%85%D9%87%D8%AA%D9%85%20%D9%84%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D8%A8%D8%B7%D8%A7%D9%82%D8%A9%20%D8%A3%D8%B9%D9%85%D8%A7%D9%84%D9%8A%20%D9%84%D9%86%D8%B3%D8%AE%D8%A9%20%D8%B1%D9%82%D9%85%D9%8A%D8%A9%D8%8C%20%D9%83%D9%8A%D9%81%20%D9%8A%D9%85%D9%83%D9%86%D9%86%D9%8A%20%D8%A7%D9%84%D8%AD%D8%B5%D9%88%D9%84%20%D9%86%D8%B3%D8%AE%D8%AA%D9%8A%20%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9';
+                      //         if (await canLaunch(url)) {
+                      //           await launch(url);
+                      //         } else {
+                      //           throw 'Could not launch $url';
+                      //         }
+                      //       },
+                      //       child: Text(
+                      //         context.tr("Contact Us"),
+                      //         style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
+                      //           decoration: TextDecoration.underline,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                    ),
+                  )
+                ],
               ),
             ),
-            body: Form(
-              //key: _scaffoldKey,
-                child: Container(
-                    width: double.maxFinite,
-                    padding: getPadding(
-                      left: 24,
-                      top: 21,
-                      right: 24,
-                      bottom: 21,
-                    ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: getPadding(
-                                left: 1,
-                              ),
-                              child: Text(
-                                context.tr("Welcome Back!"),
-                                style: theme.textTheme.displaySmall,
-                              ),
-                            ),
-                            Container(
-                              width: getHorizontalSize(302),
-                              margin: getMargin(
-                                left: 1,
-                                top: 13,
-                                right: 41,
-                              ),
-                              child: Text(
-                                context.tr("Happy to see you again, enter your account details"),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: theme.textTheme.bodyLarge!.copyWith(
-                                  height: 1.56,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: getPadding(
-                                left: 1,
-                                top: 25,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    context.tr("Email or Username"),
-                                    style: theme.textTheme.titleMedium,
-                                  ),
-                                  CustomTextFormField(
-                                    controller: _emailController,
-                                    margin: getMargin(
-                                      top: 4,
-                                    ),
-                                    hintText: context.tr("Example@Example.com"),
-                                    hintStyle: theme.textTheme.titleSmall!,
-                                    textInputType: TextInputType.emailAddress,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              height: getVerticalSize(99),
-                              width: getHorizontalSize(349),
-                              margin: getMargin(
-                                top: 23,
-                              ),
-                              child: Stack(
-                                alignment: Alignment.bottomRight,
-                                children: [
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          context.tr( "Password"),
-                                          style: theme.textTheme.titleMedium,
-                                        ),
-                                        CustomTextFormField(
-                                          controller: _passwordController,
-                                          obscureText: obscureText,
-                                          margin: getMargin(
-                                            top: 3,
-                                          ),
-                                          hintText: context.tr("Your Password"),
-                                          hintStyle: CustomTextStyles.titleMediumGray90002,
-                                          textInputType: TextInputType.visiblePassword,
-                                          suffix: GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                obscureText = !obscureText;
-                                              });
-                                            },
-                                            child: Container(
-                                              margin: getMargin(
-                                                left: 30,
-                                                top: 15,
-                                                right: 16,
-                                                bottom: 15,
-                                              ),
-                                              child: CustomImageView(
-                                                  svgPath: obscureText
-                                                      ? ImageConstant.imgAkariconseyeClose// Closed eye SVG
-                                                      : ImageConstant.imgAkariconseyeopen  // Open eye SVG
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () async {
-                                sendRecoveryPass();
-                              },
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Padding(
-                                  padding: getPadding(
-                                    top: 17,
-                                    right: 4,
-                                  ),
-                                  child: Text(
-                                    context.tr('Forgot Password?'),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Color(0xFFEF9453),
-                                      fontSize: 12,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w700,
-                                      decoration: TextDecoration.underline,
-                                      decorationColor: Color(0xFFEF9453), // Change the underline color here
-                                      height: 0,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            CustomElevatedButton(
-                              onTap: loginValidation,
-                              text: context.tr("Login"),
-                              margin: getMargin(
-                                top: 22,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Padding(
-                                padding: getPadding(
-                                  top: 25,
-                                  bottom: 5,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    RichText(
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: context.tr("Don’t have an account"),
-                                            style: CustomTextStyles.labelLargeInterBluegray300,
-                                          ),
-                                          TextSpan(
-                                            text: context.tr("?"),
-                                            style: CustomTextStyles.bodyMediumInterBluegray300,
-                                          ),
-                                          TextSpan(
-                                            text: " ",
-                                            style: CustomTextStyles.bodyMediumInterBluegray300,
-                                          ),
-                                        ],
-                                      ),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    GestureDetector(
-                                      onTap: () async {
-                                        String url =
-                                            'https://api.whatsapp.com/send/?phone=966532595204&text=%D8%A3%D9%87%D9%84%D8%A7%20%D8%A8%D9%83%D9%85%20%D8%A3%D9%86%D8%A7%20%D9%85%D9%87%D8%AA%D9%85%20%D9%84%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D8%A8%D8%B7%D8%A7%D9%82%D8%A9%20%D8%A3%D8%B9%D9%85%D8%A7%D9%84%D9%8A%20%D9%84%D9%86%D8%B3%D8%AE%D8%A9%20%D8%B1%D9%82%D9%85%D9%8A%D8%A9%D8%8C%20%D9%83%D9%8A%D9%81%20%D9%8A%D9%85%D9%83%D9%86%D9%86%D9%8A%20%D8%A7%D9%84%D8%AD%D8%B5%D9%88%D9%84%20%D9%86%D8%B3%D8%AE%D8%AA%D9%8A%20%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9';
-                                        if (await canLaunch(url)) {
-                                          await launch(url);
-                                        } else {
-                                          throw 'Could not launch $url';
-                                        }
-                                      },
-                                      child: Text(
-                                        context.tr("Contact Us"),
-                                        style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),)
-                          ]),
-                    ))))
+          ),
+        ),
+      ),
     );
+
   }
 
   // void loginValidation(){
