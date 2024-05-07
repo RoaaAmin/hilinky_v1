@@ -535,15 +535,34 @@ class EditState extends State<Edit> {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    // sendRecoveryPass();
+                    try {
+                      await FirebaseAuth.instance.sendPasswordResetEmail(
+                        email: email, // Provide the user's email here
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            context.tr('Password reset email sent. Please check your email.'),
+                          ),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    } catch (e) {
+                      print('Error sending password reset email: $e');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            context.tr('Failed to send password reset email.'),
+                          ),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
                   },
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
-                      padding: getPadding(
-                        top: 17,
-                        right: 4,
-                      ),
+                      padding: EdgeInsets.only(top: 17, right: 4),
                       child: Text(
                         context.tr('Change Password?'),
                         textAlign: TextAlign.center,
@@ -553,13 +572,15 @@ class EditState extends State<Edit> {
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
                           decoration: TextDecoration.underline,
-                          decorationColor: Color(0xFFEF9453), // Change the underline color here
+                          decorationColor: Color(0xFFEF9453),
+                          // Change the underline color here
                           height: 0,
                         ),
                       ),
                     ),
                   ),
                 ),
+
                 SizedBox(
                   height: 5,
                 ),

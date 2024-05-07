@@ -122,7 +122,8 @@ class CodegenLoader extends AssetLoader {
     "Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers.": "الملفات هي ملفات تحتوي على كمية صغيرة من البيانات التي عادة ما تستخدم كمعرفات فريدة مجهولة.",
     "Changes to This Privacy Policy": "تغييرات في هذه السياسة الخصوصية",
     "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.": "قد نقوم بتحديث سياسة الخصوصية الخاصة بنا من وقت لآخر. لذا، يُنصح بمراجعة هذه الصفحة بشكل دوري لأي تغييرات.",
-    "Log Data": "بيانات السجل"
+    "Log Data": "بيانات السجل",
+    "Change Password?": "تغيير كلمة المرور؟"
 
 
 
@@ -241,7 +242,8 @@ class CodegenLoader extends AssetLoader {
     "Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers.": "Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers.",
     "Changes to This Privacy Policy": "Changes to This Privacy Policy",
     "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.": "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.",
-    "Log Data": "Log Data"
+    "Log Data": "Log Data",
+  "Change Password?": "Change Password?"
 
 
   };
