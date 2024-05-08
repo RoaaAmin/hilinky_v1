@@ -93,14 +93,15 @@ class EditState extends State<Edit> {
               onPressed: () {
                 getImage(ImageSource.camera);
               },
-              label: Text(context.tr("Camera")),
+              label: Text(context.tr("Camera"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
+            SizedBox(width: 20,),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getImage(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery")),
+              label: Text(context.tr("Gallery"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
           ])
         ],
@@ -641,7 +642,7 @@ class EditState extends State<Edit> {
                           'sNationality': nationality,
                           'sCity': city,
                         });
-
+//
                         // Show success message
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
@@ -651,7 +652,8 @@ class EditState extends State<Edit> {
                         );
 
                         // Navigate back to profile page
-                        context.pushPage(profiletest());
+                      //  context.pushPage(profiletest());
+                        Navigator.of(context).pop();
                       }
                     }
                   },

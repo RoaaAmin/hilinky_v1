@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hilinky/components/context.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:line_icons/line_icons.dart';
 import '../auth.dart';
 import '../core/utils/image_constant.dart';
@@ -46,6 +47,56 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     getLinks();
     getuser();
+    checkForUpdate();
+  }
+
+  Future<void> checkForUpdate() async {
+    print('Checking for Update');
+    InAppUpdate.checkForUpdate().then((info) {
+      if (info.updateAvailability == UpdateAvailability.updateAvailable) {
+        print('Update available');
+        showUpdateDialog();
+      }
+    }).catchError((e) {
+      print('Error checking for update: $e');
+    });
+  }
+
+  void showUpdateDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Update Available',style: TextStyle(color: Color(0XFFEE6363),)),
+          content: Text(
+            'A new version of the app is available. Please update to the latest version to continue using the app.',style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)),),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Not Now',style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)),),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                update();
+              },
+              child: Text('Update',style: TextStyle(color: Color.fromARGB(255, 2, 84, 86))),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void update() async {
+    print('Updating');
+    await InAppUpdate.startFlexibleUpdate();
+    InAppUpdate.completeFlexibleUpdate().then((_) {}).catchError((e) {
+      print('Error completing update: $e');
+    });
   }
 
   @override
@@ -64,6 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // If an error occurs while fetching data, display an error message.
           return Text('Error: ${snapshot.error}');
         } else if (!snapshot.hasData || !snapshot.data!.exists) {
+
           // If no card data exists for the user, display the default home screen.
           return _buildDefaultHomeScreen();
         } else {
@@ -75,7 +127,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildDefaultHomeScreen() {
-
     return Scaffold(
 
       appBar: AppBar(
@@ -103,7 +154,9 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(context.tr('Start your journey by creating your card'),
+
+            Text(
+              context.tr('Start your journey by creating your card'),
               style: TextStyle(
                 color: Color(0xFF121212),
                 fontSize: 15,
@@ -114,7 +167,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-
               onPressed: () {
                 context.pushPage(CreateCard());
               },
@@ -125,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
-              child:Text(
+              child: Text(
                 context.tr('Create Card'),
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -151,10 +203,8 @@ class _HomeScreenState extends State<HomeScreen> {
         // shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16.0))),
         // child: Image.asset('../assets/images/QRScanCode.svg'),
       ),
-
     );
   }
-
 
   void getLinks() async {
     await FirebaseFirestore.instance

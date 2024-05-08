@@ -1,15 +1,39 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hilinky/onBoarding/welcome2.dart';
 import 'package:hilinky/screens/login_screen.dart';
-
 import 'package:sizer/sizer.dart';
 import 'package:animate_do/animate_do.dart';
 
-
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
+
+  @override
+  _WelcomePageState createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  @override
+  void initState() {
+    super.initState();
+    _checkIfFirstTime();
+  }
+
+  void _checkIfFirstTime() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool alreadyVisited = prefs.getBool('alreadyVisited') ?? false;
+
+    if (alreadyVisited) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        ),
+      );
+    } else {
+      prefs.setBool('alreadyVisited', true);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +58,7 @@ class WelcomePage extends StatelessWidget {
                           ),
                         );
                       },
-                      child:  Text(
+                      child: Text(
                         context.tr('Skip All'),
                         style: TextStyle(
                           color: Color(0xFF133039),
@@ -45,7 +69,6 @@ class WelcomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 FadeInDown(
                   delay: const Duration(milliseconds: 800),
                   duration: const Duration(milliseconds: 800),
@@ -92,7 +115,8 @@ class WelcomePage extends StatelessWidget {
                               delay: const Duration(milliseconds: 900),
                               duration: const Duration(milliseconds: 1000),
                               child: Text(
-                                context.tr('Say goodbye to traditional business cards. Easily digitize and organize your contacts.'),
+                                context.tr(
+                                    'Say goodbye to traditional business cards. Easily digitize and organize your contacts.'),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 15.sp,

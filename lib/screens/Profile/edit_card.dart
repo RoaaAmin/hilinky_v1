@@ -64,8 +64,10 @@ class EditState extends State<EditCard> {
       child: Column(
         children: <Widget>[
           Text(
-            "",
+      context.tr("Upload your photo"),
             style: TextStyle(
+              color: Color.fromARGB(255, 2, 84, 86),
+              fontWeight: FontWeight.bold,
               fontSize: 20.0,
             ),
           ),
@@ -78,14 +80,17 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getImage(ImageSource.camera);
               },
-              label: Text(context.tr("Camera")),
+              label: Text(context.tr("Camera"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
+            ),
+            SizedBox(
+              width: 20,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getImage(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery")),
+              label: Text(context.tr("Gallery"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
           ])
         ],
@@ -104,8 +109,10 @@ class EditState extends State<EditCard> {
       child: Column(
         children: <Widget>[
           Text(
-            "",
+      context.tr("Upload logo"),
             style: TextStyle(
+              color: Color.fromARGB(255, 2, 84, 86),
+              fontWeight: FontWeight.bold,
               fontSize: 20.0,
             ),
           ),
@@ -118,14 +125,17 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getLogo(ImageSource.camera);
               },
-              label: Text(context.tr("Camera")),
+              label: Text(context.tr("Camera"),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)),),
+            ),
+            SizedBox(
+              width: 20,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getLogo(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery")),
+              label: Text(context.tr("Gallery"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
           ])
         ],
@@ -151,8 +161,10 @@ class EditState extends State<EditCard> {
       child: Column(
         children: <Widget>[
           Text(
-            "",
+      context.tr("Upload portfolio"),
             style: TextStyle(
+              color: Color.fromARGB(255, 2, 84, 86),
+              fontWeight: FontWeight.bold,
               fontSize: 20.0,
             ),
           ),
@@ -165,14 +177,17 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getPortfolio(ImageSource.camera);
               },
-              label: Text(context.tr("Camera")),
+              label: Text(context.tr("Camera"),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86),),),
+            ),
+            SizedBox(
+              width: 20,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getPortfolio(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery")),
+              label: Text(context.tr("Gallery"),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86),),),
             ),
           ])
         ],
@@ -317,7 +332,7 @@ class EditState extends State<EditCard> {
                     context.tr('Edit card'),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Color(0xFF133039),
+                      color: Color.fromARGB(255, 2, 84, 86),
                       fontSize: 24,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w700,),
@@ -335,8 +350,9 @@ class EditState extends State<EditCard> {
                   Text(
                     context.tr('Personal Details'),
                       style: TextStyle(
-                          color: Color(0xFF133039),
+                        color: Color.fromARGB(255, 2, 84, 86),
                           fontSize: 20,
+                        fontWeight: FontWeight.bold,
                           fontFamily: 'Inter',
                       ),
                   ),
@@ -511,9 +527,10 @@ class EditState extends State<EditCard> {
                   Text(
                     context.tr('Choose links to edit'),
                     style: GoogleFonts.robotoCondensed(
+                        color: Color.fromARGB(255, 2, 84, 86),
                         fontSize: 25, fontWeight: FontWeight.bold),
                   ),
-
+SizedBox(height: 10,),
                   SocialMedia(
                     saved: links,
                     paddin: EdgeInsets.only(
@@ -612,8 +629,8 @@ class EditState extends State<EditCard> {
                             },
                             child: selectedLogo != null
                                 ? Container(
-                              height: 100,
-                              width: 100,
+                              height: 150,
+                              width: 150,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(6),
                                 child: Image.file(
@@ -643,6 +660,7 @@ class EditState extends State<EditCard> {
                                     : Image.network(
                                   logoURL ?? '',
                                   height: 170,
+                                  width: 170,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -782,6 +800,7 @@ class EditState extends State<EditCard> {
                           'ImageURL': imageURL, // Update imageURL
                           'LogoURL': logoURL,   // Update logoURL
                           'PortfolioURL': portfolioURL, // Update portfolioURL
+                          'defaultLogo':'https://firebasestorage.googleapis.com/v0/b/hiwetaan.appspot.com/o/images%2Fuser_image.jpg?alt=media&token=f0359660-ed0d-4edd-9df3-85a8fc087d7a',
                         };
 
                         // Update user's card information in Firestore
@@ -800,6 +819,7 @@ class EditState extends State<EditCard> {
 
                         // Navigate back to the profile page
                         context.pushPage(profiletest());
+
                       }
                     },
                     style: ElevatedButton.styleFrom(
