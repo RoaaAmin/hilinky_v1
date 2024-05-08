@@ -36,10 +36,12 @@ class _MyCardState extends State<MyCard> {
 
   @override
   void initState() {
+    super.initState();
     getUserData();
     getLinks();
-    super.initState();
+
   }
+
   void getLinks() async {
     await FirebaseFirestore.instance
         .collection('Cards')
@@ -233,18 +235,38 @@ class _MyCardState extends State<MyCard> {
                                       height: 80,
                                       width: 80,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF495592),
+                                        color: Colors.white,
                                         border: Border.all(
                                           color: Colors.white,
                                           width: 1,
                                         ),
                                         borderRadius: BorderRadius.circular(120),
                                         image: DecorationImage(
-                                          image: NetworkImage(cardsDocs[i].data()!['ImageURL']),
-                                          fit: BoxFit.fill,
+                                          image: cardsDocs[i].data()!['LogoURL'] != null
+                                              ? NetworkImage(cardsDocs[i].data()!['LogoURL']!)
+                                              : NetworkImage(cardsDocs[i].data()!['defaultLogo']!),
+                                          //fit: BoxFit.fill,
                                         ),
                                       ),
                                     ),
+
+
+                                    // Container(
+                                    //   height: 80,
+                                    //   width: 80,
+                                    //   decoration: BoxDecoration(
+                                    //     color: Colors.white,
+                                    //     border: Border.all(
+                                    //       color: Colors.white,
+                                    //       width: 1,
+                                    //     ),
+                                    //     borderRadius: BorderRadius.circular(120),
+                                    //     image: DecorationImage(
+                                    //       image: AssetImage('assets/images/HilinkyLogo.png'), // Change 'assets/logo.png' with your logo image path
+                                    //       fit: BoxFit.fill,
+                                    //     ),
+                                    //   ),
+                                    // ),
                                     SizedBox(
                                       width: 10,
                                     ),

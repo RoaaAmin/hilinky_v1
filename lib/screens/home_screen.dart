@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hilinky/components/context.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:line_icons/line_icons.dart';
 import '../auth.dart';
 import '../core/utils/image_constant.dart';
@@ -46,6 +47,28 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     getLinks();
     getuser();
+    checkForUpdate();
+  }
+  Future<void> checkForUpdate() async {
+    print('checking for Update');
+    InAppUpdate.checkForUpdate().then((info) {
+      setState(() {
+        if (info.updateAvailability == UpdateAvailability.updateAvailable) {
+          print('update available');
+          update();
+        }
+      });
+    }).catchError((e) {
+      print(e.toString());
+    });
+  }
+
+  void update() async {
+    print('Updating');
+    await InAppUpdate.startFlexibleUpdate();
+    InAppUpdate.completeFlexibleUpdate().then((_) {}).catchError((e) {
+      print(e.toString());
+    });
   }
 
   @override

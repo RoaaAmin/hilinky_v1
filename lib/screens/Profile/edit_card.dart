@@ -612,8 +612,8 @@ class EditState extends State<EditCard> {
                             },
                             child: selectedLogo != null
                                 ? Container(
-                              height: 100,
-                              width: 100,
+                              height: 150,
+                              width: 150,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(6),
                                 child: Image.file(
@@ -643,6 +643,7 @@ class EditState extends State<EditCard> {
                                     : Image.network(
                                   logoURL ?? '',
                                   height: 170,
+                                  width: 170,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -782,6 +783,7 @@ class EditState extends State<EditCard> {
                           'ImageURL': imageURL, // Update imageURL
                           'LogoURL': logoURL,   // Update logoURL
                           'PortfolioURL': portfolioURL, // Update portfolioURL
+                          'defaultLogo':'https://firebasestorage.googleapis.com/v0/b/hiwetaan.appspot.com/o/images%2Fuser_image.jpg?alt=media&token=f0359660-ed0d-4edd-9df3-85a8fc087d7a',
                         };
 
                         // Update user's card information in Firestore

@@ -196,6 +196,7 @@ class _CreateCardState extends State<CreateCard> {
             "cardId": uuid.v4(),
             "PostedByUID": FirebaseAuth.instance.currentUser!.uid,
             "City": selectedCity,
+            'defaultLogo':'https://firebasestorage.googleapis.com/v0/b/hiwetaan.appspot.com/o/images%2Fuser_image.jpg?alt=media&token=f0359660-ed0d-4edd-9df3-85a8fc087d7a',
             "TimeStamp": DateTime.now(),
           });
 
