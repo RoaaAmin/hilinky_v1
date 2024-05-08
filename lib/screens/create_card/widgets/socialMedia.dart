@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -33,19 +34,19 @@ class _SocialMediaState extends State<SocialMedia> {
 
   // icons
   List<Widget> socialMediaIcons = [
-    const FaIcon(FontAwesomeIcons.facebook),
-    const FaIcon(FontAwesomeIcons.twitter),
-    const FaIcon(FontAwesomeIcons.linkedin),
-    const FaIcon(FontAwesomeIcons.youtube),
-    const FaIcon(FontAwesomeIcons.instagram),
-    const FaIcon(FontAwesomeIcons.telegram),
-    const FaIcon(FontAwesomeIcons.whatsapp),
-    const FaIcon(FontAwesomeIcons.github),
-    const FaIcon(FontAwesomeIcons.discord),
-    const FaIcon(FontAwesomeIcons.figma),
-    const FaIcon(FontAwesomeIcons.dribbble),
-    const FaIcon(FontAwesomeIcons.behance),
-    const FaIcon(FontAwesomeIcons.location),
+    const FaIcon(FontAwesomeIcons.facebook,  color: Color(0xFF7EA9BA),),
+    const FaIcon(FontAwesomeIcons.twitter , color: Color(0xFF7EA9BA),),
+    const FaIcon(FontAwesomeIcons.linkedin , color: Color(0xFF7EA9BA),),
+    const FaIcon(FontAwesomeIcons.youtube,  color: Color(0xFF7EA9BA),),
+    const FaIcon(FontAwesomeIcons.instagram,  color: Color(0xFF7EA9BA),),
+    const FaIcon(FontAwesomeIcons.telegram,  color: Color(0xFF7EA9BA),),
+    const FaIcon(FontAwesomeIcons.whatsapp,  color: Color(0xFF7EA9BA),),
+    const FaIcon(FontAwesomeIcons.github,  color: Color(0xFF7EA9BA),),
+    const FaIcon(FontAwesomeIcons.discord,  color: Color(0xFF7EA9BA),),
+    const FaIcon(FontAwesomeIcons.figma,  color: Color(0xFF7EA9BA),),
+    const FaIcon(FontAwesomeIcons.dribbble,  color: Color(0xFF7EA9BA),),
+    const FaIcon(FontAwesomeIcons.behance, color: Color(0xFF7EA9BA),),
+    const FaIcon(FontAwesomeIcons.location,  color: Color(0xFF7EA9BA),),
   ];
 
   var entredLink = TextEditingController();
@@ -152,8 +153,8 @@ class _SocialMediaState extends State<SocialMedia> {
         child: Column(
           children: <Widget>[
             TextField(
-              decoration: const InputDecoration(
-                labelText: "Enter a link",
+              decoration:  InputDecoration(
+                labelText: context.tr("Enter a link"),
               ),
               maxLines: 1 ,
               controller: entredLink,
@@ -170,7 +171,7 @@ class _SocialMediaState extends State<SocialMedia> {
                       Navigator.of(context).pop();
                     });
                   },
-                  child: const Text("Cancel"),
+                  child:Text( context.tr("Cancel"), style: TextStyle(color: Color.fromARGB(255, 2, 84, 86),),),
                 ),
                 const SizedBox(width: 10),
                 TextButton(
@@ -181,7 +182,7 @@ class _SocialMediaState extends State<SocialMedia> {
                     Navigator.of(context).pop();
                     entredLink.clear();
                   },
-                  child: const Text("Save"),
+                  child:  Text( context.tr("Save") , style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)))
                 ),
               ],
             ),

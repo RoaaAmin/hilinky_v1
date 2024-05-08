@@ -66,7 +66,7 @@ class EditState extends State<EditCard> {
           Text(
       context.tr("Upload your photo"),
             style: TextStyle(
-              color: Colors.indigo[400],
+              color: Color.fromARGB(255, 2, 84, 86),
               fontWeight: FontWeight.bold,
               fontSize: 20.0,
             ),
@@ -80,7 +80,7 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getImage(ImageSource.camera);
               },
-              label: Text(context.tr("Camera"),style: TextStyle(color: Colors.indigo[400]),),
+              label: Text(context.tr("Camera"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
             SizedBox(
               width: 20,
@@ -90,7 +90,7 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getImage(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery"),style: TextStyle(color: Colors.indigo[400]),),
+              label: Text(context.tr("Gallery"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
           ])
         ],
@@ -111,7 +111,7 @@ class EditState extends State<EditCard> {
           Text(
       context.tr("Upload logo"),
             style: TextStyle(
-              color: Colors.indigo[400],
+              color: Color.fromARGB(255, 2, 84, 86),
               fontWeight: FontWeight.bold,
               fontSize: 20.0,
             ),
@@ -125,7 +125,7 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getLogo(ImageSource.camera);
               },
-              label: Text(context.tr("Camera"),style: TextStyle(color: Colors.indigo[400]),),
+              label: Text(context.tr("Camera"),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)),),
             ),
             SizedBox(
               width: 20,
@@ -135,7 +135,7 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getLogo(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery"),style: TextStyle(color: Colors.indigo[400]),),
+              label: Text(context.tr("Gallery"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
           ])
         ],
@@ -163,7 +163,7 @@ class EditState extends State<EditCard> {
           Text(
       context.tr("Upload portfolio"),
             style: TextStyle(
-              color: Colors.indigo[400],
+              color: Color.fromARGB(255, 2, 84, 86),
               fontWeight: FontWeight.bold,
               fontSize: 20.0,
             ),
@@ -177,7 +177,7 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getPortfolio(ImageSource.camera);
               },
-              label: Text(context.tr("Camera"),style: TextStyle(color: Colors.indigo[400]),),
+              label: Text(context.tr("Camera"),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86),),),
             ),
             SizedBox(
               width: 20,
@@ -187,7 +187,7 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getPortfolio(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery"),style: TextStyle(color: Colors.indigo[400]),),
+              label: Text(context.tr("Gallery"),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86),),),
             ),
           ])
         ],
@@ -332,7 +332,7 @@ class EditState extends State<EditCard> {
                     context.tr('Edit card'),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Color(0xFF133039),
+                      color: Color.fromARGB(255, 2, 84, 86),
                       fontSize: 24,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w700,),
@@ -350,8 +350,9 @@ class EditState extends State<EditCard> {
                   Text(
                     context.tr('Personal Details'),
                       style: TextStyle(
-                          color: Color(0xFF133039),
+                        color: Color.fromARGB(255, 2, 84, 86),
                           fontSize: 20,
+                        fontWeight: FontWeight.bold,
                           fontFamily: 'Inter',
                       ),
                   ),
@@ -526,9 +527,10 @@ class EditState extends State<EditCard> {
                   Text(
                     context.tr('Choose links to edit'),
                     style: GoogleFonts.robotoCondensed(
+                        color: Color.fromARGB(255, 2, 84, 86),
                         fontSize: 25, fontWeight: FontWeight.bold),
                   ),
-
+SizedBox(height: 10,),
                   SocialMedia(
                     saved: links,
                     paddin: EdgeInsets.only(

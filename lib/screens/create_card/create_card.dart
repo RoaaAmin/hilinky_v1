@@ -477,16 +477,19 @@ class _CreateCardState extends State<CreateCard> {
                     Text(
               context.tr('Create Card'),
                       style: GoogleFonts.robotoCondensed(
+                          color: const Color.fromARGB(255, 2, 84, 86),
                           fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       'Fill the information to display it in your card.',
-                      style: GoogleFonts.robotoCondensed(fontSize: 18),
+                      style: GoogleFonts.robotoCondensed(fontSize: 18,
+                        color: Color(0xFF7EA9BA),)
                     ),
                     SizedBox(height: 30),
                     Text(
                         context.tr('Personal Details'),
                       style: GoogleFonts.robotoCondensed(
+                          color: const Color.fromARGB(255, 2, 84, 86),
                           fontSize: 25, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 10),
@@ -498,7 +501,7 @@ class _CreateCardState extends State<CreateCard> {
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.black, // Border color
-                            width: 2, // Border width
+                            width: 1, // Border width
                           ),
                         ),
 // email text
@@ -509,6 +512,7 @@ class _CreateCardState extends State<CreateCard> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: context.tr('Prefix (optional)'),
+
                             ),
                             onChanged: (val) {
                               prefix = val;
@@ -526,7 +530,7 @@ class _CreateCardState extends State<CreateCard> {
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.black, // Border color
-                            width: 2, // Border width
+                            width: 1, // Border width
                           ),
                         ),
 // email text
@@ -555,7 +559,7 @@ class _CreateCardState extends State<CreateCard> {
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.black, // Border color
-                            width: 2, // Border width
+                            width: 1, // Border width
                           ),
                         ),
                         child: Padding(
@@ -582,7 +586,7 @@ class _CreateCardState extends State<CreateCard> {
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.black, // Border color
-                            width: 2, // Border width
+                            width: 1, // Border width
                           ),
                         ),
                         child: Padding(
@@ -609,7 +613,7 @@ class _CreateCardState extends State<CreateCard> {
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.black, // Border color
-                            width: 2, // Border width
+                            width: 1, // Border width
                           ),
                         ),
 // email text
@@ -637,8 +641,9 @@ class _CreateCardState extends State<CreateCard> {
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.black, // Border color
-                            width: 2, // Border width
+                            width: 1, // Border width
                           ),
+
                         ),
 // email text
                         child: Padding(
@@ -660,6 +665,7 @@ class _CreateCardState extends State<CreateCard> {
                     Text(
                         context.tr('Contact'),
                       style: GoogleFonts.robotoCondensed(
+                          color: const Color.fromARGB(255, 2, 84, 86),
                           fontSize: 25, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 10),
@@ -671,7 +677,7 @@ class _CreateCardState extends State<CreateCard> {
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.black, // Border color
-                            width: 2, // Border width
+                            width: 1, // Border width
                           ),
                         ),
 // email text
@@ -699,7 +705,7 @@ class _CreateCardState extends State<CreateCard> {
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.black, // Border color
-                            width: 2, // Border width
+                            width: 1, // Border width
                           ),
                         ),
 // email text
@@ -729,8 +735,10 @@ class _CreateCardState extends State<CreateCard> {
                     Text(
                         context.tr('Choose links to add'),
                       style: GoogleFonts.robotoCondensed(
+                          color: const Color.fromARGB(255, 2, 84, 86),
                           fontSize: 25, fontWeight: FontWeight.bold),
                     ),
+                    SizedBox(height: 10,),
                     SocialMedia(
                       saved: links,
                       paddin: EdgeInsets.only(
@@ -780,16 +788,16 @@ class _CreateCardState extends State<CreateCard> {
                                     color: Colors.white,
                                     border: Border.all(
                                       color: Colors.black,
-                                      width: 2,
+                                      width: 1,
                                     ),
                                     borderRadius: BorderRadius.circular(6)),
                                 width: MediaQuery.of(context).size.width,
                                 child: Column(
                                   children: [
                                     SizedBox(height: 30),
-                                    Icon(Icons.account_box, size: 50.0),
+                                    Icon(Icons.account_box, size: 50.0, color: Color.fromARGB(255, 2, 84, 86)),
                                     Text(
-                                      context.tr('Upload your photo'),
+                                      context.tr('Upload your photo',),style: TextStyle(color: const Color.fromARGB(255, 2, 84, 86),),
                                     ),
                                   ],
                                 )),
@@ -839,7 +847,7 @@ class _CreateCardState extends State<CreateCard> {
                                         color: Colors.white,
                                         border: Border.all(
                                           color: Colors.black,
-                                          width: 2,
+                                          width: 1,
                                         ),
                                         borderRadius: BorderRadius.circular(6)),
                                     width: (MediaQuery.of(context).size.width /
@@ -848,9 +856,9 @@ class _CreateCardState extends State<CreateCard> {
                                     child: Column(
                                       children: [
                                         SizedBox(height: 30),
-                                        Icon(Icons.upload, size: 50.0),
+                                        Icon(Icons.upload, size: 50.0,color: Color.fromARGB(255, 2, 84, 86)),
                                         Text(
-                                          context.tr('Upload logo'),
+                                          context.tr('Upload logo'),style: TextStyle(color: const Color.fromARGB(255, 2, 84, 86),),
                                         ),
                                       ],
                                     )),
@@ -899,7 +907,7 @@ class _CreateCardState extends State<CreateCard> {
                                         color: Colors.white,
                                         border: Border.all(
                                           color: Colors.black,
-                                          width: 2,
+                                          width: 1,
                                         ),
                                         borderRadius: BorderRadius.circular(6)),
                                     width: (MediaQuery.of(context).size.width /
@@ -908,9 +916,10 @@ class _CreateCardState extends State<CreateCard> {
                                     child: Column(
                                       children: [
                                         SizedBox(height: 30),
-                                        Icon(Icons.upload, size: 50.0),
+                                        Icon(Icons.upload, size: 50.0, color:Color.fromARGB(255, 2, 84, 86)),
                                         Text(
-                                          context.tr('Upload portfolio'),
+                                          context.tr('Upload portfolio'),style: TextStyle(color: const Color.fromARGB(255, 2, 84, 86),),
+
                                         ),
                                       ],
                                     )),
@@ -925,20 +934,22 @@ class _CreateCardState extends State<CreateCard> {
                       padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: GestureDetector(
                         onTap: uploadCard,
-                        child: Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(12)),
-                          child: Center(
-                              child: Text(
-                                  context.tr('Continue'),
-                            style: GoogleFonts.roboto(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
-                          )),
+                        child: Center(
+                          child: Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 2, 84, 86),
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Center(
+                                child: Text(
+                                    context.tr('Continue'),
+                              style: GoogleFonts.roboto(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            )),
+                          ),
                         ),
                       ),
                     ),
