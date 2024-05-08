@@ -49,25 +49,53 @@ class _HomeScreenState extends State<HomeScreen> {
     getuser();
     checkForUpdate();
   }
+
   Future<void> checkForUpdate() async {
-    print('checking for Update');
+    print('Checking for Update');
     InAppUpdate.checkForUpdate().then((info) {
-      setState(() {
-        if (info.updateAvailability == UpdateAvailability.updateAvailable) {
-          print('update available');
-          update();
-        }
-      });
+      if (info.updateAvailability == UpdateAvailability.updateAvailable) {
+        print('Update available');
+        showUpdateDialog();
+      }
     }).catchError((e) {
-      print(e.toString());
+      print('Error checking for update: $e');
     });
+  }
+
+  void showUpdateDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Update Available'),
+          content: Text(
+              'A new version of the app is available. Please update to the latest version to continue using the app.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Not Now'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                update();
+              },
+              child: Text('Update'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void update() async {
     print('Updating');
     await InAppUpdate.startFlexibleUpdate();
     InAppUpdate.completeFlexibleUpdate().then((_) {}).catchError((e) {
-      print(e.toString());
+      print('Error completing update: $e');
     });
   }
 
@@ -98,9 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildDefaultHomeScreen() {
-
     return Scaffold(
-
       appBar: AppBar(
         leadingWidth: double.maxFinite,
         leading: AppbarImage(
@@ -126,7 +152,8 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(context.tr('Start your journey by creating your card'),
+            Text(
+              context.tr('Start your journey by creating your card'),
               style: TextStyle(
                 color: Color(0xFF121212),
                 fontSize: 15,
@@ -137,7 +164,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-
               onPressed: () {
                 context.pushPage(CreateCard());
               },
@@ -148,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
-              child:Text(
+              child: Text(
                 context.tr('Create Card'),
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -174,10 +200,8 @@ class _HomeScreenState extends State<HomeScreen> {
         // shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16.0))),
         // child: Image.asset('../assets/images/QRScanCode.svg'),
       ),
-
     );
   }
-
 
   void getLinks() async {
     await FirebaseFirestore.instance
