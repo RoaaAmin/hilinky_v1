@@ -189,18 +189,6 @@ class EditState extends State<Edit> {
           padding: const EdgeInsets.all(20.0),
           child: ListView(
               children: [
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.start,
-                //   children: [
-                //     IconButton(
-                //         icon: Icon(LineIcons.arrowLeft, size:30.0),
-                //         onPressed: () {
-                //           Navigator.of(context).pushReplacement(CupertinoPageRoute(
-                //               builder: (BuildContext context) => Home()));
-                //         }
-                //     ),
-                //   ],
-                // ),
                 if (!lodaing)
                   Container(
                     child: ClipOval(
@@ -236,57 +224,6 @@ class EditState extends State<Edit> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Text(
-                      //   "First Name",
-                      //   style: CustomTextStyles.titleMediumTeal300,
-                      // ),
-                      // TextFormField(
-                      //   onChanged: (value) => FirstName = value,
-                      //   controller: TextEditingController(text: FirstName),
-                      //   decoration: InputDecoration(
-                      //     // labelText: context.tr('First Name'),
-                      //     border: OutlineInputBorder(
-                      //         borderRadius:
-                      //         BorderRadius.all(Radius.circular(10))),
-                      //   ),
-                      //   //   autofillHints:,
-                      //   cursorColor: Colors.black,
-                      //   // The validator receives the text that the user has entered.
-                      //   validator: (value) {
-                      //     if (value == null || value.isEmpty) {
-                      //       return context.tr("Please enter some text");
-                      //     }
-                      //     return null;
-                      //   },
-                      // ),
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
-                      // Text(
-                      //   "Last Name",
-                      //   style: CustomTextStyles.titleMediumTeal300,
-                      // ),
-                      // TextFormField(
-                      //   onChanged: (value) => LastName = value,
-                      //   controller: TextEditingController(text: LastName),
-                      //   decoration: InputDecoration(
-                      //     // labelText: context.tr('Last Name'),
-                      //     // hintText: 'name',
-                      //     border: OutlineInputBorder(
-                      //         borderRadius:
-                      //         BorderRadius.all(Radius.circular(10))),
-                      //   ),
-                      //   //   autofillHints:,
-                      //   cursorColor: Colors.black,
-                      //   // The validator receives the text that the user has entered.
-                      //   validator: (value) {
-                      //     if (value == null || value.isEmpty) {
-                      //       return context.tr("Please enter some text");
-                      //     }
-                      //     return null;
-                      //   },
-                      // ),
-
                       Row(
                         children: [
                           Expanded(
@@ -616,7 +553,6 @@ class EditState extends State<Edit> {
                             'sCity': city,
                             'UserProfileImage': selectedImage,
                           });
-
                           // Show success message
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -626,7 +562,11 @@ class EditState extends State<Edit> {
                           );
 
                           // Navigate back to profile page
-                          context.pushPage(profiletest());
+                         // context.pushPage(profiletest());
+                          Navigator.of(context).pop();
+
+
+
                         });
                       } else {
                         // If no image selected, update user's information without changing the image
