@@ -203,6 +203,8 @@ class _CreateCardState extends State<CreateCard> {
           print('Card saved');
           // Navigate to the 'myCard' screen
           Navigator.pushNamed(context, 'myCard');
+         //  MaterialPageRoute route = MaterialPageRoute(builder: (context) => MyCard());
+         //  Navigator.push(context, route);
         }
       } catch (e) {
         // Handle errors

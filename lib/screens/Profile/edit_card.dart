@@ -802,6 +802,7 @@ class EditState extends State<EditCard> {
 
                         // Navigate back to the profile page
                         context.pushPage(profiletest());
+
                       }
                     },
                     style: ElevatedButton.styleFrom(

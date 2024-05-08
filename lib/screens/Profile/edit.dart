@@ -651,7 +651,8 @@ class EditState extends State<Edit> {
                         );
 
                         // Navigate back to profile page
-                        context.pushPage(profiletest());
+                      //  context.pushPage(profiletest());
+                        Navigator.of(context).pop();
                       }
                     }
                   },
