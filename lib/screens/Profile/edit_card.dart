@@ -64,8 +64,10 @@ class EditState extends State<EditCard> {
       child: Column(
         children: <Widget>[
           Text(
-            "",
+      context.tr("Upload your photo"),
             style: TextStyle(
+              color: Colors.indigo[400],
+              fontWeight: FontWeight.bold,
               fontSize: 20.0,
             ),
           ),
@@ -78,14 +80,17 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getImage(ImageSource.camera);
               },
-              label: Text(context.tr("Camera")),
+              label: Text(context.tr("Camera"),style: TextStyle(color: Colors.indigo[400]),),
+            ),
+            SizedBox(
+              width: 20,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getImage(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery")),
+              label: Text(context.tr("Gallery"),style: TextStyle(color: Colors.indigo[400]),),
             ),
           ])
         ],
@@ -104,8 +109,10 @@ class EditState extends State<EditCard> {
       child: Column(
         children: <Widget>[
           Text(
-            "",
+      context.tr("Upload logo"),
             style: TextStyle(
+              color: Colors.indigo[400],
+              fontWeight: FontWeight.bold,
               fontSize: 20.0,
             ),
           ),
@@ -118,14 +125,17 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getLogo(ImageSource.camera);
               },
-              label: Text(context.tr("Camera")),
+              label: Text(context.tr("Camera"),style: TextStyle(color: Colors.indigo[400]),),
+            ),
+            SizedBox(
+              width: 20,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getLogo(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery")),
+              label: Text(context.tr("Gallery"),style: TextStyle(color: Colors.indigo[400]),),
             ),
           ])
         ],
@@ -151,8 +161,10 @@ class EditState extends State<EditCard> {
       child: Column(
         children: <Widget>[
           Text(
-            "",
+      context.tr("Upload portfolio"),
             style: TextStyle(
+              color: Colors.indigo[400],
+              fontWeight: FontWeight.bold,
               fontSize: 20.0,
             ),
           ),
@@ -165,14 +177,17 @@ class EditState extends State<EditCard> {
               onPressed: () {
                 getPortfolio(ImageSource.camera);
               },
-              label: Text(context.tr("Camera")),
+              label: Text(context.tr("Camera"),style: TextStyle(color: Colors.indigo[400]),),
+            ),
+            SizedBox(
+              width: 20,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getPortfolio(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery")),
+              label: Text(context.tr("Gallery"),style: TextStyle(color: Colors.indigo[400]),),
             ),
           ])
         ],

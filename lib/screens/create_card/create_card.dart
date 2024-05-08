@@ -348,6 +348,9 @@ class _CreateCardState extends State<CreateCard> {
               },
               label: Text(context.tr("Camera")),
             ),
+            SizedBox(
+              width: 20,
+            ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
@@ -388,6 +391,9 @@ class _CreateCardState extends State<CreateCard> {
               },
               label: Text(context.tr("Camera")),
             ),
+            SizedBox(
+              width: 20,
+            ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
@@ -427,6 +433,9 @@ class _CreateCardState extends State<CreateCard> {
                 getPortfolio(ImageSource.camera);
               },
               label: Text(context.tr("Camera")),
+            ),
+            SizedBox(
+              width: 20,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
