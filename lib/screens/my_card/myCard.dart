@@ -365,7 +365,7 @@ class _MyCardState extends State<MyCard> {
                                       SizedBox(
                                         height: 40,
                                         child: Links.isEmpty
-                                            ? Text(context.tr('No links'))
+                                            ? Text(context.tr(''))
                                             : ListView.builder(
                                           scrollDirection: Axis.horizontal,
                                           shrinkWrap: true,
