@@ -68,22 +68,22 @@ class _HomeScreenState extends State<HomeScreen> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Update Available'),
+          title: Text('Update Available',style: TextStyle(color: Color(0XFFEE6363),)),
           content: Text(
-              'A new version of the app is available. Please update to the latest version to continue using the app.'),
+            'A new version of the app is available. Please update to the latest version to continue using the app.',style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)),),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Not Now'),
+              child: Text('Not Now',style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)),),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 update();
               },
-              child: Text('Update'),
+              child: Text('Update',style: TextStyle(color: Color.fromARGB(255, 2, 84, 86))),
             ),
           ],
         );
@@ -115,6 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // If an error occurs while fetching data, display an error message.
           return Text('Error: ${snapshot.error}');
         } else if (!snapshot.hasData || !snapshot.data!.exists) {
+
           // If no card data exists for the user, display the default home screen.
           return _buildDefaultHomeScreen();
         } else {
@@ -127,6 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildDefaultHomeScreen() {
     return Scaffold(
+
       appBar: AppBar(
         leadingWidth: double.maxFinite,
         leading: AppbarImage(
@@ -152,6 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+
             Text(
               context.tr('Start your journey by creating your card'),
               style: TextStyle(
