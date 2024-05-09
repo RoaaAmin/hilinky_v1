@@ -202,8 +202,7 @@ class _CreateCardState extends State<CreateCard> {
           });
 
           print('Card saved');
-          showInSnackBar('Your card has been saved successfully',
-              Color.fromARGB(255, 149, 181, 236),Colors.white, 3, context, _scaffoldKey);
+
           // Navigate to the 'myCard' screen
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(

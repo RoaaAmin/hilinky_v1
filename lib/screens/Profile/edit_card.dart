@@ -767,8 +767,7 @@ SizedBox(height: 10,),
                             portfolioURL = await snapshot.ref.getDownloadURL();
                           }
                         }
-                        showInSnackBar(context.tr('Please create your card first'),
-                            Colors.red,Colors.white, 3, context, _scaffoldKey);
+
                         // Fetch existing card data from Firestore
                         DocumentSnapshot<Map<String, dynamic>> cardSnapshot = await FirebaseFirestore.instance
                             .collection('Cards')
@@ -801,7 +800,7 @@ SizedBox(height: 10,),
                           'Links': updatedLinks, // Updated links in Firestore
                           // Include other fields to update here...
                           'ImageURL': imageURL, // Update imageURL
-                          'LogoURL': logoURL,   // Update logoURL
+                          'LogoURL': logoURL, // Update logoURL
                           'PortfolioURL': portfolioURL, // Update portfolioURL
                           'defaultLogo':'https://firebasestorage.googleapis.com/v0/b/hiwetaan.appspot.com/o/images%2Fuser_image.jpg?alt=media&token=f0359660-ed0d-4edd-9df3-85a8fc087d7a',
                         };
@@ -814,15 +813,16 @@ SizedBox(height: 10,),
 
                         // Show a snackbar to indicate successful save
                         showInSnackBar(context.tr('Your card information has been saved successfully'),
-                            Color.fromARGB(255, 149, 181, 236),Colors.white, 3, context, _scaffoldKey);
+                            Colors.green,Colors.white, 3, context, _scaffoldKey);
 
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => Home(currentIndex: 2),
+                            builder: (context) => Home(currentIndex: 1),
                           ),
                         );
-
-
+                      } else {
+                        showInSnackBar(context.tr('Please create your card first'),
+                            Colors.red,Colors.white, 3, context, _scaffoldKey);
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -836,6 +836,7 @@ SizedBox(height: 10,),
                       style: TextStyle(color: Colors.white),
                     ),
                   )
+
 
                 ]
             )));

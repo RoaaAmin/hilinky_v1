@@ -247,7 +247,7 @@ class _MyCardState extends State<MyCard> {
                                           image: cardsDocs[i].data()!['LogoURL'] != null
                                               ? NetworkImage(cardsDocs[i].data()!['LogoURL']!)
                                               : NetworkImage(cardsDocs[i].data()!['defaultLogo']!),
-                                          //fit: BoxFit.fill,
+                                          fit: BoxFit.fill,
                                         ),
                                       ),
                                     ),
