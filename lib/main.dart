@@ -40,6 +40,7 @@ void main() async {
       supportedLocales: [
         Locale('en'),
         Locale('ar'),
+        Locale('fr'),
       ],
       fallbackLocale: Locale('en'),
       assetLoader: CodegenLoader(),

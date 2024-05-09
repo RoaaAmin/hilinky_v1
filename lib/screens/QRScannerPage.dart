@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -145,7 +146,7 @@ class _QRScannerPageState extends State<QRScannerPage> {
         Expanded(
           flex: 1,
           child: Center(
-            child: Text('Scan a QR code'),
+            child: Text(context.tr('Scan a QR code')),
           ),
         ),
       ],
@@ -365,7 +366,7 @@ class _QRScannerPageState extends State<QRScannerPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('QR Code Scanner'),
+          title: Text(context.tr('QR Code Scannery')),
         ),
         body: curent);
   }

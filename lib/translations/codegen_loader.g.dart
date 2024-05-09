@@ -130,11 +130,10 @@ class CodegenLoader extends AssetLoader {
     "By ticking this box I agree that I have read the ": "بالضغط على هذا المربع، أوافق على أنني قرأت ",
     "Password reset email sent. Please check your email.": "تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور. يرجى التحقق من بريدك الإلكتروني.",
     "Failed to send password reset email.": "فشل في إرسال بريد إعادة تعيين كلمة المرور.",
-    "Please create your card first" : "الرجاء إنشاء بطاقتك أولاً"
-
-
-
-
+    "Please create your card first" : "الرجاء إنشاء بطاقتك أولاً",
+    "English (US)":"الإنجليزية",
+    "French" : "الفرنسية",
+    "Scan a QR code" : " امسح رمز الاستجابة السريعة"
 };
   static const Map<String, dynamic> en = {
     "Select Your Language": "Select Your Language",
@@ -257,11 +256,158 @@ class CodegenLoader extends AssetLoader {
     "By ticking this box I agree that I have read the ":"By ticking this box I agree that I have read the ",
     "Password reset email sent. Please check your email.":"Password reset email sent. Please check your email.",
     "Failed to send password reset email.": "Failed to send password reset email.",
-    "Please create your card first" : "Please create your card first"
+    "Please create your card first" : "Please create your card first",
+    "English (US)": "English (US)",
+    "French": "French",
+    "Scan a QR code" : "Scan a QR code",
 
   };
+  static const Map<String, dynamic> fr = {
+    "Select Your Language": "Sélectionnez votre langue",
+    "Arabic": "Arabe",
+    "English": "Anglais",
+    "About Us": "À propos de nous",
+    "Home": "Accueil",
+    "Settings": "Paramètres",
+    "Home Screen": "Écran d'accueil",
+    "Start your journey by creating your card":
+    "Commencez votre voyage en créant votre carte",
+    "Create Card": "Créer une carte",
+    "My Profile": "Mon profil",
+    "Edit Profile Information": "Modifier les informations du profil",
+    "Edit My Card": "Modifier ma carte",
+    "Language": "Langue",
+    "Camera": "Caméra",
+    "Gallery": "Galerie",
+    "Pick Image": "Choisir une image",
+    "First Name": "Prénom",
+    "Last Name": "Nom de famille",
+    "Username": "Nom d'utilisateur",
+    "Email": "E-mail",
+    "Phone Number": "Numéro de téléphone",
+    "Nationality": "Nationalité",
+    "City": "Ville",
+    "Your information has been saved successfully":
+    "Vos informations ont été enregistrées avec succès",
+    "Save": "Sauvegarder",
+    "Log Out": "Déconnexion",
+    "Please enter some text": "Veuillez entrer du texte",
+    "Enter a link": "Entrez un lien",
+    "Cancel": "Annuler",
+    "QR Code Scanner": "Scanner de code QR",
+    "Contact information saved to contacts!":
+    "Les informations de contact ont été enregistrées dans les contacts!",
+    "Welcome Back!": "Bienvenue de retour!",
+    "Happy to see you again, enter your account details":
+    "Heureux de vous revoir, saisissez les détails de votre compte",
+    "Email or Username": "E-mail ou Nom d'utilisateur",
+    "Example@Example.com": "Exemple@exemple.com",
+    "Password": "Mot de passe",
+    "Your Password": "Votre mot de passe",
+    "Forgot Password?": "Mot de passe oublié?",
+    "Login": "Connexion",
+    "Don’t have an account?": "Vous n'avez pas de compte?",
+    "Sign up Now": "Inscrivez-vous maintenant",
+    "Login failed, incorrect account information.":
+    "Échec de la connexion, informations de compte incorrectes.",
+    "Oops, Your email is not verified, Please verify your email":
+    "Oups, votre e-mail n'est pas vérifié, veuillez vérifier votre e-mail",
+    "Invalid Email or Username": "E-mail ou nom d'utilisateur invalide",
+    "There is no record for this email": "Il n'y a aucun enregistrement pour cet e-mail",
+    "Reset password email has been sent": "Un e-mail de réinitialisation du mot de passe a été envoyé",
+    "An error occurred while logging in.": "Une erreur s'est produite lors de la connexion.",
+    "No user found with the provided email/username.": "Aucun utilisateur trouvé avec l'e-mail/nom d'utilisateur fourni.",
+    "No links": "Pas de liens",
+    "Prefix": "Préfixe",
+    "Position": "Position",
+    "Middle Name": "Deuxième prénom",
+    "CompanyName": "Nom de la compagnie",
+    "Choose links to edit": "Choisissez les liens à modifier",
+    "Your card information has been saved successfully":
+    "Les informations de votre carte ont été enregistrées avec succès",
+    "Position: ": "Poste: ",
+    "name:": "prénom:",
+    "?": "?",
+    "To create and design YOUR Elegant  business card,": "Pour créer et concevoir VOTRE carte de visite élégante,",
+    " We offer the best solutions to transform your traditional business card into a simple and innovative digital experience. \n":
+    " Nous offrons les meilleures solutions pour transformer votre carte de visite traditionnelle en une expérience numérique simple et innovante. \n",
+    "Individual": "Individuel",
+    "Dive into creativity without any strings attached!":
+    "Plongez dans la créativité sans aucune restriction!",
+    "One design.": "Un design.",
+    "Create card.": "Créer une carte.",
+    "Edit card.": "Modifier la carte.",
+    "Barcode Scanning.": "Numérisation de codes-barres.",
+    "To create and design YOUR Elegant business card,":
+    "Pour créer et concevoir VOTRE carte de visite élégante,",
+    "Empower your enterprise with unparalleled creative control!":
+    "Donnez à votre entreprise un contrôle créatif inégalé!",
+    "Design with company theme.": "Concevoir avec le thème de l'entreprise.",
+    "Create, Edit, Share, Save Card": "Créer, modifier, partager, sauvegarder la carte",
+    "Providing premium features.": "Fournir des fonctionnalités premium.",
+    "Subscribe Now": "S'abonner maintenant",
+    "Enterprise": "Entreprise",
+    "User Name": "Nom d'utilisateur",
+    "Please wait while the card is being created...":
+    "Veuillez patienter pendant que la carte est en cours de création...",
+    "Error uploading card. Please try again later.":
+    "Erreur de téléchargement de la carte. Veuillez réessayer plus tard.",
+    "Please fill all the required fields and select images":
+    "Veuillez remplir tous les champs requis et sélectionner des images",
+    "Personal Details": "Détails personnels",
+    "Prefix (optional)": "Préfixe (optionnel)",
+    "Middle Name (optional)": "Deuxième prénom (optionnel)",
+    "Contact": "Contact",
+    "Company Name (optional)": "Nom de l'entreprise (optionnel)",
+    "Choose links to add": "Choisissez les liens à ajouter",
+    "Upload your photo": "Téléchargez votre photo",
+    "Upload logo": "Télécharger un logo",
+    "Upload portfolio": "Télécharger un portfolio",
+    "Continue": "Continuer",
+    "Digitize Business Cards": "Numériser les cartes de visite",
+    "Say goodbye to traditional business cards. Easily digitize and organize your contacts.":
+    "Dites adieu aux cartes de visite traditionnelles. Numérisez et organisez facilement vos contacts.",
+    "Discover Professionals": "Découvrez les professionnels",
+    "Expand your network and connect with professionals from various fields.":
+    "Élargissez votre réseau et connectez-vous avec des professionnels de différents domaines.",
+    "Experience seamless contact exchange with NFC business cards.":
+    "Expérience d'échange de contacts sans faille avec les cartes de visite NFC.",
+    "Order NFC Cards": "Commander des cartes NFC",
+    "Next": "Suivant",
+    "Privacy Policy": "Politique de confidentialité",
+    "This Privacy Policy explains how your personal information is collected, used, and disclosed by the Hilinky application.":
+    "Cette politique de confidentialité explique comment vos informations personnelles sont collectées, utilisées et divulguées par l'application Hilinky.",
+    "Information Collection and Use": "Collecte et utilisation des informations",
+    "We may collect some personal information when you use our application. This information is used to provide and improve our services.":
+    "Nous pouvons collecter certaines informations personnelles lorsque vous utilisez notre application. Ces informations sont utilisées pour fournir et améliorer nos services.",
+    "We may also collect information that your device sends whenever you use our Service.":
+    "Nous pouvons également collecter des informations que votre appareil envoie chaque fois que vous utilisez notre service.",
+    "Cookies": "Cookies",
+    "Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers.":
+    "Les cookies sont des fichiers contenant une petite quantité de données qui sont souvent utilisés comme identifiants uniques anonymes.",
+    "Changes to This Privacy Policy": "Modifications de cette politique de confidentialité",
+    "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.":
+    "Nous pouvons mettre à jour notre politique de confidentialité de temps à autre. Par conséquent, il est conseillé de consulter cette page périodiquement pour tout changement.",
+    "Log Data": "Données de journal",
+    "Change Password?": "Changer le mot de passe?",
+    "Contact Us": "Contactez nous",
+    "Privacy & Policy": "Confidentialité et politique",
+    "Please accept the privacy policy.": "Veuillez accepter la politique de confidentialité.",
+    "By ticking this box I agree that I have read the ":
+    "En cochant cette case, j'accepte d'avoir lu la ",
+    "Password reset email sent. Please check your email.":
+    "E-mail de réinitialisation du mot de passe envoyé. Veuillez vérifier votre e-mail.",
+    "Failed to send password reset email.": "Échec de l'envoi de l'e-mail de réinitialisation du mot de passe.",
+    "Please create your card first": "Veuillez d'abord créer votre carte",
+    "English (US)": "Anglais (États-Unis)",
+     "French" : "Français",
+    "Scan a QR code": "Scanner un code QR"
+
+  };
+
   static const Map<String, Map<String, dynamic>> mapLocales = {
     "ar": ar,
-    "en": en
+    "en": en,
+    "fr": fr
   };
 }

@@ -38,7 +38,10 @@ class _LanguageState extends State<Language> {
       context.setLocale(Locale('en'));
     } else if (value == 2) {
       context.setLocale(Locale('ar'));
+    } else if (value == 3) {
+      context.setLocale(Locale('fr'));
     }
+
 
     // Navigate back with replacement to reflect language change
     Navigator.pop(context);
@@ -74,7 +77,7 @@ class _LanguageState extends State<Language> {
         children: <Widget>[
           ListTile(
             titleAlignment: ListTileTitleAlignment.center,
-            title:  Text( context.tr('English (US)')),
+            title:  Text(context.tr('English (US)')),
             leading: Radio(
               value: 1,
               groupValue: selectedOption,
@@ -86,9 +89,21 @@ class _LanguageState extends State<Language> {
           ),
           ListTile(
             titleAlignment: ListTileTitleAlignment.center,
-            title:  Text( context.tr('Arabic')),
+            title:  Text(context.tr('Arabic')),
             leading: Radio(
               value: 2,
+              groupValue: selectedOption,
+              onChanged: (value) {
+                _saveSelectedLanguage(value!);
+              },
+              activeColor: Colors.orange, // Toggle color
+            ),
+          ),
+          ListTile(
+            titleAlignment: ListTileTitleAlignment.center,
+            title:  Text(context.tr('French')),
+            leading: Radio(
+              value: 3,
               groupValue: selectedOption,
               onChanged: (value) {
                 _saveSelectedLanguage(value!);
