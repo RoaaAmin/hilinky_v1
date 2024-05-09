@@ -197,7 +197,6 @@ class _MyCardState extends State<MyCard> {
                 onTap: ()async{
                   //  showUserBottomSheet(postsDocs[i]);
                 },
-
                 child: Column(
                     children: [
                       // SizedBox(height: 60),

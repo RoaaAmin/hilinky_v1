@@ -19,6 +19,7 @@ import 'package:uuid/uuid.dart';
 
 import '../../core/utils/size_utils.dart';
 import '../../models/SnackBar.dart';
+import '../../nav_bar.dart';
 import '../my_card/myCard.dart';
 
 ////////////////////////////////
@@ -202,7 +203,12 @@ class _CreateCardState extends State<CreateCard> {
 
           print('Card saved');
           // Navigate to the 'myCard' screen
-          Navigator.pushNamed(context, 'myCard');
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => Home(currentIndex: 1),
+            ),
+          );
+         // Navigator.pushNamed(context, 'myCard');
          //  MaterialPageRoute route = MaterialPageRoute(builder: (context) => MyCard());
          //  Navigator.push(context, route);
         }
