@@ -479,24 +479,12 @@ class EditState extends State<Edit> {
                       await FirebaseAuth.instance.sendPasswordResetEmail(
                         email: email, // Provide the user's email here
                       );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            context.tr('Password reset email sent. Please check your email.'),
-                          ),
-                          backgroundColor: Colors.green,
-                        ),
-                      );
+                      showInSnackBar(context.tr('Password reset email sent. Please check your email.'),
+                          Colors.green,Colors.white, 3, context, _scaffoldKey);
                     } catch (e) {
                       print('Error sending password reset email: $e');
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            context.tr('Failed to send password reset email.'),
-                          ),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
+                      showInSnackBar(context.tr('Failed to send password reset email.'),
+                          Colors.red,Colors.white, 3, context, _scaffoldKey);
                     }
                   },
                   child: Align(
@@ -526,14 +514,14 @@ class EditState extends State<Edit> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    showInSnackBar('Your information has been saved successfully',
-                        Color.fromARGB(255, 149, 181, 236),Colors.white, 3, context, _scaffoldKey);
-
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => Home(currentIndex: 2),
-                      ),
-                    );
+                    // showInSnackBar(context.tr('Your information has been saved successfully'),
+                    //     Colors.green,Colors.white, 3, context, _scaffoldKey);
+                    //
+                    // Navigator.of(context).pushReplacement(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => Home(currentIndex: 2),
+                    //   ),
+                    // );
                     if (_formKey.currentState!.validate()) {
                       // Upload image to Firebase Storage
                       if (selectedImage != null) {
@@ -579,8 +567,14 @@ class EditState extends State<Edit> {
                           // );
 
                           //  Navigator.of(context).pop();
+                          showInSnackBar(context.tr('Your information has been saved successfully'),
+                              Colors.green,Colors.white, 3, context, _scaffoldKey);
 
-
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => Home(currentIndex: 2),
+                            ),
+                          );
 
                         });
                       } else {
@@ -597,15 +591,6 @@ class EditState extends State<Edit> {
                           'sNationality': nationality,
                           'sCity': city,
                         });
-//
-                        // Show success message
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(context.tr("Your information has been saved successfully")),
-                            backgroundColor: Color.fromARGB(255, 149, 181, 236),
-                          ),
-                        );
-
                         // Navigate back to profile page
                          //context.pushPage(Home());
                         //Navigator.of(context).pop();

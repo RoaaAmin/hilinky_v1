@@ -6,26 +6,35 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/material.dart';
 
+import '../core/utils/size_utils.dart';
+import '../widgets/app_bar/appbar_image.dart';
+
 class AboutUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            context.tr('About Us'),
-            style: TextStyle(
-              color: Color(0xFF133039),
-              fontSize: 24,
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w700,
-              height: 0.05,
-              letterSpacing: -0.48,
-            ),
-          ),
-          centerTitle: true,
-        ),
+        // appBar: AppBar(
+        //   leadingWidth: double.maxFinite,
+        //   leading: AppbarImage(
+        //     imagePath: ImageConstant.hilinkylogopng,
+        //     margin: getMargin(
+        //       // left: 11,
+        //       right: 6,
+        //     ),
+        //   ),
+        //   shape: ContinuousRectangleBorder(
+        //     borderRadius: BorderRadius.vertical(
+        //       bottom: Radius.circular(40),
+        //     ),
+        //     side: BorderSide(
+        //       color: Color(0xFF234E5C),
+        //     ),
+        //   ),
+        //   title: Text(context.tr('Home Screen')),
+        // ),
+
         body: SingleChildScrollView(
           child: Container(
             child: Padding(
@@ -34,6 +43,7 @@ class AboutUs extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(height: 50),
                   CustomImageView(
                     imagePath: context.locale == Locale('en')
                         ? ImageConstant.hilinkyLogoText

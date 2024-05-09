@@ -327,20 +327,18 @@ class EditState extends State<EditCard> {
     return lodaing
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
+      //backgroundColor: Colors.white.withOpacity(0.9),
         body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: ListView(
                 children: [
                   Text(
                     context.tr('Edit card'),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 2, 84, 86),
-                      fontSize: 24,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w700,),
+                    //textAlign: TextAlign.center,
+                    style: GoogleFonts.robotoCondensed(
+                        color: const Color.fromARGB(255, 2, 84, 86),
+                        fontSize: 30, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 10,),
                   Text(
                     'Fill the information to display it in your card.',
                     style: TextStyle(
@@ -372,7 +370,8 @@ class EditState extends State<EditCard> {
                             labelText: context.tr("Prefix"),
                             border: OutlineInputBorder(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                                BorderRadius.all(Radius.circular(10))
+                            ),
                           ),
                           //   autofillHints:,
                           cursorColor: Colors.black,
@@ -412,7 +411,7 @@ class EditState extends State<EditCard> {
                                 BorderRadius.all(Radius.circular(10))),
                           ),
                           //   autofillHints:,
-                          cursorColor: Colors.black,
+                          cursorColor: Colors.red,
                           // The validator receives the text that the user has entered.
                         ),
                         SizedBox(
@@ -768,7 +767,8 @@ SizedBox(height: 10,),
                             portfolioURL = await snapshot.ref.getDownloadURL();
                           }
                         }
-
+                        showInSnackBar(context.tr('Please create your card first'),
+                            Colors.red,Colors.white, 3, context, _scaffoldKey);
                         // Fetch existing card data from Firestore
                         DocumentSnapshot<Map<String, dynamic>> cardSnapshot = await FirebaseFirestore.instance
                             .collection('Cards')
@@ -813,7 +813,7 @@ SizedBox(height: 10,),
                             .update(updatedData);
 
                         // Show a snackbar to indicate successful save
-                        showInSnackBar('Your card information has been saved successfully',
+                        showInSnackBar(context.tr('Your card information has been saved successfully'),
                             Color.fromARGB(255, 149, 181, 236),Colors.white, 3, context, _scaffoldKey);
 
                         Navigator.of(context).pushReplacement(

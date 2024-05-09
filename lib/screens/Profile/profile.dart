@@ -182,21 +182,6 @@ class profiletestState extends State<profiletest> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text(
-            context.tr('My Profile'),
-            style: TextStyle(
-              color: Color(0xFF133039),
-              fontSize: 24,
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w700,
-              height: 0.05,
-              letterSpacing: -0.48,
-            ),
-          ),
-          centerTitle: true,
-        ),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -207,6 +192,7 @@ class profiletestState extends State<profiletest> {
           ),
           child: Column(
             children: [
+              SizedBox(height: 50,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListView(

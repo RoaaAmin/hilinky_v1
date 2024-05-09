@@ -127,7 +127,10 @@ class CodegenLoader extends AssetLoader {
     "Contact Us":"اتصل بنا",
     "Privacy & Policy": "سياسة الخصوصية",
     "Please accept the privacy policy.":"يرجى قبول سياسة الخصوصية.",
-    "By ticking this box I agree that I have read the ": "بالضغط على هذا المربع، أوافق على أنني قرأت "
+    "By ticking this box I agree that I have read the ": "بالضغط على هذا المربع، أوافق على أنني قرأت ",
+    "Password reset email sent. Please check your email.": "تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور. يرجى التحقق من بريدك الإلكتروني.",
+    "Failed to send password reset email.": "فشل في إرسال بريد إعادة تعيين كلمة المرور.",
+    "Please create your card first" : "الرجاء إنشاء بطاقتك أولاً"
 
 
 
@@ -247,12 +250,14 @@ class CodegenLoader extends AssetLoader {
     "Changes to This Privacy Policy": "Changes to This Privacy Policy",
     "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.": "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes.",
     "Log Data": "Log Data",
-  "Change Password?": "Change Password?",
+    "Change Password?": "Change Password?",
     "Contact Us": "Contact Us",
     "Privacy & Policy":"Privacy & Policy",
     "Please accept the privacy policy.":"Please accept the privacy policy.",
-    "By ticking this box I agree that I have read the ":"By ticking this box I agree that I have read the "
-
+    "By ticking this box I agree that I have read the ":"By ticking this box I agree that I have read the ",
+    "Password reset email sent. Please check your email.":"Password reset email sent. Please check your email.",
+    "Failed to send password reset email.": "Failed to send password reset email.",
+    "Please create your card first" : "Please create your card first"
 
   };
   static const Map<String, Map<String, dynamic>> mapLocales = {
