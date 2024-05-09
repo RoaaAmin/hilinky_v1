@@ -45,7 +45,7 @@ class AboutUs extends StatelessWidget {
                 children: [
                   SizedBox(height: 50),
                   CustomImageView(
-                    imagePath: context.locale == Locale('en') || context.locale == Locale('fr')
+                    imagePath: context.locale == Locale('en')
                         ? ImageConstant.hilinkyLogoText
                         : ImageConstant.arabicLogo, // Change image path based on the selected language
                   ),
