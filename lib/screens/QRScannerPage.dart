@@ -366,7 +366,7 @@ class _QRScannerPageState extends State<QRScannerPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(context.tr('QR Code Scannery')),
+          title: Text(context.tr('QR Code Scanner')),
         ),
         body: curent);
   }
