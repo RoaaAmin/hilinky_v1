@@ -195,6 +195,7 @@ class profiletestState extends State<profiletest> {
           ),
           centerTitle: true,
         ),
+
         body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(

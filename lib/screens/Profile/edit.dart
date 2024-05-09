@@ -562,8 +562,13 @@ class EditState extends State<Edit> {
                           );
 
                           // Navigate back to profile page
-                         // context.pushPage(profiletest());
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => Home(currentIndex: 2),
+                            ),
+                          );
+
+                          //  Navigator.of(context).pop();
 
 
 
@@ -592,8 +597,15 @@ class EditState extends State<Edit> {
                         );
 
                         // Navigate back to profile page
-                      //  context.pushPage(profiletest());
-                        Navigator.of(context).pop();
+                         //context.pushPage(Home());
+                        //Navigator.of(context).pop();
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => Home(currentIndex: 2),
+                          ),
+                        );
+
+
                       }
                     }
                   },
