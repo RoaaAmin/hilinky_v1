@@ -39,8 +39,6 @@ class _LanguageState extends State<Language> {
     } else if (value == 2) {
       context.setLocale(Locale('ar'));
     }
-
-
     // Navigate back with replacement to reflect language change
     Navigator.pop(context);
   }
