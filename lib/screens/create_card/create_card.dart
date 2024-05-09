@@ -202,15 +202,15 @@ class _CreateCardState extends State<CreateCard> {
           });
 
           print('Card saved');
+          showInSnackBar('Your card has been saved successfully',
+              Color.fromARGB(255, 149, 181, 236),Colors.white, 3, context, _scaffoldKey);
           // Navigate to the 'myCard' screen
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (context) => Home(currentIndex: 1),
             ),
           );
-         // Navigator.pushNamed(context, 'myCard');
-         //  MaterialPageRoute route = MaterialPageRoute(builder: (context) => MyCard());
-         //  Navigator.push(context, route);
+
         }
       } catch (e) {
         // Handle errors
@@ -241,91 +241,6 @@ class _CreateCardState extends State<CreateCard> {
       }
     }
   }
-
-  /*uploadCard() async {
-    showInSnackBar(
-      'Please wait while the card is being created...',
-      Colors.green,
-      Colors.white,
-      10,
-      context,
-      _scaffoldKey,
-    );
-    if (selectedImage != null) {
-      String imageURL = editMode ? editModeImageURL : '';
-      String logoURL = editMode ? editModeImageURLLogo : '';
-      String portfolioURL = editMode ? editModeImageURLPortfilio : '';
-
-      if (!editMode) {
-        await FirebaseStorage.instance
-            .ref('Cards/')
-            .child(randomAlphaNumeric(9).toString() + '.jpg')
-            .putFile(selectedImage!)
-            .then((value) async {
-          imageURL = await value.ref.getDownloadURL();
-        });
-      }
-
-      if (selectedLogo != null) {
-        await FirebaseStorage.instance
-            .ref('Cards/')
-            .child(randomAlphaNumeric(9).toString() + '_logo.jpg')
-            .putFile(selectedLogo!)
-            .then((value) async {
-          logoURL = await value.ref.getDownloadURL();
-        });
-      }
-
-      if (selectedPortfolio != null) {
-        await FirebaseStorage.instance
-            .ref('Cards/')
-            .child(randomAlphaNumeric(9).toString() + '_portfolio.jpg')
-            .putFile(selectedPortfolio!)
-            .then((value) async {
-          portfolioURL = await value.ref.getDownloadURL();
-        });
-      }
-
-      if (editMode) {
-        await widget.card.reference.update({
-          "ImageURL": imageURL,
-          "LogoURL": logoURL,
-          "PortfolioURL": portfolioURL,
-        });
-      } else {
-        // Fetch the selected city from getuser function
-        String selectedCity = await getuser();
-        await FirebaseFirestore.instance
-            .collection('Cards')
-            .doc(FirebaseAuth.instance.currentUser!.uid)
-            .set({
-          "ImageURL": imageURL,
-          "LogoURL": logoURL,
-          "PortfolioURL": portfolioURL,
-          "Prefix": prefix,
-          "FirstName": firstName,
-          "MiddleName": middleName,
-          "LastName": lastName,
-          "Position": position,
-          "CompanyName": companyName,
-          "Email": email,
-          "PhoneNumber": phoneNumber,
-          "Links": links,
-          "cardId": uuid.v4(),
-          "PostedByUID": FirebaseAuth.instance.currentUser!.uid,
-          "City": selectedCity,
-          "TimeStamp": DateTime.now(),
-        }).then((value) async {
-          print('Card saved');
-          Navigator.of(context).pop();
-        });
-        Navigator.pushNamed(context, 'myCard');
-      }
-    } else {
-      showInSnackBar('You have to fill all the fields ', Colors.red,
-          Colors.white, 3, context, _scaffoldKey);
-    }
-  }*/
 
   Widget bottomSheet() {
     return Container(

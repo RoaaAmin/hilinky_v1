@@ -15,6 +15,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
 
 import '../../core/utils/size_utils.dart';
+import '../../models/SnackBar.dart';
 import '../../nav_bar.dart';
 import '../../theme/custom_text_style.dart';
 import 'image_picker.dart';
@@ -31,6 +32,7 @@ class Edit extends StatefulWidget {
 
 class EditState extends State<Edit> {
   imagePicker controller = Get.put(imagePicker());
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   final _formKey = GlobalKey<FormState>();
   List<DocumentSnapshot<Map<String, dynamic>>> postsDocs = [];
@@ -95,7 +97,7 @@ class EditState extends State<Edit> {
               },
               label: Text(context.tr("Camera"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
-            SizedBox(width: 20,),
+            SizedBox(width: 10,),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
@@ -524,6 +526,14 @@ class EditState extends State<Edit> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
+                    showInSnackBar('Your information has been saved successfully',
+                        Color.fromARGB(255, 149, 181, 236),Colors.white, 3, context, _scaffoldKey);
+
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => Home(currentIndex: 2),
+                      ),
+                    );
                     if (_formKey.currentState!.validate()) {
                       // Upload image to Firebase Storage
                       if (selectedImage != null) {
@@ -554,19 +564,19 @@ class EditState extends State<Edit> {
                             'UserProfileImage': selectedImage,
                           });
                           // Show success message
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(context.tr('Your information has been saved successfully')),
-                              backgroundColor: Color.fromARGB(255, 149, 181, 236),
-                            ),
-                          );
+                          // ScaffoldMessenger.of(context).showSnackBar(
+                          //   SnackBar(
+                          //     content: Text(context.tr('Your information has been saved successfully')),
+                          //     backgroundColor: Color.fromARGB(255, 149, 181, 236),
+                          //   ),
+                          // );
 
                           // Navigate back to profile page
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => Home(currentIndex: 2),
-                            ),
-                          );
+                          // Navigator.of(context).pushReplacement(
+                          //   MaterialPageRoute(
+                          //     builder: (context) => Home(currentIndex: 2),
+                          //   ),
+                          // );
 
                           //  Navigator.of(context).pop();
 

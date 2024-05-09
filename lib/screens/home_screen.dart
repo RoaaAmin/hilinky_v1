@@ -115,7 +115,6 @@ class _HomeScreenState extends State<HomeScreen> {
           // If an error occurs while fetching data, display an error message.
           return Text('Error: ${snapshot.error}');
         } else if (!snapshot.hasData || !snapshot.data!.exists) {
-
           // If no card data exists for the user, display the default home screen.
           return _buildDefaultHomeScreen();
         } else {
@@ -128,7 +127,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildDefaultHomeScreen() {
     return Scaffold(
-
       appBar: AppBar(
         leadingWidth: double.maxFinite,
         leading: AppbarImage(
@@ -154,7 +152,6 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             Text(
               context.tr('Start your journey by creating your card'),
               style: TextStyle(
@@ -205,6 +202,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
 
   void getLinks() async {
     await FirebaseFirestore.instance

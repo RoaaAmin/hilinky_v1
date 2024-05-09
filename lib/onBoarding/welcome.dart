@@ -79,14 +79,14 @@ class _WelcomePageState extends State<WelcomePage> {
                       child: Image.asset(
                         'assets/images/cardy.png',
                         width: 100.w,
-                        height: 50.h,
+                        height: 45.h,
                       ),
                     ),
                   ),
                 ),
                 Container(
                   decoration: BoxDecoration(color: Colors.white),
-                  padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
+                  padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 1.h),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,

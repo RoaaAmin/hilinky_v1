@@ -12,6 +12,8 @@ import 'package:hilinky/screens/Profile/profile.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../core/utils/size_utils.dart';
+import '../../models/SnackBar.dart';
+import '../../nav_bar.dart';
 import '../create_card/widgets/socialMedia.dart';
 import 'image_picker.dart';
 
@@ -25,6 +27,7 @@ class EditCard extends StatefulWidget {
 }
 
 class EditState extends State<EditCard> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   imagePicker controller = Get.put(imagePicker());
 
   final _formKey = GlobalKey<FormState>();
@@ -83,7 +86,7 @@ class EditState extends State<EditCard> {
               label: Text(context.tr("Camera"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
@@ -128,7 +131,7 @@ class EditState extends State<EditCard> {
               label: Text(context.tr("Camera"),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)),),
             ),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
@@ -180,7 +183,7 @@ class EditState extends State<EditCard> {
               label: Text(context.tr("Camera"),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86),),),
             ),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
@@ -810,15 +813,15 @@ SizedBox(height: 10,),
                             .update(updatedData);
 
                         // Show a snackbar to indicate successful save
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(context.tr('Your card information has been saved successfully')),
-                            backgroundColor: Color.fromARGB(255, 149, 181, 236),
+                        showInSnackBar('Your card information has been saved successfully',
+                            Color.fromARGB(255, 149, 181, 236),Colors.white, 3, context, _scaffoldKey);
+
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => Home(currentIndex: 2),
                           ),
                         );
 
-                        // Navigate back to the profile page
-                        context.pushPage(profiletest());
 
                       }
                     },
