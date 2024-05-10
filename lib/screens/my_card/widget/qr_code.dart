@@ -75,25 +75,26 @@ class _QrCodeState extends State<QrCode> {
         'VERSION:3.0\n' +
         'FN:${cardData['FirstName']} ${cardData['LastName']}\n' +
         'N:${cardData['LastName']};${cardData['FirstName']};\n' +
-        'ORG:${cardData['CompanyName']}\n' +
+        '${cardData['CompanyName'] != null && cardData['CompanyName'].isNotEmpty ? 'ORG:${cardData['CompanyName']}\n' : ''}' +
         'TEL:${cardData['PhoneNumber']}\n' +
         'EMAIL:${cardData['Email']}\n' +
         'TITLE:${cardData['Position']}\n' +
-        'URL:${cardData['Links']['facebook']}\n' +
-        'URL:${cardData['Links']['twitter']}\n' +
-        'URL:${cardData['Links']['linkedin']}\n' +
-        'URL:${cardData['Links']['figma']}\n' +
-        'URL:${cardData['Links']['youtube']}\n' +
-        'URL:${cardData['Links']['behance']}\n' +
-        'URL:${cardData['Links']['discord']}\n' +
-        'URL:${cardData['Links']['github']}\n' +
-        'URL:${cardData['Links']['instagram']}\n' +
-        'URL:${cardData['Links']['location']}\n' +
-        'URL:${cardData['Links']['telegram']}\n' +
-        'URL:${cardData['Links']['whatsapp']}\n' +
+        '${cardData['Links'] != null && cardData['Links']['facebook'] != null ? 'URL:${cardData['Links']['facebook']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['twitter'] != null ? 'URL:${cardData['Links']['twitter']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['linkedin'] != null ? 'URL:${cardData['Links']['linkedin']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['figma'] != null ? 'URL:${cardData['Links']['figma']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['youtube'] != null ? 'URL:${cardData['Links']['youtube']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['behance'] != null ? 'URL:${cardData['Links']['behance']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['discord'] != null ? 'URL:${cardData['Links']['discord']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['github'] != null ? 'URL:${cardData['Links']['github']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['instagram'] != null ? 'URL:${cardData['Links']['instagram']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['location'] != null ? 'URL:${cardData['Links']['location']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['telegram'] != null ? 'URL:${cardData['Links']['telegram']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['whatsapp'] != null ? 'URL:${cardData['Links']['whatsapp']}\n' : ''}' +
         'END:VCARD';
     return vCardData;
   }
+
 
 
 
