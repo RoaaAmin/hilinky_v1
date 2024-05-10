@@ -74,22 +74,27 @@ class _QrCodeState extends State<QrCode> {
     final String vCardData = 'BEGIN:VCARD\n' +
         'VERSION:3.0\n' +
         'FN:${cardData['FirstName']} ${cardData['LastName']}\n' +
+        'N:${cardData['LastName']};${cardData['FirstName']};\n' +
+        'ORG:${cardData['CompanyName']}\n' +
         'TEL:${cardData['PhoneNumber']}\n' +
         'EMAIL:${cardData['Email']}\n' +
         'TITLE:${cardData['Position']}\n' +
-        // (cardData['CompanyName'] != null && cardData['CompanyName'].isNotEmpty
-        //     ? 'ORG:${cardData['CompanyName']}\n'
-        //     : '')
-       // +
         'URL:${cardData['Links']['facebook']}\n' +
         'URL:${cardData['Links']['twitter']}\n' +
         'URL:${cardData['Links']['linkedin']}\n' +
         'URL:${cardData['Links']['figma']}\n' +
         'URL:${cardData['Links']['youtube']}\n' +
-        //'PHOTO;ENCODING=BASE64:${await _getImageBase64(cardData['LogoURL'])}\n' +
+        'URL:${cardData['Links']['behance']}\n' +
+        'URL:${cardData['Links']['discord']}\n' +
+        'URL:${cardData['Links']['github']}\n' +
+        'URL:${cardData['Links']['instagram']}\n' +
+        'URL:${cardData['Links']['location']}\n' +
+        'URL:${cardData['Links']['telegram']}\n' +
+        'URL:${cardData['Links']['whatsapp']}\n' +
         'END:VCARD';
     return vCardData;
   }
+
 
 
   @override
