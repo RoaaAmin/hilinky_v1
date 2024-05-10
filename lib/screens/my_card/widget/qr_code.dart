@@ -58,31 +58,39 @@ class _QrCodeState extends State<QrCode> {
       // Handle the case where cardData is not initialized yet
       return '';
     }
-    // Future<String> _getImageBase64(String imageUrl) async {
-    //   final response = await http.get(Uri.parse(imageUrl));
-    //   if (response.statusCode == 200) {
-    //     final Uint8List bytes = response.bodyBytes;
-    //     final String base64Image = base64Encode(bytes);
-    //     return base64Image;
-    //   } else {
-    //     throw Exception('Failed to load image');
-    //   }
-    // }
+
+    Future<String> _getImageBase64(String imageUrl) async {
+      final response = await http.get(Uri.parse(imageUrl));
+      if (response.statusCode == 200) {
+        final Uint8List bytes = response.bodyBytes;
+        final String base64Image = base64Encode(bytes);
+        return base64Image;
+      } else {
+        throw Exception('Failed to load image');
+      }
+    }
 
     // Construct vCard data using the card information
     final String vCardData = 'BEGIN:VCARD\n' +
         'VERSION:3.0\n' +
-        //'FN:${cardData['Prefix']} ${cardData['FirstName']} ${cardData['LastName']}\n'
         'FN:${cardData['FirstName']} ${cardData['LastName']}\n' +
         'TEL:${cardData['PhoneNumber']}\n' +
         'EMAIL:${cardData['Email']}\n' +
         'TITLE:${cardData['Position']}\n' +
-       // 'ORG:${cardData['CompanyName']}\n' +
-       // 'URL:${cardData['Links']}\n' +
-       //'PHOTO;ENCODING=BASE64:${_getImageBase64(cardData['LogoURL'])}\n' +
+        // (cardData['CompanyName'] != null && cardData['CompanyName'].isNotEmpty
+        //     ? 'ORG:${cardData['CompanyName']}\n'
+        //     : '')
+       // +
+        'URL:${cardData['Links']['facebook']}\n' +
+        'URL:${cardData['Links']['twitter']}\n' +
+        'URL:${cardData['Links']['linkedin']}\n' +
+        'URL:${cardData['Links']['figma']}\n' +
+        'URL:${cardData['Links']['youtube']}\n' +
+        //'PHOTO;ENCODING=BASE64:${await _getImageBase64(cardData['LogoURL'])}\n' +
         'END:VCARD';
     return vCardData;
   }
+
 
   @override
   @override

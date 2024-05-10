@@ -147,4 +147,3 @@ class _SocialMediaState extends State<SocialMedia> {
     );
   }
 }
-

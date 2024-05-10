@@ -338,26 +338,6 @@ class _MyCardState extends State<MyCard> {
                                     ),
                                   ],
                                 ),
-                                // SizedBox(height: 30),
-                                // Text(
-                                //   cardsDocs[i].data()!['Email'],
-                                //   style: TextStyle(
-                                //     color: Colors.white,
-                                //     fontSize: 15,
-                                //     fontFamily: 'Inter',
-                                //     height: 0.21,
-                                //   ),
-                                // ),
-                                // SizedBox(height: 15),
-                                // Text(
-                                //   cardsDocs[i].data()!['PhoneNumber'],
-                                //   style: TextStyle(
-                                //     color: Colors.white,
-                                //     fontSize: 15,
-                                //     fontFamily: 'Inter',
-                                //     height: 0.21,
-                                //   ),
-                                // ),
                                 SizedBox(height: 10),
                                 Center(
                                   child: Row(
@@ -402,6 +382,7 @@ class _MyCardState extends State<MyCard> {
                                                     ),
                                                   ),
                                                 ),
+
                                                 const SizedBox(
                                                   width: 10,
                                                 )
