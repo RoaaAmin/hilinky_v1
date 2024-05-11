@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
             });
           },
           unselectedItemColor: Color(0xFF234E5C),
-          selectedItemColor: Color(0xFFEE6363),
+          selectedItemColor: Color(0xFFEF9453),
           type: BottomNavigationBarType.fixed,
           selectedIconTheme:  IconThemeData(size: 20),
           items:  [

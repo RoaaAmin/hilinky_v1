@@ -13,6 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../core/utils/image_constant.dart';
 import '../../core/utils/size_utils.dart';
 import '../../nav_bar.dart';
+import '../../theme/theme_helper.dart';
 import '../../widgets/app_bar/appbar_image.dart';
 import '../../widgets/custom_image_view.dart';
 import '../Scanner/QRScannerPage.dart';
@@ -106,7 +107,9 @@ class _MyCardState extends State<MyCard> {
   };
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
+      backgroundColor: appTheme.whiteA700,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leadingWidth: double.maxFinite,
         leading: AppbarImage(
@@ -130,18 +133,6 @@ class _MyCardState extends State<MyCard> {
         shrinkWrap: true,
         physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
         children: [
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.start,
-          //   children: [
-          //     IconButton(
-          //         icon: Icon(LineIcons.arrowLeft, size:30.0),
-          //         onPressed: () {
-          //           Navigator.of(context).pushReplacement(CupertinoPageRoute(
-          //               builder: (BuildContext context) => Home()));
-          //         }
-          //     ),
-          //   ],
-          // ),
           Container(
             width: MediaQuery.of(context).size.width,
             child: Column(
@@ -155,7 +146,6 @@ class _MyCardState extends State<MyCard> {
                       Padding(
                         padding: EdgeInsets.only(top: 1.0, bottom: 20.0),
                       ),
-
                       Container(
                         padding: EdgeInsets.only(left: 20.0, right: 20.0),
                       ),
@@ -168,14 +158,27 @@ class _MyCardState extends State<MyCard> {
           flowList(context),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.pushPage(QRScannerPage());
-        },
-        child: Icon(Icons.qr_code_scanner),
-        foregroundColor: Colors.white,
-        backgroundColor: Color(0XFFEE6363),
-        shape: CircleBorder(),
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [
+                Colors.orange,
+                Colors.deepOrange
+              ],
+              end: Alignment.topLeft,
+              begin: Alignment.bottomRight
+          ),
+          shape: BoxShape.circle,
+        ),
+        child: FloatingActionButton(
+          onPressed: () {
+            context.pushPage(QRScannerPage());
+          },
+          child: Icon(Icons.qr_code_scanner),
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.transparent, // Set background color to transparent
+          elevation: 0, // Remove the shadow effect
+        ),
       ),
     );
   }
@@ -199,28 +202,34 @@ class _MyCardState extends State<MyCard> {
                 child: Column(
                     children: [
                       // SizedBox(height: 60),
-                      Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 4,
+                      Container(
+                    // shape: RoundedRectangleBorder(
+                    //   borderRadius: BorderRadius.circular(10),
+                    // ),
+                    // elevation: 4,
                     child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xFF286F8C),
-                            Color(0xFF95BECF),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
+                      // decoration: BoxDecoration(
+                      //   borderRadius: BorderRadius.circular(10),
+                      //   gradient: LinearGradient(
+                      //     colors: [
+                      //       Color(0xFF286F8C),
+                      //       Color(0xFF95BECF),
+                      //     ],
+                      //     begin: Alignment.topLeft,
+                      //     end: Alignment.bottomRight,
+                      //   ),
+                      // ),
                       child: Stack(
                         children: [
-                          CustomImageView(
-                            // imagePath: ImageConstant.HilinkyCard,
+                          Container(
+                            // width: 300, // Replace 200 with your desired width
+                            height: 310, // Replace 200 with your desired height
+                            child: CustomImageView(
+                              imagePath: ImageConstant.HilinkyCard,
+                            ),
                           ),
+
+
                           Padding(
                             padding: const EdgeInsets.all(30.0),
                             child: Column(
@@ -409,32 +418,36 @@ class _MyCardState extends State<MyCard> {
                     ),
                   ),
                       SizedBox(height: 5),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        elevation: 4,
+                      Container(
+                        // shape: RoundedRectangleBorder(
+                        //   borderRadius: BorderRadius.circular(10),
+                        // ),
+                        // elevation: 4,
                         child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFF286F8C),
-                                Color(0xFF95BECF),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                          ),
+                          // decoration: BoxDecoration(
+                          //   borderRadius: BorderRadius.circular(10),
+                          //   gradient: LinearGradient(
+                          //     colors: [
+                          //       Color(0xFF286F8C),
+                          //       Color(0xFF95BECF),
+                          //     ],
+                          //     begin: Alignment.topLeft,
+                          //     end: Alignment.bottomRight,
+                          //   ),
+                          // ),
                           child: Padding(
                             padding: const EdgeInsets.all(30.0),
                             child: Center(
-                              child: QrCode(),
+                              child: CustomImageView(
+                                imagePath: ImageConstant.HilinkyCard,
+                                height: 300,
+                                // Replace with your desired height
+                              ),
                             ),
                           ),
                         ),
                       ),
-                ]),
+                    ]),
               );
             }
         );

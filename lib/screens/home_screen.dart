@@ -8,6 +8,7 @@ import 'package:line_icons/line_icons.dart';
 import '../auth.dart';
 import '../core/utils/image_constant.dart';
 import '../core/utils/size_utils.dart';
+import '../theme/theme_helper.dart';
 import '../widgets/app_bar/appbar_image.dart';
 import 'Profile/profile.dart';
 import 'Scanner/QRScannerPage.dart';
@@ -75,9 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildDefaultHomeScreen() {
-
     return Scaffold(
-
+      backgroundColor: appTheme.whiteA700,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leadingWidth: double.maxFinite,
         leading: AppbarImage(
@@ -103,7 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(context.tr('Start your journey by creating your card'),
+            Text(
+              context.tr('Start your journey by creating your card'),
               style: TextStyle(
                 color: Color(0xFF121212),
                 fontSize: 15,
@@ -113,45 +115,59 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-
-              onPressed: () {
-                context.pushPage(CreateCard());
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF234E5C),
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.symmetric(horizontal: 40),
+              child: ElevatedButton(
+                onPressed: () {
+                  context.pushPage(CreateCard());
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  // primary: Colors.transparent, // Set background color to transparent
+                  elevation: 0, // Remove button elevation
+                ),
+                child: Text(
+                  context.tr('Create Card'),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w700,
+                    height: 0.07,
+                  ),
                 ),
               ),
-              child:Text(
-                context.tr('Create Card'),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w700,
-                  height: 0.07,
-                ),
-              ),
-            )
+            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.pushPage(QRScannerPage());
-        },
-        child: Icon(Icons.qr_code_scanner),
-        foregroundColor: Colors.white,
-        backgroundColor: Color(0XFFEE6363),
-        shape: CircleBorder(),
-        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16.0))),
-        // child: Image.asset('../assets/images/QRScanCode.svg'),
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [
+                Colors.orange,
+                Colors.deepOrange
+              ],
+              end: Alignment.topLeft,
+              begin: Alignment.bottomRight
+          ),
+          shape: BoxShape.circle,
+        ),
+        child: FloatingActionButton(
+          onPressed: () {
+            context.pushPage(QRScannerPage());
+          },
+          child: Icon(Icons.qr_code_scanner),
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.transparent, // Set background color to transparent
+          elevation: 0, // Remove the shadow effect
+        ),
       ),
-
     );
   }
 
