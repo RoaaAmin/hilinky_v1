@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../PrivacyPolicyPage/PrivacyPolicyPage.dart';
@@ -177,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   top: 3,
                                 ),
                                 hintText: context.tr("Your Password"),
-                                hintStyle: CustomTextStyles.titleMediumGray90002,
+                                hintStyle: theme.textTheme.titleSmall!,
                                 textInputType: TextInputType.visiblePassword,
                                 suffix: GestureDetector(
                                   onTap: () {
@@ -206,56 +207,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
+                  // SizedBox(height: 30,),
                   Row(
                     children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: getPadding(
-                            top: 25,
-                            bottom: 5,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: context.tr("Don’t have an account"),
-                                      style: CustomTextStyles.labelLargeInterBluegray300,
-                                    ),
-                                    TextSpan(
-                                      text: context.tr("?"),
-                                      style: CustomTextStyles.bodyMediumInterBluegray300,
-                                    ),
-                                  ],
-                                ),
-                                textAlign: TextAlign.left,
-                              ),
-                              SizedBox(width: 5), // Add space here
-                              GestureDetector(
-                                onTap: () async {
-                                  String url =
-                                      'https://api.whatsapp.com/send/?phone=966532595204&text=%D8%A3%D9%87%D9%84%D8%A7%20%D8%A8%D9%83%D9%85%20%D8%A3%D9%86%D8%A7%20%D9%85%D9%87%D8%AA%D9%85%20%D9%84%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D8%A8%D8%B7%D8%A7%D9%82%D8%A9%20%D8%A3%D8%B9%D9%85%D8%A7%D9%84%D9%8A%20%D9%84%D9%86%D8%B3%D8%AE%D8%A9%20%D8%B1%D9%82%D9%85%D9%8A%D8%A9%D8%8C%20%D9%83%D9%8A%D9%81%20%D9%8A%D9%85%D9%83%D9%86%D9%86%D9%8A%20%D8%A7%D9%84%D8%AD%D8%B5%D9%88%D9%84%20%D9%86%D8%B3%D8%AE%D8%AA%D9%8A%20%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9';
-                                  if (await canLaunch(url)) {
-                                    await launch(url);
-                                  } else {
-                                    throw 'Could not launch $url';
-                                  }
-                                },
-                                child: Text(
-                                  context.tr("Contact Us"),
-                                  style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 50), // Add space here
                       GestureDetector(
                         onTap: () async {
                           sendRecoveryPass();
@@ -267,17 +221,25 @@ class _LoginScreenState extends State<LoginScreen> {
                               top: 17,
                               right: 4,
                             ),
-                            child: Text(
-                              context.tr('Forgot Password?'),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Color(0xFFEF9453),
-                                fontSize: 12,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w700,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Color(0xFFEF9453), // Change the underline color here
-                                height: 0,
+                            child: ShaderMask(
+                              shaderCallback: (Rect bounds) {
+                                return LinearGradient(
+                                  colors: [
+                                    Color(0xFFEF9453),
+                                    Color(0xFFEF6358),
+                                  ],
+                                ).createShader(bounds);
+                              },
+                              child: Text(
+                                context.tr('Forgot Password?'),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w700,
+                                  // decoration: TextDecoration.underline,
+                                  color: Colors.white, // Set text color to white for gradient to be visible
+                                ),
                               ),
                             ),
                           ),
@@ -286,7 +248,63 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
 
-                  SizedBox(height: 110,),
+                  SizedBox(height: 230,),
+                  Row(
+                    children: [
+                      Container(
+                        child: Checkbox(
+                          value: privacyChecked,
+                          onChanged: (value) {
+                            setState(() {
+                              privacyChecked = value!;
+                            });
+                          },
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          // Navigate to the privacy and policy page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PrivacyPolicyPage(),
+                            ),
+                          );
+                        },
+                        child: Text.rich(
+                          TextSpan(
+                            text: 'By ticking this box I agree that I have read the ',
+                            style: CustomTextStyles.labelLargeInterBluegray300,
+                            children: [
+                              TextSpan(
+                                text: 'Privacy & Policy',
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: Color(0xFFEF9453),
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PrivacyPolicyPage(),
+                                      ),
+                                    );
+                                  },
+                              ),
+                              TextSpan(
+                                text: '.',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
 
 
                   Center(
@@ -328,66 +346,54 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  Row(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Checkbox(
-                        value: privacyChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            privacyChecked = value!;
-                          });
-                        },
 
+                  Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: getPadding(
+                        top: 25,
+                        bottom: 5,
                       ),
-                      SizedBox(height: 20,),
-                      Container(
-                        width: 200, // Adjust the width as per your requirement
-                        child: GestureDetector(
-                          onTap: () {
-                            // Navigate to the privacy and policy page
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PrivacyPolicyPage(),
-                              ),
-                            );
-                          },
-                          child: RichText(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RichText(
                             text: TextSpan(
-                              text:  context.tr('By ticking this box I agree that I have read the '),
-                              style: CustomTextStyles.labelLargeInterBluegray300,
-
-
                               children: [
                                 TextSpan(
-                                  text:  context.tr('Privacy & Policy'),
-                                  style: const TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: Color(0xFFEF9453),
-                                    fontSize: 12,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    decorationColor: Color(0xFFEF9453),
-                                  ),
+                                  text: context.tr("Don’t have an account"),
+                                  style: CustomTextStyles.labelLargeInterBluegray300,
                                 ),
                                 TextSpan(
-                                  text: '.',
-                                  style:  TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 12,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                                  text: context.tr("?"),
+                                  style: CustomTextStyles.bodyMediumInterBluegray300,
                                 ),
                               ],
                             ),
+                            textAlign: TextAlign.left,
                           ),
-                        ),
+                          SizedBox(width: 5), // Add space here
+                          GestureDetector(
+                            onTap: () async {
+                              String url =
+                                  'https://api.whatsapp.com/send/?phone=966532595204&text=%D8%A3%D9%87%D9%84%D8%A7%20%D8%A8%D9%83%D9%85%20%D8%A3%D9%86%D8%A7%20%D9%85%D9%87%D8%AA%D9%85%20%D9%84%D8%AA%D8%B7%D9%88%D9%8A%D8%B1%20%D8%A8%D8%B7%D8%A7%D9%82%D8%A9%20%D8%A3%D8%B9%D9%85%D8%A7%D9%84%D9%8A%20%D9%84%D9%86%D8%B3%D8%AE%D8%A9%20%D8%B1%D9%82%D9%85%D9%8A%D8%A9%D8%8C%20%D9%83%D9%8A%D9%81%20%D9%8A%D9%85%D9%83%D9%86%D9%86%D9%8A%20%D8%A7%D9%84%D8%AD%D8%B5%D9%88%D9%84%20%D9%86%D8%B3%D8%AE%D8%AA%D9%8A%20%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9';
+                              if (await canLaunch(url)) {
+                                await launch(url);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            },
+                            child: Text(
+                              context.tr("Contact Us"),
+                              style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-
                 ],
               ),
             ),
@@ -632,6 +638,7 @@ class _LoginScreenState extends State<LoginScreen> {
               _passwordController.clear();
             });
           } catch (e) {
+
             showInSnackBar('There is no record for this email', Colors.red,
                 Colors.white, 3, context, _scaffoldKey);
           }
