@@ -4,10 +4,7 @@ import 'package:hilinky/core/utils/image_constant.dart';
 import 'package:hilinky/widgets/custom_image_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:flutter/material.dart';
-
-import '../core/utils/size_utils.dart';
-import '../widgets/app_bar/appbar_image.dart';
+import '../theme/theme_helper.dart';
 
 class AboutUs extends StatelessWidget {
   @override
