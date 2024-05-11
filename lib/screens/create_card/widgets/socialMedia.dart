@@ -7,55 +7,32 @@ import '../../../core/utils/size_utils.dart';
 class SocialMedia extends StatefulWidget {
   SocialMedia({super.key, required this.paddin, required this.saved});
 
-  var paddin;
-  Map<String, String> saved;
+  final EdgeInsets paddin;
+  final Map<String, String> saved;
 
   @override
   State<SocialMedia> createState() => _SocialMediaState();
 }
 
 class _SocialMediaState extends State<SocialMedia> {
-  //links save
-  Map<String, String> links = {
-    'facebook': '',
-    'twitter': '',
-    'linkedin': '',
-    'youtube': '',
-    'instagram': '',
-    'telegram': '',
-    'whatsapp': '',
-    'github': '',
-    'discord': '',
-    'figma': '',
-    'dribbble': '',
-    'behance': '',
-    'location': '',
-  };
-
-  // icons
-  List<Widget> socialMediaIcons = [
-    const FaIcon(FontAwesomeIcons.facebook,  color: Color(0xFF7EA9BA),),
-    const FaIcon(FontAwesomeIcons.twitter , color: Color(0xFF7EA9BA),),
-    const FaIcon(FontAwesomeIcons.linkedin , color: Color(0xFF7EA9BA),),
-    const FaIcon(FontAwesomeIcons.youtube,  color: Color(0xFF7EA9BA),),
-    const FaIcon(FontAwesomeIcons.instagram,  color: Color(0xFF7EA9BA),),
-    const FaIcon(FontAwesomeIcons.telegram,  color: Color(0xFF7EA9BA),),
-    const FaIcon(FontAwesomeIcons.whatsapp,  color: Color(0xFF7EA9BA),),
-    const FaIcon(FontAwesomeIcons.github,  color: Color(0xFF7EA9BA),),
-    const FaIcon(FontAwesomeIcons.discord,  color: Color(0xFF7EA9BA),),
-    const FaIcon(FontAwesomeIcons.figma,  color: Color(0xFF7EA9BA),),
-    const FaIcon(FontAwesomeIcons.dribbble,  color: Color(0xFF7EA9BA),),
-    const FaIcon(FontAwesomeIcons.behance, color: Color(0xFF7EA9BA),),
-    const FaIcon(FontAwesomeIcons.location,  color: Color(0xFF7EA9BA),),
+  // Icons
+  final List<IconData> socialMediaIcons = [
+    FontAwesomeIcons.facebook,
+    FontAwesomeIcons.twitter,
+    FontAwesomeIcons.linkedin,
+    FontAwesomeIcons.youtube,
+    FontAwesomeIcons.instagram,
+    FontAwesomeIcons.telegram,
+    FontAwesomeIcons.whatsapp,
+    FontAwesomeIcons.github,
+    FontAwesomeIcons.discord,
+    FontAwesomeIcons.figma,
+    FontAwesomeIcons.dribbble,
+    FontAwesomeIcons.behance,
+    FontAwesomeIcons.mapMarkerAlt,
   ];
 
-  var entredLink = TextEditingController();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+  final TextEditingController entredLink = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -70,78 +47,60 @@ class _SocialMediaState extends State<SocialMedia> {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: socialMediaIcons.length,
       itemBuilder: (context, index) {
-        var name;
-
-        if (index == 0) {
-          name = 'facebook';
-        }
-        ;
-        if (index == 1) {
-          name = 'twitter';
-        }
-        ;
-        if (index == 2) {
-          name = 'linkedin';
-        }
-        ;
-        if (index == 3) {
-          name = 'youtube';
-        }
-        ;
-        if (index == 4) {
-          name = 'instagram';
-        }
-        ;
-        if (index == 5) {
-          name = 'telegram';
-        }
-        ;
-        if (index == 6) {
-          name = 'whatsapp';
-        }
-        ;
-        if (index == 7) {
-          name = 'github';
-        }
-        ;
-        if (index == 8) {
-          name = 'discord';
-        }
-        ;
-        if (index == 9) {
-          name = 'figma';
-        }
-        ;
-        if (index == 10) {
-          name = 'dribbble';
-        }
-        ;
-        if (index == 11) {
-          name = 'behance';
-        }
-        ;
-        if (index == 12) {
-          name = 'location';
-        }
-        ;
+        final name = _getName(index);
 
         return IconButton(
-          onPressed: () {
-            showModalBottomSheet(
-              context: context,
-              builder: ((builder) => Padding(
-                padding: widget.paddin,
-                child: bottomSheetLinks(index, name),
-              )),
-            );
-          },
-          icon: socialMediaIcons[index],
+          onPressed: () => _showBottomSheet(index, name),
+          icon: FaIcon(socialMediaIcons[index], color: Color(0xFF7EA9BA)),
         );
       },
     );
   }
 
-  Widget bottomSheetLinks(index, name) {
+  String _getName(int index) {
+    switch (index) {
+      case 0:
+        return 'facebook';
+      case 1:
+        return 'twitter';
+      case 2:
+        return 'linkedin';
+      case 3:
+        return 'youtube';
+      case 4:
+        return 'instagram';
+      case 5:
+        return 'telegram';
+      case 6:
+        return 'whatsapp';
+      case 7:
+        return 'github';
+      case 8:
+        return 'discord';
+      case 9:
+        return 'figma';
+      case 10:
+        return 'dribbble';
+      case 11:
+        return 'behance';
+      case 12:
+        return 'location';
+      default:
+        return '';
+    }
+  }
+
+  void _showBottomSheet(int index, String name) {
+    showModalBottomSheet(
+      context: context,
+      builder: ((builder) => Padding(
+        padding: widget.paddin,
+        child: _bottomSheetLinks(index, name),
+      )),
+    );
+  }
+
+  Widget _bottomSheetLinks(int index, String name) {
     return SingleChildScrollView(
       child: Container(
         height: 150.0,
@@ -153,10 +112,10 @@ class _SocialMediaState extends State<SocialMedia> {
         child: Column(
           children: <Widget>[
             TextField(
-              decoration:  InputDecoration(
+              decoration: InputDecoration(
                 labelText: context.tr("Enter a link"),
               ),
-              maxLines: 1 ,
+              maxLines: 1,
               controller: entredLink,
             ),
             const SizedBox(
@@ -166,23 +125,19 @@ class _SocialMediaState extends State<SocialMedia> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 TextButton(
-                  onPressed: () {
-                    setState(() {
-                      Navigator.of(context).pop();
-                    });
-                  },
-                  child:Text( context.tr("Cancel"), style: TextStyle(color: Color.fromARGB(255, 2, 84, 86),),),
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text(context.tr("Cancel"),
+                      style: TextStyle(color: Color(0xFF7EA9BA))),
                 ),
                 const SizedBox(width: 10),
                 TextButton(
                   onPressed: () {
-                    links["$name"] = entredLink.text;
-                    widget.saved.addAll(links);
-                    print(links);
+                    widget.saved[name] = entredLink.text;
                     Navigator.of(context).pop();
                     entredLink.clear();
                   },
-                  child:  Text( context.tr("Save") , style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)))
+                  child: Text(context.tr("Save"),
+                      style: TextStyle(color: Color(0xFF7EA9BA))),
                 ),
               ],
             ),

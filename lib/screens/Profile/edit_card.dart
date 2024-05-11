@@ -12,6 +12,8 @@ import 'package:hilinky/screens/Profile/profile.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../core/utils/size_utils.dart';
+import '../../models/SnackBar.dart';
+import '../../nav_bar.dart';
 import '../create_card/widgets/socialMedia.dart';
 import 'image_picker.dart';
 
@@ -25,6 +27,7 @@ class EditCard extends StatefulWidget {
 }
 
 class EditState extends State<EditCard> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   imagePicker controller = Get.put(imagePicker());
 
   final _formKey = GlobalKey<FormState>();
@@ -83,7 +86,7 @@ class EditState extends State<EditCard> {
               label: Text(context.tr("Camera"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
@@ -128,7 +131,7 @@ class EditState extends State<EditCard> {
               label: Text(context.tr("Camera"),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)),),
             ),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
@@ -180,7 +183,7 @@ class EditState extends State<EditCard> {
               label: Text(context.tr("Camera"),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86),),),
             ),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
@@ -324,20 +327,18 @@ class EditState extends State<EditCard> {
     return lodaing
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
+      //backgroundColor: Colors.white.withOpacity(0.9),
         body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: ListView(
                 children: [
                   Text(
                     context.tr('Edit card'),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 2, 84, 86),
-                      fontSize: 24,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w700,),
+                    //textAlign: TextAlign.center,
+                    style: GoogleFonts.robotoCondensed(
+                        color: const Color.fromARGB(255, 2, 84, 86),
+                        fontSize: 30, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 10,),
                   Text(
                     'Fill the information to display it in your card.',
                     style: TextStyle(
@@ -369,7 +370,8 @@ class EditState extends State<EditCard> {
                             labelText: context.tr("Prefix"),
                             border: OutlineInputBorder(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                                BorderRadius.all(Radius.circular(10))
+                            ),
                           ),
                           //   autofillHints:,
                           cursorColor: Colors.black,
@@ -409,7 +411,7 @@ class EditState extends State<EditCard> {
                                 BorderRadius.all(Radius.circular(10))),
                           ),
                           //   autofillHints:,
-                          cursorColor: Colors.black,
+                          cursorColor: Colors.red,
                           // The validator receives the text that the user has entered.
                         ),
                         SizedBox(
@@ -798,7 +800,7 @@ SizedBox(height: 10,),
                           'Links': updatedLinks, // Updated links in Firestore
                           // Include other fields to update here...
                           'ImageURL': imageURL, // Update imageURL
-                          'LogoURL': logoURL,   // Update logoURL
+                          'LogoURL': logoURL, // Update logoURL
                           'PortfolioURL': portfolioURL, // Update portfolioURL
                           'defaultLogo':'https://firebasestorage.googleapis.com/v0/b/hiwetaan.appspot.com/o/images%2Fuser_image.jpg?alt=media&token=f0359660-ed0d-4edd-9df3-85a8fc087d7a',
                         };
@@ -810,16 +812,17 @@ SizedBox(height: 10,),
                             .update(updatedData);
 
                         // Show a snackbar to indicate successful save
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(context.tr('Your card information has been saved successfully')),
-                            backgroundColor: Color.fromARGB(255, 149, 181, 236),
+                        showInSnackBar(context.tr('Your card information has been saved successfully'),
+                            Colors.green,Colors.white, 3, context, _scaffoldKey);
+
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => Home(currentIndex: 1),
                           ),
                         );
-
-                        // Navigate back to the profile page
-                        context.pushPage(profiletest());
-
+                      } else {
+                        showInSnackBar(context.tr('Please create your card first'),
+                            Colors.red,Colors.white, 3, context, _scaffoldKey);
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -833,6 +836,7 @@ SizedBox(height: 10,),
                       style: TextStyle(color: Colors.white),
                     ),
                   )
+
 
                 ]
             )));

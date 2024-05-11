@@ -55,14 +55,14 @@ class Welcome2 extends StatelessWidget {
                       child: Image.asset(
                         'assets/images/shakeHand.png',
                         width: 100.w,
-                        height: 50.h,
+                        height: 45.h,
                       ),
                     ),
                   ),
                 ),
                 Container(
                   decoration: BoxDecoration(color: Colors.white),
-                  padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 2.h),
+                  padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,

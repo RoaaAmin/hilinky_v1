@@ -17,7 +17,7 @@ class Auth extends StatelessWidget {
           builder: ((context, snapshot) {
             if (snapshot.hasData) {
               // if user already logged in
-              return const Home();
+              return const Home(currentIndex: 1,);
               //Home()
               // no data else
             } else {

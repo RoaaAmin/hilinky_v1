@@ -58,31 +58,45 @@ class _QrCodeState extends State<QrCode> {
       // Handle the case where cardData is not initialized yet
       return '';
     }
-    // Future<String> _getImageBase64(String imageUrl) async {
-    //   final response = await http.get(Uri.parse(imageUrl));
-    //   if (response.statusCode == 200) {
-    //     final Uint8List bytes = response.bodyBytes;
-    //     final String base64Image = base64Encode(bytes);
-    //     return base64Image;
-    //   } else {
-    //     throw Exception('Failed to load image');
-    //   }
-    // }
+
+    Future<String> _getImageBase64(String imageUrl) async {
+      final response = await http.get(Uri.parse(imageUrl));
+      if (response.statusCode == 200) {
+        final Uint8List bytes = response.bodyBytes;
+        final String base64Image = base64Encode(bytes);
+        return base64Image;
+      } else {
+        throw Exception('Failed to load image');
+      }
+    }
 
     // Construct vCard data using the card information
     final String vCardData = 'BEGIN:VCARD\n' +
         'VERSION:3.0\n' +
-        //'FN:${cardData['Prefix']} ${cardData['FirstName']} ${cardData['LastName']}\n'
         'FN:${cardData['FirstName']} ${cardData['LastName']}\n' +
+        'N:${cardData['LastName']};${cardData['FirstName']};\n' +
+        '${cardData['CompanyName'] != null && cardData['CompanyName'].isNotEmpty ? 'ORG:${cardData['CompanyName']}\n' : ''}' +
         'TEL:${cardData['PhoneNumber']}\n' +
         'EMAIL:${cardData['Email']}\n' +
         'TITLE:${cardData['Position']}\n' +
-       // 'ORG:${cardData['CompanyName']}\n' +
-       // 'URL:${cardData['Links']}\n' +
-       //'PHOTO;ENCODING=BASE64:${_getImageBase64(cardData['LogoURL'])}\n' +
+        '${cardData['Links'] != null && cardData['Links']['facebook'] != null ? 'URL:${cardData['Links']['facebook']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['twitter'] != null ? 'URL:${cardData['Links']['twitter']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['linkedin'] != null ? 'URL:${cardData['Links']['linkedin']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['figma'] != null ? 'URL:${cardData['Links']['figma']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['youtube'] != null ? 'URL:${cardData['Links']['youtube']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['behance'] != null ? 'URL:${cardData['Links']['behance']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['discord'] != null ? 'URL:${cardData['Links']['discord']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['github'] != null ? 'URL:${cardData['Links']['github']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['instagram'] != null ? 'URL:${cardData['Links']['instagram']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['location'] != null ? 'URL:${cardData['Links']['location']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['telegram'] != null ? 'URL:${cardData['Links']['telegram']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['whatsapp'] != null ? 'URL:${cardData['Links']['whatsapp']}\n' : ''}' +
         'END:VCARD';
     return vCardData;
   }
+
+
+
 
   @override
   @override

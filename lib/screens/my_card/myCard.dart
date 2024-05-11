@@ -108,76 +108,79 @@ class _MyCardState extends State<MyCard> {
   };
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-        leadingWidth: double.maxFinite,
-        leading: AppbarImage(
-          imagePath: ImageConstant.hilinkylogopng,
-          margin: getMargin(
-            // left: 11,
-            right: 6,
-          ),
-        ),
-        shape: ContinuousRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(40),
-          ),
-          side: BorderSide(
-            color: Color(0xFF234E5C),
-          ),
-        ),
-        title: Text(context.tr('Home Screen')),
-      ),
-      body: ListView(
-        shrinkWrap: true,
-        physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-        children: [
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.start,
-          //   children: [
-          //     IconButton(
-          //         icon: Icon(LineIcons.arrowLeft, size:30.0),
-          //         onPressed: () {
-          //           Navigator.of(context).pushReplacement(CupertinoPageRoute(
-          //               builder: (BuildContext context) => Home()));
-          //         }
-          //     ),
-          //   ],
-          // ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.only(top: 0.0, left: 30.0, right: 30.0, bottom: 5.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(top: 1.0, bottom: 20.0),
-                      ),
-
-                      Container(
-                        padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+    return  WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          leadingWidth: double.maxFinite,
+          leading: AppbarImage(
+            imagePath: ImageConstant.hilinkylogopng,
+            margin: getMargin(
+              // left: 11,
+              right: 6,
             ),
           ),
-          flowList(context),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.pushPage(QRScannerPage());
-        },
-        child: Icon(Icons.qr_code_scanner),
-        foregroundColor: Colors.white,
-        backgroundColor: Color(0XFFEE6363),
-        shape: CircleBorder(),
+          shape: ContinuousRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(40),
+            ),
+            side: BorderSide(
+              color: Color(0xFF234E5C),
+            ),
+          ),
+          title: Text(context.tr('Home Screen')),
+        ),
+        body: ListView(
+          shrinkWrap: true,
+          physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+          children: [
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   children: [
+            //     IconButton(
+            //         icon: Icon(LineIcons.arrowLeft, size:30.0),
+            //         onPressed: () {
+            //           Navigator.of(context).pushReplacement(CupertinoPageRoute(
+            //               builder: (BuildContext context) => Home()));
+            //         }
+            //     ),
+            //   ],
+            // ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(top: 0.0, left: 30.0, right: 30.0, bottom: 5.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(top: 1.0, bottom: 20.0),
+                        ),
+
+                        Container(
+                          padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            flowList(context),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            context.pushPage(QRScannerPage());
+          },
+          child: Icon(Icons.qr_code_scanner),
+          foregroundColor: Colors.white,
+          backgroundColor: Color(0XFFEE6363),
+          shape: CircleBorder(),
+        ),
       ),
     );
   }
@@ -197,7 +200,6 @@ class _MyCardState extends State<MyCard> {
                 onTap: ()async{
                   //  showUserBottomSheet(postsDocs[i]);
                 },
-
                 child: Column(
                     children: [
                       // SizedBox(height: 60),
@@ -245,7 +247,7 @@ class _MyCardState extends State<MyCard> {
                                           image: cardsDocs[i].data()!['LogoURL'] != null
                                               ? NetworkImage(cardsDocs[i].data()!['LogoURL']!)
                                               : NetworkImage(cardsDocs[i].data()!['defaultLogo']!),
-                                          //fit: BoxFit.fill,
+                                          fit: BoxFit.fill,
                                         ),
                                       ),
                                     ),
@@ -336,26 +338,6 @@ class _MyCardState extends State<MyCard> {
                                     ),
                                   ],
                                 ),
-                                // SizedBox(height: 30),
-                                // Text(
-                                //   cardsDocs[i].data()!['Email'],
-                                //   style: TextStyle(
-                                //     color: Colors.white,
-                                //     fontSize: 15,
-                                //     fontFamily: 'Inter',
-                                //     height: 0.21,
-                                //   ),
-                                // ),
-                                // SizedBox(height: 15),
-                                // Text(
-                                //   cardsDocs[i].data()!['PhoneNumber'],
-                                //   style: TextStyle(
-                                //     color: Colors.white,
-                                //     fontSize: 15,
-                                //     fontFamily: 'Inter',
-                                //     height: 0.21,
-                                //   ),
-                                // ),
                                 SizedBox(height: 10),
                                 Center(
                                   child: Row(
@@ -400,6 +382,7 @@ class _MyCardState extends State<MyCard> {
                                                     ),
                                                   ),
                                                 ),
+
                                                 const SizedBox(
                                                   width: 10,
                                                 )

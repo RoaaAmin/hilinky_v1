@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -32,11 +33,12 @@ class _QRScannerPageState extends State<QRScannerPage> {
       print("Camera Permission Denied!");
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('QR Code Scanner'),
+        title: Text(context.tr('QR Code Scanner')),
       ),
       body: Column(
         children: <Widget>[
@@ -73,14 +75,13 @@ class _QRScannerPageState extends State<QRScannerPage> {
       openContactInContacts(result);
     });
   }
+
   void openContactInContacts(String qrData) async {
     final contactData = parseQRData(qrData);
 
     final Uri url = Uri(
       scheme: 'tel',
       path: contactData['phone'],
-
-
     );
 
     final String encodedUrl = Uri.encodeFull(url.toString());
@@ -91,8 +92,6 @@ class _QRScannerPageState extends State<QRScannerPage> {
       print('Error: Could not launch $encodedUrl');
     }
   }
-
-
 
   Map<String, String> parseQRData(String qrData) {
     List<String> lines = qrData.split('\n');
@@ -115,32 +114,5 @@ class _QRScannerPageState extends State<QRScannerPage> {
       'phone': phone,
       'email': email
     };
-
   }
-
-
-//
-// void openContactInContacts(String qrData) async {
-//   final contactData = parseQRData(qrData);
-//   final Uri url = 'contacts://add?givenName=${contactData['givenName']}&familyName=${contactData['familyName']}&phone=${contactData['phone']}&email=${contactData['email']}' as Uri;
-//
-//   if (await canLaunchUrl(url)) {
-//     await launchUrl(url);
-//   } else {
-//     print('Error: Failed to open the contacts app.');
-//   }
-// }
-
-// Map<String, dynamic> parseQRData(String qrData) {
-//   // Implement your own logic to parse the QR code data
-//   // and extract the contact information.
-//   // Return a map containing the contact details.
-//   // Example:
-//   return {
-//     'givenName': 'John',
-//     'familyName': 'Doe',
-//     'phone': '+1234567890',
-//     'email': 'john.doe@example.com',
-//   };
-
 }

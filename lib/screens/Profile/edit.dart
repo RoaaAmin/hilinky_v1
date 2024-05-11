@@ -15,6 +15,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
 
 import '../../core/utils/size_utils.dart';
+import '../../models/SnackBar.dart';
 import '../../nav_bar.dart';
 import '../../theme/custom_text_style.dart';
 import 'image_picker.dart';
@@ -31,6 +32,7 @@ class Edit extends StatefulWidget {
 
 class EditState extends State<Edit> {
   imagePicker controller = Get.put(imagePicker());
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   final _formKey = GlobalKey<FormState>();
   List<DocumentSnapshot<Map<String, dynamic>>> postsDocs = [];
@@ -95,7 +97,7 @@ class EditState extends State<Edit> {
               },
               label: Text(context.tr("Camera"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
-            SizedBox(width: 20,),
+            SizedBox(width: 10,),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
@@ -189,18 +191,6 @@ class EditState extends State<Edit> {
           padding: const EdgeInsets.all(20.0),
           child: ListView(
               children: [
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.start,
-                //   children: [
-                //     IconButton(
-                //         icon: Icon(LineIcons.arrowLeft, size:30.0),
-                //         onPressed: () {
-                //           Navigator.of(context).pushReplacement(CupertinoPageRoute(
-                //               builder: (BuildContext context) => Home()));
-                //         }
-                //     ),
-                //   ],
-                // ),
                 if (!lodaing)
                   Container(
                     child: ClipOval(
@@ -236,57 +226,6 @@ class EditState extends State<Edit> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Text(
-                      //   "First Name",
-                      //   style: CustomTextStyles.titleMediumTeal300,
-                      // ),
-                      // TextFormField(
-                      //   onChanged: (value) => FirstName = value,
-                      //   controller: TextEditingController(text: FirstName),
-                      //   decoration: InputDecoration(
-                      //     // labelText: context.tr('First Name'),
-                      //     border: OutlineInputBorder(
-                      //         borderRadius:
-                      //         BorderRadius.all(Radius.circular(10))),
-                      //   ),
-                      //   //   autofillHints:,
-                      //   cursorColor: Colors.black,
-                      //   // The validator receives the text that the user has entered.
-                      //   validator: (value) {
-                      //     if (value == null || value.isEmpty) {
-                      //       return context.tr("Please enter some text");
-                      //     }
-                      //     return null;
-                      //   },
-                      // ),
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
-                      // Text(
-                      //   "Last Name",
-                      //   style: CustomTextStyles.titleMediumTeal300,
-                      // ),
-                      // TextFormField(
-                      //   onChanged: (value) => LastName = value,
-                      //   controller: TextEditingController(text: LastName),
-                      //   decoration: InputDecoration(
-                      //     // labelText: context.tr('Last Name'),
-                      //     // hintText: 'name',
-                      //     border: OutlineInputBorder(
-                      //         borderRadius:
-                      //         BorderRadius.all(Radius.circular(10))),
-                      //   ),
-                      //   //   autofillHints:,
-                      //   cursorColor: Colors.black,
-                      //   // The validator receives the text that the user has entered.
-                      //   validator: (value) {
-                      //     if (value == null || value.isEmpty) {
-                      //       return context.tr("Please enter some text");
-                      //     }
-                      //     return null;
-                      //   },
-                      // ),
-
                       Row(
                         children: [
                           Expanded(
@@ -540,24 +479,12 @@ class EditState extends State<Edit> {
                       await FirebaseAuth.instance.sendPasswordResetEmail(
                         email: email, // Provide the user's email here
                       );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            context.tr('Password reset email sent. Please check your email.'),
-                          ),
-                          backgroundColor: Colors.green,
-                        ),
-                      );
+                      showInSnackBar(context.tr('Password reset email sent. Please check your email.'),
+                          Colors.green,Colors.white, 3, context, _scaffoldKey);
                     } catch (e) {
                       print('Error sending password reset email: $e');
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            context.tr('Failed to send password reset email.'),
-                          ),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
+                      showInSnackBar(context.tr('Failed to send password reset email.'),
+                          Colors.red,Colors.white, 3, context, _scaffoldKey);
                     }
                   },
                   child: Align(
@@ -587,6 +514,14 @@ class EditState extends State<Edit> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
+                    // showInSnackBar(context.tr('Your information has been saved successfully'),
+                    //     Colors.green,Colors.white, 3, context, _scaffoldKey);
+                    //
+                    // Navigator.of(context).pushReplacement(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => Home(currentIndex: 2),
+                    //   ),
+                    // );
                     if (_formKey.currentState!.validate()) {
                       // Upload image to Firebase Storage
                       if (selectedImage != null) {
@@ -616,17 +551,31 @@ class EditState extends State<Edit> {
                             'sCity': city,
                             'UserProfileImage': selectedImage,
                           });
-
                           // Show success message
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(context.tr('Your information has been saved successfully')),
-                              backgroundColor: Color.fromARGB(255, 149, 181, 236),
+                          // ScaffoldMessenger.of(context).showSnackBar(
+                          //   SnackBar(
+                          //     content: Text(context.tr('Your information has been saved successfully')),
+                          //     backgroundColor: Color.fromARGB(255, 149, 181, 236),
+                          //   ),
+                          // );
+
+                          // Navigate back to profile page
+                          // Navigator.of(context).pushReplacement(
+                          //   MaterialPageRoute(
+                          //     builder: (context) => Home(currentIndex: 2),
+                          //   ),
+                          // );
+
+                          //  Navigator.of(context).pop();
+                          showInSnackBar(context.tr('Your information has been saved successfully'),
+                              Colors.green,Colors.white, 3, context, _scaffoldKey);
+
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => Home(currentIndex: 2),
                             ),
                           );
 
-                          // Navigate back to profile page
-                          context.pushPage(profiletest());
                         });
                       } else {
                         // If no image selected, update user's information without changing the image
@@ -642,18 +591,16 @@ class EditState extends State<Edit> {
                           'sNationality': nationality,
                           'sCity': city,
                         });
-//
-                        // Show success message
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(context.tr("Your information has been saved successfully")),
-                            backgroundColor: Color.fromARGB(255, 149, 181, 236),
+                        // Navigate back to profile page
+                         //context.pushPage(Home());
+                        //Navigator.of(context).pop();
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => Home(currentIndex: 2),
                           ),
                         );
 
-                        // Navigate back to profile page
-                      //  context.pushPage(profiletest());
-                        Navigator.of(context).pop();
+
                       }
                     }
                   },
