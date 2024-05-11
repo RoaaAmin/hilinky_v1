@@ -320,7 +320,7 @@ class profiletestState extends State<profiletest> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20)),
                           height: 215,
-                          width: 372,
+                          width: 361,
                           child: Column(
                             children: [
                               Row(
