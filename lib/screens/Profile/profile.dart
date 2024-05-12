@@ -12,6 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../auth.dart';
 import '../../nav_bar.dart';
+import '../../theme/theme_helper.dart';
 import 'edit.dart';
 import 'language.dart';
 import 'notifications.dart';
@@ -182,6 +183,8 @@ class profiletestState extends State<profiletest> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
+        backgroundColor: appTheme.whiteA700,
+        resizeToAvoidBottomInset: false,
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(

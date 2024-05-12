@@ -12,6 +12,8 @@ class AboutUs extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
+        backgroundColor: appTheme.whiteA700,
+        resizeToAvoidBottomInset: false,
         // appBar: AppBar(
         //   leadingWidth: double.maxFinite,
         //   leading: AppbarImage(
@@ -322,7 +324,10 @@ class AboutUs extends StatelessWidget {
                             Container(
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
-                                  colors: [Color(0xFFEF9453), Color(0xFFEA6F44)],
+                                  colors: [
+                                    Colors.orange,
+                                    Colors.deepOrange
+                                  ],
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
                                 ),

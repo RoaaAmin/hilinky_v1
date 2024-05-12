@@ -16,6 +16,7 @@ import '../../nav_bar.dart';
 import '../../theme/theme_helper.dart';
 import '../../widgets/app_bar/appbar_image.dart';
 import '../../widgets/custom_image_view.dart';
+import '../Profile/edit_card.dart';
 import '../Scanner/QRScannerPage.dart';
 // import 'package:page_indicator/page_indicator.dart';
 
@@ -234,13 +235,50 @@ class _MyCardState extends State<MyCard> {
                             ),
                           ),
 
+                          Container(
+                            // padding: const EdgeInsets.all(40.0),
+                            margin: const EdgeInsets.only(top: 45, right: 20),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Row(
+                                  children: [
+                                    Spacer(),
+                                    Container(
+                                      height: 25,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          context.pushPage(EditCard());
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          // primary: Colors.transparent, // Setting the button's background color to transparent
+                                          shadowColor: Colors.transparent, // Removing the button's shadow
+                                        ),
+                                        child: Container(
+                                          child: Text(
+                                            'Edit  ',
+                                            style: TextStyle(
+                                               color: Colors.deepOrange,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
 
+                          SizedBox(height: 80, width: 90,),
                           Padding(
-                            padding: const EdgeInsets.all(30.0),
+                            padding: const EdgeInsets.all(60.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                SizedBox(height: 20,),
                                 Row(
                                   children: [
                                     Container(
@@ -326,6 +364,7 @@ class _MyCardState extends State<MyCard> {
                                             ),
                                           ],
                                         ),
+
                                       ],
                                     ),
                                   ],
@@ -350,18 +389,18 @@ class _MyCardState extends State<MyCard> {
                                 //     height: 0.21,
                                 //   ),
                                 // ),
-                                SizedBox(height: 10),
-                                Center(
-                                  child: Row(
+                                SizedBox(height: 20),
+                                /*Center(
+                                  child: Column( // Changed Row to Column
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       SizedBox(
                                         height: 40,
                                         child: Links.isEmpty
-                                            ? Text(context.tr(''))
+                                            ? Text(context.tr(' '))
                                             : ListView.builder(
-                                          scrollDirection: Axis.horizontal,
+                                          // scrollDirection: Axis.horizontal, // Removed or set to Axis.vertical
                                           shrinkWrap: true,
                                           itemCount: Links.length,
                                           itemBuilder: (context, index) {
@@ -400,6 +439,53 @@ class _MyCardState extends State<MyCard> {
                                               ],
                                             );
                                           },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),*/
+
+                                Center(
+                                  child: Column( // Changed Row to Column
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      SizedBox(
+                                        height: 40,
+                                        child: Links.isEmpty
+                                            ? Text(context.tr(' '))
+                                            : SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: Row(
+                                            children: List.generate(
+                                              Links.length,
+                                                  (index) => Padding(
+                                                padding: const EdgeInsets.only(right: 10.0),
+                                                child: Container(
+                                                  width: 35,
+                                                  height: 35, // Add width and height here
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.rectangle,
+                                                    borderRadius: BorderRadius.circular(8),
+                                                    color: Colors.white,
+                                                    border: Border.all(
+                                                      color: Colors.grey,
+                                                      width: 1.0,
+                                                    ),
+                                                  ),
+                                                  child: IconButton(
+                                                    iconSize: 20,
+                                                    onPressed: () {
+                                                      final Uri url = Uri.parse(values[index]);
+                                                      _launchUrl(url);
+                                                    },
+                                                    icon: Icon(l[keys[index]]!.icon),
+                                                    color: iconColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ],
