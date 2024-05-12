@@ -1,4 +1,4 @@
-# HiLinky V1
+# HiLinky V1.0.0
 
 A new Flutter project.
 
