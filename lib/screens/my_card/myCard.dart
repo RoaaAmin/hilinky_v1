@@ -144,16 +144,16 @@ class _MyCardState extends State<MyCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.only(top: 0.0, left: 30.0, right: 30.0, bottom: 5.0),
+                    // padding: EdgeInsets.only(top: 0.0, left: 30.0, right: 30.0, bottom: 5.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(top: 1.0, bottom: 20.0),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                        ),
+                        // Padding(
+                        //   padding: EdgeInsets.only(top: 1.0, bottom: 20.0),
+                        // ),
+                        // Container(
+                        //   padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                        // ),
                       ],
                     ),
                   )
@@ -271,14 +271,14 @@ class _MyCardState extends State<MyCard> {
                             ),
                           ),
 
-                          SizedBox(height: 80, width: 90,),
+                          // SizedBox(height: 80, width: 90,),
                           Padding(
                             padding: const EdgeInsets.all(60.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: 20,),
+                                 SizedBox(height: 20,),
                                 Row(
                                   children: [
                                     Container(
@@ -510,33 +510,28 @@ class _MyCardState extends State<MyCard> {
                       ),
                     ),
                   ),
-                      SizedBox(height: 5),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        elevation: 4,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFF286F8C),
-                                Color(0xFF95BECF),
+                      // SizedBox(height: 5),
+                      Container(
+                        child: Padding(
+                          padding: const EdgeInsets.all(0.0),
+                          child: Center(
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                CustomImageView(
+                                  // width: 500,
+                                  height: 310,
+                                  imagePath: ImageConstant.HilinkyCard,
+                                  fit: BoxFit.cover, // Ensure the image covers the entire container
+                                ),
+                                QrCode(),
                               ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(30.0),
-                            child: Center(
-                              child: QrCode(),
                             ),
                           ),
                         ),
                       ),
-                ]),
+                    ]
+                ),
               );
             }
         );
