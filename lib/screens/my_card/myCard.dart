@@ -259,7 +259,7 @@ class _MyCardState extends State<MyCard> {
                                           child: Text(
                                             'Edit  ',
                                             style: TextStyle(
-                                               color: Colors.deepOrange,
+                                               color: Colors.deepOrangeAccent,
                                             ),
                                           ),
                                         ),
@@ -311,10 +311,9 @@ class _MyCardState extends State<MyCard> {
                                               cardsDocs[i].data()!['FirstName'],
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 24,
+                                                fontSize: 20,
                                                 fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w700,
-                                                height: 0.08,
+                                                fontWeight: FontWeight.w500,
                                               ),
                                             ).tr(),
                                             Text("  "),
@@ -322,10 +321,9 @@ class _MyCardState extends State<MyCard> {
                                               cardsDocs[i].data()!['LastName'],
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 24,
+                                                fontSize: 20,
                                                 fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w700,
-                                                height: 0.08,
+                                                fontWeight: FontWeight.w500,
                                               ),
                                             ).tr(),
                                           ],

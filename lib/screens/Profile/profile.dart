@@ -256,62 +256,66 @@ class profiletestState extends State<profiletest> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(
-                              height: 40,
-                              child: Links.isEmpty
-                                  ? Text(context.tr('No links'))
-                                  : ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true,
-                                itemCount: Links.length,
-                                itemBuilder: (context, index) {
-                                  return Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.rectangle,
-                                          borderRadius: BorderRadius.circular(8),
-                                          gradient: LinearGradient(
-                                              colors: [
-                                                Colors.orange,
-                                                Colors.deepOrange
-                                              ],
-                                              end: Alignment.topLeft,
-                                              begin: Alignment.bottomRight),
-                                        ),
-                                        width: 35,
-                                        height: 35,
-                                        child: Center(
-                                          child: IconButton(
-                                            isSelected: true,
-                                            iconSize: 20,
-                                            onPressed: () {
-                                              final Uri url =
-                                              Uri.parse(values[index]);
-                                              _launchUrl(url);
-                                            },
-                                            icon: Icon(l[keys[index]]!.icon),
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 15,
-                                      )
-                                    ],
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(right:40.0, left:40.0),
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     mainAxisSize: MainAxisSize.min,
+                        //     children: [
+                        //       SizedBox(
+                        //         height: 40,
+                        //         // width: 30,
+                        //         child: Links.isEmpty
+                        //             ? Text(context.tr('No links'))
+                        //             : ListView.builder(
+                        //           scrollDirection: Axis.horizontal,
+                        //           shrinkWrap: true,
+                        //           itemCount: Links.length,
+                        //           itemBuilder: (context, index) {
+                        //             return Row(
+                        //               mainAxisAlignment: MainAxisAlignment.center,
+                        //               crossAxisAlignment:
+                        //               CrossAxisAlignment.start,
+                        //               children: [
+                        //                 Container(
+                        //                   decoration: BoxDecoration(
+                        //                     shape: BoxShape.rectangle,
+                        //                     borderRadius: BorderRadius.circular(8),
+                        //                     gradient: LinearGradient(
+                        //                         colors: [
+                        //                           Colors.orange,
+                        //                           Colors.deepOrange
+                        //                         ],
+                        //                         end: Alignment.topLeft,
+                        //                         begin: Alignment.bottomRight),
+                        //                   ),
+                        //                   width: 35,
+                        //                   height: 35,
+                        //                   child: Center(
+                        //                     child: IconButton(
+                        //                       isSelected: true,
+                        //                       iconSize: 20,
+                        //                       onPressed: () {
+                        //                         final Uri url =
+                        //                         Uri.parse(values[index]);
+                        //                         _launchUrl(url);
+                        //                       },
+                        //                       icon: Icon(l[keys[index]]!.icon),
+                        //                       color: Colors.white,
+                        //                     ),
+                        //                   ),
+                        //                 ),
+                        //                 const SizedBox(
+                        //                   width: 15,
+                        //                 )
+                        //               ],
+                        //             );
+                        //           },
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                         const SizedBox(
                           height: 20,
                         ),

@@ -215,36 +215,38 @@ class _LoginScreenState extends State<LoginScreen> {
                   // SizedBox(height: 30,),
                   Row(
                     children: [
-                      GestureDetector(
-                        onTap: () async {
-                          sendRecoveryPass();
-                        },
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Padding(
-                            padding: getPadding(
-                              top: 17,
-                              right: 4,
-                            ),
-                            child: ShaderMask(
-                              shaderCallback: (Rect bounds) {
-                                return LinearGradient(
-                                  colors: [
-                                    Color(0xFFEF9453),
-                                    Colors.deepOrange,
-                                  ],
-                                ).createShader(bounds);
-                              },
-                              child: Text(
-                                context.tr('Forgot Password?'),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w700,
-                                  // decoration: TextDecoration.underline,
-                                  color: Colors
-                                      .white, // Set text color to white for gradient to be visible
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () async {
+                            sendRecoveryPass();
+                          },
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: getPadding(
+                                top: 17,
+                                right: 4,
+                              ),
+                              child: ShaderMask(
+                                shaderCallback: (Rect bounds) {
+                                  return LinearGradient(
+                                    colors: [
+                                      Color(0xFFEF9453),
+                                      Colors.deepOrange,
+                                    ],
+                                  ).createShader(bounds);
+                                },
+                                child: Text(
+                                  context.tr('Forgot Password?'),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    // decoration: TextDecoration.underline,
+                                    color: Colors
+                                        .white, // Set text color to white for gradient to be visible
+                                  ),
                                 ),
                               ),
                             ),
@@ -254,8 +256,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
 
+
                   SizedBox(
-                    height: 230,
+                    height: 10,
                   ),
                   Row(
                     children: [
@@ -281,42 +284,46 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           );
                         },
-                        child: Text.rich(
-                          TextSpan(
-                            text:
-                                'By ticking this box I agree that I have read the ',
-                            style: CustomTextStyles.labelLargeInterBluegray300,
-                            children: [
-                              TextSpan(
-                                text: 'Privacy & Policy',
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: Color(0xFFEF9453),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Text.rich(
+                            TextSpan(
+                              text: 'By ticking this box I agree that I have read the ',
+                              style: CustomTextStyles.labelLargeInterBluegray300,
+                              children: [
+                                TextSpan(
+                                  text: '\nPrivacy & Policy',
+                                  style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: Color(0xFFEF9453),
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => PrivacyPolicyPage(),
+                                        ),
+                                      );
+                                    },
                                 ),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            PrivacyPolicyPage(),
-                                      ),
-                                    );
-                                  },
-                              ),
-                              TextSpan(
-                                text: '.',
-                                style: TextStyle(
-                                  color: Colors.black,
+                                TextSpan(
+                                  text: '.',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
+
                         ),
                       ),
                     ],
                   ),
-
+                  SizedBox(
+                    height: 10,
+                  ),
                   Center(
                     child: Container(
                       width: 370,

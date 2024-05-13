@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hilinky/components/context.dart';
 import 'package:hilinky/screens/Profile/profile.dart';
+import 'package:hilinky/widgets/custom_text_form_field.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -18,6 +19,7 @@ import '../../core/utils/size_utils.dart';
 import '../../models/SnackBar.dart';
 import '../../nav_bar.dart';
 import '../../theme/custom_text_style.dart';
+import '../../theme/theme_helper.dart';
 import 'image_picker.dart';
 
 class Edit extends StatefulWidget {
@@ -187,6 +189,8 @@ class EditState extends State<Edit> {
     return lodaing
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
+        backgroundColor: appTheme.whiteA700,
+        resizeToAvoidBottomInset: false,
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: ListView(
@@ -216,7 +220,8 @@ class EditState extends State<Edit> {
                         builder: ((builder) => bottomSheet()),
                       );
                     },
-                    child:  Text(context.tr("Pick Image"))),
+                    child:  Text(context.tr("Pick Image")
+                    )),
 
                 const SizedBox(
                   height: 5,
@@ -245,8 +250,21 @@ class EditState extends State<Edit> {
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                                        borderSide: BorderSide(color: Color(0xFF4AAAC6)),
+                                        borderSide: BorderSide(color: appTheme.teal300, width: 2),
                                       ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        borderSide: BorderSide(color: appTheme.white, width: 2),
+                                      ),
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      hintText: context.tr("Enter your first name"),
+                                      hintStyle: TextStyle(color: Colors.black),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                                     ),
                                     cursorColor: Colors.black,
                                     // validator: (value) {
@@ -278,8 +296,21 @@ class EditState extends State<Edit> {
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                                        borderSide: BorderSide(color: Color(0xFF4AAAC6)),
+                                        borderSide: BorderSide(color: appTheme.teal300, width: 2),
                                       ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        borderSide: BorderSide(color: appTheme.white, width: 2),
+                                      ),
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      hintText: context.tr("Enter your last name"),
+                                      hintStyle: TextStyle(color: Colors.black),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                                     ),
                                     cursorColor: Colors.black,
                                     // validator: (value) {
@@ -384,7 +415,21 @@ class EditState extends State<Edit> {
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(color: appTheme.teal300, width: 2),
                                 ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(color: appTheme.white, width: 2),
+                                ),
+                                filled: true,
+                                fillColor: Colors.white,
+                                hintText: context.tr("Enter your phone number"),
+                                hintStyle: TextStyle(color: Colors.grey),
+                                contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                               ),
                               cursorColor: Colors.black,
                               keyboardType: TextInputType.phone,
@@ -401,7 +446,6 @@ class EditState extends State<Edit> {
                           ),
                         ],
                       ),
-
                       SizedBox(
                         height: 10,
                       ),
@@ -421,7 +465,21 @@ class EditState extends State<Edit> {
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(color: appTheme.teal300, width: 2),
                                 ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(color: appTheme.white, width: 2),
+                                ),
+                                filled: true,
+                                fillColor: Colors.white,
+                                hintText: context.tr("Enter your nationality"),
+                                hintStyle: TextStyle(color: Colors.grey),
+                                contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                               ),
                               cursorColor: Colors.black,
                               // validator: (value) {
@@ -437,34 +495,61 @@ class EditState extends State<Edit> {
                       SizedBox(
                         height: 10,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            context.tr("City"),
-                            style: CustomTextStyles.titleMediumTeal300,
-                          ),
-                          SizedBox(
-                            width: 354,
-                            height: 54,
-                            child: TextFormField(
-                              onChanged: (value) => city = value,
-                              controller: TextEditingController(text: city),
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                ),
-                              ),
-                              cursorColor: Colors.black,
-                              // validator: (value) {
-                              // //   if (value == null || value.isEmpty) {
-                              // //     return context.tr("Please enter some text");
-                              // //   }
-                              // //   return null;
-                              // // },
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.00),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.02),
+                              spreadRadius: 0,
+                              blurRadius: 5,
+                              offset: Offset(0, 15), // Changes position of shadow
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              context.tr("City"),
+                              style: CustomTextStyles.titleMediumTeal300,
+                            ),
+                            SizedBox(
+                              width: 354,
+                              height: 54,
+                              child: TextFormField(
+                                onChanged: (value) => city = value,
+                                controller: TextEditingController(text: city),
+                                decoration: InputDecoration(
+                                  fillColor: Colors.white, // Set background color
+                                  filled: true,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.00),
+                                    borderSide: BorderSide(
+                                      color: appTheme.white,
+                                      width: 2,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.00),
+                                    borderSide: BorderSide(
+                                      color: appTheme.white,
+                                      width: 2,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.00),
+                                    borderSide: BorderSide(
+                                      color: appTheme.teal300,
+                                      width: 2,
+                                    ),
+                                  ),
+                                ),
+                                cursorColor: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -605,16 +690,29 @@ class EditState extends State<Edit> {
                     }
                   },
                   // Button styling and text
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.all(5),
-                    backgroundColor: const Color.fromARGB(255, 2, 84, 86),
-                    fixedSize: const Size(150, 40),
-                    elevation: 0,
+                  style: ButtonStyle(
+                    // padding: const EdgeInsets.all(5),
+                    shape:
+                    MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Color(0xFF234E5C)),
                   ),
-                  child:  Text(
-                    context.tr('Save'),
-                    style: TextStyle(color: Colors.white),
+                  child:  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text(
+                      context.tr('Save'),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        ),
+                        ),
                   ),
+
                 ),
 
               ]

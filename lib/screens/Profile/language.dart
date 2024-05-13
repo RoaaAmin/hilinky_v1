@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hilinky/profilePage/ProfilePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../theme/theme_helper.dart';
+
 class Language extends StatefulWidget {
   const Language({Key? key}) : super(key: key);
 
@@ -46,10 +48,11 @@ class _LanguageState extends State<Language> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: appTheme.whiteA700,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.grey,
+        backgroundColor: appTheme.whiteA700,
         title: const Center(
           child: Text(
             "Language",
