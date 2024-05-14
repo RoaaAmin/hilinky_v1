@@ -213,7 +213,7 @@ class _MyCardState extends State<MyCard> {
                         children: [
                           Container(
                             // width: 300, // Replace 200 with your desired width
-                            height: 310, // Replace 200 with your desired height
+                            height: 338, // Replace 200 with your desired height
                             child: CustomImageView(
                               imagePath: ImageConstant.HilinkyCard,
                             ),
@@ -351,104 +351,47 @@ class _MyCardState extends State<MyCard> {
                                 ),
 
                                 SizedBox(height: 20),
-                                /*Center(
-                                  child: Column( // Changed Row to Column
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
+
+//////////////
+                                Center(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(
-                                        height: 40,
+                                        height: 40, // Adjust the height according to your requirement
                                         child: Links.isEmpty
-                                            ? Text(context.tr(' '))
-                                            : ListView.builder(
-                                          // scrollDirection: Axis.horizontal, // Removed or set to Axis.vertical
-                                          shrinkWrap: true,
-                                          itemCount: Links.length,
-                                          itemBuilder: (context, index) {
-                                            return Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.rectangle,
-                                                    borderRadius: BorderRadius.circular(8),
-                                                    gradient: LinearGradient(
-                                                      colors: [Colors.white, Colors.white],
-                                                      end: Alignment.topLeft,
-                                                      begin: Alignment.bottomRight,
-                                                    ),
-                                                  ),
-                                                  width: 35,
-                                                  height: 35,
-                                                  child: Center(
-                                                    child: IconButton(
-                                                      isSelected: true,
-                                                      iconSize: 20,
-                                                      onPressed: () {
-                                                        final Uri url = Uri.parse(values[index]);
-                                                        _launchUrl(url);
-                                                      },
-                                                      icon: Icon(l[keys[index]]!.icon),
-                                                      color: iconColor,
-                                                    ),
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                )
-                                              ],
+                                            ? Text(context.tr('No links'))
+                                            : Wrap(
+                                          spacing: 15.0, // Horizontal spacing between the links
+                                          runSpacing: 8.0, // Vertical spacing between the rows
+                                          children: List.generate(Links.length, (index) {
+                                            return Container(
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.rectangle,
+                                                borderRadius: BorderRadius.circular(8),
+                                                color: Colors.white,
+                                              ),
+                                              width: 35,
+                                              height: 35,
+                                              child: IconButton(
+                                                iconSize: 20,
+                                                onPressed: () {
+                                                  final Uri url = Uri.parse(values[index]);
+                                                  _launchUrl(url);
+                                                },
+                                                icon: Icon(l[keys[index]]!.icon),
+                                                color: iconColor,
+                                              ),
                                             );
-                                          },
+                                          }),
+
                                         ),
+
                                       ),
                                     ],
                                   ),
-                                ),*/
-
-                                Center(
-                                  child: Column( // Changed Row to Column
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SizedBox(
-                                        height: 40,
-                                        child: Links.isEmpty
-                                            ? Text(context.tr(' '))
-                                            : SingleChildScrollView(
-                                          scrollDirection: Axis.horizontal,
-                                          child: Row(
-                                            children: List.generate(
-                                              Links.length,
-                                                  (index) => Padding(
-                                                padding: const EdgeInsets.only(right: 10.0),
-                                                child: Container(
-                                                  width: 35,
-                                                  height: 35, // Add width and height here
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.rectangle,
-                                                    borderRadius: BorderRadius.circular(8),
-                                                    color: Colors.white,
-                                                    border: Border.all(
-                                                      color: Colors.grey,
-                                                      width: 1.0,
-                                                    ),
-                                                  ),
-                                                  child: IconButton(
-                                                    iconSize: 20,
-                                                    onPressed: () {
-                                                      final Uri url = Uri.parse(values[index]);
-                                                      _launchUrl(url);
-                                                    },
-                                                    icon: Icon(l[keys[index]]!.icon),
-                                                    color: iconColor,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
                                         ),
-                                      ),
+
                                     ],
                                   ),
                                 ),
@@ -459,10 +402,8 @@ class _MyCardState extends State<MyCard> {
                               ],
                             ),
                           ),
-                        ],
+
                       ),
-                    ),
-                  ),
 
                       Container(
                         child: Padding(
@@ -473,7 +414,7 @@ class _MyCardState extends State<MyCard> {
                               children: [
                                 CustomImageView(
                                   // width: 500,
-                                  height: 310,
+                               height: 338,
                                   imagePath: ImageConstant.HilinkyCard,
                                   fit: BoxFit.cover, // Ensure the image covers the entire container
                                 ),

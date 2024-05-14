@@ -256,68 +256,53 @@ class profiletestState extends State<profiletest> {
                         const SizedBox(
                           height: 20,
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(right:40.0, left:40.0),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.center,
-                        //     mainAxisSize: MainAxisSize.min,
-                        //     children: [
-                        //       SizedBox(
-                        //         height: 40,
-                        //         // width: 30,
-                        //         child: Links.isEmpty
-                        //             ? Text(context.tr('No links'))
-                        //             : ListView.builder(
-                        //           scrollDirection: Axis.horizontal,
-                        //           shrinkWrap: true,
-                        //           itemCount: Links.length,
-                        //           itemBuilder: (context, index) {
-                        //             return Row(
-                        //               mainAxisAlignment: MainAxisAlignment.center,
-                        //               crossAxisAlignment:
-                        //               CrossAxisAlignment.start,
-                        //               children: [
-                        //                 Container(
-                        //                   decoration: BoxDecoration(
-                        //                     shape: BoxShape.rectangle,
-                        //                     borderRadius: BorderRadius.circular(8),
-                        //                     gradient: LinearGradient(
-                        //                         colors: [
-                        //                           Colors.orange,
-                        //                           Colors.deepOrange
-                        //                         ],
-                        //                         end: Alignment.topLeft,
-                        //                         begin: Alignment.bottomRight),
-                        //                   ),
-                        //                   width: 35,
-                        //                   height: 35,
-                        //                   child: Center(
-                        //                     child: IconButton(
-                        //                       isSelected: true,
-                        //                       iconSize: 20,
-                        //                       onPressed: () {
-                        //                         final Uri url =
-                        //                         Uri.parse(values[index]);
-                        //                         _launchUrl(url);
-                        //                       },
-                        //                       icon: Icon(l[keys[index]]!.icon),
-                        //                       color: Colors.white,
-                        //                     ),
-                        //                   ),
-                        //                 ),
-                        //                 const SizedBox(
-                        //                   width: 15,
-                        //                 )
-                        //               ],
-                        //             );
-                        //           },
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 40.0, left: 40.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 40, // Adjust the height according to your requirement
+                                child: Links.isEmpty
+                                    ? Text(context.tr('No links'))
+                                    : Wrap(
+                                  spacing: 15.0, // Horizontal spacing between the links
+                                  runSpacing: 8.0, // Vertical spacing between the rows
+                                  children: List.generate(Links.length, (index) {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.rectangle,
+                                        borderRadius: BorderRadius.circular(8),
+                                        gradient: LinearGradient(
+                                            colors: [
+                                              Colors.orange,
+                                              Colors.deepOrange
+                                            ],
+                                            end: Alignment.topLeft,
+                                            begin: Alignment.bottomRight
+                                        ),
+                                      ),
+                                      width: 35,
+                                      height: 35,
+                                      child: IconButton(
+                                        iconSize: 20,
+                                        onPressed: () {
+                                          final Uri url = Uri.parse(values[index]);
+                                          _launchUrl(url);
+                                        },
+                                        icon: Icon(l[keys[index]]!.icon),
+                                        color: Colors.white,
+                                      ),
+                                    );
+                                  }),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
                         const SizedBox(
-                          height: 20,
+                          height: 50,
                         ),
                         Container(
                           padding: const EdgeInsets.only(
