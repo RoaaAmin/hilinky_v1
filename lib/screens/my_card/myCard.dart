@@ -148,12 +148,6 @@ class _MyCardState extends State<MyCard> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        // Padding(
-                        //   padding: EdgeInsets.only(top: 1.0, bottom: 20.0),
-                        // ),
-                        // Container(
-                        //   padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                        // ),
                       ],
                     ),
                   )
@@ -277,7 +271,7 @@ class _MyCardState extends State<MyCard> {
                                           image: cardsDocs[i].data()!['LogoURL'] != null
                                               ? NetworkImage(cardsDocs[i].data()!['defaultLogo']!)
                                               : NetworkImage(cardsDocs[i].data()!['LogoURL']!),
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
