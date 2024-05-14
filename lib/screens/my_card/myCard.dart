@@ -406,6 +406,8 @@ class _MyCardState extends State<MyCard> {
                       ),
 
                       Container(
+                        margin: const EdgeInsets.only(top: 0, bottom: 10), // Adjust margin as needed
+
                         child: Padding(
                           padding: const EdgeInsets.all(0.0),
                           child: Center(
@@ -418,6 +420,7 @@ class _MyCardState extends State<MyCard> {
                                   imagePath: ImageConstant.HilinkyCard,
                                   fit: BoxFit.cover, // Ensure the image covers the entire container
                                 ),
+
                                 QrCode(),
                               ],
                             ),
