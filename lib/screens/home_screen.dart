@@ -69,22 +69,22 @@ class _HomeScreenState extends State<HomeScreen> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Update Available',style: TextStyle(color: Color(0XFFEE6363),)),
+          title: Text(context.tr('Update Available'),style: TextStyle(color: Color(0XFFEE6363),)),
           content: Text(
-            'A new version of the app is available. Please update to the latest version to continue using the app.',style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)),),
+        context.tr( 'A new version of the app is available. Please update to the latest version to continue using the app.'),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)),),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Not Now',style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)),),
+              child: Text(context.tr('Not Now'),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86)),),
             ),
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
                 update();
               },
-              child: Text('Update',style: TextStyle(color: Color.fromARGB(255, 2, 84, 86))),
+              child: Text(context.tr('Update'),style: TextStyle(color: Color.fromARGB(255, 2, 84, 86))),
             ),
           ],
         );
