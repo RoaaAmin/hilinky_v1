@@ -167,8 +167,8 @@ class _MyCardState extends State<MyCard> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 colors: [
-                  Colors.orange,
-                  Colors.deepOrange
+                  Colors.orange.shade300,
+                  Colors.deepOrange.shade400
                 ],
                 end: Alignment.topLeft,
                 begin: Alignment.bottomRight
@@ -207,24 +207,8 @@ class _MyCardState extends State<MyCard> {
 
                 child: Column(
                     children: [
-                      // SizedBox(height: 60),
                       Container(
-                    // shape: RoundedRectangleBorder(
-                    //   borderRadius: BorderRadius.circular(10),
-                    // ),
-                    // elevation: 4,
                     child: Container(
-                      // decoration: BoxDecoration(
-                      //   borderRadius: BorderRadius.circular(10),
-                      //   gradient: LinearGradient(
-                      //     colors: [
-                      //       Color(0xFF286F8C),
-                      //       Color(0xFF95BECF),
-                      //     ],
-                      //     begin: Alignment.topLeft,
-                      //     end: Alignment.bottomRight,
-                      //   ),
-                      // ),
                       child: Stack(
                         children: [
                           Container(
@@ -234,7 +218,6 @@ class _MyCardState extends State<MyCard> {
                               imagePath: ImageConstant.HilinkyCard,
                             ),
                           ),
-
                           Container(
                             // padding: const EdgeInsets.all(40.0),
                             margin: const EdgeInsets.only(top: 45, right: 20),
@@ -257,7 +240,7 @@ class _MyCardState extends State<MyCard> {
                                         ),
                                         child: Container(
                                           child: Text(
-                                            'Edit  ',
+                                            context.tr('Edit'),
                                             style: TextStyle(
                                                color: Colors.deepOrangeAccent,
                                             ),
@@ -272,8 +255,7 @@ class _MyCardState extends State<MyCard> {
                           ),
 
                           // SizedBox(height: 80, width: 90,),
-                          Padding(
-                            padding: const EdgeInsets.all(60.0),
+                          Padding( padding: const EdgeInsets.all(60.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -315,7 +297,7 @@ class _MyCardState extends State<MyCard> {
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w500,
                                               ),
-                                            ).tr(),
+                                            ),
                                             Text("  "),
                                             Text(
                                               cardsDocs[i].data()!['LastName'],
@@ -325,7 +307,7 @@ class _MyCardState extends State<MyCard> {
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w500,
                                               ),
-                                            ).tr(),
+                                            ),
                                           ],
                                         ),
                                         SizedBox(height: 10),
@@ -367,26 +349,7 @@ class _MyCardState extends State<MyCard> {
                                     ),
                                   ],
                                 ),
-                                // SizedBox(height: 30),
-                                // Text(
-                                //   cardsDocs[i].data()!['Email'],
-                                //   style: TextStyle(
-                                //     color: Colors.white,
-                                //     fontSize: 15,
-                                //     fontFamily: 'Inter',
-                                //     height: 0.21,
-                                //   ),
-                                // ),
-                                // SizedBox(height: 15),
-                                // Text(
-                                //   cardsDocs[i].data()!['PhoneNumber'],
-                                //   style: TextStyle(
-                                //     color: Colors.white,
-                                //     fontSize: 15,
-                                //     fontFamily: 'Inter',
-                                //     height: 0.21,
-                                //   ),
-                                // ),
+
                                 SizedBox(height: 20),
                                 /*Center(
                                   child: Column( // Changed Row to Column
@@ -490,15 +453,7 @@ class _MyCardState extends State<MyCard> {
                                   ),
                                 ),
 
-                                // Row(
-                                //   children: List.generate(150~/1, (index) => Expanded(
-                                //     child: Container(
-                                //       color: index%2==0?Colors.transparent
-                                //           :Colors.white,
-                                //       height: 1,
-                                //     ),
-                                //   )),
-                                // ),
+
 
 
                               ],
@@ -508,7 +463,7 @@ class _MyCardState extends State<MyCard> {
                       ),
                     ),
                   ),
-                      // SizedBox(height: 5),
+
                       Container(
                         child: Padding(
                           padding: const EdgeInsets.all(0.0),

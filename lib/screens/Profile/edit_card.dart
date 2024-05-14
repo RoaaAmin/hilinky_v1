@@ -14,8 +14,6 @@ import 'package:image_picker/image_picker.dart';
 import '../../core/utils/size_utils.dart';
 import '../../models/SnackBar.dart';
 import '../../nav_bar.dart';
-import '../../theme/custom_text_style.dart';
-import '../../theme/theme_helper.dart';
 import '../create_card/widgets/socialMedia.dart';
 import 'image_picker.dart';
 
@@ -69,7 +67,7 @@ class EditState extends State<EditCard> {
       child: Column(
         children: <Widget>[
           Text(
-      context.tr("Upload your photo"),
+            context.tr("Upload your photo"),
             style: TextStyle(
               color: Color.fromARGB(255, 2, 84, 86),
               fontWeight: FontWeight.bold,
@@ -114,7 +112,7 @@ class EditState extends State<EditCard> {
       child: Column(
         children: <Widget>[
           Text(
-      context.tr("Upload logo"),
+            context.tr("Upload logo"),
             style: TextStyle(
               color: Color.fromARGB(255, 2, 84, 86),
               fontWeight: FontWeight.bold,
@@ -166,7 +164,7 @@ class EditState extends State<EditCard> {
       child: Column(
         children: <Widget>[
           Text(
-      context.tr("Upload portfolio"),
+            context.tr("Upload portfolio"),
             style: TextStyle(
               color: Color.fromARGB(255, 2, 84, 86),
               fontWeight: FontWeight.bold,
@@ -329,8 +327,6 @@ class EditState extends State<EditCard> {
     return lodaing
         ? Center(child: CircularProgressIndicator())
         : Scaffold(
-        backgroundColor: appTheme.whiteA700,
-        resizeToAvoidBottomInset: false,
       //backgroundColor: Colors.white.withOpacity(0.9),
         body: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -354,411 +350,177 @@ class EditState extends State<EditCard> {
                   SizedBox(height: 30),
                   Text(
                     context.tr('Personal Details'),
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 2, 84, 86),
-                          fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                          fontFamily: 'Inter',
-                      ),
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 2, 84, 86),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Inter',
+                    ),
                   ),
                   SizedBox(height: 10,),
                   Form(
                     key: _formKey,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              context.tr("Prefix"),
-                              style: CustomTextStyles.titleMediumTeal300,
+                        TextFormField(
+                          onChanged: (value) => Prefix = value,
+                          controller: TextEditingController(text: Prefix),
+                          decoration: InputDecoration(
+                            labelText: context.tr("Prefix"),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))
                             ),
-                            SizedBox(
-                              width: 354,
-                              height: 54,
-                              child: TextFormField(
-                                onChanged: (value) => Prefix = value,
-                                controller: TextEditingController(text: Prefix),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your prefix"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                ),
-                                cursorColor: Colors.black,
-                                keyboardType: TextInputType.text,
-                                // inputFormatters: <TextInputFormatter>[
-                                //   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                                // ],
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr("Please enter some text");
-                                  }
-                                  return null;
-                                },
-                              ),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.black,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => FirstName = value,
+                          controller: TextEditingController(text: FirstName),
+                          decoration: InputDecoration(
+                            labelText: context.tr('First Name'),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.black,
+                          // The validator receives the text that the user has entered.
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return context.tr('Please enter some text');
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => MiddleName = value,
+                          controller: TextEditingController(text: MiddleName),
+                          decoration: InputDecoration(
+                            labelText: context.tr('Middle Name'),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.red,
+                          // The validator receives the text that the user has entered.
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => LastName = value,
+                          controller: TextEditingController(text: LastName),
+                          decoration: InputDecoration(
+                            labelText: context.tr('Last Name'),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.black,
+                          // The validator receives the text that the user has entered.
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return context.tr('Please enter some text');
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => Position = value,
+                          controller: TextEditingController(text: Position),
+                          decoration:  InputDecoration(
+                            labelText: context.tr('Position'),
+                            //  hintText: 'name',
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.black,
+                          // The validator receives the text that the user has entered.
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return context.tr('Please enter some text');
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => CompanyName = value,
+                          controller: TextEditingController(text: CompanyName),
+                          decoration:  InputDecoration(
+                            label: Text(context.tr("CompanyName")),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          cursorColor: Colors.black,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => Email = value,
+                          controller: TextEditingController(text: Email),
+                          decoration:  InputDecoration(
+                            labelText: context.tr('Email'),
+                            // hintText: 'name',
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                          ),
+                          //   autofillHints:,
+                          cursorColor: Colors.black,
+                          // The validator receives the text that the user has entered.
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return context.tr('Please enter some text');
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          onChanged: (value) => PhoneNumber = value,
+                          controller: TextEditingController(text: PhoneNumber),
+                          decoration: InputDecoration(
+                            labelText: context.tr("Phone Number"),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(10)),
                             ),
+                          ),
+                          cursorColor: Colors.black,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                           ],
+                          // The validator receives the text that the user has entered.
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return context.tr('Please enter some text');
+                            }
+                            return null;
+                          },
                         ),
-
-                        SizedBox(
-                          height: 20,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("First Name"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              SizedBox(height: 5), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => FirstName = value,
-                                controller: TextEditingController(text: FirstName),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your first name"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                ),
-                                cursorColor: Colors.black,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 15,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("Middle Name"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              SizedBox(height: 5), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => MiddleName = value,
-                                controller: TextEditingController(text: MiddleName),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your middle name"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                ),
-                                cursorColor: Colors.red, // Change cursor color to red
-                                validator: (value) {
-                                  // Validation logic here if needed
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("Last Name"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              SizedBox(height: 5), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => LastName = value,
-                                controller: TextEditingController(text: LastName),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your last name"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                ),
-                                cursorColor: Colors.black, // Set cursor color to black
-                                keyboardType: TextInputType.text, // Set keyboard type
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("Position"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              SizedBox(height: 5), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => Position = value,
-                                controller: TextEditingController(text: Position),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your position"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                ),
-                                cursorColor: Colors.black, // Set cursor color to black
-                                keyboardType: TextInputType.text, // Set keyboard type
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("CompanyName"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              SizedBox(height: 5), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => CompanyName = value,
-                                controller: TextEditingController(text: CompanyName),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your company name"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                ),
-                                cursorColor: Colors.black, // Set cursor color to black
-                                keyboardType: TextInputType.text, // Set keyboard type
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("Email"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              SizedBox(height: 5), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => Email = value,
-                                controller: TextEditingController(text: Email),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your email"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                  // labelText: context.tr('Email'), // Set the label text
-                                ),
-                                cursorColor: Colors.black, // Set cursor color to black
-                                keyboardType: TextInputType.emailAddress, // Set keyboard type to email address
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("Phone Number"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              SizedBox(height: 5), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => PhoneNumber = value,
-                                controller: TextEditingController(text: PhoneNumber),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your phone number"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                  // labelText: context.tr('Phone Number'), // Set the label text
-                                ),
-                                cursorColor: Colors.black, // Set cursor color to black
-                                keyboardType: TextInputType.number, // Set keyboard type to number
-                                inputFormatters: <TextInputFormatter>[
-                                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')), // Allow only numeric input
-                                ],
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
 
                       ],
                     ),
@@ -770,7 +532,7 @@ class EditState extends State<EditCard> {
                         color: Color.fromARGB(255, 2, 84, 86),
                         fontSize: 25, fontWeight: FontWeight.bold),
                   ),
-SizedBox(height: 10,),
+                  SizedBox(height: 10,),
                   SocialMedia(
                     saved: links,
                     paddin: EdgeInsets.only(
@@ -1063,29 +825,19 @@ SizedBox(height: 10,),
                             Colors.red,Colors.white, 3, context, _scaffoldKey);
                       }
                     },
-                    style: ButtonStyle(
-                      shape:
-                      MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Color(0xFF234E5C)),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.all(5),
+                      backgroundColor: const Color.fromARGB(255, 2, 84, 86),
+                      fixedSize: const Size(150, 40),
+                      elevation: 0,
                     ),
+                    child:  Text(
+                      context.tr('Save'),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
 
-                      child:  Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          context.tr('Save'),
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+
                 ]
             )));
 

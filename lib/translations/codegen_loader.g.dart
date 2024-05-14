@@ -125,7 +125,7 @@ class CodegenLoader extends AssetLoader {
     "Log Data": "بيانات السجل",
     "Change Password?": "تغيير كلمة المرور؟",
     "Contact Us":"اتصل بنا",
-    "Privacy & Policy": "سياسة الخصوصية",
+    "\nPrivacy & Policy": "سياسة الخصوصية",
     "Please accept the privacy policy.":"يرجى قبول سياسة الخصوصية.",
     "By ticking this box I agree that I have read the ": "بالضغط على هذا المربع، أوافق على أنني قرأت ",
     "Password reset email sent. Please check your email.": "تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور. يرجى التحقق من بريدك الإلكتروني.",
@@ -133,7 +133,8 @@ class CodegenLoader extends AssetLoader {
     "Please create your card first" : "الرجاء إنشاء بطاقتك أولاً",
     "English (US)":"الإنجليزية",
     "French" : "الفرنسية",
-    "Scan a QR code" : " امسح رمز الاستجابة السريعة"
+    "Scan a QR code" : " امسح رمز الاستجابة السريعة",
+    "Edit":"تعديل"
 };
   static const Map<String, dynamic> en = {
     "Select Your Language": "Select Your Language",
@@ -251,7 +252,7 @@ class CodegenLoader extends AssetLoader {
     "Log Data": "Log Data",
     "Change Password?": "Change Password?",
     "Contact Us": "Contact Us",
-    "Privacy & Policy":"Privacy & Policy",
+    "\nPrivacy & Policy":"\nPrivacy & Policy",
     "Please accept the privacy policy.":"Please accept the privacy policy.",
     "By ticking this box I agree that I have read the ":"By ticking this box I agree that I have read the ",
     "Password reset email sent. Please check your email.":"Password reset email sent. Please check your email.",
@@ -260,6 +261,7 @@ class CodegenLoader extends AssetLoader {
     "English (US)": "English (US)",
     "French": "French",
     "Scan a QR code" : "Scan a QR code",
+    "Edit":"Edit"
 
   };
 

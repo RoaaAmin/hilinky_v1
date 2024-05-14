@@ -175,12 +175,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   context.pushPage(CreateCard());
                 },
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF234E5C),
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  // primary: Colors.transparent, // Set background color to transparent
-                  elevation: 0, // Remove button elevation
                 ),
                 child: Text(
                   context.tr('Create Card'),
@@ -202,8 +201,8 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
               colors: [
-                Colors.orange,
-                Colors.deepOrange
+                Colors.orange.shade300,
+                Colors.deepOrange.shade400
               ],
               end: Alignment.topLeft,
               begin: Alignment.bottomRight

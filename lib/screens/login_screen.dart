@@ -288,11 +288,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           scrollDirection: Axis.horizontal,
                           child: Text.rich(
                             TextSpan(
-                              text: 'By ticking this box I agree that I have read the ',
+                              text:  context.tr('By ticking this box I agree that I have read the '),
                               style: CustomTextStyles.labelLargeInterBluegray300,
                               children: [
                                 TextSpan(
-                                  text: '\nPrivacy & Policy',
+                                  text:  context.tr('\nPrivacy & Policy'),
                                   style: TextStyle(
                                     decoration: TextDecoration.underline,
                                     color: Color(0xFFEF9453),
