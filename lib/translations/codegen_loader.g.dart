@@ -134,7 +134,8 @@ class CodegenLoader extends AssetLoader {
     "English (US)":"الإنجليزية",
     "French" : "الفرنسية",
     "Scan a QR code" : " امسح رمز الاستجابة السريعة",
-    "Edit":"تعديل"
+    "Edit":"تعديل",
+    "Fill the information to display it in your card.":"قم بتعبئة المعلومات لعرضها على بطاقتك."
 };
   static const Map<String, dynamic> en = {
     "Select Your Language": "Select Your Language",
@@ -261,7 +262,8 @@ class CodegenLoader extends AssetLoader {
     "English (US)": "English (US)",
     "French": "French",
     "Scan a QR code" : "Scan a QR code",
-    "Edit":"Edit"
+    "Edit":"Edit",
+    "Fill the information to display it in your card.":"Fill the information to display it in your card."
 
   };
 

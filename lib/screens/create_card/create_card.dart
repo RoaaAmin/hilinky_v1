@@ -197,7 +197,7 @@ class _CreateCardState extends State<CreateCard> {
             "cardId": uuid.v4(),
             "PostedByUID": FirebaseAuth.instance.currentUser!.uid,
             "City": selectedCity,
-            'defaultLogo':'https://firebasestorage.googleapis.com/v0/b/hiwetaan.appspot.com/o/images%2Fuser_image.jpg?alt=media&token=f0359660-ed0d-4edd-9df3-85a8fc087d7a',
+            'defaultLogo':'https://raw.githubusercontent.com/RoaaAmin/hilinky_v1/main/assets/images/HilinkyLogo.png',
             "TimeStamp": DateTime.now(),
           });
 
@@ -401,7 +401,7 @@ class _CreateCardState extends State<CreateCard> {
                           fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'Fill the information to display it in your card.',
+                        context.tr('Fill the information to display it in your card.'),
                       style: GoogleFonts.robotoCondensed(fontSize: 18,
                         color: Color(0xFF7EA9BA),)
                     ),
