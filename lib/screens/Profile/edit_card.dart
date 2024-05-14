@@ -344,7 +344,7 @@ class EditState extends State<EditCard> {
                         fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Fill the information to display it in your card.',
+                      context.tr('Fill the information to display it in your card.'),
                     style: TextStyle(
                       color: Color(0xFF7EA9BA),
                       fontSize: 18,

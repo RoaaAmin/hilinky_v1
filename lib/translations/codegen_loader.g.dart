@@ -83,6 +83,7 @@ class CodegenLoader extends AssetLoader {
   "One design.": "تصميم واحد.",
   "Create card.": "إنشاء بطاقة.",
   "Edit card.": "تحرير البطاقة.",
+    "Edit card":"تحرير البطاقة",
   "Barcode Scanning.": "قراءة الباركود.",
   "To create and design YOUR Elegant business card," : "لإنشاء وتصميم بطاقة العمل الأنيقة الخاصة بك،",
     "Empower your enterprise with unparalleled creative control!": "قم بتمكين شركتك بالتحكم الإبداعي غير المسبوق!",
@@ -135,7 +136,15 @@ class CodegenLoader extends AssetLoader {
     "French" : "الفرنسية",
     "Scan a QR code" : " امسح رمز الاستجابة السريعة",
     "Edit":"تعديل",
-    "Fill the information to display it in your card.":"قم بتعبئة المعلومات لعرضها على بطاقتك."
+    "Fill the information to display it in your card.":"قم بتعبئة المعلومات لعرضها على بطاقتك.",
+    "Enter your middle name": "أدخل اسمك الأوسط",
+    "Enter your prefix": "أدخل اللقب الخاص بك",
+    "Enter your first name": "أدخل اسمك الأول",
+    "Enter your last name": "أدخل اسمك الأخير",
+    "Enter your position": "أدخل موقعك",
+    "Enter your company name": "أدخل اسم شركتك",
+    "Enter your email": "أدخل بريدك الإلكتروني",
+    "Enter your phone number": "أدخل رقم هاتفك",
 };
   static const Map<String, dynamic> en = {
     "Select Your Language": "Select Your Language",
@@ -212,6 +221,7 @@ class CodegenLoader extends AssetLoader {
   "One design.": "One design.",
   "Create card.": "Create card.",
   "Edit card.": "Edit card.",
+    "Edit card":"Edit card",
   "Barcode Scanning.": "Barcode Scanning.",
   "To create and design YOUR Elegant business card,": "To create and design YOUR Elegant business card,",
   "Empower your enterprise with unparalleled creative control!": "Empower your enterprise with unparalleled creative control!",
@@ -263,7 +273,15 @@ class CodegenLoader extends AssetLoader {
     "French": "French",
     "Scan a QR code" : "Scan a QR code",
     "Edit":"Edit",
-    "Fill the information to display it in your card.":"Fill the information to display it in your card."
+    "Fill the information to display it in your card.":"Fill the information to display it in your card.",
+    "Enter your middle name": "Enter your middle name",
+    "Enter your prefix": "Enter your prefix",
+    "Enter your first name": "Enter your first name",
+    "Enter your last name": "Enter your last name",
+    "Enter your position": "Enter your position",
+    "Enter your company name": "Enter your company name",
+    "Enter your email": "Enter your email",
+    "Enter your phone number": "Enter your phone number",
 
   };
 
