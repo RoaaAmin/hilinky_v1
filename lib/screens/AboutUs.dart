@@ -323,7 +323,7 @@ class AboutUs extends StatelessWidget {
                             Container(
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
-                                  colors: [Colors.orange, Colors.deepOrange],
+                                  colors: [Colors.orange, Colors.deepOrange.shade400],
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
                                 ),
