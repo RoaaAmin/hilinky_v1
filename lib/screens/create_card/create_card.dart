@@ -20,6 +20,8 @@ import 'package:uuid/uuid.dart';
 import '../../core/utils/size_utils.dart';
 import '../../models/SnackBar.dart';
 import '../../nav_bar.dart';
+import '../../theme/custom_text_style.dart';
+import '../../theme/theme_helper.dart';
 import '../my_card/myCard.dart';
 
 ////////////////////////////////
@@ -107,7 +109,7 @@ class _CreateCardState extends State<CreateCard> {
       // Check
       if (userSnapshot.exists && userSnapshot.data() != null) {
         Map<String, dynamic> userData =
-            userSnapshot.data() as Map<String, dynamic>;
+        userSnapshot.data() as Map<String, dynamic>;
         userCity = userData['sCity'] ?? '';
       }
     } catch (e) {
@@ -120,7 +122,7 @@ class _CreateCardState extends State<CreateCard> {
     // Check if the widget is mounted before showing the snackbar
     if (mounted) {
       showInSnackBar(
-          context.tr('Please wait while the card is being created...'),
+        context.tr('Please wait while the card is being created...'),
         Colors.green,
         Colors.white,
         4,
@@ -230,7 +232,7 @@ class _CreateCardState extends State<CreateCard> {
       // Show error message if required fields or images are not filled
       if (mounted) {
         showInSnackBar(
-            context.tr('Please fill all the required fields and select images'),
+          context.tr('Please fill all the required fields and select images'),
           Colors.red,
           Colors.white,
           3,
@@ -373,507 +375,530 @@ class _CreateCardState extends State<CreateCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: AppBar(
-              backgroundColor: Colors.white,
-              leading: IconButton(
-                icon: Icon(
-                  LineIcons.arrowLeft,
-                  size: 30.0,
-                  color: Colors.black,
+      backgroundColor: appTheme.whiteA700,
+      resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+          padding: EdgeInsets.all(20),
+          child: Column(
+              crossAxisAlignment:
+              CrossAxisAlignment.start, // Align content to start
+              children: [
+                SizedBox(height: 70,),
+                Text(
+                  context.tr('Create Card'),
+                  style: GoogleFonts.robotoCondensed(
+                      color: const Color.fromARGB(255, 2, 84, 86),
+                      fontSize: 30, fontWeight: FontWeight.bold),
                 ),
-                onPressed: () {
-                  // Navigator.of(context).pushReplacement(CupertinoPageRoute(
-                  //   builder: (BuildContext context) => HomeScreen(),
-                  // ));
-                  context.pop();
-                },
-              )),
-          body: SingleChildScrollView(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start, // Align content to start
+                Text(
+                    context.tr('Fill the information to display it in your card.'),
+                    style: GoogleFonts.robotoCondensed(fontSize: 18,
+                      color: Color(0xFF7EA9BA),)
+                ),
+                SizedBox(height: 30),
+                Text(
+                  context.tr('Personal Details'),
+                  style: GoogleFonts.robotoCondensed(
+                      color: const Color.fromARGB(255, 2, 84, 86),
+                      fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  context.tr("Prefix"),
+                  style: CustomTextStyles.titleMediumTeal300,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: Colors.white, // Border color
+                        width: 1, // Border width
+                      ),
+                    ),
+// email text
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        controller: prefixController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: context.tr('Prefix (optional)'),
+
+                        ),
+                        onChanged: (val) {
+                          prefix = val;
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 10),
+                Text(
+                  context.tr("First Name"),
+                  style: CustomTextStyles.titleMediumTeal300,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: Colors.white, // Border color
+                        width: 1, // Border width
+                      ),
+                    ),
+// email text
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        controller: firstNameController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: context.tr('First Name'),
+                        ),
+
+                        onChanged: (val) {
+                          firstName = val;
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 10),
+                Text(
+                  context.tr("Middle Name"),
+                  style: CustomTextStyles.titleMediumTeal300,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: Colors.white, // Border color
+                        width: 1, // Border width
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        controller: middleNameController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: context.tr('Middle Name (optional)'),
+                        ),
+                        onChanged: (val) {
+                          middleName = val;
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  context.tr("Last Name"),
+                  style: CustomTextStyles.titleMediumTeal300,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: Colors.white, // Border color
+                        width: 1, // Border width
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        controller: lastNameController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: context.tr('Last Name'),
+                        ),
+                        onChanged: (val) {
+                          lastName = val;
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 10),
+                Text(
+                  context.tr("Position"),
+                  style: CustomTextStyles.titleMediumTeal300,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: Colors.white, // Border color
+                        width: 1, // Border width
+                      ),
+                    ),
+// email text
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        controller: positionController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: context.tr('Position'),
+                        ),
+                        onChanged: (val) {
+                          position = val;
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  context.tr("Company Name"),
+                  style: CustomTextStyles.titleMediumTeal300,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: Colors.white, // Border color
+                        width: 1, // Border width
+                      ),
+
+                    ),
+// email text
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        controller: companyNameController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: context.tr('Company Name (optional)'),
+                        ),
+                        onChanged: (val) {
+                          companyName = val;
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Text(
+                  context.tr('Contact'),
+                  style: GoogleFonts.robotoCondensed(
+                      color: const Color.fromARGB(255, 2, 84, 86),
+                      fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  context.tr("Email"),
+                  style: CustomTextStyles.titleMediumTeal300,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: Colors.white, // Border color
+                        width: 1, // Border width
+                      ),
+                    ),
+// email text
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        controller: emailController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: context.tr('Email'),
+                        ),
+                        onChanged: (val) {
+                          email = val;
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  context.tr("Phone Number"),
+                  style: CustomTextStyles.titleMediumTeal300,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: Colors.white, // Border color
+                        width: 1, // Border width
+                      ),
+                    ),
+// email text
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        controller: phoneNumberController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: context.tr('Phone Number'),
+                        ),
+                        onChanged: (val) {
+                          phoneNumber = val;
+                        },
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
+                        style: TextStyle(color: Colors.black),
+                        cursorColor: Colors.black,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                        ],
+                      ),
+                    ),
+
+                  ),
+                ),
+                SizedBox(height: 30),
+                Text(
+                  context.tr('Choose links to add'),
+                  style: GoogleFonts.robotoCondensed(
+                      color: const Color.fromARGB(255, 2, 84, 86),
+                      fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10,),
+                SocialMedia(
+                  saved: links,
+                  paddin: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                ),
+
+                Padding(
+                  padding: getPadding(
+                    top: 16,
+                    // right: 74,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Visibility(
+                  visible: editMode,
+                  child: Container(
+                    height: 150,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6),
+                        image: DecorationImage(
+                            image: NetworkImage(editModeImageURL))),
+                  ),
+                  replacement: GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: ((builder) => bottomSheet()),
+                      );
+                    },
+                    child: selectedImage != null
+                        ? Container(
+                      height: 150,
+                      width: MediaQuery.of(context).size.width,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: Image.file(
+                          selectedImage as File,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    )
+                        : Container(
+                      // margin: EdgeInsets.symmetric(horizontal: 50),
+                        height: 150,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(6)),
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 30),
+                            Icon(Icons.account_box, size: 50.0, color: Color.fromARGB(255, 2, 84, 86)),
+                            Text(
+                              context.tr('Upload your photo',),style: TextStyle(color: const Color.fromARGB(255, 2, 84, 86),),
+                            ),
+                          ],
+                        )),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-              context.tr('Create Card'),
-                      style: GoogleFonts.robotoCondensed(
-                          color: const Color.fromARGB(255, 2, 84, 86),
-                          fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                        context.tr('Fill the information to display it in your card.'),
-                      style: GoogleFonts.robotoCondensed(fontSize: 18,
-                        color: Color(0xFF7EA9BA),)
-                    ),
-                    SizedBox(height: 30),
-                    Text(
-                        context.tr('Personal Details'),
-                      style: GoogleFonts.robotoCondensed(
-                          color: const Color.fromARGB(255, 2, 84, 86),
-                          fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.black, // Border color
-                            width: 1, // Border width
-                          ),
-                        ),
-// email text
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextField(
-                            controller: prefixController,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: context.tr('Prefix (optional)'),
-
-                            ),
-                            onChanged: (val) {
-                              prefix = val;
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.black, // Border color
-                            width: 1, // Border width
-                          ),
-                        ),
-// email text
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextField(
-                            controller: firstNameController,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: context.tr('First Name'),
-                            ),
-
-                            onChanged: (val) {
-                              firstName = val;
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.black, // Border color
-                            width: 1, // Border width
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextField(
-                            controller: middleNameController,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: context.tr('Middle Name (optional)'),
-                            ),
-                            onChanged: (val) {
-                              middleName = val;
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.black, // Border color
-                            width: 1, // Border width
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextField(
-                            controller: lastNameController,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: context.tr('Last Name'),
-                            ),
-                            onChanged: (val) {
-                              lastName = val;
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.black, // Border color
-                            width: 1, // Border width
-                          ),
-                        ),
-// email text
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextField(
-                            controller: positionController,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: context.tr('Position'),
-                            ),
-                            onChanged: (val) {
-                              position = val;
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.black, // Border color
-                            width: 1, // Border width
-                          ),
-
-                        ),
-// email text
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextField(
-                            controller: companyNameController,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: context.tr('Company Name (optional)'),
-                            ),
-                            onChanged: (val) {
-                              companyName = val;
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 30),
-                    Text(
-                        context.tr('Contact'),
-                      style: GoogleFonts.robotoCondensed(
-                          color: const Color.fromARGB(255, 2, 84, 86),
-                          fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.black, // Border color
-                            width: 1, // Border width
-                          ),
-                        ),
-// email text
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextField(
-                            controller: emailController,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: context.tr('Email'),
-                            ),
-                            onChanged: (val) {
-                              email = val;
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.black, // Border color
-                            width: 1, // Border width
-                          ),
-                        ),
-// email text
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: TextField(
-                            controller: phoneNumberController,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: context.tr('Phone Number'),
-                            ),
-                            onChanged: (val) {
-                              phoneNumber = val;
-                            },
-                            keyboardType: TextInputType.numberWithOptions(decimal: true),
-                            style: TextStyle(color: Colors.black),
-                            cursorColor: Colors.black,
-                            inputFormatters: <TextInputFormatter>[
-                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                            ],
-                          ),
-                        ),
-
-                      ),
-                    ),
-                    SizedBox(height: 30),
-                    Text(
-                        context.tr('Choose links to add'),
-                      style: GoogleFonts.robotoCondensed(
-                          color: const Color.fromARGB(255, 2, 84, 86),
-                          fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10,),
-                    SocialMedia(
-                      saved: links,
-                      paddin: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom),
-                    ),
-
-                    Padding(
-                      padding: getPadding(
-                        top: 16,
-                        // right: 74,
-                      ),
-                    ),
-                    SizedBox(height: 10),
                     Visibility(
                       visible: editMode,
                       child: Container(
-                        height: 150,
+                        //margin: EdgeInsets.symmetric(horizontal: 0),
+                        //height: 250,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(6),
                             image: DecorationImage(
-                                image: NetworkImage(editModeImageURL))),
+                                image: NetworkImage(editModeImageURLLogo))),
+                        // width: MediaQuery.of(context).size.width,
                       ),
                       replacement: GestureDetector(
                         onTap: () {
                           showModalBottomSheet(
                             context: context,
-                            builder: ((builder) => bottomSheet()),
+                            builder: ((builder) => bottomSheetLogo()),
                           );
                         },
-                        child: selectedImage != null
+                        child: selectedLogo != null
                             ? Container(
-                                height: 150,
-                                width: MediaQuery.of(context).size.width,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(6),
-                                  child: Image.file(
-                                    selectedImage as File,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              )
+                          //margin: EdgeInsets.symmetric(horizontal: 0),
+                          height: 150,
+                          width: 150,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: Image.file(
+                              selectedLogo as File,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
                             : Container(
-                                // margin: EdgeInsets.symmetric(horizontal: 50),
-                                height: 150,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: Colors.black,
-                                      width: 1,
-                                    ),
-                                    borderRadius: BorderRadius.circular(6)),
-                                width: MediaQuery.of(context).size.width,
-                                child: Column(
-                                  children: [
-                                    SizedBox(height: 30),
-                                    Icon(Icons.account_box, size: 50.0, color: Color.fromARGB(255, 2, 84, 86)),
-                                    Text(
-                                      context.tr('Upload your photo',),style: TextStyle(color: const Color.fromARGB(255, 2, 84, 86),),
-                                    ),
-                                  ],
-                                )),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Visibility(
-                          visible: editMode,
-                          child: Container(
-                            //margin: EdgeInsets.symmetric(horizontal: 0),
-                            //height: 250,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(6),
-                                image: DecorationImage(
-                                    image: NetworkImage(editModeImageURLLogo))),
-                            // width: MediaQuery.of(context).size.width,
-                          ),
-                          replacement: GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: ((builder) => bottomSheetLogo()),
-                              );
-                            },
-                            child: selectedLogo != null
-                                ? Container(
-                                    //margin: EdgeInsets.symmetric(horizontal: 0),
-                                    height: 150,
-                                    width: 150,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(6),
-                                      child: Image.file(
-                                        selectedLogo as File,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  )
-                                : Container(
 
-                                    // margin: EdgeInsets.symmetric(horizontal: 50),
-                                    height: 170,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.black,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(6)),
-                                    width: (MediaQuery.of(context).size.width /
-                                            2) -
-                                        30,
-                                    child: Column(
-                                      children: [
-                                        SizedBox(height: 30),
-                                        Icon(Icons.upload, size: 50.0,color: Color.fromARGB(255, 2, 84, 86)),
-                                        Text(
-                                          context.tr('Upload logo'),style: TextStyle(color: const Color.fromARGB(255, 2, 84, 86),),
-                                        ),
-                                      ],
-                                    )),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Visibility(
-                          visible: editMode,
-                          child: Container(
-                            margin: EdgeInsets.symmetric(horizontal: 12),
+                          // margin: EdgeInsets.symmetric(horizontal: 50),
                             height: 170,
                             decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(6),
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        editModeImageURLPortfilio))),
-                            // width: MediaQuery.of(context).size.width,
-                          ),
-                          replacement: GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: ((builder) => bottomSheetPortfolio()),
-                              );
-                            },
-                            child: selectedPortfolio != null
-                                ? Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 6),
-                                    height: 150,
-                                    width: 150,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(6),
-                                      child: Image.file(
-                                        selectedPortfolio as File,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  )
-                                : Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 5),
-                                    height: 170,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.black,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(6)),
-                                    width: (MediaQuery.of(context).size.width /
-                                            2) -
-                                        30,
-                                    child: Column(
-                                      children: [
-                                        SizedBox(height: 30),
-                                        Icon(Icons.upload, size: 50.0, color:Color.fromARGB(255, 2, 84, 86)),
-                                        Text(
-                                          context.tr('Upload portfolio'),style: TextStyle(color: const Color.fromARGB(255, 2, 84, 86),),
-
-                                        ),
-                                      ],
-                                    )),
-                          ),
-                        ),
-                      ],
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(6)),
+                            width: (MediaQuery.of(context).size.width /
+                                2) -
+                                30,
+                            child: Column(
+                              children: [
+                                SizedBox(height: 30),
+                                Icon(Icons.upload, size: 50.0,color: Color.fromARGB(255, 2, 84, 86)),
+                                Text(
+                                  context.tr('Upload logo'),style: TextStyle(color: const Color.fromARGB(255, 2, 84, 86),),
+                                ),
+                              ],
+                            )),
+                      ),
                     ),
                     SizedBox(
-                      height: 20,
+                      width: 10,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: GestureDetector(
-                        onTap: uploadCard,
-                        child: Center(
-                          child: Container(
-                            padding: EdgeInsets.all(16),
+                    Visibility(
+                      visible: editMode,
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 12),
+                        height: 170,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6),
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    editModeImageURLPortfilio))),
+                        // width: MediaQuery.of(context).size.width,
+                      ),
+                      replacement: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: ((builder) => bottomSheetPortfolio()),
+                          );
+                        },
+                        child: selectedPortfolio != null
+                            ? Container(
+                          margin: EdgeInsets.symmetric(horizontal: 6),
+                          height: 150,
+                          width: 150,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: Image.file(
+                              selectedPortfolio as File,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                            : Container(
+                            margin: EdgeInsets.symmetric(horizontal: 5),
+                            height: 170,
                             decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 2, 84, 86),
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Center(
-                                child: Text(
-                                    context.tr('Continue'),
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(6)),
+                            width: (MediaQuery.of(context).size.width /
+                                2) -
+                                30,
+                            child: Column(
+                              children: [
+                                SizedBox(height: 30),
+                                Icon(Icons.upload, size: 50.0, color:Color.fromARGB(255, 2, 84, 86)),
+                                Text(
+                                  context.tr('Upload portfolio'),style: TextStyle(color: const Color.fromARGB(255, 2, 84, 86),),
+
+                                ),
+                              ],
+                            )),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: GestureDetector(
+                    onTap: uploadCard,
+                    child: Center(
+                      child: Container(
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 2, 84, 86),
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Center(
+                            child: Text(
+                              context.tr('Save'),
                               style: GoogleFonts.roboto(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                               ),
                             )),
-                          ),
-                        ),
                       ),
                     ),
-                  ])),
+                  ),
+                ),
+              ])),
     );
   }
 }
