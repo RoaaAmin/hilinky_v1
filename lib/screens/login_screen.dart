@@ -69,44 +69,37 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
+    return GestureDetector(
+      onTap: () {
+        // Dismiss the keyboard when tapped outside of any text field
+        FocusScope.of(context).unfocus();
+      },
+      child: WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          backgroundColor: appTheme.whiteA700,
+          resizeToAvoidBottomInset: true, // Enable resizing to avoid the keyboard
 
-    return SafeArea(
-        child: WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        backgroundColor: appTheme.whiteA700,
-        resizeToAvoidBottomInset: false,
-        appBar: CustomAppBar(
-          leadingWidth: double.maxFinite,
-          leading: AppbarImage(
-            // svgPath: ImageConstant.hilinkyBg_logo,
-            margin: getMargin(
-              left: 11,
-              top: 12,
-              right: 351,
-              bottom: 12,
-            ),
-          ),
-        ),
-        body: Form(
-          //key: _scaffoldKey,
-          child: Container(
-            width: double.maxFinite,
-            padding: getPadding(
-              left: 24,
-              top: 21,
-              right: 24,
-              bottom: 21,
-            ),
-            child: SingleChildScrollView(
+          body: SingleChildScrollView(
+            // Enable scrolling
+            child: Container(
+              width: double.maxFinite,
+              padding: getPadding(
+                left: 24,
+                top: 21,
+                right: 24,
+                bottom: 21,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  SizedBox(height: 10,),
                   Padding(
                     padding: getPadding(
                       left: 1,
                     ),
+
                     child: Text(
                       context.tr("Welcome Back!"),
                       style: theme.textTheme.displaySmall,
@@ -423,19 +416,10 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-    ));
+    );
   }
 
-  // void loginValidation(){
-  //   if(_emailController.text==null||_emailController.text.contains('@')==false||_emailController.text.contains('.com')==false){
-  //     showInSnackBar('Invalid Email/Username', Colors.red, Colors.white, 2, context, _scaffoldKey);
-  //   }else if(_passwordController.text==null||_passwordController.text.length<6){
-  //     showInSnackBar('Invalid Password', Colors.red, Colors.white, 2, context, _scaffoldKey);
-  //   }else{
-  //     print('Validation Completed');
-  //     signIn();
-  //   }
-  // }
+
 
   void loginValidation() {
     String input = _emailController.text.trim();
