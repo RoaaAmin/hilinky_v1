@@ -9,13 +9,13 @@ class CustomTextFormField extends StatelessWidget {
     this.alignment,
     this.width,
     this.margin,
-    this.controller,
-    this.focusNode,
-    this.autofocus = true,
-    this.textStyle,
-    this.obscureText = false,
-    this.textInputAction = TextInputAction.next,
-    this.textInputType = TextInputType.text,
+     this.controller,
+    // this.focusNode,
+    // this.autofocus = false,
+    // this.textStyle,
+     this.obscureText = false,
+    // this.textInputAction = TextInputAction.next,
+     this.textInputType = TextInputType.text,
     this.maxLines,
     this.hintText,
     this.hintStyle,
@@ -35,13 +35,13 @@ class CustomTextFormField extends StatelessWidget {
   final Alignment? alignment;
   final double? width;
   final EdgeInsetsGeometry? margin;
-  final TextEditingController? controller;
-  final FocusNode? focusNode;
-  final bool? autofocus;
-  final TextStyle? textStyle;
-  final bool? obscureText;
-  final TextInputAction? textInputAction;
-  final TextInputType? textInputType;
+   final TextEditingController? controller;
+  // final FocusNode? focusNode;
+  // final bool? autofocus;
+  // final TextStyle? textStyle;
+   final bool? obscureText;
+  // final TextInputAction? textInputAction;
+   final TextInputType? textInputType;
   final int? maxLines;
   final String? hintText;
   final TextStyle? hintStyle;
@@ -87,13 +87,13 @@ class CustomTextFormField extends StatelessWidget {
     width: width ?? double.maxFinite,
     margin: margin,
     child: TextFormField(
-      controller: controller,
-      focusNode: focusNode ?? FocusNode(),
-      autofocus: autofocus!,
+       controller: controller,
+      // focusNode: focusNode ?? FocusNode(),
+      // autofocus: autofocus!,
       // style: textStyle ?? theme.textTheme.titleSmall,
-      obscureText: obscureText!,
-      textInputAction: textInputAction,
-      keyboardType: textInputType,
+       obscureText: obscureText!,
+      // textInputAction: textInputAction,
+       keyboardType: textInputType,
       maxLines: maxLines ?? 1,
       decoration: decoration,
       validator: validator,
