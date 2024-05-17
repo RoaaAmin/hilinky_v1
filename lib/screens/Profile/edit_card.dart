@@ -326,769 +326,775 @@ class EditState extends State<EditCard> {
   Widget build(BuildContext context) {
     dynamic myImage = const AssetImage("assets/images/avatary.png");
     // Build a Form widget using the _formKey created above.
-    return lodaing
-        ? Center(child: CircularProgressIndicator())
-        : Scaffold(
-        backgroundColor: appTheme.whiteA700,
-        resizeToAvoidBottomInset: false,
-      //backgroundColor: Colors.white.withOpacity(0.9),
-        body: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: ListView(
-                children: [
-                  Text(
-                    context.tr('Edit card'),
-                    //textAlign: TextAlign.center,
-                    style: GoogleFonts.robotoCondensed(
-                        color: const Color.fromARGB(255, 2, 84, 86),
-                        fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                      context.tr('Fill the information to display it in your card.'),
-                    style: TextStyle(
-                      color: Color(0xFF7EA9BA),
-                      fontSize: 18,
-                      fontFamily: 'Inter',
+     return GestureDetector(
+      onTap: () {
+        // Dismiss the keyboard when tapped outside of any text field
+        FocusScope.of(context).unfocus();
+      },
+      child: lodaing
+          ? Center(child: CircularProgressIndicator())
+          : Scaffold(
+          backgroundColor: appTheme.whiteA700,
+          resizeToAvoidBottomInset: false,
+        //backgroundColor: Colors.white.withOpacity(0.9),
+          body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ListView(
+                  children: [
+                    Text(
+                      context.tr('Edit card'),
+                      //textAlign: TextAlign.center,
+                      style: GoogleFonts.robotoCondensed(
+                          color: const Color.fromARGB(255, 2, 84, 86),
+                          fontSize: 30, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  SizedBox(height: 30),
-                  Text(
-                    context.tr('Personal Details'),
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 2, 84, 86),
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Inter',
-                    ),
-                  ),
-                  SizedBox(height: 10,),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              context.tr("Prefix"),
-                              style: CustomTextStyles.titleMediumTeal300,
-                            ),
-                            SizedBox(
-                              width: 354,
-                              // height: 54,
-                              child: TextFormField(
-                                onChanged: (value) => Prefix = value,
-                                controller: TextEditingController(text: Prefix),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your prefix"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                ),
-                                cursorColor: Colors.black,
-                                // keyboardType: TextInputType.phone,
-                                // inputFormatters: <TextInputFormatter>[
-                                //   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                                // ],
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr("Please enter some text");
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("First Name"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              // SizedBox(height: 8), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => FirstName = value,
-                                controller: TextEditingController(text: FirstName),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your first name"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                ),
-                                cursorColor: Colors.black,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("Middle Name"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              // SizedBox(height: 8), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => MiddleName = value,
-                                controller: TextEditingController(text: MiddleName),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your middle name"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                ),
-                                cursorColor: Colors.red, // Change cursor color to red
-                                validator: (value) {
-                                  // Validation logic here if needed
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("Last Name"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              // SizedBox(height: 8), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => LastName = value,
-                                controller: TextEditingController(text: LastName),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your last name"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                ),
-                                cursorColor: Colors.black, // Set cursor color to black
-                                keyboardType: TextInputType.text, // Set keyboard type
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("Position"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              // SizedBox(height: 8), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => Position = value,
-                                controller: TextEditingController(text: Position),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your position"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                ),
-                                cursorColor: Colors.black, // Set cursor color to black
-                                keyboardType: TextInputType.text, // Set keyboard type
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("CompanyName"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              // SizedBox(height: 8), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => CompanyName = value,
-                                controller: TextEditingController(text: CompanyName),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your company name"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                ),
-                                cursorColor: Colors.black, // Set cursor color to black
-                                keyboardType: TextInputType.text, // Set keyboard type
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("Email"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              // SizedBox(height: 8), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => Email = value,
-                                controller: TextEditingController(text: Email),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your email"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                  // labelText: context.tr('Email'), // Set the label text
-                                ),
-                                cursorColor: Colors.black, // Set cursor color to black
-                                keyboardType: TextInputType.emailAddress, // Set keyboard type to email address
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("Phone Number"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              // SizedBox(height: 8), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => PhoneNumber = value,
-                                controller: TextEditingController(text: PhoneNumber),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your phone number"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                  // labelText: context.tr('Phone Number'), // Set the label text
-                                ),
-                                cursorColor: Colors.black, // Set cursor color to black
-                                keyboardType: TextInputType.number, // Set keyboard type to number
-                                inputFormatters: <TextInputFormatter>[
-                                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')), // Allow only numeric input
-                                ],
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Text(
-                    context.tr('Choose links to edit'),
-                    style: GoogleFonts.robotoCondensed(
-                        color: Color.fromARGB(255, 2, 84, 86),
-                        fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 10,),
-                  SocialMedia(
-                    saved: links,
-                    paddin: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom),
-                  ),
-                  Padding(
-                    padding: getPadding(
-                      top: 16,
-                      // right: 74,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Visibility(
-                    visible: editMode,
-                    child: Container(
-                      height: 150,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6),
-                        image: DecorationImage(
-                          image: NetworkImage(editModeImageURL),
-                          fit: BoxFit.cover,
-                        ),
+                    Text(
+                        context.tr('Fill the information to display it in your card.'),
+                      style: TextStyle(
+                        color: Color(0xFF7EA9BA),
+                        fontSize: 18,
+                        fontFamily: 'Inter',
                       ),
                     ),
-                    replacement: GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: ((builder) => bottomSheet()),
-                        );
-                      },
-                      child: selectedImage != null
-                          ? Container(
-                        height: 150,
-                        width: MediaQuery.of(context).size.width,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: Image.file(
-                            selectedImage!,
-                            fit: BoxFit.cover,
+                    SizedBox(height: 30),
+                    Text(
+                      context.tr('Personal Details'),
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 2, 84, 86),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Inter',
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                context.tr("Prefix"),
+                                style: CustomTextStyles.titleMediumTeal300,
+                              ),
+                              SizedBox(
+                                width: 354,
+                                // height: 54,
+                                child: TextFormField(
+                                  onChanged: (value) => Prefix = value,
+                                  controller: TextEditingController(text: Prefix),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.white, width: 2),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: context.tr("Enter your prefix"),
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                  ),
+                                  cursorColor: Colors.black,
+                                  // keyboardType: TextInputType.phone,
+                                  // inputFormatters: <TextInputFormatter>[
+                                  //   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                  // ],
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return context.tr("Please enter some text");
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      )
-                          : Container(
+
+                          SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: 354,
+                            // height: 54,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  context.tr("First Name"),
+                                  style: CustomTextStyles.titleMediumTeal300,
+                                ),
+                                // SizedBox(height: 8), // Add some spacing between Text and TextFormField
+                                TextFormField(
+                                  onChanged: (value) => FirstName = value,
+                                  controller: TextEditingController(text: FirstName),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.white, width: 2),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: context.tr("Enter your first name"),
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                  ),
+                                  cursorColor: Colors.black,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return context.tr('Please enter some text');
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: 354,
+                            // height: 54,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  context.tr("Middle Name"),
+                                  style: CustomTextStyles.titleMediumTeal300,
+                                ),
+                                // SizedBox(height: 8), // Add some spacing between Text and TextFormField
+                                TextFormField(
+                                  onChanged: (value) => MiddleName = value,
+                                  controller: TextEditingController(text: MiddleName),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.white, width: 2),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: context.tr("Enter your middle name"),
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                  ),
+                                  cursorColor: Colors.red, // Change cursor color to red
+                                  validator: (value) {
+                                    // Validation logic here if needed
+                                    return null;
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: 354,
+                            // height: 54,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  context.tr("Last Name"),
+                                  style: CustomTextStyles.titleMediumTeal300,
+                                ),
+                                // SizedBox(height: 8), // Add some spacing between Text and TextFormField
+                                TextFormField(
+                                  onChanged: (value) => LastName = value,
+                                  controller: TextEditingController(text: LastName),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.white, width: 2),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: context.tr("Enter your last name"),
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                  ),
+                                  cursorColor: Colors.black, // Set cursor color to black
+                                  keyboardType: TextInputType.text, // Set keyboard type
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return context.tr('Please enter some text');
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: 354,
+                            // height: 54,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  context.tr("Position"),
+                                  style: CustomTextStyles.titleMediumTeal300,
+                                ),
+                                // SizedBox(height: 8), // Add some spacing between Text and TextFormField
+                                TextFormField(
+                                  onChanged: (value) => Position = value,
+                                  controller: TextEditingController(text: Position),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.white, width: 2),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: context.tr("Enter your position"),
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                  ),
+                                  cursorColor: Colors.black, // Set cursor color to black
+                                  keyboardType: TextInputType.text, // Set keyboard type
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return context.tr('Please enter some text');
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: 354,
+                            // height: 54,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  context.tr("CompanyName"),
+                                  style: CustomTextStyles.titleMediumTeal300,
+                                ),
+                                // SizedBox(height: 8), // Add some spacing between Text and TextFormField
+                                TextFormField(
+                                  onChanged: (value) => CompanyName = value,
+                                  controller: TextEditingController(text: CompanyName),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.white, width: 2),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: context.tr("Enter your company name"),
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                  ),
+                                  cursorColor: Colors.black, // Set cursor color to black
+                                  keyboardType: TextInputType.text, // Set keyboard type
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return context.tr('Please enter some text');
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: 354,
+                            // height: 54,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  context.tr("Email"),
+                                  style: CustomTextStyles.titleMediumTeal300,
+                                ),
+                                // SizedBox(height: 8), // Add some spacing between Text and TextFormField
+                                TextFormField(
+                                  onChanged: (value) => Email = value,
+                                  controller: TextEditingController(text: Email),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.white, width: 2),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: context.tr("Enter your email"),
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                    // labelText: context.tr('Email'), // Set the label text
+                                  ),
+                                  cursorColor: Colors.black, // Set cursor color to black
+                                  keyboardType: TextInputType.emailAddress, // Set keyboard type to email address
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return context.tr('Please enter some text');
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: 354,
+                            // height: 54,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  context.tr("Phone Number"),
+                                  style: CustomTextStyles.titleMediumTeal300,
+                                ),
+                                // SizedBox(height: 8), // Add some spacing between Text and TextFormField
+                                TextFormField(
+                                  onChanged: (value) => PhoneNumber = value,
+                                  controller: TextEditingController(text: PhoneNumber),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      borderSide: BorderSide(color: appTheme.white, width: 2),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: context.tr("Enter your phone number"),
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                    // labelText: context.tr('Phone Number'), // Set the label text
+                                  ),
+                                  cursorColor: Colors.black, // Set cursor color to black
+                                  keyboardType: TextInputType.number, // Set keyboard type to number
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')), // Allow only numeric input
+                                  ],
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return context.tr('Please enter some text');
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    Text(
+                      context.tr('Choose links to edit'),
+                      style: GoogleFonts.robotoCondensed(
+                          color: Color.fromARGB(255, 2, 84, 86),
+                          fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 10,),
+                    SocialMedia(
+                      saved: links,
+                      paddin: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                    ),
+                    Padding(
+                      padding: getPadding(
+                        top: 16,
+                        // right: 74,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Visibility(
+                      visible: editMode,
+                      child: Container(
                         height: 150,
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 2,
-                          ),
                           borderRadius: BorderRadius.circular(6),
+                          image: DecorationImage(
+                            image: NetworkImage(editModeImageURL),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        child: Center(
-                          child: selectedImage != null
-                              ? Image.file(
-                            selectedImage!,
-                            height: 150,
-                            width: MediaQuery.of(context).size.width,
-                            fit: BoxFit.cover,
-                          )
-                              : Image.network(
-                            imageURL ?? '',
-                            height: 150,
-                            width: MediaQuery.of(context).size.width,
-                            fit: BoxFit.cover,
+                      ),
+                      replacement: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: ((builder) => bottomSheet()),
+                          );
+                        },
+                        child: selectedImage != null
+                            ? Container(
+                          height: 150,
+                          width: MediaQuery.of(context).size.width,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(6),
+                            child: Image.file(
+                              selectedImage!,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                            : Container(
+                          height: 150,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Center(
+                            child: selectedImage != null
+                                ? Image.file(
+                              selectedImage!,
+                              height: 150,
+                              width: MediaQuery.of(context).size.width,
+                              fit: BoxFit.cover,
+                            )
+                                : Image.network(
+                              imageURL ?? '',
+                              height: 150,
+                              width: MediaQuery.of(context).size.width,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
 
-                  SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Visibility(
-                          visible: editMode,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(6),
-                              image: DecorationImage(
-                                image: NetworkImage(editModeImageURLLogo),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          replacement: GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: ((builder) => bottomSheetLogo()),
-                              );
-                            },
-                            child: selectedLogo != null
-                                ? Container(
-                              height: 150,
-                              width: 150,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(6),
-                                child: Image.file(
-                                  selectedLogo!,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
-                                : Container(
-                              height: 170,
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Visibility(
+                            visible: editMode,
+                            child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 2,
-                                ),
                                 borderRadius: BorderRadius.circular(6),
+                                image: DecorationImage(
+                                  image: NetworkImage(editModeImageURLLogo),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                              child: Center(
-                                child: selectedLogo != null
-                                    ? Image.file(
-                                  selectedLogo!,
-                                  height: 150,
-                                  width: 150,
-                                  fit: BoxFit.cover,
-                                )
-                                    : Image.network(
-                                  logoURL ?? '',
-                                  height: 170,
-                                  width: 170,
-                                  fit: BoxFit.cover,
+                            ),
+                            replacement: GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: ((builder) => bottomSheetLogo()),
+                                );
+                              },
+                              child: selectedLogo != null
+                                  ? Container(
+                                height: 150,
+                                width: 150,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(6),
+                                  child: Image.file(
+                                    selectedLogo!,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              )
+                                  : Container(
+                                height: 170,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.black,
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Center(
+                                  child: selectedLogo != null
+                                      ? Image.file(
+                                    selectedLogo!,
+                                    height: 150,
+                                    width: 150,
+                                    fit: BoxFit.cover,
+                                  )
+                                      : Image.network(
+                                    logoURL ?? '',
+                                    height: 170,
+                                    width: 170,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: Visibility(
-                          visible: editMode,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(6),
-                              image: DecorationImage(
-                                image: NetworkImage(editModeImageURLPortfilio),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          replacement: GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: ((builder) => bottomSheetPortfolio()),
-                              );
-                            },
-                            child: selectedPortfolio != null
-                                ? Container(
-                              height: 150,
-                              width: 150,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(6),
-                                child: Image.file(
-                                  selectedPortfolio!,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
-                                : Container(
-                              height: 170,
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: Visibility(
+                            visible: editMode,
+                            child: Container(
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                border: Border.all(
-                                  color: Colors.black,
-                                  width: 2,
-                                ),
                                 borderRadius: BorderRadius.circular(6),
+                                image: DecorationImage(
+                                  image: NetworkImage(editModeImageURLPortfilio),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                              child: Center(
-                                child: selectedPortfolio != null
-                                    ? Image.file(
-                                  selectedPortfolio!,
-                                  height: 150,
-                                  width: 150,
-                                  fit: BoxFit.cover,
-                                )
-                                    : Image.network(
-                                  portfolioURL ?? '',
+                            ),
+                            replacement: GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: ((builder) => bottomSheetPortfolio()),
+                                );
+                              },
+                              child: selectedPortfolio != null
+                                  ? Container(
+                                height: 150,
+                                width: 150,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(6),
+                                  child: Image.file(
+                                    selectedPortfolio!,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              )
+                                  : Container(
+                                height: 170,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.black,
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Center(
+                                  child: selectedPortfolio != null
+                                      ? Image.file(
+                                    selectedPortfolio!,
+                                    height: 150,
+                                    width: 150,
+                                    fit: BoxFit.cover,
+                                  )
+                                      : Image.network(
+                                    portfolioURL ?? '',
 
-                                  height: 170,
-                                  width: 170,
-                                  fit: BoxFit.cover,
+                                    height: 170,
+                                    width: 170,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
 
-                  SizedBox(
-                    height: 20,
-                  ),
-                  //update card data
-                  ElevatedButton(
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        // Check if any image is selected
-                        if (selectedImage != null || selectedLogo != null || selectedPortfolio != null) {
-                          // Upload images to Firebase Storage and get their URLs
-                          if (selectedImage != null) {
-                            final imageRef = FirebaseStorage.instance.ref().child('images').child('user_image.jpg');
-                            final uploadTask = imageRef.putFile(selectedImage!);
-                            final snapshot = await uploadTask.whenComplete(() => null);
-                            imageURL = await snapshot.ref.getDownloadURL();
+                    SizedBox(
+                      height: 20,
+                    ),
+                    //update card data
+                    ElevatedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          // Check if any image is selected
+                          if (selectedImage != null || selectedLogo != null || selectedPortfolio != null) {
+                            // Upload images to Firebase Storage and get their URLs
+                            if (selectedImage != null) {
+                              final imageRef = FirebaseStorage.instance.ref().child('images').child('user_image.jpg');
+                              final uploadTask = imageRef.putFile(selectedImage!);
+                              final snapshot = await uploadTask.whenComplete(() => null);
+                              imageURL = await snapshot.ref.getDownloadURL();
+                            }
+
+                            if (selectedLogo != null) {
+                              final logoRef = FirebaseStorage.instance.ref().child('images').child('user_logo.jpg');
+                              final uploadTask = logoRef.putFile(selectedLogo!);
+                              final snapshot = await uploadTask.whenComplete(() => null);
+                              logoURL = await snapshot.ref.getDownloadURL();
+                            }
+
+                            if (selectedPortfolio != null) {
+                              final portfolioRef = FirebaseStorage.instance.ref().child('images').child('user_portfolio.jpg');
+                              final uploadTask = portfolioRef.putFile(selectedPortfolio!);
+                              final snapshot = await uploadTask.whenComplete(() => null);
+                              portfolioURL = await snapshot.ref.getDownloadURL();
+                            }
                           }
 
-                          if (selectedLogo != null) {
-                            final logoRef = FirebaseStorage.instance.ref().child('images').child('user_logo.jpg');
-                            final uploadTask = logoRef.putFile(selectedLogo!);
-                            final snapshot = await uploadTask.whenComplete(() => null);
-                            logoURL = await snapshot.ref.getDownloadURL();
-                          }
+                          // Fetch existing card data from Firestore
+                          DocumentSnapshot<Map<String, dynamic>> cardSnapshot = await FirebaseFirestore.instance
+                              .collection('Cards')
+                              .doc(FirebaseAuth.instance.currentUser!.uid)
+                              .get();
 
-                          if (selectedPortfolio != null) {
-                            final portfolioRef = FirebaseStorage.instance.ref().child('images').child('user_portfolio.jpg');
-                            final uploadTask = portfolioRef.putFile(selectedPortfolio!);
-                            final snapshot = await uploadTask.whenComplete(() => null);
-                            portfolioURL = await snapshot.ref.getDownloadURL();
-                          }
+                          // Extract existing card data
+                          Map<String, dynamic> existingData = cardSnapshot.data() ?? {};
+
+                          // Get existing links
+                          Map<String, String> existingLinks = Map<String, String>.from(existingData['Links'] ?? {});
+
+                          // Merge updated links with existing data
+                          Map<String, String> updatedLinks = {
+                            ...existingLinks, // Spread existing links
+                            ...links, // New links
+                          };
+
+                          // Merge updated data
+                          Map<String, dynamic> updatedData = {
+                            ...existingData, // Spread existing data
+                            'Prefix': Prefix,
+                            'FirstName': FirstName,
+                            'MiddleName': MiddleName,
+                            'LastName': LastName,
+                            'Position': Position,
+                            'CompanyName': CompanyName,
+                            'Email': Email,
+                            'PhoneNumber': PhoneNumber,
+                            'Links': updatedLinks, // Updated links in Firestore
+                            // Include other fields to update here...
+                            'ImageURL': imageURL, // Update imageURL
+                            'LogoURL': logoURL, // Update logoURL
+                            'PortfolioURL': portfolioURL, // Update portfolioURL
+                            'defaultLogo':'https://firebasestorage.googleapis.com/v0/b/hiwetaan.appspot.com/o/images%2Fuser_image.jpg?alt=media&token=f0359660-ed0d-4edd-9df3-85a8fc087d7a',
+                          };
+
+                          // Update user's card information in Firestore
+                          await FirebaseFirestore.instance
+                              .collection('Cards')
+                              .doc(FirebaseAuth.instance.currentUser!.uid)
+                              .update(updatedData);
+
+                          // Show a snackbar to indicate successful save
+                          showInSnackBar(context.tr('Your card information has been saved successfully'),
+                              Colors.green,Colors.white, 3, context, _scaffoldKey);
+
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => Home(currentIndex: 1),
+                            ),
+                          );
+                        } else {
+                          showInSnackBar(context.tr('Please create your card first'),
+                              Colors.red,Colors.white, 3, context, _scaffoldKey);
                         }
-
-                        // Fetch existing card data from Firestore
-                        DocumentSnapshot<Map<String, dynamic>> cardSnapshot = await FirebaseFirestore.instance
-                            .collection('Cards')
-                            .doc(FirebaseAuth.instance.currentUser!.uid)
-                            .get();
-
-                        // Extract existing card data
-                        Map<String, dynamic> existingData = cardSnapshot.data() ?? {};
-
-                        // Get existing links
-                        Map<String, String> existingLinks = Map<String, String>.from(existingData['Links'] ?? {});
-
-                        // Merge updated links with existing data
-                        Map<String, String> updatedLinks = {
-                          ...existingLinks, // Spread existing links
-                          ...links, // New links
-                        };
-
-                        // Merge updated data
-                        Map<String, dynamic> updatedData = {
-                          ...existingData, // Spread existing data
-                          'Prefix': Prefix,
-                          'FirstName': FirstName,
-                          'MiddleName': MiddleName,
-                          'LastName': LastName,
-                          'Position': Position,
-                          'CompanyName': CompanyName,
-                          'Email': Email,
-                          'PhoneNumber': PhoneNumber,
-                          'Links': updatedLinks, // Updated links in Firestore
-                          // Include other fields to update here...
-                          'ImageURL': imageURL, // Update imageURL
-                          'LogoURL': logoURL, // Update logoURL
-                          'PortfolioURL': portfolioURL, // Update portfolioURL
-                          'defaultLogo':'https://firebasestorage.googleapis.com/v0/b/hiwetaan.appspot.com/o/images%2Fuser_image.jpg?alt=media&token=f0359660-ed0d-4edd-9df3-85a8fc087d7a',
-                        };
-
-                        // Update user's card information in Firestore
-                        await FirebaseFirestore.instance
-                            .collection('Cards')
-                            .doc(FirebaseAuth.instance.currentUser!.uid)
-                            .update(updatedData);
-
-                        // Show a snackbar to indicate successful save
-                        showInSnackBar(context.tr('Your card information has been saved successfully'),
-                            Colors.green,Colors.white, 3, context, _scaffoldKey);
-
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => Home(currentIndex: 1),
+                      },
+                      style: ButtonStyle(
+                        // padding: const EdgeInsets.all(5),
+                        shape:
+                        MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                        );
-                      } else {
-                        showInSnackBar(context.tr('Please create your card first'),
-                            Colors.red,Colors.white, 3, context, _scaffoldKey);
-                      }
-                    },
-                    style: ButtonStyle(
-                      // padding: const EdgeInsets.all(5),
-                      shape:
-                      MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            Color(0xFF234E5C)),
+                      ),
+                      child:  Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          context.tr('Save'),
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Color(0xFF234E5C)),
-                    ),
-                    child:  Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        context.tr('Save'),
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  )
+                    )
 
 
-                ]
-            )));
+                  ]
+              ))),
+    );
 
   }
 }
