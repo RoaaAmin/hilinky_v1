@@ -207,7 +207,7 @@ class _MyCardState extends State<MyCard> {
                         children: [
                           Container(
                             // width: 300, // Replace 200 with your desired width
-                            height: 338, // Replace 200 with your desired height
+                            height: 315, // Replace 200 with your desired height
                             child: CustomImageView(
                               imagePath: ImageConstant.HilinkyCard,
                             ),
@@ -249,7 +249,7 @@ class _MyCardState extends State<MyCard> {
                           ),
 
                           // SizedBox(height: 80, width: 90,),
-                          Padding( padding: const EdgeInsets.all(60.0),
+                          Padding( padding: const EdgeInsets.all(30.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -333,6 +333,7 @@ class _MyCardState extends State<MyCard> {
                                                 color: Colors.white,
                                                 fontSize: 15,
                                                 fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w600,
                                                 height: 0.21,
                                               ),
                                             ),
@@ -354,7 +355,7 @@ class _MyCardState extends State<MyCard> {
                                       SizedBox(
                                         height: 40, // Adjust the height according to your requirement
                                         child: Links.isEmpty
-                                            ? Text(context.tr('No links'))
+                                            ? Text(context.tr(''))
                                             : Wrap(
                                           spacing: 15.0, // Horizontal spacing between the links
                                           runSpacing: 8.0, // Vertical spacing between the rows
@@ -410,7 +411,7 @@ class _MyCardState extends State<MyCard> {
                               children: [
                                 CustomImageView(
                                   // width: 500,
-                               height: 338,
+                               height: 315,
                                   imagePath: ImageConstant.HilinkyCard,
                                   fit: BoxFit.cover, // Ensure the image covers the entire container
                                 ),

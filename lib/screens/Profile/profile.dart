@@ -302,7 +302,7 @@ class profiletestState extends State<profiletest> {
                         ),
 
                         const SizedBox(
-                          height: 50,
+                          height: 90,
                         ),
                         Container(
                           padding: const EdgeInsets.only(

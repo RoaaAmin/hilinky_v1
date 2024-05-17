@@ -374,7 +374,12 @@ class _CreateCardState extends State<CreateCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GestureDetector(
+        onTap: () {
+      // Dismiss the keyboard when tapped outside of any text field
+      FocusScope.of(context).unfocus();
+    },
+    child: Scaffold(
       backgroundColor: appTheme.whiteA700,
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -899,6 +904,6 @@ class _CreateCardState extends State<CreateCard> {
                   ),
                 ),
               ])),
-    );
+    ));
   }
 }
