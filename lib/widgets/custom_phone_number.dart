@@ -71,7 +71,7 @@ class CustomPhoneNumber extends StatelessWidget {
         Expanded(
           child: CustomTextFormField(
             width: getHorizontalSize(287),
-           // controller: controller,
+            controller: controller,
             margin: getMargin(
               left: 8,
             ),
