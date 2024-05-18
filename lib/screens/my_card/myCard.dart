@@ -18,6 +18,9 @@ import '../../widgets/app_bar/appbar_image.dart';
 import '../../widgets/custom_image_view.dart';
 import '../Profile/edit_card.dart';
 import '../Scanner/QRScannerPage.dart';
+import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
+
 // import 'package:page_indicator/page_indicator.dart';
 
 class MyCard extends StatefulWidget {
@@ -108,6 +111,7 @@ class _MyCardState extends State<MyCard> {
     'behance': const FaIcon(FontAwesomeIcons.behance),
     'location': const FaIcon(FontAwesomeIcons.location),
   };
+
   @override
   Widget build(BuildContext context) {
     return  WillPopScope(
@@ -219,30 +223,33 @@ class _MyCardState extends State<MyCard> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Row(
-                                  children: [
-                                    Spacer(),
-                                    Container(
-                                      height: 25,
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          context.pushPage(EditCard());
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          // primary: Colors.transparent, // Setting the button's background color to transparent
-                                          shadowColor: Colors.transparent, // Removing the button's shadow
-                                        ),
-                                        child: Container(
-                                          child: Text(
-                                            context.tr('Edit'),
-                                            style: TextStyle(
-                                               color: Colors.deepOrangeAccent,
+                                Directionality(
+                                  textDirection: ui.TextDirection.ltr,
+                                  child: Row(
+                                    children: [
+                                      Spacer(),
+                                      Container(
+                                        height: 25,
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            context.pushPage(EditCard());
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            // primary: Colors.transparent, // Setting the button's background color to transparent
+                                            shadowColor: Colors.transparent, // Removing the button's shadow
+                                          ),
+                                          child: Container(
+                                            child: Text(
+                                              context.tr('Edit'),
+                                              style: TextStyle(
+                                                 color: Colors.deepOrangeAccent,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -255,94 +262,100 @@ class _MyCardState extends State<MyCard> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                  SizedBox(height: 20,),
-                                Row(
-                                  children: [
-                                    Container(
-                                      height: 80,
-                                      width: 80,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
+                                Directionality(
+                                  textDirection: ui.TextDirection.ltr,
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 80,
+                                        width: 80,
+                                        decoration: BoxDecoration(
                                           color: Colors.white,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(120),
-                                        image: DecorationImage(
-                                          image: cardsDocs[i].data()!['LogoURL'] != null
-                                              ? NetworkImage(cardsDocs[i].data()!['defaultLogo']!)
-                                              : NetworkImage(cardsDocs[i].data()!['LogoURL']!),
-                                          fit: BoxFit.cover,
+                                          border: Border.all(
+                                            color: Colors.white,
+                                            width: 1,
+                                          ),
+                                          borderRadius: BorderRadius.circular(120),
+                                          image: DecorationImage(
+                                            image: cardsDocs[i].data()!['LogoURL'] != null
+                                                ? NetworkImage(cardsDocs[i].data()!['defaultLogo']!)
+                                                : NetworkImage(cardsDocs[i].data()!['LogoURL']!),
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Directionality(
+                                        textDirection: ui.TextDirection.ltr,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              context.tr(cardsDocs[i].data()!['FirstName']),
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w500,
-                                              ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  cardsDocs[i].data()!['FirstName'],
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20,
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                Text("  "),
+                                                Text(
+                                                  cardsDocs[i].data()!['LastName'],
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20,
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                            Text( context.tr("  ")),
-                                            Text(
-                                              context.tr(cardsDocs[i].data()!['LastName']),
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w500,
-                                              ),
+                                            SizedBox(height: 10),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  cardsDocs[i].data()!['Position'],
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 0.21,
+                                                  ),
+                                                ),
+                                                Text(
+                                                " - ",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 0.21,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  cardsDocs[i].data()!['CompanyName'],
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 0.21,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                        SizedBox(height: 10),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              context.tr(cardsDocs[i].data()!['Position']),
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15,
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                height: 0.21,
-                                              ),
-                                            ),
-                                            Text(
-                                              context.tr(" - "),
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15,
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                height: 0.21,
-                                              ),
-                                            ),
-                                            Text(
-                                              context.tr(cardsDocs[i].data()!['CompanyName']),
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15,
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                height: 0.21,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
 
-                                      ],
-                                    ),
-                                  ],
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
 
                                 SizedBox(height: 20),
@@ -355,7 +368,7 @@ class _MyCardState extends State<MyCard> {
                                       SizedBox(
                                         height: 40, // Adjust the height according to your requirement
                                         child: Links.isEmpty
-                                            ? Text(context.tr(''))
+                                            ? Text('')
                                             : Wrap(
                                           spacing: 15.0, // Horizontal spacing between the links
                                           runSpacing: 8.0, // Vertical spacing between the rows
