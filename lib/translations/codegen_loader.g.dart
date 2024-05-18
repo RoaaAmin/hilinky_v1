@@ -151,7 +151,8 @@ class CodegenLoader extends AssetLoader {
     "Not Now": "لاحقًا",
     "Update": "تحديث",
     "Enter your city": "أدخل مدينتك",
-    "Enter your nationality": "أدخل جنسيتك"
+    "Enter your nationality": "أدخل جنسيتك",
+     "Saving...":"جاري الحفظ..."
   };
   static const Map<String, dynamic> en = {
     "Select Your Language": "Select Your Language",
@@ -295,7 +296,8 @@ class CodegenLoader extends AssetLoader {
     "Update": "Update",
     "Company Name":"Company Name",
     "enter your city": "Enter your city",
-    "enter your nationality": "Enter your nationality"
+    "enter your nationality": "Enter your nationality",
+    "Saving...":"Saving..."
 
   };
 

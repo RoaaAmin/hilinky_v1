@@ -118,17 +118,45 @@ class _CreateCardState extends State<CreateCard> {
 
     return userCity; // Return the user's city
   }
+  // showInSnackBar(
+  // context.tr('Please wait while the card is being created...'),
+  // Colors.green,
+  // Colors.white,
+  // 4,
+  // context,
+  // _scaffoldKey,
+  // );
   uploadCard() async {
     // Check if the widget is mounted before showing the snackbar
     if (mounted) {
-      showInSnackBar(
-        context.tr('Please wait while the card is being created...'),
-        Colors.green,
-        Colors.white,
-        4,
-        context,
-        _scaffoldKey,
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return Dialog(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(width: 20),
+                  Text(context.tr('Saving...')),
+                ],
+              ),
+            ),
+          );
+        },
       );
+
+      // showInSnackBar(
+      //   context.tr('Please wait while the card is being created...'),
+      //   Colors.green,
+      //   Colors.white,
+      //   4,
+      //   context,
+      //   _scaffoldKey,
+      // );
     }
 
     // Check if required fields are filled
@@ -688,7 +716,6 @@ class _CreateCardState extends State<CreateCard> {
                       color: const Color.fromARGB(255, 2, 84, 86),
                       fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 10,),
                 SocialMedia(
                   saved: links,
                   padding: EdgeInsets.only(
@@ -702,7 +729,7 @@ class _CreateCardState extends State<CreateCard> {
                     // right: 74,
                   ),
                 ),
-                SizedBox(height: 10),
+
                 Visibility(
                   visible: editMode,
                   child: Container(

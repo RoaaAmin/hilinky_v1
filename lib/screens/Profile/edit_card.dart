@@ -976,117 +976,144 @@ class EditState extends State<EditCard> {
                     height: 20,
                   ),
                   //update card data
-                  ElevatedButton(
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        // Check if any image is selected
-                        if (selectedImage != null || selectedLogo != null || selectedPortfolio != null) {
-                          // Upload images to Firebase Storage and get their URLs
-                          if (selectedImage != null) {
-                            final imageRef = FirebaseStorage.instance.ref().child('images').child('user_image.jpg');
-                            final uploadTask = imageRef.putFile(selectedImage!);
-                            final snapshot = await uploadTask.whenComplete(() => null);
-                            imageURL = await snapshot.ref.getDownloadURL();
-                          }
+        ElevatedButton(
+          onPressed: () async {
+            if (_formKey.currentState!.validate()) {
 
-                          if (selectedLogo != null) {
-                            final logoRef = FirebaseStorage.instance.ref().child('images').child('user_logo.jpg');
-                            final uploadTask = logoRef.putFile(selectedLogo!);
-                            final snapshot = await uploadTask.whenComplete(() => null);
-                            logoURL = await snapshot.ref.getDownloadURL();
-                          }
-
-                          if (selectedPortfolio != null) {
-                            final portfolioRef = FirebaseStorage.instance.ref().child('images').child('user_portfolio.jpg');
-                            final uploadTask = portfolioRef.putFile(selectedPortfolio!);
-                            final snapshot = await uploadTask.whenComplete(() => null);
-                            portfolioURL = await snapshot.ref.getDownloadURL();
-                          }
-                        }
-
-                        // Fetch existing card data from Firestore
-                        DocumentSnapshot<Map<String, dynamic>> cardSnapshot = await FirebaseFirestore.instance
-                            .collection('Cards')
-                            .doc(FirebaseAuth.instance.currentUser!.uid)
-                            .get();
-
-                        // Extract existing card data
-                        Map<String, dynamic> existingData = cardSnapshot.data() ?? {};
-
-                        // Get existing links
-                        Map<String, String> existingLinks = Map<String, String>.from(existingData['Links'] ?? {});
-
-                        // Merge updated links with existing data
-                        Map<String, String> updatedLinks = {
-                          ...existingLinks, // Spread existing links
-                          ...links, // New links
-                        };
-
-                        // Merge updated data
-                        Map<String, dynamic> updatedData = {
-                          ...existingData, // Spread existing data
-                          'Prefix': Prefix,
-                          'FirstName': FirstName,
-                          'MiddleName': MiddleName,
-                          'LastName': LastName,
-                          'Position': Position,
-                          'CompanyName': CompanyName,
-                          'Email': Email,
-                          'PhoneNumber': PhoneNumber,
-                          'Links': updatedLinks, // Updated links in Firestore
-                          // Include other fields to update here...
-                          'ImageURL': imageURL, // Update imageURL
-                          'LogoURL': logoURL, // Update logoURL
-                          'PortfolioURL': portfolioURL, // Update portfolioURL
-                          'defaultLogo':'https://firebasestorage.googleapis.com/v0/b/hiwetaan.appspot.com/o/images%2Fuser_image.jpg?alt=media&token=f0359660-ed0d-4edd-9df3-85a8fc087d7a',
-                        };
-
-                        // Update user's card information in Firestore
-                        await FirebaseFirestore.instance
-                            .collection('Cards')
-                            .doc(FirebaseAuth.instance.currentUser!.uid)
-                            .update(updatedData);
-
-                        // Show a snackbar to indicate successful save
-                        showInSnackBar(context.tr('Your card information has been saved successfully'),
-                            Colors.green,Colors.white, 3, context, _scaffoldKey);
-
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => Home(currentIndex: 1),
-                          ),
-                        );
-                      } else {
-                        showInSnackBar(context.tr('Please create your card first'),
-                            Colors.red,Colors.white, 3, context, _scaffoldKey);
-                      }
-                    },
-                    style: ButtonStyle(
-                      // padding: const EdgeInsets.all(5),
-                      shape:
-                      MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Color(0xFF234E5C)),
-                    ),
-                    child:  Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        context.tr('Save'),
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return Dialog(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CircularProgressIndicator(),
+                          SizedBox(width: 20),
+                          Text(context.tr('Saving...')),
+                        ],
                       ),
                     ),
-                  )
+                  );
+                },
+              );
+
+              try {
+                // Check if any image is selected
+                if (selectedImage != null || selectedLogo != null || selectedPortfolio != null) {
+                  // Upload images to Firebase Storage and get their URLs
+                  if (selectedImage != null) {
+                    final imageRef = FirebaseStorage.instance.ref().child('images').child('user_image.jpg');
+                    final uploadTask = imageRef.putFile(selectedImage!);
+                    final snapshot = await uploadTask.whenComplete(() => null);
+                    imageURL = await snapshot.ref.getDownloadURL();
+                  }
+
+                  if (selectedLogo != null) {
+                    final logoRef = FirebaseStorage.instance.ref().child('images').child('user_logo.jpg');
+                    final uploadTask = logoRef.putFile(selectedLogo!);
+                    final snapshot = await uploadTask.whenComplete(() => null);
+                    logoURL = await snapshot.ref.getDownloadURL();
+                  }
+
+                  if (selectedPortfolio != null) {
+                    final portfolioRef = FirebaseStorage.instance.ref().child('images').child('user_portfolio.jpg');
+                    final uploadTask = portfolioRef.putFile(selectedPortfolio!);
+                    final snapshot = await uploadTask.whenComplete(() => null);
+                    portfolioURL = await snapshot.ref.getDownloadURL();
+                  }
+                }
+
+                // Fetch existing card data from Firestore
+                DocumentSnapshot<Map<String, dynamic>> cardSnapshot = await FirebaseFirestore.instance
+                    .collection('Cards')
+                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                    .get();
+
+                // Extract existing card data
+                Map<String, dynamic> existingData = cardSnapshot.data() ?? {};
+
+                // Get existing links
+                Map<String, String> existingLinks = Map<String, String>.from(existingData['Links'] ?? {});
+
+                // Merge updated links with existing data
+                Map<String, String> updatedLinks = {
+                  ...existingLinks, // Spread existing links
+                  ...links, // New links
+                };
+
+                // Merge updated data
+                Map<String, dynamic> updatedData = {
+                  ...existingData, // Spread existing data
+                  'Prefix': Prefix,
+                  'FirstName': FirstName,
+                  'MiddleName': MiddleName,
+                  'LastName': LastName,
+                  'Position': Position,
+                  'CompanyName': CompanyName,
+                  'Email': Email,
+                  'PhoneNumber': PhoneNumber,
+                  'Links': updatedLinks, // Updated links in Firestore
+                  'ImageURL': imageURL, // Update imageURL
+                  'LogoURL': logoURL, // Update logoURL
+                  'PortfolioURL': portfolioURL, // Update portfolioURL
+                  'defaultLogo':'https://firebasestorage.googleapis.com/v0/b/hiwetaan.appspot.com/o/images%2Fuser_image.jpg?alt=media&token=f0359660-ed0d-4edd-9df3-85a8fc087d7a',
+                };
+
+                // Update user's card information in Firestore
+                await FirebaseFirestore.instance
+                    .collection('Cards')
+                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                    .update(updatedData);
+
+                // Dismiss the loading dialog
+                Navigator.of(context).pop();
+
+                // Show a snackbar to indicate successful save
+                showInSnackBar(context.tr('Your card information has been saved successfully'), Colors.green, Colors.white, 3, context, _scaffoldKey);
+
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => Home(currentIndex: 1),
+                  ),
+                );
+              } catch (error) {
+                // Dismiss the loading dialog
+                Navigator.of(context).pop();
+
+                // Show an error snackbar
+                showInSnackBar(context.tr('An error occurred while saving your card information'), Colors.red, Colors.white, 3, context, _scaffoldKey);
+              }
+            } else {
+              showInSnackBar(context.tr('Please create your card first'), Colors.red, Colors.white, 3, context, _scaffoldKey);
+            }
+          },
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+            backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF234E5C)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text(
+              context.tr('Save'),
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        )
 
 
-                ]
+
+        ]
             ))));
 
   }
