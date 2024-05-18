@@ -284,7 +284,7 @@ class _MyCardState extends State<MyCard> {
                                         Row(
                                           children: [
                                             Text(
-                                              cardsDocs[i].data()!['FirstName'],
+                                              context.tr(cardsDocs[i].data()!['FirstName']),
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 20,
@@ -292,9 +292,9 @@ class _MyCardState extends State<MyCard> {
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ),
-                                            Text("  "),
+                                            Text( context.tr("  ")),
                                             Text(
-                                              cardsDocs[i].data()!['LastName'],
+                                              context.tr(cardsDocs[i].data()!['LastName']),
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 20,
@@ -308,7 +308,7 @@ class _MyCardState extends State<MyCard> {
                                         Row(
                                           children: [
                                             Text(
-                                              cardsDocs[i].data()!['Position'],
+                                              context.tr(cardsDocs[i].data()!['Position']),
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 15,
@@ -318,7 +318,7 @@ class _MyCardState extends State<MyCard> {
                                               ),
                                             ),
                                             Text(
-                                              " - ",
+                                              context.tr(" - "),
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 15,
@@ -328,7 +328,7 @@ class _MyCardState extends State<MyCard> {
                                               ),
                                             ),
                                             Text(
-                                              cardsDocs[i].data()!['CompanyName'],
+                                              context.tr(cardsDocs[i].data()!['CompanyName']),
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 15,

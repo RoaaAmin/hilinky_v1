@@ -776,9 +776,10 @@ class EditState extends State<EditCard> {
                   SizedBox(height: 10,),
                   SocialMedia(
                     saved: links,
-                    paddin: EdgeInsets.only(
+                    padding: EdgeInsets.only(
                         bottom: MediaQuery.of(context).viewInsets.bottom),
                   ),
+
                   Padding(
                     padding: getPadding(
                       top: 16,

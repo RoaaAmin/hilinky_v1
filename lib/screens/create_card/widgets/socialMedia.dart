@@ -1,13 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../core/utils/size_utils.dart';
 
 class SocialMedia extends StatefulWidget {
-  SocialMedia({super.key, required this.paddin, required this.saved});
+  SocialMedia({Key? key, required this.padding, required this.saved}) : super(key: key);
 
-  final EdgeInsets paddin;
+  final EdgeInsets padding;
   final Map<String, String> saved;
 
   @override
@@ -15,7 +17,6 @@ class SocialMedia extends StatefulWidget {
 }
 
 class _SocialMediaState extends State<SocialMedia> {
-  // Icons
   final List<IconData> socialMediaIcons = [
     FontAwesomeIcons.facebook,
     FontAwesomeIcons.twitter,
@@ -32,7 +33,41 @@ class _SocialMediaState extends State<SocialMedia> {
     FontAwesomeIcons.mapMarkerAlt,
   ];
 
-  final TextEditingController entredLink = TextEditingController();
+  late List<TextEditingController> controllers;
+
+  @override
+  void initState() {
+    super.initState();
+    controllers = List.generate(socialMediaIcons.length, (index) => TextEditingController());
+    getCardInfo();
+  }
+
+  @override
+  void dispose() {
+    controllers.forEach((controller) => controller.dispose());
+    super.dispose();
+  }
+
+  void getCardInfo() async {
+    try {
+      final DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
+          .collection('Cards')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      if (snapshot.exists) {
+        final Map<String, dynamic> data = snapshot.data()!;
+        final Map<String, dynamic> links = data['Links'] ?? {};
+        setState(() {
+          for (int i = 0; i < socialMediaIcons.length; i++) {
+            final String name = _getName(i);
+            controllers[i].text = links[name] ?? '';
+          }
+        });
+      }
+    } catch (e) {
+      print('Error fetching data: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +83,6 @@ class _SocialMediaState extends State<SocialMedia> {
       itemCount: socialMediaIcons.length,
       itemBuilder: (context, index) {
         final name = _getName(index);
-
         return IconButton(
           onPressed: () => _showBottomSheet(index, name),
           icon: FaIcon(socialMediaIcons[index], color: Color(0xFF7EA9BA)),
@@ -93,10 +127,10 @@ class _SocialMediaState extends State<SocialMedia> {
   void _showBottomSheet(int index, String name) {
     showModalBottomSheet(
       context: context,
-      builder: ((builder) => Padding(
-        padding: widget.paddin,
+      builder: (builder) => Padding(
+        padding: widget.padding,
         child: _bottomSheetLinks(index, name),
-      )),
+      ),
     );
   }
 
@@ -105,39 +139,29 @@ class _SocialMediaState extends State<SocialMedia> {
       child: Container(
         height: 150.0,
         width: MediaQuery.of(context).size.width,
-        margin: const EdgeInsets.symmetric(
-          horizontal: 95,
-          vertical: 20,
-        ),
+        margin: const EdgeInsets.symmetric(horizontal: 95, vertical: 20),
         child: Column(
           children: <Widget>[
             TextField(
-              decoration: InputDecoration(
-                labelText: context.tr("Enter a link"),
-              ),
+              decoration: InputDecoration(labelText: tr("Enter a link")),
               maxLines: 1,
-              controller: entredLink,
+              controller: controllers[index],
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: Text(context.tr("Cancel"),
-                      style: TextStyle(color: Color(0xFF7EA9BA))),
+                  child: Text(tr("Cancel"), style: TextStyle(color: Color(0xFF7EA9BA))),
                 ),
                 const SizedBox(width: 10),
                 TextButton(
                   onPressed: () {
-                    widget.saved[name] = entredLink.text;
+                    widget.saved[name] = controllers[index].text;
                     Navigator.of(context).pop();
-                    entredLink.clear();
                   },
-                  child: Text(context.tr("Save"),
-                      style: TextStyle(color: Color(0xFF7EA9BA))),
+                  child: Text(tr("Save"), style: TextStyle(color: Color(0xFF7EA9BA))),
                 ),
               ],
             ),

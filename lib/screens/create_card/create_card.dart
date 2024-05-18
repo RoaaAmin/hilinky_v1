@@ -691,9 +691,10 @@ class _CreateCardState extends State<CreateCard> {
                 SizedBox(height: 10,),
                 SocialMedia(
                   saved: links,
-                  paddin: EdgeInsets.only(
+                  padding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom),
                 ),
+
 
                 Padding(
                   padding: getPadding(
