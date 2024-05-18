@@ -408,12 +408,6 @@ class EditState extends State<EditCard> {
                                 // inputFormatters: <TextInputFormatter>[
                                 //   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                 // ],
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr("Please enter some text");
-                                  }
-                                  return null;
-                                },
                               ),
                             ),
                           ],
