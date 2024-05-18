@@ -150,6 +150,8 @@ class CodegenLoader extends AssetLoader {
     "A new version of the app is available. Please update to the latest version to continue using the app.": "تتوفر نسخة جديدة من التطبيق. يرجى تحديث إلى أحدث نسخة للاستمرار في استخدام التطبيق.",
     "Not Now": "لاحقًا",
     "Update": "تحديث",
+    "Enter your city": "أدخل مدينتك",
+    "Enter your nationality": "أدخل جنسيتك"
   };
   static const Map<String, dynamic> en = {
     "Select Your Language": "Select Your Language",
@@ -291,7 +293,9 @@ class CodegenLoader extends AssetLoader {
     "A new version of the app is available. Please update to the latest version to continue using the app.": "A new version of the app is available. Please update to the latest version to continue using the app.",
     "Not Now": "Not Now",
     "Update": "Update",
-    "Company Name":"Company Name"
+    "Company Name":"Company Name",
+    "enter your city": "Enter your city",
+    "enter your nationality": "Enter your nationality"
 
   };
 

@@ -263,7 +263,7 @@ class EditState extends State<Edit> {
                                       filled: true,
                                       fillColor: Colors.white,
                                       hintText: context.tr("Enter your first name"),
-                                      hintStyle: TextStyle(color: Colors.black),
+                                      hintStyle: TextStyle(color: Colors.grey),
                                       contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                                     ),
                                     cursorColor: Colors.black,
@@ -309,7 +309,7 @@ class EditState extends State<Edit> {
                                       filled: true,
                                       fillColor: Colors.white,
                                       hintText: context.tr("Enter your last name"),
-                                      hintStyle: TextStyle(color: Colors.black),
+                                      hintStyle: TextStyle(color: Colors.grey),
                                       contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                                     ),
                                     cursorColor: Colors.black,
@@ -523,6 +523,8 @@ class EditState extends State<Edit> {
                                 decoration: InputDecoration(
                                   fillColor: Colors.white, // Set background color
                                   filled: true,
+                                  hintText: context.tr("Enter your city"),
+                                  hintStyle: TextStyle(color: Colors.grey),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8.00),
                                     borderSide: BorderSide(
