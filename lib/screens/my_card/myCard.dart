@@ -207,10 +207,15 @@ class _MyCardState extends State<MyCard> {
                 child: Column(
                     children: [
                       Container(
+                        decoration: BoxDecoration(
+                          color: appTheme.whiteA700,
+
+                        ),
                     child: Container(
                       child: Stack(
                         children: [
                           Container(
+
                             // width: 300, // Replace 200 with your desired width
                             height: 315, // Replace 200 with your desired height
                             child: CustomImageView(
@@ -415,8 +420,11 @@ class _MyCardState extends State<MyCard> {
                       ),
 
                       Container(
+                        decoration: BoxDecoration(
+                          color:appTheme.whiteA700,
+                         // borderRadius: BorderRadius.circular(10),
+                        ),
                         margin: const EdgeInsets.only(top: 0, bottom: 10), // Adjust margin as needed
-
                         child: Padding(
                           padding: const EdgeInsets.all(0.0),
                           child: Center(
