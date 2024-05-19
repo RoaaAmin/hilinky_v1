@@ -180,7 +180,7 @@ class profiletestState extends State<profiletest> {
   Widget build(BuildContext context) {
     List<String> keys = Links.keys.toList();
     List<dynamic> values = Links.values.toList();
-    // Build a Form widget using the _formKey created above.
+
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -189,82 +189,67 @@ class profiletestState extends State<profiletest> {
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(
-                  '../Progile/screens/assets/images/hilinkybg.svg'), // Replace with your image path
+              image: AssetImage('../Progile/screens/assets/images/hilinkybg.svg'), // Replace with your image path
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
-              SizedBox(height: 50,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          alignment: Alignment.center,
-                          decoration: ShapeDecoration(
-                            shape: OvalBorder(
-                              side: BorderSide(width: 1.50, color: Color(0xFF2E8DAC)),
+              SizedBox(height: 70),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 100,
+                            alignment: Alignment.center,
+                            decoration: ShapeDecoration(
+                              shape: OvalBorder(
+                                side: BorderSide(width: 1.50, color: Color(0xFF2E8DAC)),
+                              ),
+                              image: DecorationImage(
+                                image: NetworkImage(image ?? ''),
+                                fit: BoxFit.cover,
+                                alignment: Alignment.center,
+                              ),
                             ),
-                            image: DecorationImage(
-                              image: NetworkImage(image ?? ''),
-                              fit: BoxFit.cover,
-                              alignment: Alignment.center,
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            context.tr("$FirstName $LastName"),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFF286F8C),
+                              fontSize: 24,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w600,
+                              height: 0,
                             ),
-                            // shape: BoxShape.circle,
-                            // boxShadow: [
-                            //   BoxShadow(
-                            //     color: Colors.blueGrey.withOpacity(0.5),
-                            //     spreadRadius: 5,
-                            //     blurRadius: 7,
-                            //     offset: Offset(0, 3),
-                            //   ),
-                            // ],
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          context.tr("$FirstName" + " $LastName"),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFF286F8C),
-                            fontSize: 24,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w600,
-                            height: 0,
+                          Text(
+                            context.tr("$Position - $CompanyName"),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xFF133039),
+                              fontSize: 15,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              height: 0,
+                            ),
                           ),
-                        ),
-                        Text(
-                          context.tr("$Position - $CompanyName"),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFF133039),
-                            fontSize: 15,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            height: 0,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 40.0, left: 40.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 40, // Adjust the height according to your requirement
-                                child: Links.isEmpty
+                          const SizedBox(height: 20),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Links.isEmpty
                                     ? Text(context.tr('No links'))
                                     : Wrap(
                                   spacing: 15.0, // Horizontal spacing between the links
@@ -275,13 +260,12 @@ class profiletestState extends State<profiletest> {
                                         shape: BoxShape.rectangle,
                                         borderRadius: BorderRadius.circular(8),
                                         gradient: LinearGradient(
-                                            colors: [
-                                              Colors.deepOrange.shade600,
-                                              Colors.orange.shade400,
-
-                                            ],
-                                            end: Alignment.topLeft,
-                                            begin: Alignment.bottomRight
+                                          colors: [
+                                            Colors.deepOrange.shade600,
+                                            Colors.orange.shade400,
+                                          ],
+                                          end: Alignment.topLeft,
+                                          begin: Alignment.bottomRight,
                                         ),
                                       ),
                                       width: 35,
@@ -298,213 +282,64 @@ class profiletestState extends State<profiletest> {
                                     );
                                   }),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-
-                        const SizedBox(
-                          height: 90,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 20, top: 10, bottom: 8),
-                          decoration: BoxDecoration(
-                              border: Border.all(style: BorderStyle.solid,color: Color(0xFF286F8C)),
+                          const SizedBox(height: 30), // Adjusted to a smaller height
+                          Container(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 20, top: 10, bottom: 8),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                style: BorderStyle.solid,
+                                color: Color(0xFF286F8C),
+                              ),
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(20)),
-                          height: 215,
-                          width: 361,
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        width: 39,
-                                        height: 39,
-                                        // decoration: ShapeDecoration(
-                                        //   shape: OvalBorder(
-                                        //     side: BorderSide(width: 2, color: Color(0xFF286F8C)),
-                                        //   ),
-                                        // ),
-                                      ),
-                                      Container(
-                                        padding:
-                                        const EdgeInsets.only(left: 10, top: 11),
-                                        child: const Icon(
-                                          Icons.person_outline_rounded,
-                                          size: 20,
-                                          color: Color(0xFFEF9D52),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      context.pushPage(Edit());
-                                    },
-                                    child: Text(
-                                      context.tr("Edit Profile Information"),
-                                      style: TextStyle(
-                                        color: Color(0xFF141619),
-                                        fontSize: 18,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0,
-                                        letterSpacing: -0.10,),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        width: 39,
-                                        height: 39,
-                                        // decoration: ShapeDecoration(
-                                        //   shape: OvalBorder(
-                                        //     side: BorderSide(width: 2, color: Color(0xFF286F8C)),
-                                        //   ),
-                                        // ),
-                                      ),
-                                      Container(
-                                        padding:
-                                        const EdgeInsets.only(left: 10, top: 11),
-                                        child: const Icon(
-                                          Icons.credit_card_outlined,
-                                          size: 20,
-                                          color: Colors.orange,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      context.pushPage(EditCard());
-                                    },
-                                    child: Text(
-                                      context.tr("Edit My Card"),
-                                      style: TextStyle(
-                                        color: Color(0xFF141619),
-                                        fontSize: 18,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0,
-                                        letterSpacing: -0.10,),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Stack(
-                                    children: [
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        width: 39,
-                                        height: 39,
-                                        // decoration: ShapeDecoration(
-                                        //   shape: OvalBorder(
-                                        //     side: BorderSide(width: 2, color: Color(0xFF286F8C)),
-                                        //   ),
-                                        // ),
-                                      ),
-                                      Container(
-                                        padding:
-                                        const EdgeInsets.only(left: 10, top: 11),
-                                        child: const Icon(
-                                          Icons.language,
-                                          size: 20,
-                                          color: Colors.orange,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      // Navigate to the Language page and pass the callback function
-                                      context.pushPage(Language(
-                                      ));
-                                    },
-                                    child: Text(
-                                      context.tr( "Language"),
-                                      style: TextStyle(
-                                        color: Color(0xFF141619),
-                                        fontSize: 18,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0,
-                                        letterSpacing: -0.10,),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        width: 39,
-                                        height: 39,
-                                        // decoration: ShapeDecoration(
-                                        //   shape: OvalBorder(
-                                        //     side: BorderSide(width: 2, color: Color(0xFF286F8C)),
-                                        //   ),
-                                        // ),
-                                      ),
-                                      Container(
-                                        padding:
-                                        const EdgeInsets.only(left: 11, top: 11),
-                                        child: const Icon(
-                                          Icons.logout,
-                                          size: 20,
-                                          color: Colors.orange,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      FirebaseAuth.instance.signOut();
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => Auth(),
-                                      ));
-                                    },
-                                    child: Text(
-                                      context.tr("Log Out"),
-                                      style: TextStyle(
-                                        color: Color(0xFF141619),
-                                        fontSize: 18,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        height: 0,
-                                        letterSpacing: -0.10,),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            width: 361,
+                            child: Column(
+                              children: [
+                                _buildProfileOption(
+                                  context,
+                                  icon: Icons.person_outline_rounded,
+                                  iconColor: Color(0xFFEF9D52),
+                                  text: "Edit Profile Information",
+                                  onPressed: () => context.pushPage(Edit()),
+                                ),
+                                _buildProfileOption(
+                                  context,
+                                  icon: Icons.credit_card_outlined,
+                                  iconColor: Colors.orange,
+                                  text: "Edit My Card",
+                                  onPressed: () => context.pushPage(EditCard()),
+                                ),
+                                _buildProfileOption(
+                                  context,
+                                  icon: Icons.language,
+                                  iconColor: Colors.orange,
+                                  text: "Language",
+                                  onPressed: () => context.pushPage(Language()),
+                                ),
+                                _buildProfileOption(
+                                  context,
+                                  icon: Icons.logout,
+                                  iconColor: Colors.orange,
+                                  text: "Log Out",
+                                  onPressed: () {
+                                    FirebaseAuth.instance.signOut();
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => Auth(),
+                                    ));
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-
-                    // SizedBox(
-                    //   height: 40,
-                    // ),
-                    //tabs(),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -513,6 +348,44 @@ class profiletestState extends State<profiletest> {
       ),
     );
   }
+
+  Widget _buildProfileOption(
+      BuildContext context, {
+        required IconData icon,
+        required Color iconColor,
+        required String text,
+        required VoidCallback onPressed,
+      }) {
+    return Row(
+      children: [
+        Container(
+          width: 39,
+          height: 39,
+          padding: const EdgeInsets.only(left: 10, top: 11),
+          child: Icon(
+            icon,
+            size: 20,
+            color: iconColor,
+          ),
+        ),
+        TextButton(
+          onPressed: onPressed,
+          child: Text(
+            context.tr(text),
+            style: TextStyle(
+              color: Color(0xFF141619),
+              fontSize: 18,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w400,
+              height: 0,
+              letterSpacing: -0.10,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
 
 
   Future<void> _launchUrl(url) async {
