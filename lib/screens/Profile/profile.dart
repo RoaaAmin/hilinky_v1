@@ -276,8 +276,9 @@ class profiletestState extends State<profiletest> {
                                         borderRadius: BorderRadius.circular(8),
                                         gradient: LinearGradient(
                                             colors: [
-                                              Colors.orange,
-                                              Colors.deepOrange
+                                              Colors.deepOrange.shade600,
+                                              Colors.orange.shade400,
+
                                             ],
                                             end: Alignment.topLeft,
                                             begin: Alignment.bottomRight

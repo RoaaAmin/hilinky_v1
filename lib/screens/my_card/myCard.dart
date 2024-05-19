@@ -167,7 +167,7 @@ class _MyCardState extends State<MyCard> {
             gradient: LinearGradient(
                 colors: [
                   Colors.orange.shade300,
-                  Colors.deepOrange.shade400
+                  Colors.deepOrange.shade500
                 ],
                 end: Alignment.topLeft,
                 begin: Alignment.bottomRight
