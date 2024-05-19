@@ -166,6 +166,7 @@ class profiletestState extends State<profiletest> {
     'dribbble': const FaIcon(FontAwesomeIcons.dribbble),
     'behance': const FaIcon(FontAwesomeIcons.behance),
     'location': const FaIcon(FontAwesomeIcons.location),
+    'tiktok':   const FaIcon(FontAwesomeIcons.tiktok),
   };
 
   // Create a global key that uniquely identifies the Form widget

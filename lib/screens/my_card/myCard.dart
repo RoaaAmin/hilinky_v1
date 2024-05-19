@@ -110,6 +110,7 @@ class _MyCardState extends State<MyCard> {
     'dribbble': const FaIcon(FontAwesomeIcons.dribbble),
     'behance': const FaIcon(FontAwesomeIcons.behance),
     'location': const FaIcon(FontAwesomeIcons.location),
+    'tiktok':   const FaIcon(FontAwesomeIcons.tiktok),
   };
 
   @override

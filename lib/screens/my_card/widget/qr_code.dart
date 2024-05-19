@@ -53,7 +53,8 @@ class _QrCodeState extends State<QrCode> {
   }
 
 
-  String constructVCard() {
+
+  String constructVCard()  {
     if (cardData == null) {
       // Handle the case where cardData is not initialized yet
       return '';
@@ -74,24 +75,26 @@ class _QrCodeState extends State<QrCode> {
     final String vCardData = 'BEGIN:VCARD\n' +
         'VERSION:3.0\n' +
         'FN:${cardData['FirstName']} ${cardData['LastName']}\n' +
-        'N:${cardData['LastName']};${cardData['FirstName']};\n' +
+        'N:${cardData['LastName']};${cardData['FirstName']}\n' +
         '${cardData['CompanyName'] != null && cardData['CompanyName'].isNotEmpty ? 'ORG:${cardData['CompanyName']}\n' : ''}' +
         'TEL:${cardData['PhoneNumber']}\n' +
         'EMAIL:${cardData['Email']}\n' +
         'TITLE:${cardData['Position']}\n' +
-        '${cardData['Links'] != null && cardData['Links']['facebook'] != null ? 'URL:${cardData['Links']['facebook']}\n' : ''}' +
-        '${cardData['Links'] != null && cardData['Links']['twitter'] != null ? 'URL:${cardData['Links']['twitter']}\n' : ''}' +
-        '${cardData['Links'] != null && cardData['Links']['linkedin'] != null ? 'URL:${cardData['Links']['linkedin']}\n' : ''}' +
-        '${cardData['Links'] != null && cardData['Links']['figma'] != null ? 'URL:${cardData['Links']['figma']}\n' : ''}' +
-        '${cardData['Links'] != null && cardData['Links']['youtube'] != null ? 'URL:${cardData['Links']['youtube']}\n' : ''}' +
-        '${cardData['Links'] != null && cardData['Links']['behance'] != null ? 'URL:${cardData['Links']['behance']}\n' : ''}' +
-        '${cardData['Links'] != null && cardData['Links']['discord'] != null ? 'URL:${cardData['Links']['discord']}\n' : ''}' +
-        '${cardData['Links'] != null && cardData['Links']['github'] != null ? 'URL:${cardData['Links']['github']}\n' : ''}' +
-        '${cardData['Links'] != null && cardData['Links']['instagram'] != null ? 'URL:${cardData['Links']['instagram']}\n' : ''}' +
-        '${cardData['Links'] != null && cardData['Links']['location'] != null ? 'URL:${cardData['Links']['location']}\n' : ''}' +
-        '${cardData['Links'] != null && cardData['Links']['telegram'] != null ? 'URL:${cardData['Links']['telegram']}\n' : ''}' +
-        '${cardData['Links'] != null && cardData['Links']['whatsapp'] != null ? 'URL:${cardData['Links']['whatsapp']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['facebook'] != null ? 'X-SOCIALPROFILE;type=facebook:${cardData['Links']['facebook']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['twitter'] != null ? 'X-SOCIALPROFILE;type=twitter:${cardData['Links']['twitter']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['linkedin'] != null ? 'X-SOCIALPROFILE;type=linkedin:${cardData['Links']['linkedin']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['figma'] != null ? 'X-SOCIALPROFILE;type=figma:${cardData['Links']['figma']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['youtube'] != null ? 'X-SOCIALPROFILE;type=youtube:${cardData['Links']['youtube']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['behance'] != null ? 'X-SOCIALPROFILE;type=behance:${cardData['Links']['behance']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['discord'] != null ? 'X-SOCIALPROFILE;type=discord:${cardData['Links']['discord']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['github'] != null ? 'X-SOCIALPROFILE;type=github:${cardData['Links']['github']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['instagram'] != null ? 'X-SOCIALPROFILE;type=instagram:${cardData['Links']['instagram']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['location'] != null ? 'X-SOCIALPROFILE;type=location:${cardData['Links']['location']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['telegram'] != null ? 'X-SOCIALPROFILE;type=telegram:${cardData['Links']['telegram']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['whatsapp'] != null ? 'X-SOCIALPROFILE;type=whatsapp:${cardData['Links']['whatsapp']}\n' : ''}' +
+        '${cardData['Links'] != null && cardData['Links']['tiktok'] != null ? 'X-SOCIALPROFILE;type=tiktok:${cardData['Links']['tiktok']}\n' : ''}' +
         'END:VCARD';
+
     return vCardData;
   }
 

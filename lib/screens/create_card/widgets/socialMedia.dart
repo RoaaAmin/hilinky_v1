@@ -31,6 +31,7 @@ class _SocialMediaState extends State<SocialMedia> {
     FontAwesomeIcons.dribbble,
     FontAwesomeIcons.behance,
     FontAwesomeIcons.mapMarkerAlt,
+    FontAwesomeIcons.tiktok,
   ];
 
   late List<TextEditingController> controllers;
@@ -119,6 +120,8 @@ class _SocialMediaState extends State<SocialMedia> {
         return 'behance';
       case 12:
         return 'location';
+      case 13:
+        return 'tiktok';
       default:
         return '';
     }

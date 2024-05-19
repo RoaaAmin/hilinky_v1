@@ -71,16 +71,10 @@ class _QRScannerPageState extends State<QRScannerPage> {
         result = scanData.code!;
       });
 
-      // Stop scanning after reading data
-      controller.pauseCamera();
-      controller.dispose(); // Dispose the controller to stop scanning
-
-      // Process the QR code data
       await Future.delayed(Duration(milliseconds: 500));
       openContactInContacts(result);
     });
   }
-
 
   void openContactInContacts(String qrData) async {
     final contactData = parseQRData(qrData);
