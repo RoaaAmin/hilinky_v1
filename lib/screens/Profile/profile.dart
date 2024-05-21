@@ -195,7 +195,7 @@ class profiletestState extends State<profiletest> {
           ),
           child: Column(
             children: [
-              SizedBox(height: 70),
+              SizedBox(height: 60),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -285,7 +285,7 @@ class profiletestState extends State<profiletest> {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 30), // Adjusted to a smaller height
+                          const SizedBox(height: 25), // Adjusted to a smaller height
                           Container(
                             padding: const EdgeInsets.only(
                                 left: 20, right: 20, top: 10, bottom: 8),
