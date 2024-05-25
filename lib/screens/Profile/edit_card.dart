@@ -803,7 +803,7 @@ class EditState extends State<EditCard> {
                       },
                       child: selectedImage != null
                           ? Container(
-                        height: 150,
+                        height: 300,
                         width: MediaQuery.of(context).size.width,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(6),
@@ -814,12 +814,12 @@ class EditState extends State<EditCard> {
                         ),
                       )
                           : Container(
-                        height: 150,
+                        height: 300,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(
-                            color: Colors.black,
-                            width: 2,
+                            style: BorderStyle.solid,
+                            color: Color(0xFF286F8C),
                           ),
                           borderRadius: BorderRadius.circular(6),
                         ),
@@ -827,13 +827,13 @@ class EditState extends State<EditCard> {
                           child: selectedImage != null
                               ? Image.file(
                             selectedImage!,
-                            height: 150,
+                            height: 300,
                             width: MediaQuery.of(context).size.width,
                             fit: BoxFit.cover,
                           )
                               : Image.network(
                             imageURL ?? '',
-                            height: 150,
+                            height: 300,
                             width: MediaQuery.of(context).size.width,
                             fit: BoxFit.cover,
                           ),
@@ -882,8 +882,8 @@ class EditState extends State<EditCard> {
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 border: Border.all(
-                                  color: Colors.black,
-                                  width: 2,
+                                  style: BorderStyle.solid,
+                                  color: Color(0xFF286F8C),
                                 ),
                                 borderRadius: BorderRadius.circular(6),
                               ),
@@ -944,8 +944,8 @@ class EditState extends State<EditCard> {
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 border: Border.all(
-                                  color: Colors.black,
-                                  width: 2,
+                                  style: BorderStyle.solid,
+                                  color: Color(0xFF286F8C),
                                 ),
                                 borderRadius: BorderRadius.circular(6),
                               ),

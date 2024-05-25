@@ -39,6 +39,8 @@ class _MyCardState extends State<MyCard> {
   List<DocumentSnapshot<Map<String, dynamic>>> cardsDocs= [];
   Map<String, dynamic> Links = {};
 
+  get height => null;
+
   @override
   void initState() {
     super.initState();
@@ -211,63 +213,65 @@ class _MyCardState extends State<MyCard> {
                           color: appTheme.whiteA700,
 
                         ),
-                    child: Container(
-                      child: Stack(
+                        child: Container(
+                          child: Stack(
                         children: [
                           Container(
-
+                            width: double.infinity,
                             // width: 300, // Replace 200 with your desired width
-                            height: 315, // Replace 200 with your desired height
+                            // height: 315, // Replace 200 with your desired height
                             child: CustomImageView(
+                              // width: double.infinity,
                               imagePath: ImageConstant.HilinkyCard,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          Container(
-                            // padding: const EdgeInsets.all(40.0),
-                            margin: const EdgeInsets.only(top: 45, right: 20),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Directionality(
-                                  textDirection: ui.TextDirection.ltr,
-                                  child: Row(
-                                    children: [
-                                      Spacer(),
-                                      Container(
-                                        height: 25,
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            context.pushPage(EditCard());
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            // primary: Colors.transparent, // Setting the button's background color to transparent
-                                            shadowColor: Colors.transparent, // Removing the button's shadow
-                                          ),
-                                          child: Container(
-                                            child: Text(
-                                              context.tr('Edit'),
-                                              style: TextStyle(
-                                                 color: Colors.deepOrangeAccent,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                          // Container(
+                          //   // padding: const EdgeInsets.all(40.0),
+                          //   margin: const EdgeInsets.only(top: 45, right: 20),
+                          //   child: Column(
+                          //     mainAxisAlignment: MainAxisAlignment.end,
+                          //     crossAxisAlignment: CrossAxisAlignment.end,
+                          //     children: [
+                          //       Directionality(
+                          //         textDirection: ui.TextDirection.ltr,
+                          //         child: Row(
+                          //           children: [
+                          //             Spacer(),
+                          //             Container(
+                          //               height: 25,
+                          //               child: ElevatedButton(
+                          //                 onPressed: () {
+                          //                   context.pushPage(EditCard());
+                          //                 },
+                          //                 style: ElevatedButton.styleFrom(
+                          //                   // primary: Colors.transparent, // Setting the button's background color to transparent
+                          //                   shadowColor: Colors.transparent, // Removing the button's shadow
+                          //                 ),
+                          //                 child: Container(
+                          //                   child: Text(
+                          //                     context.tr('Edit'),
+                          //                     style: TextStyle(
+                          //                        color: Colors.deepOrangeAccent,
+                          //                     ),
+                          //                   ),
+                          //                 ),
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
 
                           // SizedBox(height: 80, width: 90,),
-                          Padding( padding: const EdgeInsets.all(30.0),
+                          Padding( padding: const EdgeInsets.only(left:40, right: 40, top: 40,),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                 SizedBox(height: 20,),
+                                 // SizedBox(height: 20,),
                                 Directionality(
                                   textDirection: ui.TextDirection.ltr,
                                   child: Row(
@@ -306,7 +310,7 @@ class _MyCardState extends State<MyCard> {
                                                     color: Colors.white,
                                                     fontSize: 20,
                                                     fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w500,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
                                                 Text("  "),
@@ -316,7 +320,7 @@ class _MyCardState extends State<MyCard> {
                                                     color: Colors.white,
                                                     fontSize: 20,
                                                     fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w500,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
                                               ],
@@ -356,7 +360,6 @@ class _MyCardState extends State<MyCard> {
                                                 ),
                                               ],
                                             ),
-
                                           ],
                                         ),
                                       ),
@@ -365,7 +368,6 @@ class _MyCardState extends State<MyCard> {
                                 ),
 
                                 SizedBox(height: 20),
-
 //////////////
                                 Center(
                                   child: Column(
@@ -376,7 +378,7 @@ class _MyCardState extends State<MyCard> {
                                         child: Links.isEmpty
                                             ? Text('')
                                             : Wrap(
-                                          spacing: 15.0, // Horizontal spacing between the links
+                                          spacing: 10.0, // Horizontal spacing between the links
                                           runSpacing: 8.0, // Vertical spacing between the rows
                                           children: List.generate(Links.length, (index) {
                                             return Container(
@@ -385,10 +387,10 @@ class _MyCardState extends State<MyCard> {
                                                 borderRadius: BorderRadius.circular(8),
                                                 color: Colors.white,
                                               ),
-                                              width: 35,
-                                              height: 35,
+                                              width: 30,
+                                              height: 30,
                                               child: IconButton(
-                                                iconSize: 20,
+                                                iconSize: 15,
                                                 onPressed: () {
                                                   final Uri url = Uri.parse(values[index]);
                                                   _launchUrl(url);
@@ -421,8 +423,8 @@ class _MyCardState extends State<MyCard> {
 
                       Container(
                         decoration: BoxDecoration(
-                          color:appTheme.whiteA700,
-                         // borderRadius: BorderRadius.circular(10),
+                          color: appTheme.whiteA700,
+                          // borderRadius: BorderRadius.circular(10),
                         ),
                         margin: const EdgeInsets.only(top: 0, bottom: 10), // Adjust margin as needed
                         child: Padding(
@@ -432,8 +434,8 @@ class _MyCardState extends State<MyCard> {
                               alignment: Alignment.center,
                               children: [
                                 CustomImageView(
-                                  // width: 500,
-                               height: 315,
+                                  width: double.infinity, // Stretch the image to fill the width
+                                   // height: 315, // Set a fixed height for the container
                                   imagePath: ImageConstant.HilinkyCard,
                                   fit: BoxFit.cover, // Ensure the image covers the entire container
                                 ),
@@ -443,8 +445,8 @@ class _MyCardState extends State<MyCard> {
                             ),
                           ),
                         ),
-                      ),
-                    ]
+                      )
+                   ]
                 ),
               );
             }

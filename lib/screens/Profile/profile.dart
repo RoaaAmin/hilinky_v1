@@ -252,7 +252,7 @@ class profiletestState extends State<profiletest> {
                                 Links.isEmpty
                                     ? Text(context.tr('No links'))
                                     : Wrap(
-                                  spacing: 15.0, // Horizontal spacing between the links
+                                  spacing: 10.0, // Horizontal spacing between the links
                                   runSpacing: 8.0, // Vertical spacing between the rows
                                   children: List.generate(Links.length, (index) {
                                     return Container(
@@ -268,10 +268,10 @@ class profiletestState extends State<profiletest> {
                                           begin: Alignment.bottomRight,
                                         ),
                                       ),
-                                      width: 35,
-                                      height: 35,
+                                      width: 30,
+                                      height: 30,
                                       child: IconButton(
-                                        iconSize: 20,
+                                        iconSize: 15,
                                         onPressed: () {
                                           final Uri url = Uri.parse(values[index]);
                                           _launchUrl(url);

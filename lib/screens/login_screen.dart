@@ -137,9 +137,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         CustomTextFormField(
                           controller: _emailController,
-                          margin: getMargin(
-                            top: 4,
-                          ),
+                          // margin: getMargin(
+                          //   top: 4,
+                          // ),
                           hintText: context.tr("Example@Example.com"),
                           hintStyle: theme.textTheme.titleSmall!,
                           textInputType: TextInputType.emailAddress,
@@ -170,9 +170,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               CustomTextFormField(
                                 controller: _passwordController,
                                 obscureText: obscureText,
-                                margin: getMargin(
-                                  top: 3,
-                                ),
+                                // margin: getMargin(
+                                //   top: 3,
+                                // ),
                                 hintText: context.tr("Your Password"),
                                 hintStyle: theme.textTheme.titleSmall!,
                                 textInputType: TextInputType.visiblePassword,

@@ -288,7 +288,7 @@ class _CreateCardState extends State<CreateCard> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
             TextButton.icon(
@@ -296,17 +296,17 @@ class _CreateCardState extends State<CreateCard> {
               onPressed: () {
                 getImage(ImageSource.camera);
               },
-              label: Text(context.tr("Camera")),
+              label: Text(context.tr("Camera"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getImage(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery")),
+              label: Text(context.tr("Gallery"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
           ])
         ],
@@ -331,7 +331,7 @@ class _CreateCardState extends State<CreateCard> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
             TextButton.icon(
@@ -339,17 +339,17 @@ class _CreateCardState extends State<CreateCard> {
               onPressed: () {
                 getLogo(ImageSource.camera);
               },
-              label: Text(context.tr("Camera")),
+              label: Text(context.tr("Camera"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getLogo(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery")),
+              label: Text(context.tr("Gallery"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
           ])
         ],
@@ -374,7 +374,7 @@ class _CreateCardState extends State<CreateCard> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
           Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
             TextButton.icon(
@@ -382,17 +382,18 @@ class _CreateCardState extends State<CreateCard> {
               onPressed: () {
                 getPortfolio(ImageSource.camera);
               },
-              label: Text(context.tr("Camera")),
+              label: Text(context.tr("Camera"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
             ),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.amber[800]),
               onPressed: () {
                 getPortfolio(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery")),
+              label: Text(context.tr("Gallery"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),), ),
+
             ),
           ])
         ],
@@ -453,13 +454,24 @@ class _CreateCardState extends State<CreateCard> {
                     ),
 // email text
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: TextField(
                         controller: prefixController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: context.tr('Prefix (optional)'),
-
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.white, width: 2),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         onChanged: (val) {
                           prefix = val;
@@ -487,12 +499,24 @@ class _CreateCardState extends State<CreateCard> {
                     ),
 // email text
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: TextField(
                         controller: firstNameController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: context.tr('First Name'),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.white, width: 2),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
 
                         onChanged: (val) {
@@ -520,12 +544,24 @@ class _CreateCardState extends State<CreateCard> {
                       ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: TextField(
                         controller: middleNameController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: context.tr('Middle Name (optional)'),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.white, width: 2),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         onChanged: (val) {
                           middleName = val;
@@ -551,12 +587,24 @@ class _CreateCardState extends State<CreateCard> {
                       ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: TextField(
                         controller: lastNameController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: context.tr('Last Name'),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.white, width: 2),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         onChanged: (val) {
                           lastName = val;
@@ -584,12 +632,24 @@ class _CreateCardState extends State<CreateCard> {
                     ),
 // email text
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: TextField(
                         controller: positionController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: context.tr('Position'),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.white, width: 2),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         onChanged: (val) {
                           position = val;
@@ -617,12 +677,24 @@ class _CreateCardState extends State<CreateCard> {
                     ),
 // email text
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: TextField(
                         controller: companyNameController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: context.tr('Company Name (optional)'),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.white, width: 2),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         onChanged: (val) {
                           companyName = val;
@@ -656,12 +728,24 @@ class _CreateCardState extends State<CreateCard> {
                     ),
 // email text
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: TextField(
                         controller: emailController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: context.tr('Email'),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.white, width: 2),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         onChanged: (val) {
                           email = val;
@@ -688,12 +772,24 @@ class _CreateCardState extends State<CreateCard> {
                     ),
 // email text
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 0),
                       child: TextField(
                         controller: phoneNumberController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: context.tr('Phone Number'),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(color: appTheme.white, width: 2),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          hintStyle: TextStyle(color: Colors.grey),
                         ),
                         onChanged: (val) {
                           phoneNumber = val;
@@ -749,7 +845,7 @@ class _CreateCardState extends State<CreateCard> {
                     },
                     child: selectedImage != null
                         ? Container(
-                      height: 150,
+                      height: 300,
                       width: MediaQuery.of(context).size.width,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(6),
@@ -761,21 +857,21 @@ class _CreateCardState extends State<CreateCard> {
                     )
                         : Container(
                       // margin: EdgeInsets.symmetric(horizontal: 50),
-                        height: 150,
+                        height: 300,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             border: Border.all(
-                              color: Colors.black,
-                              width: 1,
+                              style: BorderStyle.solid,
+                              color: Color(0xFF286F8C),
                             ),
                             borderRadius: BorderRadius.circular(6)),
                         width: MediaQuery.of(context).size.width,
                         child: Column(
                           children: [
-                            SizedBox(height: 30),
-                            Icon(Icons.account_box, size: 50.0, color: Color.fromARGB(255, 2, 84, 86)),
+                            SizedBox(height: 110),
+                            Icon(Icons.account_box, size: 50.0, color: Color(0xFF286F8C)),
                             Text(
-                              context.tr('Upload your photo',),style: TextStyle(color: const Color.fromARGB(255, 2, 84, 86),),
+                              context.tr('Upload your photo',),style: TextStyle(color: const Color(0xFF286F8C),),
                             ),
                           ],
                         )),
@@ -807,8 +903,8 @@ class _CreateCardState extends State<CreateCard> {
                         child: selectedLogo != null
                             ? Container(
                           //margin: EdgeInsets.symmetric(horizontal: 0),
-                          height: 150,
-                          width: 150,
+                          height: 300,
+                          width: 300,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(6),
                             child: Image.file(
@@ -824,8 +920,8 @@ class _CreateCardState extends State<CreateCard> {
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 border: Border.all(
-                                  color: Colors.black,
-                                  width: 1,
+                                  style: BorderStyle.solid,
+                                  color: Color(0xFF286F8C),
                                 ),
                                 borderRadius: BorderRadius.circular(6)),
                             width: (MediaQuery.of(context).size.width /
@@ -834,9 +930,9 @@ class _CreateCardState extends State<CreateCard> {
                             child: Column(
                               children: [
                                 SizedBox(height: 30),
-                                Icon(Icons.upload, size: 50.0,color: Color.fromARGB(255, 2, 84, 86)),
+                                Icon(Icons.upload, size: 50.0,color: Color(0xFF286F8C)),
                                 Text(
-                                  context.tr('Upload logo'),style: TextStyle(color: const Color.fromARGB(255, 2, 84, 86),),
+                                  context.tr('Upload logo'),style: TextStyle(color: const Color(0xFF286F8C)),
                                 ),
                               ],
                             )),
@@ -884,8 +980,8 @@ class _CreateCardState extends State<CreateCard> {
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 border: Border.all(
-                                  color: Colors.black,
-                                  width: 1,
+                                  style: BorderStyle.solid,
+                                  color: Color(0xFF286F8C),
                                 ),
                                 borderRadius: BorderRadius.circular(6)),
                             width: (MediaQuery.of(context).size.width /
@@ -894,9 +990,9 @@ class _CreateCardState extends State<CreateCard> {
                             child: Column(
                               children: [
                                 SizedBox(height: 30),
-                                Icon(Icons.upload, size: 50.0, color:Color.fromARGB(255, 2, 84, 86)),
+                                Icon(Icons.upload, size: 50.0, color:Color(0xFF286F8C)),
                                 Text(
-                                  context.tr('Upload portfolio'),style: TextStyle(color: const Color.fromARGB(255, 2, 84, 86),),
+                                  context.tr('Upload portfolio'),style: TextStyle(color: const Color(0xFF286F8C)),
 
                                 ),
                               ],

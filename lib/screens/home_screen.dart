@@ -159,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Text(
               context.tr('Start your journey by creating your card'),
               style: TextStyle(
-                color: Color(0xFF121212),
+                color: Color(0xFF234E5C),
                 fontSize: 15,
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w600,

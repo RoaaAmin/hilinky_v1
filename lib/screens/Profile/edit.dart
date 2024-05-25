@@ -93,7 +93,7 @@ class EditState extends State<Edit> {
           ),
           Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
             TextButton.icon(
-              icon: Icon(Icons.camera, color: Colors.amber[800]),
+              icon: Icon(Icons.camera, color: Colors.blue[800]),
               onPressed: () {
                 getImage(ImageSource.camera);
               },
@@ -101,7 +101,7 @@ class EditState extends State<Edit> {
             ),
             SizedBox(width: 10,),
             TextButton.icon(
-              icon: Icon(Icons.image, color: Colors.amber[800]),
+              icon: Icon(Icons.image, color: Colors.blue[800]),
               onPressed: () {
                 getImage(ImageSource.gallery);
               },
