@@ -271,7 +271,6 @@ class _MyCardState extends State<MyCard> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                 // SizedBox(height: 20,),
                                 Directionality(
                                   textDirection: ui.TextDirection.ltr,
                                   child: Row(
@@ -297,84 +296,66 @@ class _MyCardState extends State<MyCard> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      Directionality(
-                                        textDirection: ui.TextDirection.ltr,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  cardsDocs[i].data()!['FirstName'],
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 20,
-                                                    fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w600,
+                                      Expanded(
+                                        child: Directionality(
+                                          textDirection: ui.TextDirection.ltr,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Flexible(
+                                                    child: Text(
+                                                      cardsDocs[i].data()!['FirstName'],
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 20,
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w600,
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                                Text("  "),
-                                                Text(
-                                                  cardsDocs[i].data()!['LastName'],
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 20,
-                                                    fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w600,
+                                                  Text("  "),
+                                                  Flexible(
+                                                    child: Text(
+                                                      cardsDocs[i].data()!['LastName'],
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 20,
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w600,
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(height: 10),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  cardsDocs[i].data()!['Position'],
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 15,
-                                                    fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w600,
-                                                    height: 0.21,
-                                                  ),
-                                                ),
-                                                Text(
-                                                " - ",
+                                                ],
+                                              ),
+                                              SizedBox(height: 10),
+                                              Container(
+                                                width: double.infinity,
+                                                child: Text(
+                                                  '${cardsDocs[i].data()!['Position']} - ${cardsDocs[i].data()!['CompanyName']}',
                                                   style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 15,
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w600,
-                                                    height: 0.21,
                                                   ),
                                                 ),
-                                                Text(
-                                                  cardsDocs[i].data()!['CompanyName'],
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 15,
-                                                    fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w600,
-                                                    height: 0.21,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-
                                 SizedBox(height: 20),
-//////////////
                                 Center(
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(
-                                        height: 40, // Adjust the height according to your requirement
+                                        height: 40,
                                         child: Links.isEmpty
                                             ? Text('')
                                             : Wrap(
@@ -400,17 +381,17 @@ class _MyCardState extends State<MyCard> {
                                               ),
                                             );
                                           }),
-
                                         ),
-
                                       ),
                                     ],
                                   ),
-                                        ),
-
-                                    ],
-                                  ),
                                 ),
+                              ],
+                            ),
+
+
+
+                          ),
 
 
 

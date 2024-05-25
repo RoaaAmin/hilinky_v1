@@ -290,6 +290,13 @@ class profiletestState extends State<profiletest> {
                             padding: const EdgeInsets.only(
                                 left: 20, right: 20, top: 10, bottom: 8),
                             decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 6,
+                                  offset: Offset(0, 7),
+                                ),
+                              ],
                               border: Border.all(
                                 style: BorderStyle.solid,
                                 color: Color(0xFF286F8C),
