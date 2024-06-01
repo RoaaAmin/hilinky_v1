@@ -145,13 +145,13 @@ class EditState extends State<Edit> {
         .then((value) {
       setState(() {
         userData = value;
-        FirstName = value.data()!['FirstName'];
+        sUserName = value.data()!['sUserName'];
         LastName = value.data()!['LastName'];
         sUserName = value['sUserName'];
         email = value['sUserEmail'];
         phoneNumber = value['sUserPhoneNumber'];
-        nationality = value['sNationality'];
-        city = value['sCity'];
+        // nationality = value['sNationality'];
+        // city = value['sCity'];
         lodaing = false;
         image = value.data()!['UserProfileImage'];
         getPosts();
@@ -245,8 +245,8 @@ class EditState extends State<Edit> {
                                   width: 169,
                                   height: 54,
                                   child: TextFormField(
-                                    onChanged: (value) => FirstName = value,
-                                    controller: TextEditingController(text: FirstName),
+                                    onChanged: (value) => sUserName = value,
+                                    controller: TextEditingController(text: sUserName),
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -446,113 +446,113 @@ class EditState extends State<Edit> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            context.tr("Nationality"),
-                            style: CustomTextStyles.titleMediumTeal300,
-                          ),
-                          SizedBox(
-                            width: 354,
-                            height: 54,
-                            child: TextFormField(
-                              onChanged: (value) => nationality = value,
-                              controller: TextEditingController(text: nationality),
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  borderSide: BorderSide(color: appTheme.white, width: 2),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                hintText: context.tr("Enter your nationality"),
-                                hintStyle: TextStyle(color: Colors.grey),
-                                contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                              ),
-                              cursorColor: Colors.black,
-                              // validator: (value) {
-                              //   if (value == null || value.isEmpty) {
-                              //     return context.tr("Please enter some text");
-                              //   }
-                              //   return null;
-                              // },
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.00),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.02),
-                              spreadRadius: 0,
-                              blurRadius: 5,
-                              offset: Offset(0, 15), // Changes position of shadow
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              context.tr("City"),
-                              style: CustomTextStyles.titleMediumTeal300,
-                            ),
-                            SizedBox(
-                              width: 354,
-                              height: 54,
-                              child: TextFormField(
-                                onChanged: (value) => city = value,
-                                controller: TextEditingController(text: city),
-                                decoration: InputDecoration(
-                                  fillColor: Colors.white, // Set background color
-                                  filled: true,
-                                  hintText: context.tr("Enter your city"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8.00),
-                                    borderSide: BorderSide(
-                                      color: appTheme.white,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8.00),
-                                    borderSide: BorderSide(
-                                      color: appTheme.white,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8.00),
-                                    borderSide: BorderSide(
-                                      color: appTheme.teal300,
-                                      width: 2,
-                                    ),
-                                  ),
-                                ),
-                                cursorColor: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
+                      // Column(
+                      //   crossAxisAlignment: CrossAxisAlignment.start,
+                      //   children: [
+                      //     Text(
+                      //       context.tr("Nationality"),
+                      //       style: CustomTextStyles.titleMediumTeal300,
+                      //     ),
+                      //     SizedBox(
+                      //       width: 354,
+                      //       height: 54,
+                      //       child: TextFormField(
+                      //         onChanged: (value) => nationality = value,
+                      //         controller: TextEditingController(text: nationality),
+                      //         decoration: InputDecoration(
+                      //           border: OutlineInputBorder(
+                      //             borderRadius: BorderRadius.all(Radius.circular(10)),
+                      //             borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                      //           ),
+                      //           focusedBorder: OutlineInputBorder(
+                      //             borderRadius: BorderRadius.all(Radius.circular(10)),
+                      //             borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                      //           ),
+                      //           enabledBorder: OutlineInputBorder(
+                      //             borderRadius: BorderRadius.all(Radius.circular(10)),
+                      //             borderSide: BorderSide(color: appTheme.white, width: 2),
+                      //           ),
+                      //           filled: true,
+                      //           fillColor: Colors.white,
+                      //           hintText: context.tr("Enter your nationality"),
+                      //           hintStyle: TextStyle(color: Colors.grey),
+                      //           contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                      //         ),
+                      //         cursorColor: Colors.black,
+                      //         // validator: (value) {
+                      //         //   if (value == null || value.isEmpty) {
+                      //         //     return context.tr("Please enter some text");
+                      //         //   }
+                      //         //   return null;
+                      //         // },
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.circular(8.00),
+                      //     boxShadow: [
+                      //       BoxShadow(
+                      //         color: Colors.grey.withOpacity(0.02),
+                      //         spreadRadius: 0,
+                      //         blurRadius: 5,
+                      //         offset: Offset(0, 15), // Changes position of shadow
+                      //       ),
+                      //     ],
+                      //   ),
+                      //   child: Column(
+                      //     crossAxisAlignment: CrossAxisAlignment.start,
+                      //     children: [
+                      //       Text(
+                      //         context.tr("City"),
+                      //         style: CustomTextStyles.titleMediumTeal300,
+                      //       ),
+                      //       SizedBox(
+                      //         width: 354,
+                      //         height: 54,
+                      //         child: TextFormField(
+                      //           onChanged: (value) => city = value,
+                      //           controller: TextEditingController(text: city),
+                      //           decoration: InputDecoration(
+                      //             fillColor: Colors.white, // Set background color
+                      //             filled: true,
+                      //             hintText: context.tr("Enter your city"),
+                      //             hintStyle: TextStyle(color: Colors.grey),
+                      //             border: OutlineInputBorder(
+                      //               borderRadius: BorderRadius.circular(8.00),
+                      //               borderSide: BorderSide(
+                      //                 color: appTheme.white,
+                      //                 width: 2,
+                      //               ),
+                      //             ),
+                      //             enabledBorder: OutlineInputBorder(
+                      //               borderRadius: BorderRadius.circular(8.00),
+                      //               borderSide: BorderSide(
+                      //                 color: appTheme.white,
+                      //                 width: 2,
+                      //               ),
+                      //             ),
+                      //             focusedBorder: OutlineInputBorder(
+                      //               borderRadius: BorderRadius.circular(8.00),
+                      //               borderSide: BorderSide(
+                      //                 color: appTheme.teal300,
+                      //                 width: 2,
+                      //               ),
+                      //             ),
+                      //           ),
+                      //           cursorColor: Colors.black,
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -629,13 +629,13 @@ class EditState extends State<Edit> {
                               .collection('Users')
                               .doc(FirebaseAuth.instance.currentUser!.uid)
                               .update({
-                            'FirstName': FirstName,
+                            'sUserName': sUserName,
                             'LastName': LastName,
                             'uniqueUserName': uniqueUserName,
                             'sUserEmail': email,
                             'sUserPhoneNumber': phoneNumber,
-                            'sNationality': nationality,
-                            'sCity': city,
+                            // 'sNationality': nationality,
+                            // 'sCity': city,
                             'UserProfileImage': selectedImage,
                           });
                           // Show success message
@@ -670,13 +670,13 @@ class EditState extends State<Edit> {
                             .collection('Users')
                             .doc(FirebaseAuth.instance.currentUser!.uid)
                             .update({
-                          'FirstName': FirstName,
+                          'sUserName': sUserName,
                           'LastName': LastName,
                           'uniqueUserName': uniqueUserName,
                           'sUserEmail': email,
                           'sUserPhoneNumber': phoneNumber,
-                          'sNationality': nationality,
-                          'sCity': city,
+                          // 'sNationality': nationality,
+                          // 'sCity': city,
                         });
                         // Navigate back to profile page
                          //context.pushPage(Home());

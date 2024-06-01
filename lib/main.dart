@@ -18,6 +18,7 @@ final user = FirebaseAuth.instance.currentUser;
 final userId = user!.uid;
 
 String sUserID = ' ';
+String LastName = ' ';
 String sUserName = ' ';
 String sUserEmail = ' ';
 String sUserPhoneNumber = ' ';

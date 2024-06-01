@@ -1,12 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hilinky/screens/login_screen.dart';
 import 'package:line_icons/line_icons.dart';
 
+import '../auth.dart';
+import '../core/utils/image_constant.dart';
+import '../core/utils/size_utils.dart';
 import '../main.dart';
 import '../models/SnackBar.dart';
+import '../theme/custom_text_style.dart';
+import '../theme/theme_helper.dart';
+import '../widgets/custom_image_view.dart';
+import '../widgets/custom_text_form_field.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -20,115 +31,18 @@ class _SignupScreenState extends State<SignupScreen> {
 
   /// user info
   String Error = '';
-
+  bool obscureText = true;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordConroller = TextEditingController();
   TextEditingController _confirmPasswordConroller = TextEditingController();
   TextEditingController usernameController = TextEditingController();
 
   TextEditingController nameController = TextEditingController();
+  TextEditingController lastNameameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
 
   void openLoginScreen() {
     Navigator.of(context).pushReplacementNamed('loginScreen');
-  }
-
-  String selectedNationality = 'Select Nationality';
-  String selectedCity = 'Select City';
-
-  List<String> nationalityOptions = [
-    'Select Nationality',
-    'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda', 'Argentina',
-    'Armenia', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados',
-    'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia', 'Bosnia and Herzegovina', 'Botswana',
-    'Brazil', 'Brunei', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cambodia', 'Cameroon',
-    'Canada', 'Central African Republic', 'Chad', 'Chile', 'China', 'Colombia', 'Comoros', 'Congo (Congo-Brazzaville)',
-    'Costa Rica', 'Croatia', 'Cuba', 'Cyprus', 'Czechia (Czech Republic)', 'Democratic Republic of the Congo',
-    'Denmark', 'Djibouti', 'Dominica', 'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea',
-    'Eritrea', 'Estonia', 'Eswatini (fmr. "Swaziland")', 'Ethiopia', 'Fiji', 'Finland', 'France', 'Gabon', 'Gambia',
-    'Georgia', 'Germany', 'Ghana', 'Greece', 'Grenada', 'Guatemala', 'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti',
-    'Holy See', 'Honduras', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy',
-    'Jamaica', 'Japan', 'Jordan', 'Kazakhstan', 'Kenya', 'Kiribati', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon',
-    'Lesotho', 'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives',
-    'Mali', 'Malta', 'Marshall Islands', 'Mauritania', 'Mauritius', 'Mexico', 'Micronesia', 'Moldova', 'Monaco', 'Mongolia',
-    'Montenegro', 'Morocco', 'Mozambique', 'Myanmar (formerly Burma)', 'Namibia', 'Nauru', 'Nepal', 'Netherlands', 'New Zealand',
-    'Nicaragua', 'Niger', 'Nigeria', 'North Korea', 'North Macedonia (formerly Macedonia)', 'Norway', 'Oman', 'Pakistan', 'Palau',
-    'Palestine', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Poland', 'Portugal', 'Qatar', 'Romania',
-    'Russia', 'Rwanda', 'Saint Kitts and Nevis', 'Saint Lucia', 'Saint Vincent and the Grenadines', 'Samoa', 'San Marino', 'Sao Tome and Principe',
-    'Saudi Arabia', 'Senegal', 'Serbia', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia', 'Solomon Islands', 'Somalia',
-    'South Africa', 'South Korea', 'South Sudan', 'Spain', 'Sri Lanka', 'Sudan', 'Suriname', 'Sweden', 'Switzerland', 'Syria',
-    'Tajikistan', 'Tanzania', 'Thailand', 'Timor-Leste', 'Togo', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan',
-    'Tuvalu', 'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States of America', 'Uruguay', 'Uzbekistan',
-    'Vanuatu', 'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'
-
-  ];
-
-  List<String> cityOptions = [
-    'Select City',
-    'Riyadh',
-    'Jeddah',
-    'Mecca',
-    'Medina',
-    'Dammam',
-    'Ta\'if',
-    'Buraidah',
-    'Tabuk',
-    'Abha',
-    'Al-Khobar',
-    'Hail',
-    'Al-Qatif',
-    'Khamis Mushait',
-    'Al-Ahsa',
-    'Najran',
-    'Yanbu',
-    'Al Jubail',
-    'Dhahran',
-    'Al Hofuf',
-    'Jubail Industrial City',
-  ];
-
-  void selectNationality() {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return ListView.builder(
-          itemCount: nationalityOptions.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(nationalityOptions[index]),
-              onTap: () {
-                setState(() {
-                  selectedNationality = nationalityOptions[index];
-                });
-                Navigator.pop(context);
-              },
-            );
-          },
-        );
-      },
-    );
-  }
-
-  void selectCity() {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return ListView.builder(
-          itemCount: cityOptions.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(cityOptions[index]),
-              onTap: () {
-                setState(() {
-                  selectedCity = cityOptions[index];
-                });
-                Navigator.pop(context);
-              },
-            );
-          },
-        );
-      },
-    );
   }
 
   Future signUp() async {
@@ -184,254 +98,405 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ///Title
-                Text(
-                  'SIGN UP',
-                  style: GoogleFonts.robotoCondensed(
-                      fontSize: 40, fontWeight: FontWeight.bold),
+    mediaQueryData = MediaQuery.of(context);
+    return GestureDetector(
+        onTap: () {
+          // Dismiss the keyboard when tapped outside of any text field
+          FocusScope.of(context).unfocus();
+        },
+        child: WillPopScope(
+          onWillPop: () async => false,
+          child: Scaffold(
+            backgroundColor: appTheme.whiteA700,
+            resizeToAvoidBottomInset: true, // Enable resizing to avoid the keyboard
+
+            body: SingleChildScrollView(
+              // Enable scrolling
+              child: Container(
+                width: double.maxFinite,
+                padding: getPadding(
+                  left: 24,
+                  top: 21,
+                  right: 24,
+                  bottom: 21,
                 ),
-                Text(
-                  'Welcome! Here you can sign up',
-                  style: GoogleFonts.robotoCondensed(fontSize: 18),
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-//name
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: TextField(
-                        controller: nameController,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Name',
-                          prefixIcon: Icon(
-                            LineIcons.user,
-                            color: Colors.black38,
-                          ),
-                        ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 50,),
+                    Padding(
+                      padding: getPadding(
+                        left: 1,
                       ),
-                    ),
-                  ),
+
+
+                      child: Text(
+                context.tr("Sign Up"),
+                style: theme.textTheme.displaySmall,
+              ),
+            ),
+            Container(
+              width: getHorizontalSize(302),
+              margin: getMargin(
+                left: 1,
+                top: 13,
+                right: 41,
+              ),
+              child: Text(
+                context.tr(
+                    "Create your account."),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.bodyLarge!.copyWith(
+                  height: 1.56,
                 ),
-                SizedBox(height: 10),
+              ),
+            ),
+    Padding(
+    padding: getPadding(
+    left: 1,
+    top: 25,
+    ),
+    child: Container(
+    width: double.maxFinite, // Set the width to occupy the entire available space
+    child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+    // First Name field
+    Stack(
+    alignment: Alignment.bottomRight,
+    children: [
+    Align(
+    alignment: Alignment.center,
+    child: Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+    Text(
+    context.tr("First Name"),
+    style: theme.textTheme.titleMedium,
+    ),
+    CustomTextFormField(
+    controller: nameController,
+    hintText: context.tr("Your First Name"),
+    hintStyle: theme.textTheme.titleSmall!,
+    textInputType: TextInputType.text,
+    ),
+    ],
+    ),
+    ),
+    ],
+    ),
+    SizedBox(height: 25), // Adjust spacing as needed
+
+    // Last Name field
+    Stack(
+    alignment: Alignment.bottomRight,
+    children: [
+    Align(
+    alignment: Alignment.center,
+    child: Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+    Text(
+    context.tr("Last Name"),
+    style: theme.textTheme.titleMedium,
+    ),
+    CustomTextFormField(
+    controller: lastNameameController,
+    hintText: context.tr("Your Last Name"),
+    hintStyle: theme.textTheme.titleSmall!,
+    textInputType: TextInputType.text,
+    ),
+    ],
+    ),
+    ),
+    ],
+    ),
+    SizedBox(height: 25), // Adjust spacing as needed
+    //SizedBox(height: 10),
                 // Username
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: TextField(
-                        controller: usernameController,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Username',
-                          prefixIcon: Icon(
-                            LineIcons.user,
-                            color: Colors.black38,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 10),
+        Stack(
+            alignment: Alignment.bottomRight,
+            children: [
+            Align(
+            alignment: Alignment.center,
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                                  context.tr("Username"),
+                                  style: theme.textTheme.titleMedium,
+                                ),
+                                CustomTextFormField(
+                                  controller: usernameController,
+                                  hintText: context.tr("Your Username"),
+                                  hintStyle: theme.textTheme.titleSmall!,
+                                  textInputType: TextInputType.text,
+                                )])),]),
+              SizedBox(height: 25),
+
                 //pass
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-// email text
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: TextField(
-                        controller: _emailController,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Email Adress',
-                          prefixIcon: Icon(
-                            LineIcons.envelope,
-                            color: Colors.black38,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 10),
+        Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+        Align(
+        alignment: Alignment.center,
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                                  context.tr("Email"),
+                                  style: theme.textTheme.titleMedium,
+                                ),
+                                CustomTextFormField(
+                                  controller: _emailController,
+                                  hintText: context.tr("Example@Example.com"),
+                                  hintStyle: theme.textTheme.titleSmall!,
+                                  textInputType: TextInputType.emailAddress,
+                                )])),]),
+      SizedBox(height: 25),
                 // phone num
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: TextField(
-                        controller: phoneNumberController,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Phone Number',
-                          prefixIcon: Icon(
-                            LineIcons.mobilePhone,
-                            color: Colors.black38,
-                          ),
-                        ),
-                        keyboardType: TextInputType.phone,
-                        style: TextStyle(color: Colors.black),
-                        cursorColor: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 8),
+        Stack(
+            alignment: Alignment.bottomRight,
+            children: [
+            Align(
+            alignment: Alignment.center,
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                                  context.tr("Phone Number"),
+                                  style: theme.textTheme.titleMedium,
+                                ),
+                                CustomTextFormField(
+                                  controller: phoneNumberController,
+                                  hintText: context.tr("05********"),
+                                  hintStyle: theme.textTheme.titleSmall!,
+                                  textInputType: TextInputType.phone,
+                                )])),]),
+      SizedBox(height: 10),
 
-                          DropdownButton<String>(
-                            value: selectedNationality,
-                            onChanged: (newValue) {
-                              setState(() {
-                             selectedNationality = newValue!;
-                              });
-                            },
-                            items: nationalityOptions.map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
 
-                SizedBox(height: 10),
+                // Padding(
+                //   padding: getPadding(
+                //     left: 2,
+                //     top: 25,
+                //   ),
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //       color: appTheme.whiteA700,
+                //       borderRadius: BorderRadius.circular(12),
+                //     ),
+                //     child: Padding(
+                //       padding: const EdgeInsets.symmetric(horizontal: 20),
+                //       child: Column(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           Text(
+                //             context.tr("Nationality"),
+                //             style: theme.textTheme.titleMedium,
+                //           ),
+                //           SizedBox(height: 8),
+                //           CustomTextFormField(
+                //             suffixIcon: DropdownButton<String>(
+                //               underline: SizedBox(),
+                //               value: selectedNationality,
+                //               onChanged: (newValue) {
+                //                 setState(() {
+                //                   selectedNationality = newValue!;
+                //                 });
+                //               },
+                //               items: nationalityOptions.map<DropdownMenuItem<String>>((String value) {
+                //                 return DropdownMenuItem<String>(
+                //                   value: value,
+                //                   child: Text(value),
+                //                 );
+                //               }).toList(),
+                //             ),
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                //
+                //
+                //
+                // Padding(
+                //   padding: getPadding(
+                //     left: 2,
+                //     top: 25,
+                //   ),
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //       color: appTheme.whiteA700,
+                //       borderRadius: BorderRadius.circular(12),
+                //     ),
+                //     child: Padding(
+                //       padding: const EdgeInsets.symmetric(horizontal: 20),
+                //       child: Column(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           Text(
+                //             context.tr("City"),
+                //             style: theme.textTheme.titleMedium,
+                //           ),
+                //           SizedBox(height: 8),
+                //           CustomTextFormField(
+                //             suffixIcon: DropdownButton<String>(
+                //               underline: SizedBox(),
+                //               value: selectedCity,
+                //               onChanged: (newValue) {
+                //                 setState(() {
+                //                   selectedCity = newValue!;
+                //                 });
+                //               },
+                //               items: cityOptions.map<DropdownMenuItem<String>>((String value) {
+                //                 return DropdownMenuItem<String>(
+                //                   value: value,
+                //                   child: Text(value),
+                //                 );
+                //               }).toList(),
+                //             ),
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 8),
-                          DropdownButton<String>(
-                            value: selectedCity,
-                            onChanged: (newValue) {
-                              setState(() {
-                                selectedCity = newValue!;
-                              });
-                            },
-                            items: cityOptions.map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 10),
 
                 //pass
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: TextField(
-                        controller: _passwordConroller,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Password',
-                          prefixIcon: Icon(
-                            LineIcons.lock,
-                            color: Colors.black38,
-                          ),
+      Padding(
+        padding: getPadding(
+          left: 1,
+          top: 25,
+        ),
+                  child: Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              context.tr("Password"),
+                              style: theme.textTheme.titleMedium,
+                            ),
+                            CustomTextFormField(
+                              controller: _passwordConroller,
+                              obscureText: obscureText,
+                              // margin: getMargin(
+                              //   top: 3,
+                              // ),
+                              hintText: context.tr("Your Password"),
+                              hintStyle: theme.textTheme.titleSmall!,
+                              textInputType: TextInputType.visiblePassword,
+                              suffix: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    obscureText = !obscureText;
+                                  });
+                                },
+                                child: Container(
+                                  margin: getMargin(
+                                    left: 30,
+                                    top: 15,
+                                    right: 16,
+                                    bottom: 15,
+                                  ),
+                                  child: CustomImageView(
+                                      svgPath: obscureText
+                                          ? ImageConstant
+                                          .imgAkariconseyeClose // Closed eye SVG
+                                          : ImageConstant
+                                          .imgAkariconseyeopen // Open eye SVG
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
+
 
                 //confirm pass
-                SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: TextField(
-                        controller: _confirmPasswordConroller,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Confirm Password',
-                          prefixIcon: Icon(
-                            LineIcons.lock,
-                            color: Colors.black38,
-                          ),
+      Padding(
+        padding: getPadding(
+          left: 1,
+          top: 25,
+        ),
+                  child: Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              context.tr("Confirm Password"),
+                              style: theme.textTheme.titleMedium,
+                            ),
+                            CustomTextFormField(
+                              controller: _confirmPasswordConroller,
+                              obscureText: obscureText,
+                              // margin: getMargin(
+                              //   top: 3,
+                              // ),
+                              hintText: context.tr("Confirm Your Password"),
+                              hintStyle: theme.textTheme.titleSmall!,
+                              textInputType: TextInputType.visiblePassword,
+                              suffix: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    obscureText = !obscureText;
+                                  });
+                                },
+                                child: Container(
+                                  margin: getMargin(
+                                    left: 30,
+                                    top: 15,
+                                    right: 16,
+                                    bottom: 15,
+                                  ),
+                                  child: CustomImageView(
+                                      svgPath: obscureText
+                                          ? ImageConstant
+                                          .imgAkariconseyeClose // Closed eye SVG
+                                          : ImageConstant
+                                          .imgAkariconseyeopen // Open eye SVG
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
+
                 //SizedBox(height: 15),
 
                 Padding(
@@ -444,60 +509,84 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
 
-                SizedBox(height: 15),
+                SizedBox(height: 20),
 // sign up button
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 1),
                   child: GestureDetector(
                     onTap: signUpValidation,
                     child: Container(
                       padding: EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                          color: Colors.amber[900],
-                          borderRadius: BorderRadius.circular(12)),
+                          color: Color(0xFF234E5C),
+                          borderRadius: BorderRadius.circular(8.0)),
                       child: Center(
                           child: Text(
                         'Sign up',
-                        style: GoogleFonts.roboto(
-                          color: Colors.white,
+                        style: TextStyle(
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          color: Colors.white,
                         ),
                       )),
                     ),
                   ),
                 ),
-                //space between button and text
-                SizedBox(height: 25),
-                // make text to sign up
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Already a member? ',
-                      style: GoogleFonts.roboto(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+      Align(
+          alignment: Alignment.center,
+          child: Padding(
+              padding: getPadding(
+                top: 25,
+                bottom: 5,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "Don’t have an account",
+                          style: CustomTextStyles.labelLargeInterBluegray300,
+                        ),
+                        TextSpan(
+                          text: "?",
+                          style: CustomTextStyles.bodyMediumInterBluegray300,
+                        ),
+                        TextSpan(
+                          text: " ",
+                          style: CustomTextStyles.bodyMediumInterBluegray300,
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                  GestureDetector(
+                    onTap: openLoginScreen,
+                    child: Text(
+                      "Login Now",
+                      style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
+                        decoration: TextDecoration.underline,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: openLoginScreen,
-                      child: Text(
-                        'sign in Here',
-                        style: GoogleFonts.roboto(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                ],
+              )
+          )
+      ),
+
               ],
             ),
-          ),
+
         ),
-      ),
-    );
+
+    )
+    ]
+    ))))));
+
+
+
+
   }
 
 //////////////////////////////////////////////
@@ -513,8 +602,8 @@ class _SignupScreenState extends State<SignupScreen> {
           'Invalid Email', Colors.red, Colors.white, 2, context, _scaffoldKey);
     } else if (phoneNumberController.text == null ||
         phoneNumberController.text.contains('05') == false ||
-        phoneNumberController.text.length < 10) {
-      showInSnackBar('Please enter your phone number, ex: 05xxxxxxxxx',
+        phoneNumberController.text.length < 10 || phoneNumberController.text.length > 10) {
+      showInSnackBar('Please enter your phone number correctly, ex: 05********',
           Colors.red, Colors.white, 2, context, _scaffoldKey);
     } else if (_passwordConroller.text == null ||
         _passwordConroller.text.length < 6) {
@@ -575,13 +664,14 @@ class _SignupScreenState extends State<SignupScreen> {
                 'sUserID': userCredentials.user!.uid,
                 'sUserEmail': userCredentials.user!.email,
                 'sUserName': nameController.text,
+                'LastName': lastNameameController.text,
                 'sUserPhoneNumber': phoneNumberController.text,
                 'sUserNotificationToken': notificationToken,
                 'uniqueUserName': usernameController.text,
-                'sNationality': selectedNationality,
-                'sCity': selectedCity,
+                // 'sNationality': selectedNationality,
+                // 'sCity': selectedCity,
                 'AccountCreatedDateTime': DateTime.now(),
-                'UserProfileImage':'https://www.sketchappsources.com/resources/source-image/profile-illustration-gunaldi-yunus.png',
+                'UserProfileImage':'https://raw.githubusercontent.com/RoaaAmin/hilinky_v1/main/assets/images/HilinkyLogo.png',
                 'following' : {}
               }).then((value) async {
                 await FirebaseFirestore.instance
@@ -594,19 +684,23 @@ class _SignupScreenState extends State<SignupScreen> {
                     sUserID = userCredentials.user!.uid;
                     sUserEmail = userDBData.data()!['sUserEmail'];
                     sUserName = userDBData.data()!['sUserName'];
+                    LastName = userDBData.data()!['LastName'];
                     uniqueUserName = userDBData.data()!['uniqueUserName'];
                     sUserPhoneNumber = userDBData.data()!['sUserPhoneNumber'];
-                    sNationality = userDBData.data()!['sNationality'];
-                    sCity = userDBData.data()!['sCity'];
+                    // sNationality = userDBData.data()!['sNationality'];
+                    // sCity = userDBData.data()!['sCity'];
                     sUserNotificationToken =
                         userDBData.data()!['sUserNotificationToken'];
                   });
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   clearControllers();
                   await FirebaseAuth.instance.signOut();
-                  showInSnackBar('Registration completed successfully',
-                      Colors.green, Colors.white, 3, context, _scaffoldKey);
-                  // Navigator.of(context).pushReplacement(CupertinoPageRoute(builder: (BuildContext context) => Auth()));
+                  showInSnackBar('Registration completed, check your email to verify',
+                      Colors.green, Colors.white, 5, context, _scaffoldKey);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                      builder: (context) => LoginScreen()));
                 });
               });
             } catch (e) {
@@ -633,6 +727,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   clearControllers() {
     usernameController.clear();
+    lastNameameController.clear();
     _emailController.clear();
     _passwordConroller.clear();
     _confirmPasswordConroller.clear();

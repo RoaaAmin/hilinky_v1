@@ -27,7 +27,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   void openSignupScreen() {
-    Navigator.of(context).pushReplacementNamed('PrivacyPolicyPage');
+    //Navigator.of(context).pushReplacementNamed('PrivacyPolicyPage');
+    Navigator.of(context).pushReplacementNamed('signupScreen');
   }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
@@ -358,7 +359,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-
                   Align(
                     alignment: Alignment.center,
                     child: Padding(
@@ -373,50 +373,95 @@ class _LoginScreenState extends State<LoginScreen> {
                             text: TextSpan(
                               children: [
                                 TextSpan(
-                                  text: context.tr("Don’t have an account"),
-                                  style: CustomTextStyles
-                                      .labelLargeInterBluegray300,
+                                  text: "Don’t have an account",
+                                  style: CustomTextStyles.labelLargeInterBluegray300,
                                 ),
                                 TextSpan(
-                                  text: context.tr("?"),
-                                  style: CustomTextStyles
-                                      .bodyMediumInterBluegray300,
+                                  text: "?",
+                                  style: CustomTextStyles.bodyMediumInterBluegray300,
+                                ),
+                                TextSpan(
+                                  text: " ",
+                                  style: CustomTextStyles.bodyMediumInterBluegray300,
                                 ),
                               ],
                             ),
                             textAlign: TextAlign.left,
                           ),
-                          SizedBox(width: 5), // Add space here
                           GestureDetector(
-                            onTap: () async {
-                              String url =
-                                 "https://api.whatsapp.com/send/?phone=966532595204&text=%D8%A3%D9%87%D9%84%D9%8B%D8%A7%20%D9%81%D8%B1%D9%8A%D9%82%20%D9%87%D8%A7%D9%8A%20%D9%84%D9%8A%D9%86%D9%83%D9%8A%0A%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A3%D9%86%20%D8%A3%D9%82%D8%AA%D9%86%D9%8A%20%D8%A8%D8%B7%D8%A7%D9%82%D8%A9%20%D8%B1%D9%82%D9%85%D9%8A%D8%A9";
-                              if (await canLaunch(url)) {
-                                await launch(url);
-                              } else {
-                                throw 'Could not launch $url';
-                              }
-                            },
+                            onTap: openSignupScreen,
                             child: Text(
-                              context.tr("Contact Us"),
-                              style: CustomTextStyles
-                                  .labelLargeInterDeeporange30013
-                                  .copyWith(
+                              "Sign up Now",
+                              style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
                                 decoration: TextDecoration.underline,
                               ),
                             ),
                           ),
                         ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+                      )
+                    )
+                  )
+                ]
+              ))
+          ))));
+    //               Align(
+    //                 alignment: Alignment.center,
+    //                 child: Padding(
+    //                   padding: getPadding(
+    //                     top: 25,
+    //                     bottom: 5,
+    //                   ),
+    //                   child: Row(
+    //                     mainAxisAlignment: MainAxisAlignment.center,
+    //                     children: [
+    //                       RichText(
+    //                         text: TextSpan(
+    //                           children: [
+    //                             TextSpan(
+    //                               text: context.tr("Don’t have an account"),
+    //                               style: CustomTextStyles
+    //                                   .labelLargeInterBluegray300,
+    //                             ),
+    //                             TextSpan(
+    //                               text: context.tr("?"),
+    //                               style: CustomTextStyles
+    //                                   .bodyMediumInterBluegray300,
+    //                             ),
+    //                           ],
+    //                         ),
+    //                         textAlign: TextAlign.left,
+    //                       ),
+    //                       SizedBox(width: 5), // Add space here
+    //                       GestureDetector(
+    //                         onTap: () async {
+    //                           String url =
+    //                              "https://api.whatsapp.com/send/?phone=966532595204&text=%D8%A3%D9%87%D9%84%D9%8B%D8%A7%20%D9%81%D8%B1%D9%8A%D9%82%20%D9%87%D8%A7%D9%8A%20%D9%84%D9%8A%D9%86%D9%83%D9%8A%0A%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A3%D9%86%20%D8%A3%D9%82%D8%AA%D9%86%D9%8A%20%D8%A8%D8%B7%D8%A7%D9%82%D8%A9%20%D8%B1%D9%82%D9%85%D9%8A%D8%A9";
+    //                           if (await canLaunch(url)) {
+    //                             await launch(url);
+    //                           } else {
+    //                             throw 'Could not launch $url';
+    //                           }
+    //                         },
+    //                         child: Text(
+    //                           context.tr("Contact Us"),
+    //                           style: CustomTextStyles
+    //                               .labelLargeInterDeeporange30013
+    //                               .copyWith(
+    //                             decoration: TextDecoration.underline,
+    //                           ),
+    //                         ),
+    //                       ),
+    //                     ],
+    //                   ),
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 
 

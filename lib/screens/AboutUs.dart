@@ -60,6 +60,7 @@ class AboutUs extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20),
+
                   Container(
                     padding: const EdgeInsets.only(
                         left: 20, right: 20, top: 10, bottom: 8),
