@@ -373,15 +373,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             text: TextSpan(
                               children: [
                                 TextSpan(
-                                  text: "Don’t have an account",
+                                  text:  context.tr("Don’t have an account"),
                                   style: CustomTextStyles.labelLargeInterBluegray300,
                                 ),
                                 TextSpan(
-                                  text: "?",
+                                  text:  context.tr("?"),
                                   style: CustomTextStyles.bodyMediumInterBluegray300,
                                 ),
                                 TextSpan(
-                                  text: " ",
+                                  text:  context.tr(" "),
                                   style: CustomTextStyles.bodyMediumInterBluegray300,
                                 ),
                               ],
@@ -391,7 +391,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           GestureDetector(
                             onTap: openSignupScreen,
                             child: Text(
-                              "Sign up Now",
+                              context.tr("Sign up Now"),
                               style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
                                 decoration: TextDecoration.underline,
                               ),

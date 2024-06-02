@@ -9,6 +9,7 @@ import 'package:hilinky/screens/home_screen.dart';
 import 'package:hilinky/screens/my_card/widget/qr_code.dart';
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../core/utils/image_constant.dart';
 import '../../core/utils/size_utils.dart';
@@ -29,6 +30,7 @@ class MyCard extends StatefulWidget {
 }
 
 class _MyCardState extends State<MyCard> {
+  PageController _pageController = PageController();
   bool myCardFetched = false;
   var UserProfileImage;
 
@@ -161,6 +163,7 @@ class _MyCardState extends State<MyCard> {
                 ],
               ),
             ),
+            SizedBox(height: 77,),
             flowList(context),
           ],
         ),
@@ -190,247 +193,45 @@ class _MyCardState extends State<MyCard> {
     );
   }
 
+
   Widget flowList(BuildContext context) {
     List<String> keys = Links.keys.toList();
     List<dynamic> values = Links.values.toList();
     if (cardsDocs != null) {
       if (cardsDocs.length != 0) {
         return ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.only(left:10.0,right: 10,top: 10,bottom: 75),
-            itemCount: cardsDocs.length,
-            shrinkWrap: true,
-            itemBuilder: (context, i) {
-              return InkWell(
-                onTap: ()async{
-                  //  showUserBottomSheet(postsDocs[i]);
-                },
-
-                child: Column(
+          physics: NeverScrollableScrollPhysics(),
+         padding: EdgeInsets.only(left: 10.0, right: 10, top: 10, bottom: 75),
+          itemCount: cardsDocs.length,
+          shrinkWrap: true,
+          itemBuilder: (context, i) {
+            return Column(
+              children: [
+                Container(
+                  height: 300, // Adjust height as needed
+                  child: PageView(
+                    controller: _pageController,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: appTheme.whiteA700,
-
-                        ),
-                        child: Container(
-                          child: Stack(
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            // width: 300, // Replace 200 with your desired width
-                            // height: 315, // Replace 200 with your desired height
-                            child: CustomImageView(
-                              // width: double.infinity,
-                              imagePath: ImageConstant.HilinkyCard,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          // Container(
-                          //   // padding: const EdgeInsets.all(40.0),
-                          //   margin: const EdgeInsets.only(top: 45, right: 20),
-                          //   child: Column(
-                          //     mainAxisAlignment: MainAxisAlignment.end,
-                          //     crossAxisAlignment: CrossAxisAlignment.end,
-                          //     children: [
-                          //       Directionality(
-                          //         textDirection: ui.TextDirection.ltr,
-                          //         child: Row(
-                          //           children: [
-                          //             Spacer(),
-                          //             Container(
-                          //               height: 25,
-                          //               child: ElevatedButton(
-                          //                 onPressed: () {
-                          //                   context.pushPage(EditCard());
-                          //                 },
-                          //                 style: ElevatedButton.styleFrom(
-                          //                   // primary: Colors.transparent, // Setting the button's background color to transparent
-                          //                   shadowColor: Colors.transparent, // Removing the button's shadow
-                          //                 ),
-                          //                 child: Container(
-                          //                   child: Text(
-                          //                     context.tr('Edit'),
-                          //                     style: TextStyle(
-                          //                        color: Colors.deepOrangeAccent,
-                          //                     ),
-                          //                   ),
-                          //                 ),
-                          //               ),
-                          //             ),
-                          //           ],
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
-
-                          // SizedBox(height: 80, width: 90,),
-                          Padding( padding: const EdgeInsets.only(left:40, right: 40, top: 40,),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Directionality(
-                                  textDirection: ui.TextDirection.ltr,
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 80,
-                                        width: 80,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          border: Border.all(
-                                            color: Colors.white,
-                                            width: 1,
-                                          ),
-                                          borderRadius: BorderRadius.circular(120),
-                                          image: DecorationImage(
-                                            image: cardsDocs[i].data()!['LogoURL'] != null
-                                                ? NetworkImage(cardsDocs[i].data()!['defaultLogo']!)
-                                                : NetworkImage(cardsDocs[i].data()!['LogoURL']!),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: Directionality(
-                                          textDirection: ui.TextDirection.ltr,
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Flexible(
-                                                    child: Text(
-                                                      cardsDocs[i].data()!['FirstName'],
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 20,
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Text("  "),
-                                                  Flexible(
-                                                    child: Text(
-                                                      cardsDocs[i].data()!['LastName'],
-                                                      style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 20,
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 10),
-                                              Container(
-                                                width: double.infinity,
-                                                child: Text(
-                                                  '${cardsDocs[i].data()!['Position']} - ${cardsDocs[i].data()!['CompanyName']}',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 15,
-                                                    fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: 20),
-                                Center(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 40,
-                                        child: Links.isEmpty
-                                            ? Text('')
-                                            : Wrap(
-                                          spacing: 10.0, // Horizontal spacing between the links
-                                          runSpacing: 8.0, // Vertical spacing between the rows
-                                          children: List.generate(Links.length, (index) {
-                                            return Container(
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.rectangle,
-                                                borderRadius: BorderRadius.circular(8),
-                                                color: Colors.white,
-                                              ),
-                                              width: 30,
-                                              height: 30,
-                                              child: IconButton(
-                                                iconSize: 15,
-                                                onPressed: () {
-                                                  final Uri url = Uri.parse(values[index]);
-                                                  _launchUrl(url);
-                                                },
-                                                icon: Icon(l[keys[index]]!.icon),
-                                                color: iconColor,
-                                              ),
-                                            );
-                                          }),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-
-
-
-                          ),
-
-
-
-
-                              ],
-                            ),
-                          ),
-
-                      ),
-
-                      Container(
-                        decoration: BoxDecoration(
-                          color: appTheme.whiteA700,
-                          // borderRadius: BorderRadius.circular(10),
-                        ),
-                        margin: const EdgeInsets.only(top: 0, bottom: 10), // Adjust margin as needed
-                        child: Padding(
-                          padding: const EdgeInsets.all(0.0),
-                          child: Center(
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                CustomImageView(
-                                  width: double.infinity, // Stretch the image to fill the width
-                                   // height: 315, // Set a fixed height for the container
-                                  imagePath: ImageConstant.HilinkyCard,
-                                  fit: BoxFit.cover, // Ensure the image covers the entire container
-                                ),
-
-                                QrCode(),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
-                   ]
+                      profileCard(context, i),
+                      qrCard(context),
+                    ],
+                  ),
                 ),
-              );
-            }
+               // SizedBox(height: 10),
+                SmoothPageIndicator(
+                  controller: _pageController,
+                  count: 2,
+                  effect: WormEffect(
+                    dotHeight: 8.0,
+                    dotWidth: 8.0,
+                    spacing: 16.0,
+                    activeDotColor:    Colors.deepOrange.shade300,
+                    dotColor: Colors.grey,
+                  ),
+                ),
+              ],
+            );
+          },
         );
       } else {
         return Container();
@@ -439,6 +240,176 @@ class _MyCardState extends State<MyCard> {
       return Container();
     }
   }
+
+  Widget profileCard(BuildContext context, int i) {
+    List<String> keys = Links.keys.toList();
+    List<dynamic> values = Links.values.toList();
+
+    return Container(
+      decoration: BoxDecoration(
+        color: appTheme.whiteA700,
+      ),
+      child: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            child: CustomImageView(
+              imagePath: ImageConstant.HilinkyCard,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 40, right: 40, top: 40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Directionality(
+                  textDirection: ui.TextDirection.ltr,
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(120),
+                          image: DecorationImage(
+                            image: cardsDocs[i].data()!['LogoURL'] != null
+                                ? NetworkImage(cardsDocs[i].data()!['defaultLogo']!)
+                                : NetworkImage(cardsDocs[i].data()!['LogoURL']!),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: Directionality(
+                          textDirection: ui.TextDirection.ltr,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      cardsDocs[i].data()!['FirstName'],
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                  Text("  "),
+                                  Flexible(
+                                    child: Text(
+                                      cardsDocs[i].data()!['LastName'],
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 10),
+                              Container(
+                                width: double.infinity,
+                                child: Text(
+                                  '${cardsDocs[i].data()!['Position']} - ${cardsDocs[i].data()!['CompanyName']}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 40,
+                        child: Links.isEmpty
+                            ? Text('')
+                            : Wrap(
+                          spacing: 10.0,
+                          runSpacing: 8.0,
+                          children: List.generate(Links.length, (index) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.white,
+                              ),
+                              width: 30,
+                              height: 30,
+                              child: IconButton(
+                                iconSize: 15,
+                                onPressed: () {
+                                  final Uri url = Uri.parse(values[index]);
+                                  _launchUrl(url);
+                                },
+                                icon: Icon(l[keys[index]]!.icon),
+                                color: iconColor,
+                              ),
+                            );
+                          }),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget qrCard(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: appTheme.whiteA700,
+      ),
+      //margin: const EdgeInsets.only(top: 0, bottom: 0),
+      child: Padding(
+        padding: const EdgeInsets.all(0.0),
+        child: Center(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              CustomImageView(
+                width: double.infinity,
+                imagePath: ImageConstant.HilinkyCard,
+                fit: BoxFit.cover,
+              ),
+              QrCode(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
 
   Future<void> _launchUrl(url) async {
     if (!await launchUrl(url)) {

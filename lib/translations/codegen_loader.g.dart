@@ -152,7 +152,24 @@ class CodegenLoader extends AssetLoader {
     "Update": "تحديث",
     "Enter your city": "أدخل مدينتك",
     "Enter your nationality": "أدخل جنسيتك",
-     "Saving...":"جاري الحفظ..."
+     "Saving...":"جاري الحفظ...",
+    "Sign Up": "تسجيل",
+    "Create your account.": "إنشئ حسابك.",
+    "Your First Name": "اسمك الأول",
+    "Your Last Name": "اسمك الأخير",
+    "Your Username": "اسم المستخدم",
+    "05********": "********٠٥",
+    "Confirm Password": "تأكيد كلمة المرور",
+    "Confirm Your Password": "أكد كلمة المرور",
+    "Sign up": "تسجيل",
+    "Login Now": "تسجيل الدخول الآن",
+    "Already have an account": "هل لديك حساب",
+    "Please Enter a valid name.": "يرجى إدخال اسمك.",
+    "Invalid Email": "البريد الإلكتروني غير صالح",
+    "Please enter your phone number correctly, ex: 05********": "يرجى إدخال رقم هاتفك بشكل صحيح",
+    "Password is too weak.": "كلمة المرور ضعيفة جداً.",
+    "Passwords do not match.": "كلمات المرور غير متطابقة.",
+    "Please enter a valid username.": "يرجى إدخال اسم مستخدم صالح."
   };
   static const Map<String, dynamic> en = {
     "Select Your Language": "Select Your Language",
@@ -297,7 +314,25 @@ class CodegenLoader extends AssetLoader {
     "Company Name":"Company Name",
     "enter your city": "Enter your city",
     "enter your nationality": "Enter your nationality",
-    "Saving...":"Saving..."
+    "Saving...":"Saving...",
+    "Sign Up": "Sign Up",
+    "Create your account.": "Create your account.",
+    "Your First Name": "Your First Name",
+    "Your Last Name": "Your Last Name",
+    "Your Username": "Your Username",
+    "05********": "05********",
+    "Confirm Password": "Confirm Password",
+    "Confirm Your Password": "Confirm Your Password",
+    "Sign up": "Sign up",
+    "Login Now": "Login Now",
+    "Don’t have an account": "Don’t have an account",
+    "Already have an account": "Already have an account",
+    "Please Enter a valid name.": "Please Enter a valid name.",
+    "Invalid Email": "Invalid Email",
+    "Please enter your phone number correctly, ex: 05********": "Please enter your phone number correctly, ex: 05********",
+    "Password is too weak.": "Password is too weak.",
+    "Passwords do not match.": "Passwords do not match.",
+    "Please enter a valid username.": "Please enter a valid username."
 
   };
 

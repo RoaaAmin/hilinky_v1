@@ -220,7 +220,7 @@ class EditState extends State<Edit> {
                         builder: ((builder) => bottomSheet()),
                       );
                     },
-                    child:  Text(context.tr("Pick Image")
+                    child:  Text(context.tr("Pick Image",)
                     )),
 
                 const SizedBox(

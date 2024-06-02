@@ -105,516 +105,502 @@ class _SignupScreenState extends State<SignupScreen> {
           FocusScope.of(context).unfocus();
         },
         child: WillPopScope(
-          onWillPop: () async => false,
-          child: Scaffold(
-            backgroundColor: appTheme.whiteA700,
-            resizeToAvoidBottomInset: true, // Enable resizing to avoid the keyboard
+            onWillPop: () async => false,
+            child: Scaffold(
+                backgroundColor: appTheme.whiteA700,
+                resizeToAvoidBottomInset:
+                    true, // Enable resizing to avoid the keyboard
 
-            body: SingleChildScrollView(
-              // Enable scrolling
-              child: Container(
-                width: double.maxFinite,
-                padding: getPadding(
-                  left: 24,
-                  top: 21,
-                  right: 24,
-                  bottom: 21,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 50,),
-                    Padding(
-                      padding: getPadding(
-                        left: 1,
-                      ),
-
-
-                      child: Text(
-                context.tr("Sign Up"),
-                style: theme.textTheme.displaySmall,
-              ),
-            ),
-            Container(
-              width: getHorizontalSize(302),
-              margin: getMargin(
-                left: 1,
-                top: 13,
-                right: 41,
-              ),
-              child: Text(
-                context.tr(
-                    "Create your account."),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.bodyLarge!.copyWith(
-                  height: 1.56,
-                ),
-              ),
-            ),
-    Padding(
-    padding: getPadding(
-    left: 1,
-    top: 25,
-    ),
-    child: Container(
-    width: double.maxFinite, // Set the width to occupy the entire available space
-    child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    // First Name field
-    Stack(
-    alignment: Alignment.bottomRight,
-    children: [
-    Align(
-    alignment: Alignment.center,
-    child: Column(
-    mainAxisSize: MainAxisSize.min,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Text(
-    context.tr("First Name"),
-    style: theme.textTheme.titleMedium,
-    ),
-    CustomTextFormField(
-    controller: nameController,
-    hintText: context.tr("Your First Name"),
-    hintStyle: theme.textTheme.titleSmall!,
-    textInputType: TextInputType.text,
-    ),
-    ],
-    ),
-    ),
-    ],
-    ),
-    SizedBox(height: 25), // Adjust spacing as needed
-
-    // Last Name field
-    Stack(
-    alignment: Alignment.bottomRight,
-    children: [
-    Align(
-    alignment: Alignment.center,
-    child: Column(
-    mainAxisSize: MainAxisSize.min,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-    Text(
-    context.tr("Last Name"),
-    style: theme.textTheme.titleMedium,
-    ),
-    CustomTextFormField(
-    controller: lastNameameController,
-    hintText: context.tr("Your Last Name"),
-    hintStyle: theme.textTheme.titleSmall!,
-    textInputType: TextInputType.text,
-    ),
-    ],
-    ),
-    ),
-    ],
-    ),
-    SizedBox(height: 25), // Adjust spacing as needed
-    //SizedBox(height: 10),
-                // Username
-        Stack(
-            alignment: Alignment.bottomRight,
-            children: [
-            Align(
-            alignment: Alignment.center,
-            child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                                  context.tr("Username"),
-                                  style: theme.textTheme.titleMedium,
-                                ),
-                                CustomTextFormField(
-                                  controller: usernameController,
-                                  hintText: context.tr("Your Username"),
-                                  hintStyle: theme.textTheme.titleSmall!,
-                                  textInputType: TextInputType.text,
-                                )])),]),
-              SizedBox(height: 25),
-
-                //pass
-        Stack(
-        alignment: Alignment.bottomRight,
-        children: [
-        Align(
-        alignment: Alignment.center,
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                                  context.tr("Email"),
-                                  style: theme.textTheme.titleMedium,
-                                ),
-                                CustomTextFormField(
-                                  controller: _emailController,
-                                  hintText: context.tr("Example@Example.com"),
-                                  hintStyle: theme.textTheme.titleSmall!,
-                                  textInputType: TextInputType.emailAddress,
-                                )])),]),
-      SizedBox(height: 25),
-                // phone num
-        Stack(
-            alignment: Alignment.bottomRight,
-            children: [
-            Align(
-            alignment: Alignment.center,
-            child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                                  context.tr("Phone Number"),
-                                  style: theme.textTheme.titleMedium,
-                                ),
-                                CustomTextFormField(
-                                  controller: phoneNumberController,
-                                  hintText: context.tr("05********"),
-                                  hintStyle: theme.textTheme.titleSmall!,
-                                  textInputType: TextInputType.phone,
-                                )])),]),
-      SizedBox(height: 10),
-
-
-                // Padding(
-                //   padding: getPadding(
-                //     left: 2,
-                //     top: 25,
-                //   ),
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //       color: appTheme.whiteA700,
-                //       borderRadius: BorderRadius.circular(12),
-                //     ),
-                //     child: Padding(
-                //       padding: const EdgeInsets.symmetric(horizontal: 20),
-                //       child: Column(
-                //         crossAxisAlignment: CrossAxisAlignment.start,
-                //         children: [
-                //           Text(
-                //             context.tr("Nationality"),
-                //             style: theme.textTheme.titleMedium,
-                //           ),
-                //           SizedBox(height: 8),
-                //           CustomTextFormField(
-                //             suffixIcon: DropdownButton<String>(
-                //               underline: SizedBox(),
-                //               value: selectedNationality,
-                //               onChanged: (newValue) {
-                //                 setState(() {
-                //                   selectedNationality = newValue!;
-                //                 });
-                //               },
-                //               items: nationalityOptions.map<DropdownMenuItem<String>>((String value) {
-                //                 return DropdownMenuItem<String>(
-                //                   value: value,
-                //                   child: Text(value),
-                //                 );
-                //               }).toList(),
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                //
-                //
-                //
-                // Padding(
-                //   padding: getPadding(
-                //     left: 2,
-                //     top: 25,
-                //   ),
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //       color: appTheme.whiteA700,
-                //       borderRadius: BorderRadius.circular(12),
-                //     ),
-                //     child: Padding(
-                //       padding: const EdgeInsets.symmetric(horizontal: 20),
-                //       child: Column(
-                //         crossAxisAlignment: CrossAxisAlignment.start,
-                //         children: [
-                //           Text(
-                //             context.tr("City"),
-                //             style: theme.textTheme.titleMedium,
-                //           ),
-                //           SizedBox(height: 8),
-                //           CustomTextFormField(
-                //             suffixIcon: DropdownButton<String>(
-                //               underline: SizedBox(),
-                //               value: selectedCity,
-                //               onChanged: (newValue) {
-                //                 setState(() {
-                //                   selectedCity = newValue!;
-                //                 });
-                //               },
-                //               items: cityOptions.map<DropdownMenuItem<String>>((String value) {
-                //                 return DropdownMenuItem<String>(
-                //                   value: value,
-                //                   child: Text(value),
-                //                 );
-                //               }).toList(),
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // ),
-
-
-                //pass
-      Padding(
-        padding: getPadding(
-          left: 1,
-          top: 25,
-        ),
-                  child: Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              context.tr("Password"),
-                              style: theme.textTheme.titleMedium,
-                            ),
-                            CustomTextFormField(
-                              controller: _passwordConroller,
-                              obscureText: obscureText,
-                              // margin: getMargin(
-                              //   top: 3,
-                              // ),
-                              hintText: context.tr("Your Password"),
-                              hintStyle: theme.textTheme.titleSmall!,
-                              textInputType: TextInputType.visiblePassword,
-                              suffix: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    obscureText = !obscureText;
-                                  });
-                                },
-                                child: Container(
-                                  margin: getMargin(
-                                    left: 30,
-                                    top: 15,
-                                    right: 16,
-                                    bottom: 15,
-                                  ),
-                                  child: CustomImageView(
-                                      svgPath: obscureText
-                                          ? ImageConstant
-                                          .imgAkariconseyeClose // Closed eye SVG
-                                          : ImageConstant
-                                          .imgAkariconseyeopen // Open eye SVG
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-
-                //confirm pass
-      Padding(
-        padding: getPadding(
-          left: 1,
-          top: 25,
-        ),
-                  child: Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              context.tr("Confirm Password"),
-                              style: theme.textTheme.titleMedium,
-                            ),
-                            CustomTextFormField(
-                              controller: _confirmPasswordConroller,
-                              obscureText: obscureText,
-                              // margin: getMargin(
-                              //   top: 3,
-                              // ),
-                              hintText: context.tr("Confirm Your Password"),
-                              hintStyle: theme.textTheme.titleSmall!,
-                              textInputType: TextInputType.visiblePassword,
-                              suffix: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    obscureText = !obscureText;
-                                  });
-                                },
-                                child: Container(
-                                  margin: getMargin(
-                                    left: 30,
-                                    top: 15,
-                                    right: 16,
-                                    bottom: 15,
-                                  ),
-                                  child: CustomImageView(
-                                      svgPath: obscureText
-                                          ? ImageConstant
-                                          .imgAkariconseyeClose // Closed eye SVG
-                                          : ImageConstant
-                                          .imgAkariconseyeopen // Open eye SVG
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                //SizedBox(height: 15),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 20),
-// sign up button
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 1),
-                  child: GestureDetector(
-                    onTap: signUpValidation,
+                body: SingleChildScrollView(
+                    // Enable scrolling
                     child: Container(
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                          color: Color(0xFF234E5C),
-                          borderRadius: BorderRadius.circular(8.0)),
-                      child: Center(
-                          child: Text(
-                        'Sign up',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                        width: double.maxFinite,
+                        padding: getPadding(
+                          left: 24,
+                          top: 21,
+                          right: 24,
+                          bottom: 21,
                         ),
-                      )),
-                    ),
-                  ),
-                ),
-      Align(
-          alignment: Alignment.center,
-          child: Padding(
-              padding: getPadding(
-                top: 25,
-                bottom: 5,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Don’t have an account",
-                          style: CustomTextStyles.labelLargeInterBluegray300,
-                        ),
-                        TextSpan(
-                          text: "?",
-                          style: CustomTextStyles.bodyMediumInterBluegray300,
-                        ),
-                        TextSpan(
-                          text: " ",
-                          style: CustomTextStyles.bodyMediumInterBluegray300,
-                        ),
-                      ],
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                  GestureDetector(
-                    onTap: openLoginScreen,
-                    child: Text(
-                      "Login Now",
-                      style: CustomTextStyles.labelLargeInterDeeporange30013.copyWith(
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ),
-                ],
-              )
-          )
-      ),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 50,
+                              ),
+                              Padding(
+                                padding: getPadding(
+                                  left: 1,
+                                ),
+                                child: Text(
+                                  context.tr("Sign Up"),
+                                  style: theme.textTheme.displaySmall,
+                                ),
+                              ),
+                              Container(
+                                width: getHorizontalSize(302),
+                                margin: getMargin(
+                                  left: 1,
+                                  top: 13,
+                                  right: 41,
+                                ),
+                                child: Text(
+                                  context.tr("Create your account."),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: theme.textTheme.bodyLarge!.copyWith(
+                                    height: 1.56,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: getPadding(
+                                  left: 1,
+                                  top: 25,
+                                ),
+                                child: Container(
+                                  width: double
+                                      .maxFinite, // Set the width to occupy the entire available space
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      // First Name field
+                                      Stack(
+                                        alignment: Alignment.bottomRight,
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  context.tr("First Name"),
+                                                  style: theme
+                                                      .textTheme.titleMedium,
+                                                ),
+                                                CustomTextFormField(
+                                                  controller: nameController,
+                                                  hintText: context
+                                                      .tr("Your First Name"),
+                                                  hintStyle: theme
+                                                      .textTheme.titleSmall!,
+                                                  textInputType:
+                                                      TextInputType.text,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                          height:
+                                              25), // Adjust spacing as needed
 
-              ],
-            ),
+                                      // Last Name field
+                                      Stack(
+                                        alignment: Alignment.bottomRight,
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  context.tr("Last Name"),
+                                                  style: theme
+                                                      .textTheme.titleMedium,
+                                                ),
+                                                CustomTextFormField(
+                                                  controller:
+                                                      lastNameameController,
+                                                  hintText: context
+                                                      .tr("Your Last Name"),
+                                                  hintStyle: theme
+                                                      .textTheme.titleSmall!,
+                                                  textInputType:
+                                                      TextInputType.text,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                          height:
+                                              25), // Adjust spacing as needed
+                                      //SizedBox(height: 10),
+                                      // Username
+                                      Stack(
+                                          alignment: Alignment.bottomRight,
+                                          children: [
+                                            Align(
+                                                alignment: Alignment.center,
+                                                child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        context.tr("Username"),
+                                                        style: theme.textTheme
+                                                            .titleMedium,
+                                                      ),
+                                                      CustomTextFormField(
+                                                        controller:
+                                                            usernameController,
+                                                        hintText: context.tr(
+                                                            "Your Username"),
+                                                        hintStyle: theme
+                                                            .textTheme
+                                                            .titleSmall!,
+                                                        textInputType:
+                                                            TextInputType.text,
+                                                      )
+                                                    ])),
+                                          ]),
+                                      SizedBox(height: 25),
 
-        ),
+                                      //pass
+                                      Stack(
+                                          alignment: Alignment.bottomRight,
+                                          children: [
+                                            Align(
+                                                alignment: Alignment.center,
+                                                child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        context.tr("Email"),
+                                                        style: theme.textTheme
+                                                            .titleMedium,
+                                                      ),
+                                                      CustomTextFormField(
+                                                        controller:
+                                                            _emailController,
+                                                        hintText: context.tr(
+                                                            "Example@Example.com"),
+                                                        hintStyle: theme
+                                                            .textTheme
+                                                            .titleSmall!,
+                                                        textInputType:
+                                                            TextInputType
+                                                                .emailAddress,
+                                                      )
+                                                    ])),
+                                          ]),
+                                      SizedBox(height: 25),
+                                      // phone num
+                                      Stack(
+                                          alignment: Alignment.bottomRight,
+                                          children: [
+                                            Align(
+                                                alignment: Alignment.center,
+                                                child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        context
+                                                            .tr("Phone Number"),
+                                                        style: theme.textTheme
+                                                            .titleMedium,
+                                                      ),
+                                                      CustomTextFormField(
+                                                        controller:
+                                                            phoneNumberController,
+                                                        hintText: context
+                                                            .tr("05********"),
+                                                        hintStyle: theme
+                                                            .textTheme
+                                                            .titleSmall!,
+                                                        textInputType:
+                                                            TextInputType.phone,
+                                                      )
+                                                    ])),
+                                          ]),
+                                      SizedBox(height: 10),
+                                      //pass
+                                      Padding(
+                                        padding: getPadding(
+                                          left: 1,
+                                          top: 25,
+                                        ),
+                                        child: Stack(
+                                          alignment: Alignment.bottomRight,
+                                          children: [
+                                            Align(
+                                              alignment: Alignment.center,
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    context.tr("Password"),
+                                                    style: theme
+                                                        .textTheme.titleMedium,
+                                                  ),
+                                                  CustomTextFormField(
+                                                    controller:
+                                                        _passwordConroller,
+                                                    obscureText: obscureText,
+                                                    // margin: getMargin(
+                                                    //   top: 3,
+                                                    // ),
+                                                    hintText: context
+                                                        .tr("Your Password"),
+                                                    hintStyle: theme
+                                                        .textTheme.titleSmall!,
+                                                    textInputType: TextInputType
+                                                        .visiblePassword,
+                                                    suffix: GestureDetector(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          obscureText =
+                                                              !obscureText;
+                                                        });
+                                                      },
+                                                      child: Container(
+                                                        margin: getMargin(
+                                                          left: 30,
+                                                          top: 15,
+                                                          right: 16,
+                                                          bottom: 15,
+                                                        ),
+                                                        child: CustomImageView(
+                                                            svgPath: obscureText
+                                                                ? ImageConstant
+                                                                    .imgAkariconseyeClose // Closed eye SVG
+                                                                : ImageConstant
+                                                                    .imgAkariconseyeopen // Open eye SVG
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
 
-    )
-    ]
-    ))))));
+                                      //confirm pass
+                                      Padding(
+                                        padding: getPadding(
+                                          left: 1,
+                                          top: 25,
+                                        ),
+                                        child: Stack(
+                                          alignment: Alignment.bottomRight,
+                                          children: [
+                                            Align(
+                                              alignment: Alignment.center,
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    context
+                                                        .tr("Confirm Password"),
+                                                    style: theme
+                                                        .textTheme.titleMedium,
+                                                  ),
+                                                  CustomTextFormField(
+                                                    controller:
+                                                        _confirmPasswordConroller,
+                                                    obscureText: obscureText,
+                                                    // margin: getMargin(
+                                                    //   top: 3,
+                                                    // ),
+                                                    hintText: context.tr(
+                                                        "Confirm Your Password"),
+                                                    hintStyle: theme
+                                                        .textTheme.titleSmall!,
+                                                    textInputType: TextInputType
+                                                        .visiblePassword,
+                                                    suffix: GestureDetector(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          obscureText =
+                                                              !obscureText;
+                                                        });
+                                                      },
+                                                      child: Container(
+                                                        margin: getMargin(
+                                                          left: 30,
+                                                          top: 15,
+                                                          right: 16,
+                                                          bottom: 15,
+                                                        ),
+                                                        child: CustomImageView(
+                                                            svgPath: obscureText
+                                                                ? ImageConstant
+                                                                    .imgAkariconseyeClose // Closed eye SVG
+                                                                : ImageConstant
+                                                                    .imgAkariconseyeopen // Open eye SVG
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
 
+                                      //SizedBox(height: 15),
 
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 25),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                        ),
+                                      ),
 
-
+                                      SizedBox(height: 20),
+// sign up button
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 1),
+                                        child: GestureDetector(
+                                          onTap: signUpValidation,
+                                          child: Container(
+                                            padding: EdgeInsets.all(16),
+                                            decoration: BoxDecoration(
+                                                color: Color(0xFF234E5C),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0)),
+                                            child: Center(
+                                                child: Text(
+                                                    context.tr('Sign up'),
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                              ),
+                                            )),
+                                          ),
+                                        ),
+                                      ),
+                                      Align(
+                                          alignment: Alignment.center,
+                                          child: Padding(
+                                              padding: getPadding(
+                                                top: 25,
+                                                bottom: 5,
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  RichText(
+                                                    text: TextSpan(
+                                                      children: [
+                                                        TextSpan(
+                                                          text:
+                                                        context.tr("Already have an account"),
+                                                          style: CustomTextStyles
+                                                              .labelLargeInterBluegray300,
+                                                        ),
+                                                        TextSpan(
+                                                          text: context.tr("?"),
+                                                          style: CustomTextStyles
+                                                              .bodyMediumInterBluegray300,
+                                                        ),
+                                                        TextSpan(
+                                                          text: " ",
+                                                          style: CustomTextStyles
+                                                              .bodyMediumInterBluegray300,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    textAlign: TextAlign.left,
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: openLoginScreen,
+                                                    child: Text(
+                                                      context.tr("Login Now"),
+                                                      style: CustomTextStyles
+                                                          .labelLargeInterDeeporange30013
+                                                          .copyWith(
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ))),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ]))))));
   }
 
 //////////////////////////////////////////////
 
   void signUpValidation() {
     if (nameController.text == null || nameController.text.length < 3) {
-      showInSnackBar('Please Enter valid you name.', Colors.red, Colors.white,
+      showInSnackBar(context.tr('Please Enter a valid name.'), Colors.red, Colors.white,
           2, context, _scaffoldKey);
     } else if (_emailController.text == null ||
         _emailController.text.contains('@') == false ||
         _emailController.text.contains('.com') == false) {
       showInSnackBar(
-          'Invalid Email', Colors.red, Colors.white, 2, context, _scaffoldKey);
+          context.tr('Invalid Email'), Colors.red, Colors.white, 2, context, _scaffoldKey);
     } else if (phoneNumberController.text == null ||
         phoneNumberController.text.contains('05') == false ||
-        phoneNumberController.text.length < 10 || phoneNumberController.text.length > 10) {
-      showInSnackBar('Please enter your phone number correctly, ex: 05********',
+        phoneNumberController.text.length < 10 ||
+        phoneNumberController.text.length > 10) {
+      showInSnackBar(context.tr('Please enter your phone number correctly, ex: 05********'),
           Colors.red, Colors.white, 2, context, _scaffoldKey);
     } else if (_passwordConroller.text == null ||
         _passwordConroller.text.length < 6) {
-      showInSnackBar('Password is too weak.', Colors.red, Colors.white, 2,
+      showInSnackBar(context.tr('Password is too weak.'), Colors.red, Colors.white, 2,
           context, _scaffoldKey);
     } else if (_passwordConroller.text != _confirmPasswordConroller.text) {
-      showInSnackBar('Passwords do not match.', Colors.red, Colors.white, 2,
+      showInSnackBar(context.tr('Passwords do not match.'), Colors.red, Colors.white, 2,
           context, _scaffoldKey);
     } else if (usernameController.text == null ||
         usernameController.text.isEmpty) {
-      showInSnackBar('Please enter a valid username.', Colors.red, Colors.white,
+      showInSnackBar(context.tr('Please enter a valid username.'), Colors.red, Colors.white,
           2, context, _scaffoldKey);
     } else {
       checkUsernameAvailability();
@@ -631,7 +617,7 @@ class _SignupScreenState extends State<SignupScreen> {
           .get();
 
       if (usernameSnapshot.docs.isNotEmpty) {
-        showInSnackBar('Username is already taken.', Colors.red, Colors.white,
+        showInSnackBar(context.tr('Username is already taken.'), Colors.red, Colors.white,
             2, context, _scaffoldKey);
       } else {
         print('Validation Completed');
@@ -642,6 +628,7 @@ class _SignupScreenState extends State<SignupScreen> {
       print('Error checking username availability: $e');
     }
   }
+
 //
   Future signup() async {
     DocumentSnapshot<Map<String, dynamic>> userData;
@@ -668,11 +655,13 @@ class _SignupScreenState extends State<SignupScreen> {
                 'sUserPhoneNumber': phoneNumberController.text,
                 'sUserNotificationToken': notificationToken,
                 'uniqueUserName': usernameController.text,
+                'password' : _passwordConroller.text,
                 // 'sNationality': selectedNationality,
                 // 'sCity': selectedCity,
                 'AccountCreatedDateTime': DateTime.now(),
-                'UserProfileImage':'https://raw.githubusercontent.com/RoaaAmin/hilinky_v1/main/assets/images/HilinkyLogo.png',
-                'following' : {}
+                'UserProfileImage':
+                    'https://raw.githubusercontent.com/RoaaAmin/hilinky_v1/main/assets/images/HilinkyLogo.png',
+                'following': {}
               }).then((value) async {
                 await FirebaseFirestore.instance
                     .collection('Users')
@@ -687,6 +676,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     LastName = userDBData.data()!['LastName'];
                     uniqueUserName = userDBData.data()!['uniqueUserName'];
                     sUserPhoneNumber = userDBData.data()!['sUserPhoneNumber'];
+                    password = userDBData.data()!['password'];
                     // sNationality = userDBData.data()!['sNationality'];
                     // sCity = userDBData.data()!['sCity'];
                     sUserNotificationToken =
@@ -695,12 +685,15 @@ class _SignupScreenState extends State<SignupScreen> {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   clearControllers();
                   await FirebaseAuth.instance.signOut();
-                  showInSnackBar('Registration completed, check your email to verify',
-                      Colors.green, Colors.white, 5, context, _scaffoldKey);
-                  Navigator.push(
+                  showInSnackBar(
+                      context.tr( 'Registration completed, check your email to verify'),
+                      Colors.green,
+                      Colors.white,
+                      5,
                       context,
-                      MaterialPageRoute(
-                      builder: (context) => LoginScreen()));
+                      _scaffoldKey);
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()));
                 });
               });
             } catch (e) {

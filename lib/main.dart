@@ -27,6 +27,7 @@ String userProfileImage = ' ';
 String uniqueUserName =' ';
 String sNationality= ' ';
 String sCity= ' ';
+String password = '';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

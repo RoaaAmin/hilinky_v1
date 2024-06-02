@@ -76,6 +76,7 @@ dependencies:
   animate_do: ^3.0.2
   in_app_update: ^4.2.2
   open_file: ^3.0.1
+  smooth_page_indicator: ^1.0.0+2
 
 
 

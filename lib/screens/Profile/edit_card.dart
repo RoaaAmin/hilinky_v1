@@ -281,8 +281,6 @@ class EditState extends State<EditCard> {
       setState(() {
         userData = value;
         sUserName = value['sUserName'];
-        nationality = value['sNationality'];
-        city = value['sCity'];
         lodaing = false;
         getPosts();
       });
