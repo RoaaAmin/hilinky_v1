@@ -201,12 +201,13 @@ class _MyCardState extends State<MyCard> {
       if (cardsDocs.length != 0) {
         return ListView.builder(
           physics: NeverScrollableScrollPhysics(),
-         padding: EdgeInsets.only(left: 10.0, right: 10, top: 10, bottom: 75),
+        // padding: EdgeInsets.only(left: 10.0, right: 10, top: 10, bottom: 75),
           itemCount: cardsDocs.length,
           shrinkWrap: true,
           itemBuilder: (context, i) {
             return Column(
               children: [
+                SizedBox(height: 55,),
                 Container(
                   height: 300, // Adjust height as needed
                   child: PageView(
