@@ -53,9 +53,9 @@ class _LanguageState extends State<Language> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: appTheme.whiteA700,
-        title: const Center(
+        title: Center(
           child: Text(
-            "Language",
+              context.tr("Language"),
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
