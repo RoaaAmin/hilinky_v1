@@ -154,7 +154,7 @@ class CodegenLoader extends AssetLoader {
     "Enter your nationality": "أدخل جنسيتك",
      "Saving...":"جاري الحفظ...",
     "Sign Up": "تسجيل",
-    "Create your account.": "إنشئ حسابك.",
+    "Create your account.": "أنشئ حسابك.",
     "Your First Name": "اسمك الأول",
     "Your Last Name": "اسمك الأخير",
     "Your Username": "اسم المستخدم",
