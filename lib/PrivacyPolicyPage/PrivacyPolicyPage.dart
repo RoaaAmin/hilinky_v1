@@ -186,14 +186,14 @@ class PrivacyPolicyPage extends StatelessWidget {
                 fontFamily: 'Inter',
               ),
             ),
-            Text(
-              context.tr('Geolocation data: Latitude and longitude'),
-              style: TextStyle(
-                color: Color(0xFF7EA9BA),
-                fontSize: 12,
-                fontFamily: 'Inter',
-              ),
-            ),
+            // Text(
+            //   context.tr('Geolocation data: Latitude and longitude'),
+            //   style: TextStyle(
+            //     color: Color(0xFF7EA9BA),
+            //     fontSize: 12,
+            //     fontFamily: 'Inter',
+            //   ),
+            // ),
             Text(
               context.tr(
                   'Social media data: Information from your social media profiles if you choose to link them, including your username, profile picture, and public activity'),

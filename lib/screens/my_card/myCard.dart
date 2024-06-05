@@ -172,7 +172,7 @@ class _MyCardState extends State<MyCard> {
             gradient: LinearGradient(
                 colors: [
                   Colors.orange.shade300,
-                  Colors.deepOrange.shade500
+                  Colors.deepOrange.shade400
                 ],
                 end: Alignment.topLeft,
                 begin: Alignment.bottomRight
@@ -201,7 +201,7 @@ class _MyCardState extends State<MyCard> {
       if (cardsDocs.length != 0) {
         return ListView.builder(
           physics: NeverScrollableScrollPhysics(),
-        // padding: EdgeInsets.only(left: 10.0, right: 10, top: 10, bottom: 75),
+        //padding: EdgeInsets.only(left: 10.0, right: 10, top: 10, bottom: 75),
           itemCount: cardsDocs.length,
           shrinkWrap: true,
           itemBuilder: (context, i) {

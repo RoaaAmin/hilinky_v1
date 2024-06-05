@@ -27,11 +27,15 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This app needs camera access to scan QR codes and pick pictures.</string>
+	<string>HiLinky App needs camera access to allow you to scan QR codes and take pictures.
+	 We respect your privacy and will only use the camera for these purposes.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>HiLinky app requires contacts access to function properly.</string>
+	<string>HiLinky App requires access to your contacts to allow us to add scanned data directly
+	 to your contacts, making it easier for you to manage and connect with your contacts.
+	  We respect your privacy and will only access the contacts you choose to share.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>HiLinky App needs photos permission to pick pictures.</string>
+	<string>HiLinky App needs access to your photo library to allow you to choose a profile photo or logo.
+	 We respect your privacy and will only access the images you select for this purpose.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

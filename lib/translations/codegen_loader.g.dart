@@ -169,7 +169,74 @@ class CodegenLoader extends AssetLoader {
     "Please enter your phone number correctly, ex: 05********": "يرجى إدخال رقم هاتفك بشكل صحيح",
     "Password is too weak.": "كلمة المرور ضعيفة جداً.",
     "Passwords do not match.": "كلمات المرور غير متطابقة.",
-    "Please enter a valid username.": "يرجى إدخال اسم مستخدم صالح."
+    "Please enter a valid username.": "يرجى إدخال اسم مستخدم صالح.",
+    "Our Privacy Principles": "مبادئ الخصوصية الخاصة بنا",
+    "Hilinky values your privacy and is committed to protecting your personal information. We prioritize your ability to control who accesses your data.":
+    "تقدر Hilinky خصوصيتك وتلتزم بحماية معلوماتك الشخصية. نحن نعطي الأولوية لقدرتك على التحكم في من يمكنه الوصول إلى بياناتك.",
+    "Your Data is Yours": "بياناتك هي ملكك",
+    "We do not sell or provide your data to third parties without your consent. Your data is yours to share as you wish.":
+    "لا نقوم ببيع أو تقديم بياناتك لأطراف ثالثة دون موافقتك. بياناتك هي ملكك لمشاركتها كما تشاء.",
+    "Secure Storage": "تخزين آمن",
+    "Your data is protected with enterprise-grade encryption and security.":
+    "بياناتك محمية بتشفير وأمان من مستوى المؤسسة.",
+    "Safe Sharing": "مشاركة آمنة",
+    "Every Hilinky user has a unique identifier. Only those you share your information with can access your details.":
+    "كل مستخدم لـ Hilinky لديه معرف فريد. فقط أولئك الذين تشارك معلوماتك معهم يمكنهم الوصول إلى تفاصيلك.",
+    "Introduction": "مقدمة",
+    "This privacy policy (\"Policy\") describes how personal information (\"Personal Information\") collected through the Hilinky mobile application (\"Mobile Application\" or \"Service\") is handled. It outlines the types of information collected, how it is used, and your rights regarding this data.":
+    "تصف سياسة الخصوصية هذه (\"السياسة\") كيفية التعامل مع المعلومات الشخصية (\"المعلومات الشخصية\") التي تم جمعها من خلال تطبيق Hilinky المحمول (\"التطبيق المحمول\" أو \"الخدمة\"). توضح أنواع المعلومات التي تم جمعها، وكيفية استخدامها، وحقوقك بخصوص هذه البيانات.",
+    "Automatic Collection of Information": "جمع المعلومات تلقائيًا",
+    "We prioritize customer data security and follow a no-logs policy. We collect minimal data necessary for maintaining the Mobile Application and Services. Automatically collected data is used only for identifying potential abuse and gathering statistical information.":
+    "نحن نعطي الأولوية لأمان بيانات العملاء ونتبع سياسة عدم تسجيل البيانات. نحن نجمع الحد الأدنى من البيانات اللازمة للحفاظ على التطبيق المحمول والخدمات. يتم استخدام البيانات التي تم جمعها تلقائيًا فقط لتحديد سوء الاستخدام المحتمل وجمع المعلومات الإحصائية.",
+    "Collection of Personal Information": "جمع المعلومات الشخصية",
+    "You can use Hilinky without revealing any personally identifiable information. However, for certain features, you may need to provide Personal Information such as your name and email address. We collect:":
+    "يمكنك استخدام Hilinky دون الكشف عن أي معلومات شخصية يمكن التعرف عليها. ومع ذلك، بالنسبة لبعض الميزات، قد تحتاج إلى تقديم معلومات شخصية مثل اسمك وعنوان بريدك الإلكتروني. نحن نجمع:",
+    "Personal details: Name": "تفاصيل شخصية: الاسم",
+    "Contact information: Email address, Phone number": "معلومات الاتصال: عنوان البريد الإلكتروني، رقم الهاتف",
+    "Account details: Username, password": "تفاصيل الحساب: اسم المستخدم، كلمة المرور",
+    "Social media data: Information from your social media profiles if you choose to link them, including your username, profile picture, and public activity":
+    "بيانات وسائل التواصل الاجتماعي: معلومات من ملفاتك الشخصية على وسائل التواصل الاجتماعي إذا اخترت ربطها، بما في ذلك اسم المستخدم، صورة الملف الشخصي، والنشاط العام",
+    "Use and Processing of Collected Information": "استخدام ومعالجة المعلومات المجمعة",
+    "We use your information to:\n\nCreate and manage user accounts\nImprove our services\nSend administrative information\nRespond to inquiries and offer support\nEnhance user experience\nEnforce terms and conditions\nProtect against abuse\n\nWe process your data based on consent, legal obligations, or legitimate interests.": "نستخدم معلوماتك لـ:\n\nإنشاء وإدارة حسابات المستخدمين\nتحسين خدماتنا\nإرسال معلومات إدارية\nالرد على الاستفسارات وتقديم الدعم\nتعزيز تجربة المستخدم\nفرض الشروط والأحكام\nالحماية من سوء الاستخدام\n\nنحن نعالج بياناتك بناءً على الموافقة أو الالتزامات القانونية أو المصالح المشروعة.",
+
+    "Managing Information": "إدارة المعلومات",
+    "You can delete certain Personal Information by contacting us. We may retain a copy for compliance and operational purposes":
+    "يمكنك حذف معلومات شخصية معينة عن طريق الاتصال بنا. قد نحتفظ بنسخة للأغراض الامتثالية والتشغيلية",
+    "Disclosure of Information": "الإفصاح عن المعلومات",
+    "We share your data only with trusted third parties necessary to provide our services. We do not share Personal Information with unaffiliated third parties.":
+    "نشارك بياناتك فقط مع الأطراف الثالثة الموثوقة اللازمة لتقديم خدماتنا. نحن لا نشارك المعلومات الشخصية مع أطراف ثالثة غير مرتبطة.",
+    "Retention of Information": "الاحتفاظ بالمعلومات",
+    "We retain your Personal Information as long as necessary to fulfill legal obligations and operational needs. Once the retention period expires, Personal Information is deleted.":
+    "نحتفظ بمعلوماتك الشخصية طالما كان ذلك ضروريًا للوفاء بالالتزامات القانونية والاحتياجات التشغيلية. بمجرد انتهاء فترة الاحتفاظ، يتم حذف المعلومات الشخصية.",
+    "Transfer of Information": "نقل المعلومات",
+    "Your data may be transferred and stored outside your country. We ensure these transfers comply with relevant legal requirements.":
+    "قد يتم نقل بياناتك وتخزينها خارج بلدك. نحن نضمن أن هذه التحويلات تتوافق مع المتطلبات القانونية ذات الصلة.",
+    "Your Rights": "حقوقك",
+    "You have the right to:\n\nWithdraw consent\nAccess and update your information\nRestrict processing\nRequest deletion of your data\nObject to data processing\nReceive your data in a structured format\n\nTo exercise these rights, please get in touch with us at Hi.linky@wetaan.com.": "لديك الحق في:\n\nسحب الموافقة\nالوصول إلى معلوماتك وتحديثها\nتقييد المعالجة\nطلب حذف بياناتك\nالاعتراض على معالجة البيانات\nتلقي بياناتك بتنسيق منظم\n\nلممارسة هذه الحقوق، يرجى التواصل معنا على Hi.linky@wetaan.com.",
+    "Withdraw consent": "سحب الموافقة",
+    "Access and update your information": "الوصول إلى معلوماتك وتحديثها",
+    "Restrict processing": "تقييد المعالجة",
+    "Request deletion of your data": "طلب حذف بياناتك",
+    "Object to data processing": "الاعتراض على معالجة البيانات",
+    "Receive your data in a structured format": "تلقي بياناتك بتنسيق منظم",
+    "To exercise these rights, please get in touch with us at Hi.linky@wetaan.com.":
+    "لممارسة هذه الحقوق، يرجى الاتصال بنا على Hi.linky@wetaan.com.",
+    "Information Security": "أمان المعلومات",
+    "We secure your data with reasonable administrative, technical, and physical safeguards. However, no Internet or wireless transmission is entirely secure.":
+    "نحن نحمي بياناتك بإجراءات إدارية وفنية وبدنية معقولة. ومع ذلك، لا يوجد نقل عبر الإنترنت أو اللاسلكي آمن تمامًا.",
+    "We may update this Privacy Policy from time to time. If we make changes, we will notify you by revising the date at the top of this policy and, in some cases, we may provide additional notice (such as adding a statement to our homepage or sending you a notification). We'd like to encourage you to review this Privacy Policy periodically to stay informed about our practices.":
+    "قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. إذا أجرينا تغييرات، سنخطرك عن طريق تعديل التاريخ في أعلى هذه السياسة، وفي بعض الحالات، قد نقدم إشعارًا إضافيًا (مثل إضافة بيان إلى صفحتنا الرئيسية أو إرسال إشعار إليك). نود أن نشجعك على مراجعة سياسة الخصوصية هذه بشكل دوري للبقاء على اطلاع بممارساتنا.",
+    "Acceptance of This Policy": "قبول هذه السياسة",
+    "By using Hilinky, you agree to this Policy. If you do not agree, please do not use our services.":
+    "باستخدام Hilinky، فإنك توافق على هذه السياسة. إذا كنت لا توافق، يرجى عدم استخدام خدماتنا.",
+    "If you have any questions or concerns about this Privacy Policy, please contact us at:":
+    "إذا كان لديك أي أسئلة أو مخاوف بشأن سياسة الخصوصية هذه، يرجى الاتصال بنا على:",
+    "Email: Hi.linky@wetaan.com": "البريد الإلكتروني: Hi.linky@wetaan.com",
+    "Phone number: +966 53 259 5204": "رقم الهاتف: +966 53 259 5204",
+    "Last updated: 06 June 2024": "آخر تحديث: 06 يونيو 2024",
+    "This policy ensures transparency and compliance with data protection regulations, reflecting Hilinky's commitment to user privacy.":
+    "تضمن هذه السياسة الشفافية والامتثال للوائح حماية البيانات، مما يعكس التزام Hilinky بخصوصية المستخدم.",
+    "Copyright © 2024 Wetaan\nAll rights reserved": "حقوق الطبع والنشر © 2024 وتان\nجميع الحقوق محفوظة",
   };
   static const Map<String, dynamic> en = {
     "Select Your Language": "Select Your Language",
@@ -332,7 +399,65 @@ class CodegenLoader extends AssetLoader {
     "Please enter your phone number correctly, ex: 05********": "Please enter your phone number correctly, ex: 05********",
     "Password is too weak.": "Password is too weak.",
     "Passwords do not match.": "Passwords do not match.",
-    "Please enter a valid username.": "Please enter a valid username."
+    "Please enter a valid username.": "Please enter a valid username.",
+    "Our Privacy Principles": "Our Privacy Principles",
+    "Hilinky values your privacy and is committed to protecting your personal information. We prioritize your ability to control who accesses your data.":
+    "Hilinky values your privacy and is committed to protecting your personal information. We prioritize your ability to control who accesses your data.",
+    "Your Data is Yours": "Your Data is Yours",
+    "We do not sell or provide your data to third parties without your consent. Your data is yours to share as you wish.":
+    "We do not sell or provide your data to third parties without your consent. Your data is yours to share as you wish.",
+    "Secure Storage": "Secure Storage",
+    "Your data is protected with enterprise-grade encryption and security.":
+    "Your data is protected with enterprise-grade encryption and security.",
+    "Safe Sharing": "Safe Sharing",
+    "Every Hilinky user has a unique identifier. Only those you share your information with can access your details.":
+    "Every Hilinky user has a unique identifier. Only those you share your information with can access your details.",
+    "Introduction": "Introduction",
+    "This privacy policy (\"Policy\") describes how personal information (\"Personal Information\") collected through the Hilinky mobile application (\"Mobile Application\" or \"Service\") is handled. It outlines the types of information collected, how it is used, and your rights regarding this data.":
+    "This privacy policy (\"Policy\") describes how personal information (\"Personal Information\") collected through the Hilinky mobile application (\"Mobile Application\" or \"Service\") is handled. It outlines the types of information collected, how it is used, and your rights regarding this data.",
+    "Automatic Collection of Information": "Automatic Collection of Information",
+    "We prioritize customer data security and follow a no-logs policy. We collect minimal data necessary for maintaining the Mobile Application and Services. Automatically collected data is used only for identifying potential abuse and gathering statistical information.":
+    "We prioritize customer data security and follow a no-logs policy. We collect minimal data necessary for maintaining the Mobile Application and Services. Automatically collected data is used only for identifying potential abuse and gathering statistical information.",
+    "Collection of Personal Information": "Collection of Personal Information",
+    "You can use Hilinky without revealing any personally identifiable information. However, for certain features, you may need to provide Personal Information such as your name and email address. We collect:":
+    "You can use Hilinky without revealing any personally identifiable information. However, for certain features, you may need to provide Personal Information such as your name and email address. We collect:",
+    "Personal details: Name": "Personal details: Name",
+    "Contact information: Email address, Phone number": "Contact information: Email address, Phone number",
+    "Account details: Username, password": "Account details: Username, password",
+    "Social media data: Information from your social media profiles if you choose to link them, including your username, profile picture, and public activity":
+    "Social media data: Information from your social media profiles if you choose to link them, including your username, profile picture, and public activity",
+    "Use and Processing of Collected Information": "Use and Processing of Collected Information",
+    "We use your information to:\n\nCreate and manage user accounts\nImprove our services\nSend administrative information\nRespond to inquiries and offer support\nEnhance user experience\nEnforce terms and conditions\nProtect against abuse\n\nWe process your data based on consent, legal obligations, or legitimate interests.": "We use your information to:\n\nCreate and manage user accounts\nImprove our services\nSend administrative information\nRespond to inquiries and offer support\nEnhance user experience\nEnforce terms and conditions\nProtect against abuse\n\nWe process your data based on consent, legal obligations, or legitimate interests.",
+    "Managing Information": "Managing Information",
+    "You can delete certain Personal Information by contacting us. We may retain a copy for compliance and operational purposes":
+    "You can delete certain Personal Information by contacting us. We may retain a copy for compliance and operational purposes",
+    "Disclosure of Information": "Disclosure of Information",
+    "We share your data only with trusted third parties necessary to provide our services. We do not share Personal Information with unaffiliated third parties.":
+    "We share your data only with trusted third parties necessary to provide our services. We do not share Personal Information with unaffiliated third parties.",
+    "Retention of Information": "Retention of Information",
+    "We retain your Personal Information as long as necessary to fulfill legal obligations and operational needs. Once the retention period expires, Personal Information is deleted.":
+    "We retain your Personal Information as long as necessary to fulfill legal obligations and operational needs. Once the retention period expires, Personal Information is deleted.",
+    "Transfer of Information": "Transfer of Information",
+    "Your data may be transferred and stored outside your country. We ensure these transfers comply with relevant legal requirements.":
+    "Your data may be transferred and stored outside your country. We ensure these transfers comply with relevant legal requirements.",
+    "Your Rights": "Your Rights",
+    "You have the right to:\n\nWithdraw consent\nAccess and update your information\nRestrict processing\nRequest deletion of your data\nObject to data processing\nReceive your data in a structured format\n\nTo exercise these rights, please get in touch with us at Hi.linky@wetaan.com.": "You have the right to:\n\nWithdraw consent\nAccess and update your information\nRestrict processing\nRequest deletion of your data\nObject to data processing\nReceive your data in a structured format\n\nTo exercise these rights, please get in touch with us at Hi.linky@wetaan.com.",
+    "Information Security": "Information Security",
+    "We secure your data with reasonable administrative, technical, and physical safeguards. However, no Internet or wireless transmission is entirely secure.":
+    "We secure your data with reasonable administrative, technical, and physical safeguards. However, no Internet or wireless transmission is entirely secure.",
+    "We may update this Privacy Policy from time to time. If we make changes, we will notify you by revising the date at the top of this policy and, in some cases, we may provide additional notice (such as adding a statement to our homepage or sending you a notification). We'd like to encourage you to review this Privacy Policy periodically to stay informed about our practices.":
+    "We may update this Privacy Policy from time to time. If we make changes, we will notify you by revising the date at the top of this policy and, in some cases, we may provide additional notice (such as adding a statement to our homepage or sending you a notification). We'd like to encourage you to review this Privacy Policy periodically to stay informed about our practices.",
+    "Acceptance of This Policy": "Acceptance of This Policy",
+    "By using Hilinky, you agree to this Policy. If you do not agree, please do not use our services.":
+    "By using Hilinky, you agree to this Policy. If you do not agree, please do not use our services.",
+    "If you have any questions or concerns about this Privacy Policy, please contact us at:":
+    "If you have any questions or concerns about this Privacy Policy, please contact us at:",
+    "Email: Hi.linky@wetaan.com": "Email: Hi.linky@wetaan.com",
+    "Phone number: +966 53 259 5204": "Phone number: +966 53 259 5204",
+    "Last updated: 06 June 2024": "Last updated: 06 June 2024",
+    "This policy ensures transparency and compliance with data protection regulations, reflecting Hilinky's commitment to user privacy.":
+    "This policy ensures transparency and compliance with data protection regulations, reflecting Hilinky's commitment to user privacy.",
+    "Copyright © 2024 Wetaan\nAll rights reserved": "Copyright © 2024 Wetaan\nAll rights reserved",
 
   };
 
