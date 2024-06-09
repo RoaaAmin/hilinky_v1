@@ -78,6 +78,7 @@ class ImageConstant {
   static String hilinkylogopng = '$imagePath/HilinkyLogo.png';
   static String HilinkyCard = '$imagePath/imgHilinkyCard.png';
   static String hilinkyLogoText = '$imagePath/hilinkyLogoText.svg';
+  static String enhilinky = '$imagePath/hilinky.png';
 
   static String arabicLogo = '$imagePath/Arabic Logo.png';
   static String EnglishLogo = '$imagePath/EnglishLogo.svg';

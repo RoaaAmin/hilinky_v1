@@ -25,8 +25,10 @@ class AboutUs extends StatelessWidget {
                   SizedBox(height: 50),
                   CustomImageView(
                     imagePath: context.locale == Locale('en')
-                        ? ImageConstant.hilinkyLogoText
+                        ? ImageConstant.enhilinky
                         : ImageConstant.arabicLogo,
+                  //  height: 30.0,
+                    width: 250.0,
                   ),
                   SizedBox(height: 40),
                   SizedBox(
