@@ -34,7 +34,7 @@ class CustomImageView extends StatelessWidget {
   /// it will shows the placeholder image if image is not found on network image
   CustomImageView({
     this.url,
-    this.imagePath,
+    this.imagePath ,
     this.svgPath,
     this.file,
     this.height,

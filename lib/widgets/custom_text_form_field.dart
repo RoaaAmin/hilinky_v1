@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hilinky/widgets/custom_image_view.dart';
 
+// Your CustomTextFormField class
+import '../core/utils/image_constant.dart';
 import '../core/utils/size_utils.dart';
 import '../theme/theme_helper.dart';
 
@@ -136,3 +139,70 @@ class CustomTextFormField extends StatelessWidget {
         ),
   );
 }
+
+// Password field widget that manages its own state
+class PasswordField extends StatefulWidget {
+  final TextEditingController controller;
+  final String hintText;
+  final TextStyle hintStyle;
+  final TextStyle labelStyle;
+  final String label;
+
+  PasswordField({
+    required this.controller,
+    required this.hintText,
+    required this.hintStyle,
+    required this.labelStyle,
+    required this.label,
+  });
+
+  @override
+  _PasswordFieldState createState() => _PasswordFieldState();
+}
+
+class _PasswordFieldState extends State<PasswordField> {
+  bool obscureText = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          widget.label,
+          style: widget.labelStyle,
+        ),
+        CustomTextFormField(
+          controller: widget.controller,
+          obscureText: obscureText,
+          hintText: widget.hintText,
+          hintStyle: widget.hintStyle,
+          textInputType: TextInputType.visiblePassword,
+          suffixIcon: GestureDetector(
+            onTap: () {
+              setState(() {
+                obscureText = !obscureText;
+              });
+            },
+    child: Container(
+                      margin: getMargin(
+                        left: 30,
+                        top: 15,
+                        right: 16,
+                        bottom: 15,
+                      ),
+    child: CustomImageView(
+                          svgPath: obscureText
+                              ? ImageConstant
+                                  .imgAkariconseyeClose // Closed eye SVG
+                              : ImageConstant
+                                  .imgAkariconseyeopen // Open eye SVG
+                          ),
+    ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+

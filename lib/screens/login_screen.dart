@@ -168,35 +168,57 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context.tr("Password"),
                                 style: theme.textTheme.titleMedium,
                               ),
+                              // CustomTextFormField(
+                              //   controller: _passwordController,
+                              //   obscureText: obscureText,
+                              //   // margin: getMargin(
+                              //   //   top: 3,
+                              //   // ),
+                              //   hintText: context.tr("Your Password"),
+                              //   hintStyle: theme.textTheme.titleSmall!,
+                              //   textInputType: TextInputType.visiblePassword,
+                              //   suffix: GestureDetector(
+                              //     onTap: () {
+                              //       setState(() {
+                              //         obscureText = !obscureText;
+                              //       });
+                              //     },
+                              //     child: Container(
+                              //       margin: getMargin(
+                              //         left: 30,
+                              //         top: 15,
+                              //         right: 16,
+                              //         bottom: 15,
+                              //       ),
+                              //       child: CustomImageView(
+                              //           svgPath: obscureText
+                              //               ? ImageConstant
+                              //                   .imgAkariconseyeClose // Closed eye SVG
+                              //               : ImageConstant
+                              //                   .imgAkariconseyeopen // Open eye SVG
+                              //           ),
+                              //     ),
+                              //   ),
+                              // )
                               CustomTextFormField(
                                 controller: _passwordController,
                                 obscureText: obscureText,
-                                // margin: getMargin(
-                                //   top: 3,
-                                // ),
-                                hintText: context.tr("Your Password"),
+                                hintText: "Your Password",
                                 hintStyle: theme.textTheme.titleSmall!,
                                 textInputType: TextInputType.visiblePassword,
-                                suffix: GestureDetector(
+                                suffixIcon: GestureDetector(
                                   onTap: () {
                                     setState(() {
                                       obscureText = !obscureText;
                                     });
                                   },
                                   child: Container(
-                                    margin: getMargin(
-                                      left: 30,
-                                      top: 15,
-                                      right: 16,
-                                      bottom: 15,
-                                    ),
+                                    margin: EdgeInsets.only(left: 30, top: 15, right: 16, bottom: 15),
                                     child: CustomImageView(
-                                        svgPath: obscureText
-                                            ? ImageConstant
-                                                .imgAkariconseyeClose // Closed eye SVG
-                                            : ImageConstant
-                                                .imgAkariconseyeopen // Open eye SVG
-                                        ),
+                                      svgPath: obscureText
+                                          ? ImageConstant.imgAkariconseyeClose // Closed eye SVG
+                                          : ImageConstant.imgAkariconseyeopen, // Open eye SVG
+                                    ),
                                   ),
                                 ),
                               )

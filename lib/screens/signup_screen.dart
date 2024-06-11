@@ -344,138 +344,26 @@ class _SignupScreenState extends State<SignupScreen> {
                                                     ])),
                                           ]),
                                       SizedBox(height: 10),
+
                                       //pass
                                       Padding(
-                                        padding: getPadding(
-                                          left: 1,
-                                          top: 25,
-                                        ),
-                                        child: Stack(
-                                          alignment: Alignment.bottomRight,
-                                          children: [
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    context.tr("Password"),
-                                                    style: theme
-                                                        .textTheme.titleMedium,
-                                                  ),
-                                                  CustomTextFormField(
-                                                    controller:
-                                                        _passwordConroller,
-                                                    obscureText: obscureText,
-                                                    // margin: getMargin(
-                                                    //   top: 3,
-                                                    // ),
-                                                    hintText: context
-                                                        .tr("Your Password"),
-                                                    hintStyle: theme
-                                                        .textTheme.titleSmall!,
-                                                    textInputType: TextInputType
-                                                        .visiblePassword,
-                                                    suffix: GestureDetector(
-                                                      onTap: () {
-                                                        setState(() {
-                                                          obscureText =
-                                                              !obscureText;
-                                                        });
-                                                      },
-                                                      child: Container(
-                                                        margin: getMargin(
-                                                          left: 30,
-                                                          top: 15,
-                                                          right: 16,
-                                                          bottom: 15,
-                                                        ),
-                                                        child: CustomImageView(
-                                                            svgPath: obscureText
-                                                                ? ImageConstant
-                                                                    .imgAkariconseyeClose // Closed eye SVG
-                                                                : ImageConstant
-                                                                    .imgAkariconseyeopen // Open eye SVG
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ],
+                                        padding: EdgeInsets.only(left: 1, top: 25),
+                                        child: PasswordField(
+                                          controller: _passwordConroller,
+                                          hintText: 'Your Password',
+                                          hintStyle: theme.textTheme.titleSmall!,
+                                          labelStyle: theme.textTheme.titleMedium!,
+                                          label: 'Password',
                                         ),
                                       ),
-
-                                      //confirm pass
                                       Padding(
-                                        padding: getPadding(
-                                          left: 1,
-                                          top: 25,
-                                        ),
-                                        child: Stack(
-                                          alignment: Alignment.bottomRight,
-                                          children: [
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    context
-                                                        .tr("Confirm Password"),
-                                                    style: theme
-                                                        .textTheme.titleMedium,
-                                                  ),
-                                                  CustomTextFormField(
-                                                    controller:
-                                                        _confirmPasswordConroller,
-                                                    obscureText: obscureText,
-                                                    // margin: getMargin(
-                                                    //   top: 3,
-                                                    // ),
-                                                    hintText: context.tr(
-                                                        "Confirm Your Password"),
-                                                    hintStyle: theme
-                                                        .textTheme.titleSmall!,
-                                                    textInputType: TextInputType
-                                                        .visiblePassword,
-                                                    suffix: GestureDetector(
-                                                      onTap: () {
-                                                        setState(() {
-                                                          obscureText =
-                                                              !obscureText;
-                                                        });
-                                                      },
-                                                      child: Container(
-                                                        margin: getMargin(
-                                                          left: 30,
-                                                          top: 15,
-                                                          right: 16,
-                                                          bottom: 15,
-                                                        ),
-                                                        child: CustomImageView(
-                                                            svgPath: obscureText
-                                                                ? ImageConstant
-                                                                    .imgAkariconseyeClose // Closed eye SVG
-                                                                : ImageConstant
-                                                                    .imgAkariconseyeopen // Open eye SVG
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ],
+                                        padding: EdgeInsets.only(left: 1, top: 25),
+                                        child: PasswordField(
+                                          controller: _confirmPasswordConroller,
+                                          hintText: 'Confirm Your Password',
+                                          hintStyle: theme.textTheme.titleSmall!,
+                                          labelStyle: theme.textTheme.titleMedium!,
+                                          label: 'Confirm Password',
                                         ),
                                       ),
 
