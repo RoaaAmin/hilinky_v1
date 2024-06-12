@@ -544,7 +544,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Colors.red, Colors.white, 2, context, _scaffoldKey);
     }
   }
-
+// edit
   Future signIn(String userEmail) async {
     print('Authentication Started.......');
     try {
