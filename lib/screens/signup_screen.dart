@@ -543,7 +543,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 'sUserPhoneNumber': phoneNumberController.text,
                 'sUserNotificationToken': notificationToken,
                 'uniqueUserName': usernameController.text,
-                'password' : _passwordConroller.text,
+               // 'password' : _passwordConroller.text,
                 // 'sNationality': selectedNationality,
                 // 'sCity': selectedCity,
                 'AccountCreatedDateTime': DateTime.now(),
@@ -564,7 +564,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     LastName = userDBData.data()!['LastName'];
                     uniqueUserName = userDBData.data()!['uniqueUserName'];
                     sUserPhoneNumber = userDBData.data()!['sUserPhoneNumber'];
-                    password = userDBData.data()!['password'];
+                    // password = userDBData.data()!['password'];
                     // sNationality = userDBData.data()!['sNationality'];
                     // sCity = userDBData.data()!['sCity'];
                     sUserNotificationToken =

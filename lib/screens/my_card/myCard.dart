@@ -242,6 +242,9 @@ class _MyCardState extends State<MyCard> {
     }
   }
 
+
+
+
   Widget profileCard(BuildContext context, int i) {
     List<String> keys = Links.keys.toList();
     List<dynamic> values = Links.values.toList();
@@ -260,7 +263,7 @@ class _MyCardState extends State<MyCard> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 40, right: 40, top: 40),
+            padding: const EdgeInsets.only(left: 40, right: 40, top: 60),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -381,10 +384,40 @@ class _MyCardState extends State<MyCard> {
               ],
             ),
           ),
+          // Add the container with the edit button here, at the top right
+      Expanded(
+        child: Directionality(
+          textDirection: ui.TextDirection.ltr,
+            child: Positioned(
+              top: 40,
+              right: 30,
+              child: Container(
+                height: 25,
+
+                child: ElevatedButton(
+                  onPressed: () {
+                    context.pushPage(EditCard());
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shadowColor: Colors.transparent, // Removing the button's shadow
+                  ),
+                  child: Text(
+                    'Edit',
+                    style: TextStyle(
+                      color: Colors.deepOrange,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+      ),
         ],
       ),
     );
   }
+
+
 
   Widget qrCard(BuildContext context) {
     return Container(
