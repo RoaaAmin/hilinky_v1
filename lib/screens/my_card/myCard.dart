@@ -7,7 +7,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hilinky/components/context.dart';
 import 'package:hilinky/screens/home_screen.dart';
 import 'package:hilinky/screens/my_card/widget/qr_code.dart';
-// import 'package:carousel_slider/carousel_slider.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -19,10 +18,7 @@ import '../../widgets/app_bar/appbar_image.dart';
 import '../../widgets/custom_image_view.dart';
 import '../Profile/edit_card.dart';
 import '../Scanner/QRScannerPage.dart';
-import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-
-// import 'package:page_indicator/page_indicator.dart';
 
 class MyCard extends StatefulWidget {
   @override
@@ -38,17 +34,14 @@ class _MyCardState extends State<MyCard> {
   Color backgroundColor = Colors.white; // Background color
 
   late DocumentSnapshot<Map<String, dynamic>> userData;
-  List<DocumentSnapshot<Map<String, dynamic>>> cardsDocs= [];
+  List<DocumentSnapshot<Map<String, dynamic>>> cardsDocs = [];
   Map<String, dynamic> Links = {};
-
-  get height => null;
 
   @override
   void initState() {
     super.initState();
     getUserData();
     getLinks();
-
   }
 
   void getLinks() async {
@@ -56,27 +49,23 @@ class _MyCardState extends State<MyCard> {
         .collection('Cards')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
-        .then(
-          (value) {
-        setState(() {
-          UserProfileImage = value.data()!['ImageURL'];
-          print('-----------------------------------------------');
-          print(UserProfileImage);
-          Links.clear();
-          Links = value.data()!['Links'];
-          Links.removeWhere((key, value) => value == '');
-        });
-      },
-    );
-    print('end');
-    print(Links.length);
+        .then((value) {
+      setState(() {
+        UserProfileImage = value.data()!['ImageURL'];
+        Links.clear();
+        Links = value.data()!['Links'];
+        Links.removeWhere((key, value) => value == '');
+      });
+    });
   }
+
   getMyCards() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       final userUID = user.uid;
 
-      await FirebaseFirestore.instance.collection('Cards')
+      await FirebaseFirestore.instance
+          .collection('Cards')
           .where('PostedByUID', isEqualTo: userUID)
           .get()
           .then((value) async {
@@ -92,7 +81,11 @@ class _MyCardState extends State<MyCard> {
   }
 
   getUserData() async {
-    await FirebaseFirestore.instance.collection('Users').doc(FirebaseAuth.instance.currentUser!.uid).get().then((value) {
+    await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((value) {
       setState(() {
         userData = value;
         getMyCards();
@@ -114,24 +107,21 @@ class _MyCardState extends State<MyCard> {
     'dribbble': const FaIcon(FontAwesomeIcons.dribbble),
     'behance': const FaIcon(FontAwesomeIcons.behance),
     'location': const FaIcon(FontAwesomeIcons.location),
-    'tiktok':   const FaIcon(FontAwesomeIcons.tiktok),
+    'tiktok': const FaIcon(FontAwesomeIcons.tiktok),
   };
 
   @override
   Widget build(BuildContext context) {
-    return  WillPopScope(
+    return WillPopScope(
       onWillPop: () async => false,
-      child:  Scaffold(
+      child: Scaffold(
         backgroundColor: appTheme.whiteA700,
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leadingWidth: double.maxFinite,
           leading: AppbarImage(
             imagePath: ImageConstant.hilinkylogopng,
-            margin: getMargin(
-              // left: 11,
-              right: 6,
-            ),
+            margin: getMargin(right: 6),
           ),
           shape: ContinuousRectangleBorder(
             borderRadius: BorderRadius.vertical(
@@ -143,39 +133,49 @@ class _MyCardState extends State<MyCard> {
           ),
           title: Text(context.tr('Home Screen')),
         ),
-        body: ListView(
-          shrinkWrap: true,
-          physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    // padding: EdgeInsets.only(top: 0.0, left: 30.0, right: 30.0, bottom: 5.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                      ],
+            SizedBox(height: 77),
+            if (myCardFetched && cardsDocs.isNotEmpty) ...[
+              Expanded(
+                child: Column(
+                  children: [
+                    SizedBox(height: 55),
+                    Container(
+                      height: 300,
+                      child: PageView(
+                        controller: _pageController,
+                        children: [
+                          profileCard(context, 0),
+                          qrCard(context),
+                        ],
+                      ),
                     ),
-                  )
-                ],
+                    SmoothPageIndicator(
+                      controller: _pageController,
+                      count: 2,
+                      effect: WormEffect(
+                        dotHeight: 8.0,
+                        dotWidth: 8.0,
+                        spacing: 16.0,
+                        activeDotColor: Colors.deepOrange.shade300,
+                        dotColor: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 77,),
-            flowList(context),
+            ] else
+              Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),)),
           ],
         ),
         floatingActionButton: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: [
-                  Colors.orange.shade300,
-                  Colors.deepOrange.shade400
-                ],
-                end: Alignment.topLeft,
-                begin: Alignment.bottomRight
+              colors: [Colors.orange.shade300, Colors.deepOrange.shade400],
+              end: Alignment.topLeft,
+              begin: Alignment.bottomRight,
             ),
             shape: BoxShape.circle,
           ),
@@ -185,65 +185,13 @@ class _MyCardState extends State<MyCard> {
             },
             child: Icon(Icons.qr_code_scanner),
             foregroundColor: Colors.white,
-            backgroundColor: Colors.transparent, // Set background color to transparent
-            elevation: 0, // Remove the shadow effect
+            backgroundColor: Colors.transparent,
+            elevation: 0,
           ),
         ),
       ),
     );
   }
-
-
-  Widget flowList(BuildContext context) {
-    List<String> keys = Links.keys.toList();
-    List<dynamic> values = Links.values.toList();
-    if (cardsDocs != null) {
-      if (cardsDocs.length != 0) {
-        return ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
-        //padding: EdgeInsets.only(left: 10.0, right: 10, top: 10, bottom: 75),
-          itemCount: cardsDocs.length,
-          shrinkWrap: true,
-          itemBuilder: (context, i) {
-            return Column(
-              children: [
-                SizedBox(height: 55,),
-                Container(
-                  height: 300, // Adjust height as needed
-                  child: PageView(
-                    controller: _pageController,
-                    children: [
-                      profileCard(context, i),
-                      qrCard(context),
-                    ],
-                  ),
-                ),
-               // SizedBox(height: 10),
-                SmoothPageIndicator(
-                  controller: _pageController,
-                  count: 2,
-                  effect: WormEffect(
-                    dotHeight: 8.0,
-                    dotWidth: 8.0,
-                    spacing: 16.0,
-                    activeDotColor:    Colors.deepOrange.shade300,
-                    dotColor: Colors.grey,
-                  ),
-                ),
-              ],
-            );
-          },
-        );
-      } else {
-        return Container();
-      }
-    } else {
-      return Container();
-    }
-  }
-
-
-
 
   Widget profileCard(BuildContext context, int i) {
     List<String> keys = Links.keys.toList();
@@ -283,9 +231,9 @@ class _MyCardState extends State<MyCard> {
                           ),
                           borderRadius: BorderRadius.circular(120),
                           image: DecorationImage(
-                            image: cardsDocs[i].data()!['LogoURL'] != null
+                            image: cardsDocs[i].data()!['ImageURL'] != null
                                 ? NetworkImage(cardsDocs[i].data()!['defaultLogo']!)
-                                : NetworkImage(cardsDocs[i].data()!['LogoURL']!),
+                                : NetworkImage(cardsDocs[i].data()!['ImageURL']!),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -384,47 +332,42 @@ class _MyCardState extends State<MyCard> {
               ],
             ),
           ),
-          // Add the container with the edit button here, at the top right
-      Expanded(
-        child: Directionality(
-          textDirection: ui.TextDirection.ltr,
-            child: Positioned(
-              top: 40,
-              right: 30,
-              child: Container(
-                height: 25,
-
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.pushPage(EditCard());
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shadowColor: Colors.transparent, // Removing the button's shadow
-                  ),
-                  child: Text(
-                    context.tr( 'Edit'),
-                    style: TextStyle(
-                      color: Colors.deepOrange,
+          Expanded(
+            child: Directionality(
+              textDirection: ui.TextDirection.ltr,
+              child: Positioned(
+                top: 40,
+                right: 30,
+                child: Container(
+                  height: 25,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      context.pushPage(EditCard());
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shadowColor: Colors.transparent,
+                    ),
+                    child: Text(
+                      context.tr('Edit'),
+                      style: TextStyle(
+                        color: Colors.deepOrange,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
           ),
-      ),
         ],
       ),
     );
   }
-
-
 
   Widget qrCard(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: appTheme.whiteA700,
       ),
-      //margin: const EdgeInsets.only(top: 0, bottom: 0),
       child: Padding(
         padding: const EdgeInsets.all(0.0),
         child: Center(
@@ -443,7 +386,6 @@ class _MyCardState extends State<MyCard> {
       ),
     );
   }
-
 
   Future<void> _launchUrl(url) async {
     if (!await launchUrl(url)) {

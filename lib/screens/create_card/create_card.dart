@@ -139,7 +139,7 @@ class _CreateCardState extends State<CreateCard> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  CircularProgressIndicator(),
+                  CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),),
                   SizedBox(width: 20),
                   Text(context.tr('Saving...')),
                 ],
@@ -213,8 +213,8 @@ class _CreateCardState extends State<CreateCard> {
               .doc(FirebaseAuth.instance.currentUser!.uid)
               .set({
             "ImageURL": imageURL,
-            "LogoURL": logoURL,
-            "PortfolioURL": portfolioURL,
+           // "LogoURL": logoURL,
+           // "PortfolioURL": portfolioURL,
             "Prefix": prefix ?? '',
             "FirstName": firstName ?? '',
             "MiddleName": middleName ?? '',
@@ -878,129 +878,129 @@ class _CreateCardState extends State<CreateCard> {
                   ),
                 ),
                 SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Visibility(
-                      visible: editMode,
-                      child: Container(
-                        //margin: EdgeInsets.symmetric(horizontal: 0),
-                        //height: 250,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(6),
-                            image: DecorationImage(
-                                image: NetworkImage(editModeImageURLLogo))),
-                        // width: MediaQuery.of(context).size.width,
-                      ),
-                      replacement: GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: ((builder) => bottomSheetLogo()),
-                          );
-                        },
-                        child: selectedLogo != null
-                            ? Container(
-                          //margin: EdgeInsets.symmetric(horizontal: 0),
-                          height: 300,
-                          width: 300,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
-                            child: Image.file(
-                              selectedLogo as File,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        )
-                            : Container(
-
-                          // margin: EdgeInsets.symmetric(horizontal: 50),
-                            height: 170,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  style: BorderStyle.solid,
-                                  color: Color(0xFF286F8C),
-                                ),
-                                borderRadius: BorderRadius.circular(6)),
-                            width: (MediaQuery.of(context).size.width /
-                                2) -
-                                30,
-                            child: Column(
-                              children: [
-                                SizedBox(height: 30),
-                                Icon(Icons.upload, size: 50.0,color: Color(0xFF286F8C)),
-                                Text(
-                                  context.tr('Upload logo'),style: TextStyle(color: const Color(0xFF286F8C)),
-                                ),
-                              ],
-                            )),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Visibility(
-                      visible: editMode,
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 12),
-                        height: 170,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(6),
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                    editModeImageURLPortfilio))),
-                        // width: MediaQuery.of(context).size.width,
-                      ),
-                      replacement: GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: ((builder) => bottomSheetPortfolio()),
-                          );
-                        },
-                        child: selectedPortfolio != null
-                            ? Container(
-                          margin: EdgeInsets.symmetric(horizontal: 6),
-                          height: 150,
-                          width: 150,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(6),
-                            child: Image.file(
-                              selectedPortfolio as File,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        )
-                            : Container(
-                            margin: EdgeInsets.symmetric(horizontal: 5),
-                            height: 170,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  style: BorderStyle.solid,
-                                  color: Color(0xFF286F8C),
-                                ),
-                                borderRadius: BorderRadius.circular(6)),
-                            width: (MediaQuery.of(context).size.width /
-                                2) -
-                                30,
-                            child: Column(
-                              children: [
-                                SizedBox(height: 30),
-                                Icon(Icons.upload, size: 50.0, color:Color(0xFF286F8C)),
-                                Text(
-                                  context.tr('Upload portfolio'),style: TextStyle(color: const Color(0xFF286F8C)),
-
-                                ),
-                              ],
-                            )),
-                      ),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Visibility(
+                //       visible: editMode,
+                //       child: Container(
+                //         //margin: EdgeInsets.symmetric(horizontal: 0),
+                //         //height: 250,
+                //         decoration: BoxDecoration(
+                //             color: Colors.white,
+                //             borderRadius: BorderRadius.circular(6),
+                //             image: DecorationImage(
+                //                 image: NetworkImage(editModeImageURLLogo))),
+                //         // width: MediaQuery.of(context).size.width,
+                //       ),
+                //       replacement: GestureDetector(
+                //         onTap: () {
+                //           showModalBottomSheet(
+                //             context: context,
+                //             builder: ((builder) => bottomSheetLogo()),
+                //           );
+                //         },
+                //         child: selectedLogo != null
+                //             ? Container(
+                //           //margin: EdgeInsets.symmetric(horizontal: 0),
+                //           height: 300,
+                //           width: 300,
+                //           child: ClipRRect(
+                //             borderRadius: BorderRadius.circular(6),
+                //             child: Image.file(
+                //               selectedLogo as File,
+                //               fit: BoxFit.cover,
+                //             ),
+                //           ),
+                //         )
+                //             : Container(
+                //
+                //           // margin: EdgeInsets.symmetric(horizontal: 50),
+                //             height: 170,
+                //             decoration: BoxDecoration(
+                //                 color: Colors.white,
+                //                 border: Border.all(
+                //                   style: BorderStyle.solid,
+                //                   color: Color(0xFF286F8C),
+                //                 ),
+                //                 borderRadius: BorderRadius.circular(6)),
+                //             width: (MediaQuery.of(context).size.width /
+                //                 2) -
+                //                 30,
+                //             child: Column(
+                //               children: [
+                //                 SizedBox(height: 30),
+                //                 Icon(Icons.upload, size: 50.0,color: Color(0xFF286F8C)),
+                //                 Text(
+                //                   context.tr('Upload logo'),style: TextStyle(color: const Color(0xFF286F8C)),
+                //                 ),
+                //               ],
+                //             )),
+                //       ),
+                //     ),
+                //     SizedBox(
+                //       width: 10,
+                //     ),
+                //     Visibility(
+                //       visible: editMode,
+                //       child: Container(
+                //         margin: EdgeInsets.symmetric(horizontal: 12),
+                //         height: 170,
+                //         decoration: BoxDecoration(
+                //             color: Colors.white,
+                //             borderRadius: BorderRadius.circular(6),
+                //             image: DecorationImage(
+                //                 image: NetworkImage(
+                //                     editModeImageURLPortfilio))),
+                //         // width: MediaQuery.of(context).size.width,
+                //       ),
+                //       replacement: GestureDetector(
+                //         onTap: () {
+                //           showModalBottomSheet(
+                //             context: context,
+                //             builder: ((builder) => bottomSheetPortfolio()),
+                //           );
+                //         },
+                //         child: selectedPortfolio != null
+                //             ? Container(
+                //           margin: EdgeInsets.symmetric(horizontal: 6),
+                //           height: 150,
+                //           width: 150,
+                //           child: ClipRRect(
+                //             borderRadius: BorderRadius.circular(6),
+                //             child: Image.file(
+                //               selectedPortfolio as File,
+                //               fit: BoxFit.cover,
+                //             ),
+                //           ),
+                //         )
+                //             : Container(
+                //             margin: EdgeInsets.symmetric(horizontal: 5),
+                //             height: 170,
+                //             decoration: BoxDecoration(
+                //                 color: Colors.white,
+                //                 border: Border.all(
+                //                   style: BorderStyle.solid,
+                //                   color: Color(0xFF286F8C),
+                //                 ),
+                //                 borderRadius: BorderRadius.circular(6)),
+                //             width: (MediaQuery.of(context).size.width /
+                //                 2) -
+                //                 30,
+                //             child: Column(
+                //               children: [
+                //                 SizedBox(height: 30),
+                //                 Icon(Icons.upload, size: 50.0, color:Color(0xFF286F8C)),
+                //                 Text(
+                //                   context.tr('Upload portfolio'),style: TextStyle(color: const Color(0xFF286F8C)),
+                //
+                //                 ),
+                //               ],
+                //             )),
+                //       ),
+                //     ),
+                //   ],
+                // ),
                 SizedBox(
                   height: 20,
                 ),

@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // While waiting for the data to load, display a loading indicator or
           // any other UI element you prefer.
-          return Center(child: CircularProgressIndicator()); // Example loading indicator
+          return Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),)); // Example loading indicator
         } else if (snapshot.hasError) {
           // If an error occurs while fetching data, display an error message.
           return Text('Error: ${snapshot.error}');

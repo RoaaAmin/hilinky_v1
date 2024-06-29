@@ -187,7 +187,7 @@ class EditState extends State<Edit> {
     // dynamic myImage = const AssetImage("assets/images/avatary.png");
     // Build a Form widget using the _formKey created above.
     return lodaing
-        ? Center(child: CircularProgressIndicator())
+        ? Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),))
         : Scaffold(
 
         backgroundColor: appTheme.whiteA700,

@@ -329,7 +329,7 @@ class EditState extends State<EditCard> {
       FocusScope.of(context).unfocus();
     },
     child: lodaing
-        ? Center(child: CircularProgressIndicator())
+        ? Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),))
         : Scaffold(
         backgroundColor: appTheme.whiteA700,
         resizeToAvoidBottomInset: false,
@@ -847,134 +847,134 @@ class EditState extends State<EditCard> {
                   ),
 
                   SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Visibility(
-                          visible: editMode,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(6),
-                              image: DecorationImage(
-                                image: NetworkImage(editModeImageURLLogo),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          replacement: GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: ((builder) => bottomSheetLogo()),
-                              );
-                            },
-                            child: selectedLogo != null
-                                ? Container(
-                              height: 150,
-                              width: 150,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(6),
-                                child: Image.file(
-                                  selectedLogo!,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
-                                : Container(
-                              height: 170,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  style: BorderStyle.solid,
-                                  color: Color(0xFF286F8C),
-                                ),
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: Center(
-                                child: selectedLogo != null
-                                    ? Image.file(
-                                  selectedLogo!,
-                                  height: 150,
-                                  width: 150,
-                                  fit: BoxFit.cover,
-                                )
-                                    : Image.network(
-                                  logoURL ?? '',
-                                  height: 170,
-                                  width: 170,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: Visibility(
-                          visible: editMode,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(6),
-                              image: DecorationImage(
-                                image: NetworkImage(editModeImageURLPortfilio),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          replacement: GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: ((builder) => bottomSheetPortfolio()),
-                              );
-                            },
-                            child: selectedPortfolio != null
-                                ? Container(
-                              height: 150,
-                              width: 150,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(6),
-                                child: Image.file(
-                                  selectedPortfolio!,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
-                                : Container(
-                              height: 170,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  style: BorderStyle.solid,
-                                  color: Color(0xFF286F8C),
-                                ),
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: Center(
-                                child: selectedPortfolio != null
-                                    ? Image.file(
-                                  selectedPortfolio!,
-                                  height: 150,
-                                  width: 150,
-                                  fit: BoxFit.cover,
-                                )
-                                    : Image.network(
-                                  portfolioURL ?? '',
-
-                                  height: 170,
-                                  width: 170,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     Expanded(
+                  //       child: Visibility(
+                  //         visible: editMode,
+                  //         child: Container(
+                  //           decoration: BoxDecoration(
+                  //             color: Colors.white,
+                  //             borderRadius: BorderRadius.circular(6),
+                  //             image: DecorationImage(
+                  //               image: NetworkImage(editModeImageURLLogo),
+                  //               fit: BoxFit.cover,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         replacement: GestureDetector(
+                  //           onTap: () {
+                  //             showModalBottomSheet(
+                  //               context: context,
+                  //               builder: ((builder) => bottomSheetLogo()),
+                  //             );
+                  //           },
+                  //           child: selectedLogo != null
+                  //               ? Container(
+                  //             height: 150,
+                  //             width: 150,
+                  //             child: ClipRRect(
+                  //               borderRadius: BorderRadius.circular(6),
+                  //               child: Image.file(
+                  //                 selectedLogo!,
+                  //                 fit: BoxFit.cover,
+                  //               ),
+                  //             ),
+                  //           )
+                  //               : Container(
+                  //             height: 170,
+                  //             decoration: BoxDecoration(
+                  //               color: Colors.white,
+                  //               border: Border.all(
+                  //                 style: BorderStyle.solid,
+                  //                 color: Color(0xFF286F8C),
+                  //               ),
+                  //               borderRadius: BorderRadius.circular(6),
+                  //             ),
+                  //             child: Center(
+                  //               child: selectedLogo != null
+                  //                   ? Image.file(
+                  //                 selectedLogo!,
+                  //                 height: 150,
+                  //                 width: 150,
+                  //                 fit: BoxFit.cover,
+                  //               )
+                  //                   : Image.network(
+                  //                 logoURL ?? '',
+                  //                 height: 170,
+                  //                 width: 170,
+                  //                 fit: BoxFit.cover,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     SizedBox(width: 10),
+                  //     Expanded(
+                  //       child: Visibility(
+                  //         visible: editMode,
+                  //         child: Container(
+                  //           decoration: BoxDecoration(
+                  //             color: Colors.white,
+                  //             borderRadius: BorderRadius.circular(6),
+                  //             image: DecorationImage(
+                  //               image: NetworkImage(editModeImageURLPortfilio),
+                  //               fit: BoxFit.cover,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         replacement: GestureDetector(
+                  //           onTap: () {
+                  //             showModalBottomSheet(
+                  //               context: context,
+                  //               builder: ((builder) => bottomSheetPortfolio()),
+                  //             );
+                  //           },
+                  //           child: selectedPortfolio != null
+                  //               ? Container(
+                  //             height: 150,
+                  //             width: 150,
+                  //             child: ClipRRect(
+                  //               borderRadius: BorderRadius.circular(6),
+                  //               child: Image.file(
+                  //                 selectedPortfolio!,
+                  //                 fit: BoxFit.cover,
+                  //               ),
+                  //             ),
+                  //           )
+                  //               : Container(
+                  //             height: 170,
+                  //             decoration: BoxDecoration(
+                  //               color: Colors.white,
+                  //               border: Border.all(
+                  //                 style: BorderStyle.solid,
+                  //                 color: Color(0xFF286F8C),
+                  //               ),
+                  //               borderRadius: BorderRadius.circular(6),
+                  //             ),
+                  //             child: Center(
+                  //               child: selectedPortfolio != null
+                  //                   ? Image.file(
+                  //                 selectedPortfolio!,
+                  //                 height: 150,
+                  //                 width: 150,
+                  //                 fit: BoxFit.cover,
+                  //               )
+                  //                   : Image.network(
+                  //                 portfolioURL ?? '',
+                  //
+                  //                 height: 170,
+                  //                 width: 170,
+                  //                 fit: BoxFit.cover,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
 
                   SizedBox(
                     height: 20,
@@ -994,7 +994,7 @@ class EditState extends State<EditCard> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          CircularProgressIndicator(),
+                          CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),),
                           SizedBox(width: 20),
                           Text(context.tr('Saving...')),
                         ],
@@ -1015,19 +1015,19 @@ class EditState extends State<EditCard> {
                     imageURL = await snapshot.ref.getDownloadURL();
                   }
 
-                  if (selectedLogo != null) {
-                    final logoRef = FirebaseStorage.instance.ref().child('images').child('user_logo.jpg');
-                    final uploadTask = logoRef.putFile(selectedLogo!);
-                    final snapshot = await uploadTask.whenComplete(() => null);
-                    logoURL = await snapshot.ref.getDownloadURL();
-                  }
-
-                  if (selectedPortfolio != null) {
-                    final portfolioRef = FirebaseStorage.instance.ref().child('images').child('user_portfolio.jpg');
-                    final uploadTask = portfolioRef.putFile(selectedPortfolio!);
-                    final snapshot = await uploadTask.whenComplete(() => null);
-                    portfolioURL = await snapshot.ref.getDownloadURL();
-                  }
+                  // if (selectedLogo != null) {
+                  //   final logoRef = FirebaseStorage.instance.ref().child('images').child('user_logo.jpg');
+                  //   final uploadTask = logoRef.putFile(selectedLogo!);
+                  //   final snapshot = await uploadTask.whenComplete(() => null);
+                  //   logoURL = await snapshot.ref.getDownloadURL();
+                  // }
+                  //
+                  // if (selectedPortfolio != null) {
+                  //   final portfolioRef = FirebaseStorage.instance.ref().child('images').child('user_portfolio.jpg');
+                  //   final uploadTask = portfolioRef.putFile(selectedPortfolio!);
+                  //   final snapshot = await uploadTask.whenComplete(() => null);
+                  //   portfolioURL = await snapshot.ref.getDownloadURL();
+                  // }
                 }
 
                 // Fetch existing card data from Firestore
@@ -1061,8 +1061,8 @@ class EditState extends State<EditCard> {
                   'PhoneNumber': PhoneNumber,
                   'Links': updatedLinks, // Updated links in Firestore
                   'ImageURL': imageURL, // Update imageURL
-                  'LogoURL': logoURL, // Update logoURL
-                  'PortfolioURL': portfolioURL, // Update portfolioURL
+                  //'LogoURL': logoURL, // Update logoURL
+                  //'PortfolioURL': portfolioURL, // Update portfolioURL
                   'defaultLogo':'https://firebasestorage.googleapis.com/v0/b/hiwetaan.appspot.com/o/images%2Fuser_image.jpg?alt=media&token=f0359660-ed0d-4edd-9df3-85a8fc087d7a',
                 };
 

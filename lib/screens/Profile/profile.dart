@@ -16,6 +16,7 @@ import '../../theme/theme_helper.dart';
 import 'edit.dart';
 import 'language.dart';
 import 'notifications.dart';
+
 class profiletest extends StatefulWidget {
   profiletest({
     super.key,
@@ -42,7 +43,6 @@ class profiletestState extends State<profiletest> {
       selectedImage = File(image!.path);
     });
   }
-
 
   void getLinks() async {
     await FirebaseFirestore.instance
@@ -123,8 +123,6 @@ class profiletestState extends State<profiletest> {
     });
   }
 
-
-
   void getCardInfo() async {
     await FirebaseFirestore.instance
         .collection('Cards')
@@ -151,7 +149,7 @@ class profiletestState extends State<profiletest> {
     super.initState();
   }
 
-//icons
+  //icons
   Map<String, FaIcon> l = {
     'facebook': const FaIcon(FontAwesomeIcons.facebook),
     'twitter': const FaIcon(FontAwesomeIcons.twitter),
@@ -166,7 +164,7 @@ class profiletestState extends State<profiletest> {
     'dribbble': const FaIcon(FontAwesomeIcons.dribbble),
     'behance': const FaIcon(FontAwesomeIcons.behance),
     'location': const FaIcon(FontAwesomeIcons.location),
-    'tiktok':   const FaIcon(FontAwesomeIcons.tiktok),
+    'tiktok': const FaIcon(FontAwesomeIcons.tiktok),
   };
 
   // Create a global key that uniquely identifies the Form widget
@@ -333,12 +331,7 @@ class profiletestState extends State<profiletest> {
                                   icon: Icons.logout,
                                   iconColor: Colors.orange,
                                   text: "Log Out",
-                                  onPressed: () {
-                                    FirebaseAuth.instance.signOut();
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => Auth(),
-                                    ));
-                                  },
+                                  onPressed: () => _showLogoutConfirmationDialog(context),
                                 ),
                               ],
                             ),
@@ -393,11 +386,72 @@ class profiletestState extends State<profiletest> {
     );
   }
 
-
-
   Future<void> _launchUrl(url) async {
     if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }
+  }
+
+  void _showLogoutConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          title: Row(
+            children: [
+              //Icon(Icons.logout, color: Colors.orange),
+              SizedBox(width: 10),
+              Text(
+                context.tr("Logout Confirmation"),
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+          content: Text(
+            context.tr("Are you sure you want to log out?"),
+            style: TextStyle(
+              fontFamily: 'Inter',
+              color: Colors.black87,
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.grey, textStyle: TextStyle(
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              child: Text(context.tr("No")),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.orange, textStyle: TextStyle(
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              child: Text(context.tr("Yes")),
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Auth(),
+                ));
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
