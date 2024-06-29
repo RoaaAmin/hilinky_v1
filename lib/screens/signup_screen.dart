@@ -107,10 +107,10 @@ class _SignupScreenState extends State<SignupScreen> {
         child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
+
                 backgroundColor: appTheme.whiteA700,
                 resizeToAvoidBottomInset:
                     true, // Enable resizing to avoid the keyboard
-
                 body: SingleChildScrollView(
                     // Enable scrolling
                     child: Container(
@@ -350,7 +350,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                         padding: EdgeInsets.only(left: 1, top: 25),
                                         child: PasswordField(
                                           controller: _passwordConroller,
-                                          hintText: 'Your Password',
+                                          hintText:  context.tr('Your Password'),
                                           hintStyle: theme.textTheme.titleSmall!,
                                           labelStyle: theme.textTheme.titleMedium!,
                                           label: 'Password',
@@ -360,7 +360,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                         padding: EdgeInsets.only(left: 1, top: 25),
                                         child: PasswordField(
                                           controller: _confirmPasswordConroller,
-                                          hintText: 'Confirm Your Password',
+                                          hintText:  context.tr('Confirm Your Password'),
                                           hintStyle: theme.textTheme.titleSmall!,
                                           labelStyle: theme.textTheme.titleMedium!,
                                           label: 'Confirm Password',

@@ -84,9 +84,13 @@ class _SocialMediaState extends State<SocialMedia> {
       itemCount: socialMediaIcons.length,
       itemBuilder: (context, index) {
         final name = _getName(index);
+        final isFilled = controllers[index].text.isNotEmpty;
         return IconButton(
           onPressed: () => _showBottomSheet(index, name),
-          icon: FaIcon(socialMediaIcons[index], color: Color(0xFF7EA9BA)),
+          icon: FaIcon(
+            socialMediaIcons[index],
+            color: isFilled ? Color(0xFF7EA9BA) : Colors.grey // Change color if filled
+          ),
         );
       },
     );
@@ -146,7 +150,20 @@ class _SocialMediaState extends State<SocialMedia> {
         child: Column(
           children: <Widget>[
             TextField(
-              decoration: InputDecoration(labelText: tr("Enter a link")),
+              decoration: InputDecoration(
+                labelText: tr("Enter a link"),
+                suffixIcon: controllers[index].text.isNotEmpty
+                    ? IconButton(
+                  icon: Icon(Icons.clear),
+                  onPressed: () {
+                    setState(() {
+                      controllers[index].clear();
+                      widget.saved.remove(name);
+                    });
+                  },
+                )
+                    : null,
+              ),
               maxLines: 1,
               controller: controllers[index],
             ),
@@ -161,7 +178,9 @@ class _SocialMediaState extends State<SocialMedia> {
                 const SizedBox(width: 10),
                 TextButton(
                   onPressed: () {
-                    widget.saved[name] = controllers[index].text;
+                    setState(() {
+                      widget.saved[name] = controllers[index].text;
+                    });
                     Navigator.of(context).pop();
                   },
                   child: Text(tr("Save"), style: TextStyle(color: Color(0xFF7EA9BA))),

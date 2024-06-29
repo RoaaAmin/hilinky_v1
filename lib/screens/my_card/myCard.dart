@@ -402,7 +402,7 @@ class _MyCardState extends State<MyCard> {
                     shadowColor: Colors.transparent, // Removing the button's shadow
                   ),
                   child: Text(
-                    'Edit',
+                    context.tr( 'Edit'),
                     style: TextStyle(
                       color: Colors.deepOrange,
                     ),

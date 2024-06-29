@@ -203,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               CustomTextFormField(
                                 controller: _passwordController,
                                 obscureText: obscureText,
-                                hintText: "Your Password",
+                                hintText:  context.tr("Your Password"),
                                 hintStyle: theme.textTheme.titleSmall!,
                                 textInputType: TextInputType.visiblePassword,
                                 suffixIcon: GestureDetector(

@@ -63,14 +63,11 @@ class _LanguageState extends State<Language> {
             ),
           ),
         ),
-        leading: IconButton(
-          onPressed: () {
-            // Navigate back with replacement to reflect language change
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-      ),
+
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new_outlined,),
+            onPressed: () => Navigator.of(context).pop(),
+          ),),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[

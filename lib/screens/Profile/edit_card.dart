@@ -334,6 +334,12 @@ class EditState extends State<EditCard> {
         backgroundColor: appTheme.whiteA700,
         resizeToAvoidBottomInset: false,
       //backgroundColor: Colors.white.withOpacity(0.9),
+        appBar: AppBar(
+          backgroundColor: appTheme.whiteA700,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new_outlined),
+            onPressed: () => Navigator.of(context).pop(),
+          ),),
         body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: ListView(

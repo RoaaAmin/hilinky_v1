@@ -74,12 +74,12 @@ class CodegenLoader extends AssetLoader {
     "Position: ": "المنصب:  ",
     "name:": "الإسم: ",
     "?": "؟",
-    "To create and design YOUR Elegant  business card," : "لإنشاء وتصميم بطاقة العمل الرقمية الخاصة بك،",
+    "To create and design YOUR Elegant  business card," : "نساعدكم في تطوير بطاقات أعمالكم لنسخة رقمية مطورة، ",
     " We offer the best solutions to transform your traditional business card into a simple and innovative digital experience. \n":
 
-    " نحن نقدم أفضل الحلول لتحويل بطاقة العمل التقليدية الخاصة بك إلى تجربة رقمية بسيطة ومبتكرة.",
-    "Individual": "فرد",
-    "Dive into creativity without any strings attached!": "انغمس في الإبداع دون أي قيود!",
+    " نقدم أفضل الحلول لتحويل بطاقة العمل التقليدية الخاصة بك إلى تجربة رقمية بسيطة ومبتكرة.",
+    "Individual": "أفراد",
+    "Dive into creativity without any strings attached!": "سهولة، تنظيم، وفعالية",
     "One design.": "تصميم واحد.",
     "Create card.": "إنشاء بطاقة.",
     "Edit card.": "تحرير البطاقة.",
@@ -91,7 +91,7 @@ class CodegenLoader extends AssetLoader {
     "Create, Edit, Share, Save Card": "إنشاء، تحرير، مشاركة، حفظ البطاقة",
     "Providing premium features.": "توفير عضوية مميزة.",
     "Subscribe Now": "اشترك الآن",
-    "Enterprise": "شركة",
+    "Enterprise": "شركات",
     "User Name" : "اسم المستخدم",
     "Please wait while the card is being created...": "يرجى الانتظار حتى يتم إنشاء البطاقة...",
     "Error uploading card. Please try again later.": "خطأ في تحميل البطاقة. يرجى المحاولة مرة أخرى في وقت لاحق.",
@@ -237,6 +237,7 @@ class CodegenLoader extends AssetLoader {
     "This policy ensures transparency and compliance with data protection regulations, reflecting Hilinky's commitment to user privacy.":
     "تضمن هذه السياسة الشفافية والامتثال للوائح حماية البيانات، مما يعكس التزام Hilinky بخصوصية المستخدم.",
     "Copyright © 2024 Wetaan\nAll rights reserved": "حقوق الطبع والنشر © 2024 وتان\nجميع الحقوق محفوظة",
+    "Start now":"ابدأ الآن"
   };
   static const Map<String, dynamic> en = {
     "Select Your Language": "Select Your Language",
@@ -458,6 +459,7 @@ class CodegenLoader extends AssetLoader {
     "This policy ensures transparency and compliance with data protection regulations, reflecting Hilinky's commitment to user privacy.":
     "This policy ensures transparency and compliance with data protection regulations, reflecting Hilinky's commitment to user privacy.",
     "Copyright © 2024 Wetaan\nAll rights reserved": "Copyright © 2024 Wetaan\nAll rights reserved",
+    "Start now":"Start now",
 
   };
 
