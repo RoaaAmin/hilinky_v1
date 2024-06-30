@@ -437,7 +437,7 @@ class profiletestState extends State<profiletest> {
             ),
             TextButton(
               style: TextButton.styleFrom(
-                foregroundColor: Colors.orange, textStyle: TextStyle(
+                foregroundColor:  Color(0xFF286F8C), textStyle: TextStyle(
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.bold,
                 ),

@@ -241,7 +241,9 @@ class CodegenLoader extends AssetLoader {
     "Logout Confirmation": "تأكيد الخروج",
     "Are you sure you want to log out?":"هل أنت متأكد أنك تريد تسجيل الخروج؟",
     "Yes":"نعم",
-    "No":"لا"
+    "No":"لا",
+    "Save Confirmation": "تأكيد الحفظ",
+    "Are you sure you want to save your information to display it in your card?":"هل أنت متأكد أنك تريد حفظ معلوماتك لعرضها في بطاقتك؟"
   };
   static const Map<String, dynamic> en = {
     "Select Your Language": "Select Your Language",
@@ -467,7 +469,9 @@ class CodegenLoader extends AssetLoader {
     "Logout Confirmation":"Logout Confirmation",
     "Are you sure you want to log out?":"Are you sure you want to log out?",
     "Yes":"Yes",
-    "No":"No"
+    "No":"No",
+    "Save Confirmation":"Save Confirmation",
+    "Are you sure you want to save your information to display it in your card?":"Are you sure you want to save your information to display it in your card?",
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

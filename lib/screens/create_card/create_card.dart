@@ -380,6 +380,12 @@ class _CreateCardState extends State<CreateCard> {
     child: Scaffold(
       backgroundColor: appTheme.whiteA700,
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        backgroundColor: appTheme.whiteA700,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new_outlined),
+          onPressed: () => Navigator.of(context).pop(),
+        ),),
       body: SingleChildScrollView(
           padding: EdgeInsets.all(20),
           child: Column(
@@ -1044,7 +1050,7 @@ class _CreateCardState extends State<CreateCard> {
             ),
             TextButton(
               style: TextButton.styleFrom(
-                foregroundColor: Colors.orange, textStyle: TextStyle(
+                foregroundColor: Color(0xFF286F8C), textStyle: TextStyle(
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.bold,
               ),
