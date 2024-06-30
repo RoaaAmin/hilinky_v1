@@ -230,10 +230,10 @@ class _MyCardState extends State<MyCard> {
                             width: 1,
                           ),
                           borderRadius: BorderRadius.circular(120),
-                          image: DecorationImage(
-                            image: cardsDocs[i].data()!['ImageURL'] != null
-                                ? NetworkImage(cardsDocs[i].data()!['defaultLogo']!)
-                                : NetworkImage(cardsDocs[i].data()!['ImageURL']!),
+                          image:DecorationImage(
+                            image: cardsDocs[i].data()!['ImageURL'] != null && cardsDocs[i].data()!['ImageURL'] != ""
+                                ? NetworkImage(cardsDocs[i].data()!['ImageURL']!)
+                                : NetworkImage(cardsDocs[i].data()!['defaultLogo']!),
                             fit: BoxFit.cover,
                           ),
                         ),

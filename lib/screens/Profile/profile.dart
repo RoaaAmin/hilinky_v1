@@ -400,6 +400,7 @@ class profiletestState extends State<profiletest> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
+          backgroundColor: appTheme.whiteA700,
           title: Row(
             children: [
               //Icon(Icons.logout, color: Colors.orange),

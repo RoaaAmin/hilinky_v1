@@ -237,7 +237,11 @@ class CodegenLoader extends AssetLoader {
     "This policy ensures transparency and compliance with data protection regulations, reflecting Hilinky's commitment to user privacy.":
     "تضمن هذه السياسة الشفافية والامتثال للوائح حماية البيانات، مما يعكس التزام Hilinky بخصوصية المستخدم.",
     "Copyright © 2024 Wetaan\nAll rights reserved": "حقوق الطبع والنشر © 2024 وتان\nجميع الحقوق محفوظة",
-    "Start now":"ابدأ الآن"
+    "Start now":"ابدأ الآن",
+    "Logout Confirmation": "تأكيد الخروج",
+    "Are you sure you want to log out?":"هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    "Yes":"نعم",
+    "No":"لا"
   };
   static const Map<String, dynamic> en = {
     "Select Your Language": "Select Your Language",
@@ -460,7 +464,10 @@ class CodegenLoader extends AssetLoader {
     "This policy ensures transparency and compliance with data protection regulations, reflecting Hilinky's commitment to user privacy.",
     "Copyright © 2024 Wetaan\nAll rights reserved": "Copyright © 2024 Wetaan\nAll rights reserved",
     "Start now":"Start now",
-
+    "Logout Confirmation":"Logout Confirmation",
+    "Are you sure you want to log out?":"Are you sure you want to log out?",
+    "Yes":"Yes",
+    "No":"No"
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {

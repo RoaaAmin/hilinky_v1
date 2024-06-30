@@ -127,149 +127,118 @@ class _CreateCardState extends State<CreateCard> {
   // _scaffoldKey,
   // );
   uploadCard() async {
-    // Check if the widget is mounted before showing the snackbar
-    if (mounted) {
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return Dialog(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),),
-                  SizedBox(width: 20),
-                  Text(context.tr('Saving...')),
-                ],
-              ),
+    // Show saving dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.orange)),
+                SizedBox(width: 20),
+                Text('Saving...'),
+              ],
             ),
-          );
-        },
-      );
+          ),
+        );
+      },
+    );
 
-      // showInSnackBar(
-      //   context.tr('Please wait while the card is being created...'),
-      //   Colors.green,
-      //   Colors.white,
-      //   4,
-      //   context,
-      //   _scaffoldKey,
-      // );
-    }
-
-    // Check if required fields are filled
-    if (firstName != null &&
-        lastName != null &&
-        position != null &&
-        email != null &&
-        phoneNumber != null) {
-      String imageURL = editMode ? editModeImageURL : '';
-      String logoURL = editMode ? editModeImageURLLogo : '';
-      String portfolioURL = editMode ? editModeImageURLPortfilio : '';
-
-      try {
-        // Upload selected image
-        if (selectedImage != null && selectedLogo != null && selectedPortfolio != null) {
-          // Upload selected image
-          var imageUploadTask = FirebaseStorage.instance
-              .ref('Cards/')
-              .child(randomAlphaNumeric(9) + '.jpg')
-              .putFile(selectedImage!);
-          imageURL = await (await imageUploadTask).ref.getDownloadURL();
-
-          // Upload selected logo
-          var logoUploadTask = FirebaseStorage.instance
-              .ref('Cards/')
-              .child(randomAlphaNumeric(9) + '_logo.jpg')
-              .putFile(selectedLogo!);
-          logoURL = await (await logoUploadTask).ref.getDownloadURL();
-
-          // Upload selected portfolio
-          var portfolioUploadTask = FirebaseStorage.instance
-              .ref('Cards/')
-              .child(randomAlphaNumeric(9) + '_portfolio.jpg')
-              .putFile(selectedPortfolio!);
-          portfolioURL = await (await portfolioUploadTask).ref.getDownloadURL();
-        } else {
-          // Handle the case when one of the variables is null
-          print('One of the selected files is null');
-        }
-
-        if (editMode) {
-          // Update card if in edit mode
-          await widget.card.reference.update({
-            "ImageURL": imageURL,
-            "LogoURL": logoURL,
-            "PortfolioURL": portfolioURL,
-          });
-        } else {
-          // Fetch the selected city from getuser function
-          String selectedCity = await getuser();
-          // Upload card details
-          await FirebaseFirestore.instance
-              .collection('Cards')
-              .doc(FirebaseAuth.instance.currentUser!.uid)
-              .set({
-            "ImageURL": imageURL,
-           // "LogoURL": logoURL,
-           // "PortfolioURL": portfolioURL,
-            "Prefix": prefix ?? '',
-            "FirstName": firstName ?? '',
-            "MiddleName": middleName ?? '',
-            "LastName": lastName ?? '',
-            "Position": position ?? '',
-            "CompanyName": companyName ?? '',
-            "Email": email ?? '',
-            "PhoneNumber": phoneNumber ?? '',
-            "Links": links ?? {},
-            "cardId": uuid.v4(),
-            "PostedByUID": FirebaseAuth.instance.currentUser!.uid,
-            "City": selectedCity,
-            'defaultLogo':'https://raw.githubusercontent.com/RoaaAmin/hilinky_v1/main/assets/images/HilinkyLogo.png',
-            "TimeStamp": DateTime.now(),
-          });
-
-          print('Card saved');
-
-          // Navigate to the 'myCard' screen
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => Home(currentIndex: 1),
-            ),
-          );
-
-        }
-      } catch (e) {
-        // Handle errors
-        print('Error uploading card: $e');
-        if (mounted) {
-          // Show error message if widget is still mounted
-          showInSnackBar(
-            'Error uploading card. Please try again later.',
-            Colors.red,
-            Colors.white,
-            3,
-            context,
-            _scaffoldKey,
-          );
-        }
-      }
-    } else {
-      // Show error message if required fields or images are not filled
-      if (mounted) {
+    try {
+      // Check if required fields are filled
+      if (firstName == null || lastName == null || position == null || email == null || phoneNumber == null) {
+        // Close the dialog
+        Navigator.of(context).pop();
+        // Show the snackbar
         showInSnackBar(
-          context.tr('Please fill all the required fields and select images'),
+          'Please fill all the required fields and select images',
           Colors.red,
           Colors.white,
           3,
           context,
           _scaffoldKey,
         );
+        return;
       }
+
+      String imageURL = editMode ? editModeImageURL : '';
+
+      // Upload selected image if exists
+      if (selectedImage != null) {
+        var imageRef = FirebaseStorage.instance.ref('Cards/').child(randomAlphaNumeric(9) + '.jpg');
+        var uploadTask = imageRef.putFile(selectedImage!);
+        var snapshot = await uploadTask.whenComplete(() => null);
+        imageURL = await snapshot.ref.getDownloadURL();
+        print('Image uploaded successfully, URL: $imageURL');
+      } else {
+        print('Selected image is null, skipping upload');
+      }
+
+      // Fetch the selected city from getuser function
+      String selectedCity = await getuser();
+      print('Selected city: $selectedCity');
+
+      if (editMode) {
+        // Update existing card
+        await widget.card.reference.update({
+          "ImageURL": imageURL,
+        });
+        print('Card updated successfully');
+      } else {
+        // Create new card
+        await FirebaseFirestore.instance.collection('Cards').doc(FirebaseAuth.instance.currentUser!.uid).set({
+          "ImageURL": imageURL,
+          "Prefix": prefix ?? '',
+          "FirstName": firstName ?? '',
+          "MiddleName": middleName ?? '',
+          "LastName": lastName ?? '',
+          "Position": position ?? '',
+          "CompanyName": companyName ?? '',
+          "Email": email ?? '',
+          "PhoneNumber": phoneNumber ?? '',
+          "Links": links ?? {},
+          "cardId": uuid.v4(),
+          "PostedByUID": FirebaseAuth.instance.currentUser!.uid,
+          "City": selectedCity,
+          'defaultLogo':'https://raw.githubusercontent.com/RoaaAmin/hilinky_v1/main/assets/images/HilinkyLogo.png',
+          "TimeStamp": DateTime.now(),
+        });
+        print('Card created successfully');
+      }
+
+      // Navigate to the 'Home' screen after successful upload
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => Home(currentIndex: 1), // Assuming Home widget accepts currentIndex parameter
+        ),
+      );
+    } catch (e) {
+      // Handle errors
+      print('Error uploading card: $e');
+      // Close the dialog
+      Navigator.of(context).pop();
+      // Show the snackbar
+      showInSnackBar(
+        'Error uploading card. Please try again later.',
+        Colors.red,
+        Colors.white,
+        3,
+        context,
+        _scaffoldKey,
+      );
     }
   }
+
+
+
+
+
+
+
 
   Widget bottomSheet() {
     return Container(
@@ -1007,7 +976,7 @@ class _CreateCardState extends State<CreateCard> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 0),
                   child: GestureDetector(
-                    onTap: uploadCard,
+                    onTap: () => _showLogoutConfirmationDialog(context),
                     child: Center(
                       child: Container(
                         padding: EdgeInsets.all(16),
@@ -1029,5 +998,65 @@ class _CreateCardState extends State<CreateCard> {
                 ),
               ])),
     ));
+  }
+  void _showLogoutConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          backgroundColor: appTheme.whiteA700,
+          title: Row(
+            children: [
+              //Icon(Icons.logout, color: Colors.orange),
+              SizedBox(width: 10),
+              Text(
+                context.tr("Save Confirmation"),
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+          content: Text(
+            context.tr("Are you sure you want to save your information to display it in your card?"),
+            style: TextStyle(
+              fontFamily: 'Inter',
+              color: Colors.black87,
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.grey, textStyle: TextStyle(
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.bold,
+              ),
+              ),
+              child: Text(context.tr("No")),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.orange, textStyle: TextStyle(
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.bold,
+              ),
+              ),
+              child: Text(context.tr("Yes")),
+              onPressed: () {
+                uploadCard();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
