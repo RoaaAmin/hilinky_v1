@@ -353,7 +353,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                           hintText:  context.tr('Your Password'),
                                           hintStyle: theme.textTheme.titleSmall!,
                                           labelStyle: theme.textTheme.titleMedium!,
-                                          label: 'Password',
+                                          label: context.tr('Password'),
                                         ),
                                       ),
                                       Padding(
@@ -363,7 +363,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                           hintText:  context.tr('Confirm Your Password'),
                                           hintStyle: theme.textTheme.titleSmall!,
                                           labelStyle: theme.textTheme.titleMedium!,
-                                          label: 'Confirm Password',
+                                          label: context.tr('Confirm Password'),
                                         ),
                                       ),
 
