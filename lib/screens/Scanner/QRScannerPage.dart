@@ -52,7 +52,7 @@ class _QRScannerPageState extends State<QRScannerPage> {
           Expanded(
             flex: 1,
             child: Center(
-            //  child: Text('Scan result: $result'),
+              //child: Text('Scan result: $result'),
             ),
           ),
         ],
@@ -65,11 +65,14 @@ class _QRScannerPageState extends State<QRScannerPage> {
 
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) async {
-      if (!mounted) return; // Check if the widget is still mounted
+      if (!mounted || isScanned) return; // Check if the widget is still mounted and scanning hasn't happened yet
 
       setState(() {
         result = scanData.code!;
+        isScanned = true;
       });
+
+      controller.pauseCamera(); // Pause the camera after a successful scan
 
       await Future.delayed(Duration(milliseconds: 500));
       openContactInContacts(result);
@@ -114,5 +117,11 @@ class _QRScannerPageState extends State<QRScannerPage> {
       'phone': phone,
       'email': email
     };
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }
