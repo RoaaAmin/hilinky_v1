@@ -379,7 +379,7 @@ class _CreateCardState extends State<CreateCard> {
     },
     child: Scaffold(
       backgroundColor: appTheme.whiteA700,
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
 
       appBar: AppBar(
         backgroundColor: appTheme.whiteA700,
