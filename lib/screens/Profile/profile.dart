@@ -28,16 +28,13 @@ class profiletest extends StatefulWidget {
   }
 }
 
-// Create a corresponding State class.
-// This class holds data related to the form.
 class profiletestState extends State<profiletest> {
   Map<String, dynamic> Links = {};
   var UserProfileImage;
   int selectedOption = 1;
 
   Future getImage(ImageSource source) async {
-    var image = await ImagePicker.platform
-        .getImageFromSource(source: source); //pickImage
+    var image = await ImagePicker.platform.getImageFromSource(source: source); //pickImage
     print('printing source of image $source');
     setState(() {
       selectedImage = File(image!.path);
@@ -49,18 +46,16 @@ class profiletestState extends State<profiletest> {
         .collection('Cards')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
-        .then(
-          (value) {
-        setState(() {
-          UserProfileImage = value.data()!['ImageURL'];
-          print('-----------------------------------------------');
-          print(UserProfileImage);
-          Links.clear();
-          Links = value.data()!['Links'];
-          Links.removeWhere((key, value) => value == '');
-        });
-      },
-    );
+        .then((value) {
+      setState(() {
+        UserProfileImage = value.data()!['ImageURL'];
+        print('-----------------------------------------------');
+        print(UserProfileImage);
+        Links.clear();
+        Links = value.data()!['Links'];
+        Links.removeWhere((key, value) => value == '');
+      });
+    });
     print('end');
     print(Links.length);
   }
@@ -84,8 +79,7 @@ class profiletestState extends State<profiletest> {
             postsDocs = value.docs.toList();
             postsFetched = true;
           });
-          postsDocs.sort((a, b) =>
-              b.data()!['TimeStamp'].compareTo(a.data()!['TimeStamp']));
+          postsDocs.sort((a, b) => b.data()!['TimeStamp'].compareTo(a.data()!['TimeStamp']));
         }
       });
     }
@@ -128,16 +122,14 @@ class profiletestState extends State<profiletest> {
         .collection('Cards')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get()
-        .then(
-          (value) {
-        setState(() {
-          FirstName = value.data()!['FirstName'];
-          LastName = value.data()!['LastName'];
-          Position = value.data()!['Position'];
-          CompanyName = value.data()!['CompanyName'];
-        });
-      },
-    );
+        .then((value) {
+      setState(() {
+        FirstName = value.data()!['FirstName'];
+        LastName = value.data()!['LastName'];
+        Position = value.data()!['Position'];
+        CompanyName = value.data()!['CompanyName'];
+      });
+    });
   }
 
   @override
@@ -185,12 +177,12 @@ class profiletestState extends State<profiletest> {
         backgroundColor: appTheme.whiteA700,
         resizeToAvoidBottomInset: false,
         body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('../Progile/screens/assets/images/hilinkybg.svg'), // Replace with your image path
-              fit: BoxFit.cover,
-            ),
-          ),
+          // decoration: BoxDecoration(
+          //   image: DecorationImage(
+          //     image: AssetImage('../Progile/screens/assets/images/hilinkybg.svg'), // Replace with your image path
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
           child: Column(
             children: [
               SizedBox(height: 60),
@@ -225,7 +217,7 @@ class profiletestState extends State<profiletest> {
                             style: TextStyle(
                               color: Color(0xFF286F8C),
                               fontSize: 24,
-                              fontFamily: 'Inter',
+                              fontFamily: 'Cairo',
                               fontWeight: FontWeight.w600,
                               height: 0,
                             ),
@@ -236,7 +228,7 @@ class profiletestState extends State<profiletest> {
                             style: TextStyle(
                               color: Color(0xFF133039),
                               fontSize: 15,
-                              fontFamily: 'Inter',
+                              fontFamily: 'Cairo',
                               fontWeight: FontWeight.w500,
                               height: 0,
                             ),
@@ -248,7 +240,12 @@ class profiletestState extends State<profiletest> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Links.isEmpty
-                                    ? Text(context.tr('No links'))
+                                    ? Text(
+                                  context.tr('No links'),
+                                  style: TextStyle(
+                                    fontFamily: 'Cairo',
+                                  ),
+                                )
                                     : Wrap(
                                   spacing: 10.0, // Horizontal spacing between the links
                                   runSpacing: 8.0, // Vertical spacing between the rows
@@ -308,28 +305,28 @@ class profiletestState extends State<profiletest> {
                                 _buildProfileOption(
                                   context,
                                   icon: Icons.person_outline_rounded,
-                                  iconColor: Color(0xFFEF9D52),
+                                  iconColor: Color(0xFF286F8C),
                                   text: "Edit Profile Information",
                                   onPressed: () => context.pushPage(Edit()),
                                 ),
                                 _buildProfileOption(
                                   context,
                                   icon: Icons.credit_card_outlined,
-                                  iconColor: Colors.orange,
+                                  iconColor: Color(0xFF286F8C),
                                   text: "Edit My Card",
                                   onPressed: () => context.pushPage(EditCard()),
                                 ),
                                 _buildProfileOption(
                                   context,
                                   icon: Icons.language,
-                                  iconColor: Colors.orange,
+                                  iconColor: Color(0xFF286F8C),
                                   text: "Language",
                                   onPressed: () => context.pushPage(Language()),
                                 ),
                                 _buildProfileOption(
                                   context,
                                   icon: Icons.logout,
-                                  iconColor: Colors.orange,
+                                  iconColor: Color(0xFF286F8C),
                                   text: "Log Out",
                                   onPressed: () => _showLogoutConfirmationDialog(context),
                                 ),
@@ -361,10 +358,10 @@ class profiletestState extends State<profiletest> {
         Container(
           width: 39,
           height: 39,
-          padding: const EdgeInsets.only(left: 10, top: 11),
+          padding: const EdgeInsets.only(left: 10, top: 0),
           child: Icon(
             icon,
-            size: 20,
+            size: 25,
             color: iconColor,
           ),
         ),
@@ -375,7 +372,7 @@ class profiletestState extends State<profiletest> {
             style: TextStyle(
               color: Color(0xFF141619),
               fontSize: 18,
-              fontFamily: 'Inter',
+              fontFamily: 'Cairo',
               fontWeight: FontWeight.w400,
               height: 0,
               letterSpacing: -0.10,
@@ -408,7 +405,7 @@ class profiletestState extends State<profiletest> {
               Text(
                 context.tr("Logout Confirmation"),
                 style: TextStyle(
-                  fontFamily: 'Inter',
+                  fontFamily: 'Cairo',
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
@@ -418,15 +415,16 @@ class profiletestState extends State<profiletest> {
           content: Text(
             context.tr("Are you sure you want to log out?"),
             style: TextStyle(
-              fontFamily: 'Inter',
+              fontFamily: 'Cairo',
               color: Colors.black87,
             ),
           ),
           actions: <Widget>[
             TextButton(
               style: TextButton.styleFrom(
-                foregroundColor: Colors.grey, textStyle: TextStyle(
-                  fontFamily: 'Inter',
+                foregroundColor: Colors.grey,
+                textStyle: TextStyle(
+                  fontFamily: 'Cairo',
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -437,8 +435,9 @@ class profiletestState extends State<profiletest> {
             ),
             TextButton(
               style: TextButton.styleFrom(
-                foregroundColor:  Color(0xFF286F8C), textStyle: TextStyle(
-                  fontFamily: 'Inter',
+                foregroundColor: Color(0xFF286F8C),
+                textStyle: TextStyle(
+                  fontFamily: 'Cairo',
                   fontWeight: FontWeight.bold,
                 ),
               ),

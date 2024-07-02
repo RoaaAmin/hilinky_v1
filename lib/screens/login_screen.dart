@@ -286,8 +286,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               privacyChecked = value!;
                             });
                           },
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
+                          activeColor: Color(0xFFEF9453), // Change this to your desired color
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
                       ),
                       GestureDetector(
@@ -304,11 +304,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           scrollDirection: Axis.horizontal,
                           child: Text.rich(
                             TextSpan(
-                              text:  context.tr('By ticking this box I agree that I have read the '),
+                              text: context.tr('By ticking this box I agree that I have read the '),
                               style: CustomTextStyles.labelLargeInterBluegray300,
                               children: [
                                 TextSpan(
-                                  text:  context.tr('\nPrivacy & Policy'),
+                                  text: context.tr('\nPrivacy & Policy'),
                                   style: TextStyle(
                                     decoration: TextDecoration.underline,
                                     color: Color(0xFFEF9453),
@@ -332,11 +332,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               ],
                             ),
                           ),
-
                         ),
                       ),
                     ],
                   ),
+
                   SizedBox(
                     height: 10,
                   ),

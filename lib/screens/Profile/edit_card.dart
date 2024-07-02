@@ -336,6 +336,13 @@ class EditState extends State<EditCard> {
       //backgroundColor: Colors.white.withOpacity(0.9),
         appBar: AppBar(
           backgroundColor: appTheme.whiteA700,
+          title: Text(
+            context.tr('Edit card'),
+            //textAlign: TextAlign.center,
+            style: GoogleFonts.robotoCondensed(
+                color: const Color.fromARGB(255, 2, 84, 86),
+                fontSize: 30, fontWeight: FontWeight.bold),
+          ),
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios_new_outlined),
             onPressed: () => Navigator.of(context).pop(),
@@ -344,13 +351,7 @@ class EditState extends State<EditCard> {
             padding: const EdgeInsets.all(20.0),
             child: ListView(
                 children: [
-                  Text(
-                    context.tr('Edit card'),
-                    //textAlign: TextAlign.center,
-                    style: GoogleFonts.robotoCondensed(
-                        color: const Color.fromARGB(255, 2, 84, 86),
-                        fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
+                  SizedBox(height: 30),
                   Text(
                       context.tr('Fill the information to display it in your card.'),
                     style: TextStyle(
@@ -359,7 +360,7 @@ class EditState extends State<EditCard> {
                       fontFamily: 'Inter',
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 5),
                   Text(
                     context.tr('Personal Details'),
                     style: TextStyle(
@@ -657,57 +658,6 @@ class EditState extends State<EditCard> {
                             ],
                           ),
                         ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 354,
-                          // height: 54,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                context.tr("Email"),
-                                style: CustomTextStyles.titleMediumTeal300,
-                              ),
-                              // SizedBox(height: 8), // Add some spacing between Text and TextFormField
-                              TextFormField(
-                                onChanged: (value) => Email = value,
-                                controller: TextEditingController(text: Email),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    borderSide: BorderSide(color: appTheme.white, width: 2),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: context.tr("Enter your email"),
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                  // labelText: context.tr('Email'), // Set the label text
-                                ),
-                                cursorColor: Colors.black, // Set cursor color to black
-                                keyboardType: TextInputType.emailAddress, // Set keyboard type to email address
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return context.tr('Please enter some text');
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-
                         SizedBox(
                           height: 10,
                         ),
@@ -750,6 +700,55 @@ class EditState extends State<EditCard> {
                                 inputFormatters: <TextInputFormatter>[
                                   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')), // Allow only numeric input
                                 ],
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return context.tr('Please enter some text');
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          width: 354,
+                          // height: 54,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                context.tr("Email"),
+                                style: CustomTextStyles.titleMediumTeal300,
+                              ),
+                              // SizedBox(height: 8), // Add some spacing between Text and TextFormField
+                              TextFormField(
+                                onChanged: (value) => Email = value,
+                                controller: TextEditingController(text: Email),
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    borderSide: BorderSide(color: appTheme.white, width: 2),
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  hintText: context.tr("Enter your email"),
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                  // labelText: context.tr('Email'), // Set the label text
+                                ),
+                                cursorColor: Colors.black, // Set cursor color to black
+                                keyboardType: TextInputType.emailAddress, // Set keyboard type to email address
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return context.tr('Please enter some text');

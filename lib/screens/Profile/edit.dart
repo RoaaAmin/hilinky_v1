@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,7 +26,6 @@ class Edit extends StatefulWidget {
 
   @override
   EditState createState() {
-
     return EditState();
   }
 }
@@ -72,6 +70,7 @@ class EditState extends State<Edit> {
       selectedImage = File(image!.path);
     });
   }
+
   Widget bottomSheet() {
     return Container(
       height: 100.0,
@@ -97,15 +96,27 @@ class EditState extends State<Edit> {
               onPressed: () {
                 getImage(ImageSource.camera);
               },
-              label: Text(context.tr("Camera"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
+              label: Text(
+                context.tr("Camera"),
+                style: TextStyle(
+                  color: Color.fromARGB(255, 2, 84, 86),
+                ),
+              ),
             ),
-            SizedBox(width: 10,),
+            SizedBox(
+              width: 10,
+            ),
             TextButton.icon(
               icon: Icon(Icons.image, color: Colors.blue[800]),
               onPressed: () {
                 getImage(ImageSource.gallery);
               },
-              label: Text(context.tr("Gallery"),style: TextStyle( color: Color.fromARGB(255, 2, 84, 86),),),
+              label: Text(
+                context.tr("Gallery"),
+                style: TextStyle(
+                  color: Color.fromARGB(255, 2, 84, 86),
+                ),
+              ),
             ),
           ])
         ],
@@ -117,15 +128,15 @@ class EditState extends State<Edit> {
   var FirstName;
   var LastName;
   var uniqueUserName;
-  var sUserName ;
-  var email ;
+  var sUserName;
+  var email;
   var phoneNumber;
   var image;
   File? selectedImage;
 
   // add them to sign up
-  var nationality ;
-  var city ;
+  var nationality;
+  var city;
 
   void getUserInfo() async {
     var user = await FirebaseFirestore.instance
@@ -187,48 +198,66 @@ class EditState extends State<Edit> {
     // dynamic myImage = const AssetImage("assets/images/avatary.png");
     // Build a Form widget using the _formKey created above.
     return lodaing
-        ? Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),))
+        ? Center(
+            child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.orange),
+          ))
         : Scaffold(
-
-        backgroundColor: appTheme.whiteA700,
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          backgroundColor: appTheme.whiteA700,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new_outlined),
-    onPressed: () => Navigator.of(context).pop(),
-    ),),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: ListView(
-              children: [
+            backgroundColor: appTheme.whiteA700,
+            resizeToAvoidBottomInset: false,
+            appBar: AppBar(
+              backgroundColor: appTheme.whiteA700,
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back_ios_new_outlined),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ),
+            body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ListView(children: [
                 if (!lodaing)
-                  Container(
-                    child: ClipOval(
-                      child: selectedImage != null
-                          ? Image.file(
-                        selectedImage!,
-                        height: 325,
-                        width: 325,
-                        fit: BoxFit.cover,
-                      )
-                          : Image.network(
-                        image ?? '',
-                        height: 325,
-                        width: 325,
-                        fit: BoxFit.cover,
+                  Center(
+                    child: Container(
+                      width: 150, // Adjust width as needed
+                      height: 150, // Adjust height as needed
+                      child: ClipOval(
+                        child: selectedImage != null
+                            ? Image.file(
+                                selectedImage!,
+                                fit: BoxFit.cover,
+                                width:
+                                    150, // Ensure the width matches the container
+                                height:
+                                    150, // Ensure the height matches the container
+                              )
+                            : Image.network(
+                                image ?? '',
+                                fit: BoxFit.cover,
+                                width:
+                                    150, // Ensure the width matches the container
+                                height:
+                                    150, // Ensure the height matches the container
+                              ),
                       ),
                     ),
                   ),
                 TextButton(
-                    onPressed: ()  {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: ((builder) => bottomSheet()),
-                      );
-                    },
-                    child:  Text(context.tr("Pick Image",)
-                    )),
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: ((builder) => bottomSheet()),
+                    );
+                  },
+                  child: Text(context.tr("Pick Image")),
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.orange, // Text color
+                    // backgroundColor: Colors.white, // Button background color
+                    // padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0), // Padding
+                    // shape: RoundedRectangleBorder(
+                    //   borderRadius: BorderRadius.circular(8.0), // Rounded corners
+                    // ),
+                  ),
+                ),
 
                 const SizedBox(
                   height: 5,
@@ -253,25 +282,34 @@ class EditState extends State<Edit> {
                                   height: 54,
                                   child: TextFormField(
                                     onChanged: (value) => sUserName = value,
-                                    controller: TextEditingController(text: sUserName),
+                                    controller:
+                                        TextEditingController(text: sUserName),
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                                        borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        borderSide: BorderSide(
+                                            color: appTheme.teal300, width: 2),
                                       ),
                                       focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                                        borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        borderSide: BorderSide(
+                                            color: appTheme.teal300, width: 2),
                                       ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                                        borderSide: BorderSide(color: appTheme.white, width: 2),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        borderSide: BorderSide(
+                                            color: appTheme.white, width: 2),
                                       ),
                                       filled: true,
                                       fillColor: Colors.white,
-                                      hintText: context.tr("Enter your first name"),
+                                      hintText:
+                                          context.tr("Enter your first name"),
                                       hintStyle: TextStyle(color: Colors.grey),
-                                      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 16),
                                     ),
                                     cursorColor: Colors.black,
                                     // validator: (value) {
@@ -299,25 +337,34 @@ class EditState extends State<Edit> {
                                   height: 54,
                                   child: TextFormField(
                                     onChanged: (value) => LastName = value,
-                                    controller: TextEditingController(text: LastName),
+                                    controller:
+                                        TextEditingController(text: LastName),
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                                        borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        borderSide: BorderSide(
+                                            color: appTheme.teal300, width: 2),
                                       ),
                                       focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                                        borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        borderSide: BorderSide(
+                                            color: appTheme.teal300, width: 2),
                                       ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                                        borderSide: BorderSide(color: appTheme.white, width: 2),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        borderSide: BorderSide(
+                                            color: appTheme.white, width: 2),
                                       ),
                                       filled: true,
                                       fillColor: Colors.white,
-                                      hintText: context.tr("Enter your last name"),
+                                      hintText:
+                                          context.tr("Enter your last name"),
                                       hintStyle: TextStyle(color: Colors.grey),
-                                      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                      contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 16),
                                     ),
                                     cursorColor: Colors.black,
                                     // validator: (value) {
@@ -347,14 +394,19 @@ class EditState extends State<Edit> {
                             width: 354,
                             height: 54,
                             child: TextFormField(
-                              enabled: false, // Set this to false to make it not writable
+                              enabled:
+                                  false, // Set this to false to make it not writable
                               onChanged: (value) => uniqueUserName = value,
-                              controller: TextEditingController(text: uniqueUserName),
+                              controller:
+                                  TextEditingController(text: uniqueUserName),
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
                                 ),
-                                hintStyle: TextStyle(color: Colors.black), // Set the text color to black
+                                hintStyle: TextStyle(
+                                    color: Colors
+                                        .black), // Set the text color to black
                               ),
                               cursorColor: Colors.black,
                               validator: (value) {
@@ -368,40 +420,7 @@ class EditState extends State<Edit> {
                         ],
                       ),
 
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            context.tr("Email"),
-                            style: CustomTextStyles.titleMediumTeal300,
-                          ),
-                          SizedBox(
-                            width: 354,
-                            height: 54,
-                            child: TextFormField(
-                              enabled: false, // Set this to false to make it not writable
-                              onChanged: (value) => email = value,
-                              controller: TextEditingController(text: email),
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                ),
-                                hintStyle: TextStyle(color: Colors.black), // Set the text color to black
-                              ),
-                              cursorColor: Colors.black,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return context.tr("Please enter some text");
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
+
 
                       SizedBox(
                         height: 10,
@@ -418,31 +437,78 @@ class EditState extends State<Edit> {
                             height: 54,
                             child: TextFormField(
                               onChanged: (value) => phoneNumber = value,
-                              controller: TextEditingController(text: phoneNumber),
+                              controller:
+                                  TextEditingController(text: phoneNumber),
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(
+                                      color: appTheme.teal300, width: 2),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  borderSide: BorderSide(color: appTheme.teal300, width: 2),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(
+                                      color: appTheme.teal300, width: 2),
                                 ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  borderSide: BorderSide(color: appTheme.white, width: 2),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(
+                                      color: appTheme.white, width: 2),
                                 ),
                                 filled: true,
                                 fillColor: Colors.white,
                                 hintText: context.tr("Enter your phone number"),
                                 hintStyle: TextStyle(color: Colors.grey),
-                                contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 16),
                               ),
                               cursorColor: Colors.black,
                               keyboardType: TextInputType.phone,
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9]')),
                               ],
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return context.tr("Please enter some text");
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            context.tr("Email"),
+                            style: CustomTextStyles.titleMediumTeal300,
+                          ),
+                          SizedBox(
+                            width: 354,
+                            height: 54,
+                            child: TextFormField(
+                              enabled:
+                              false, // Set this to false to make it not writable
+                              onChanged: (value) => email = value,
+                              controller: TextEditingController(text: email),
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                                ),
+                                hintStyle: TextStyle(
+                                    color: Colors
+                                        .black), // Set the text color to black
+                              ),
+                              cursorColor: Colors.black,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return context.tr("Please enter some text");
@@ -573,14 +639,26 @@ class EditState extends State<Edit> {
                       await FirebaseAuth.instance.sendPasswordResetEmail(
                         email: email, // Provide the user's email here
                       );
-                      showInSnackBar(context.tr('Password reset email sent. Please check your email.'),
-                          Colors.green,Colors.white, 3, context, _scaffoldKey);
+                      showInSnackBar(
+                          context.tr(
+                              'Password reset email sent. Please check your email.'),
+                          Colors.green,
+                          Colors.white,
+                          3,
+                          context,
+                          _scaffoldKey);
                     } catch (e) {
                       print('Error sending password reset email: $e');
-                      showInSnackBar(context.tr('Failed to send password reset email.'),
-                          Colors.red,Colors.white, 3, context, _scaffoldKey);
+                      showInSnackBar(
+                          context.tr('Failed to send password reset email.'),
+                          Colors.red,
+                          Colors.white,
+                          3,
+                          context,
+                          _scaffoldKey);
                     }
                   },
+
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
@@ -604,7 +682,7 @@ class EditState extends State<Edit> {
                 ),
 
                 SizedBox(
-                  height: 5,
+                  height: 10,
                 ),
                 ElevatedButton(
                   onPressed: () async {
@@ -623,7 +701,8 @@ class EditState extends State<Edit> {
                         Reference ref = FirebaseStorage.instance
                             .ref()
                             .child('user_images')
-                            .child(FirebaseAuth.instance.currentUser!.uid + '.jpg');
+                            .child(FirebaseAuth.instance.currentUser!.uid +
+                                '.jpg');
 
                         UploadTask uploadTask = ref.putFile(selectedImage!);
 
@@ -661,15 +740,20 @@ class EditState extends State<Edit> {
                           // );
 
                           //  Navigator.of(context).pop();
-                          showInSnackBar(context.tr('Your information has been saved successfully'),
-                              Colors.green,Colors.white, 3, context, _scaffoldKey);
+                          showInSnackBar(
+                              context.tr(
+                                  'Your information has been saved successfully'),
+                              Colors.green,
+                              Colors.white,
+                              3,
+                              context,
+                              _scaffoldKey);
 
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
                               builder: (context) => Home(currentIndex: 2),
                             ),
                           );
-
                         });
                       } else {
                         // If no image selected, update user's information without changing the image
@@ -686,31 +770,28 @@ class EditState extends State<Edit> {
                           // 'sCity': city,
                         });
                         // Navigate back to profile page
-                         //context.pushPage(Home());
+                        //context.pushPage(Home());
                         //Navigator.of(context).pop();
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (context) => Home(currentIndex: 2),
                           ),
                         );
-
-
                       }
                     }
                   },
                   // Button styling and text
                   style: ButtonStyle(
                     // padding: const EdgeInsets.all(5),
-                    shape:
-                    MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Color(0xFF234E5C)),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Color(0xFF234E5C)),
                   ),
-                  child:  Padding(
+                  child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
                       context.tr('Save'),
@@ -718,14 +799,11 @@ class EditState extends State<Edit> {
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
-                        ),
-                        ),
+                      ),
+                    ),
                   ),
-
                 ),
-
-              ]
-          ),
-        ));
+              ]),
+            ));
   }
 }

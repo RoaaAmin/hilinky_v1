@@ -380,31 +380,36 @@ class _CreateCardState extends State<CreateCard> {
     child: Scaffold(
       backgroundColor: appTheme.whiteA700,
       resizeToAvoidBottomInset: false,
+
       appBar: AppBar(
         backgroundColor: appTheme.whiteA700,
+        title: Text(
+          context.tr('Create Card'),
+          style: GoogleFonts.robotoCondensed(
+              color: const Color.fromARGB(255, 2, 84, 86),
+              fontSize: 30, fontWeight: FontWeight.bold),
+        ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_new_outlined),
           onPressed: () => Navigator.of(context).pop(),
-        ),),
+        ),
+
+
+      ),
       body: SingleChildScrollView(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.only(left:20, right:20, bottom: 20),
           child: Column(
               crossAxisAlignment:
               CrossAxisAlignment.start, // Align content to start
               children: [
-                SizedBox(height: 70,),
-                Text(
-                  context.tr('Create Card'),
-                  style: GoogleFonts.robotoCondensed(
-                      color: const Color.fromARGB(255, 2, 84, 86),
-                      fontSize: 30, fontWeight: FontWeight.bold),
-                ),
+                // SizedBox(height: 70,),
+                SizedBox(height: 30),
                 Text(
                     context.tr('Fill the information to display it in your card.'),
                     style: GoogleFonts.robotoCondensed(fontSize: 18,
                       color: Color(0xFF7EA9BA),)
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 5),
                 Text(
                   context.tr('Personal Details'),
                   style: GoogleFonts.robotoCondensed(
@@ -424,7 +429,7 @@ class _CreateCardState extends State<CreateCard> {
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: Colors.white, // Border color
-                        width: 1, // Border width
+                        // width: 1, // Border width
                       ),
                     ),
 // email text
@@ -441,7 +446,7 @@ class _CreateCardState extends State<CreateCard> {
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
-                            borderSide: BorderSide(color: appTheme.white, width: 2),
+                            borderSide: BorderSide(color: appTheme.white),
                           ),
                           filled: true,
                           fillColor: Colors.white,
@@ -469,7 +474,7 @@ class _CreateCardState extends State<CreateCard> {
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: Colors.white, // Border color
-                        width: 1, // Border width
+                        //width: 1, // Border width
                       ),
                     ),
 // email text
