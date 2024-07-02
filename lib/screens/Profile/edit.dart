@@ -204,7 +204,7 @@ class EditState extends State<Edit> {
           ))
         : Scaffold(
             backgroundColor: appTheme.whiteA700,
-            resizeToAvoidBottomInset: false,
+            resizeToAvoidBottomInset: true,
             appBar: AppBar(
               backgroundColor: appTheme.whiteA700,
               leading: IconButton(
@@ -686,112 +686,21 @@ class EditState extends State<Edit> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    // showInSnackBar(context.tr('Your information has been saved successfully'),
-                    //     Colors.green,Colors.white, 3, context, _scaffoldKey);
-                    //
-                    // Navigator.of(context).pushReplacement(
-                    //   MaterialPageRoute(
-                    //     builder: (context) => Home(currentIndex: 2),
-                    //   ),
-                    // );
-                    if (_formKey.currentState!.validate()) {
-                      // Upload image to Firebase Storage
-                      if (selectedImage != null) {
-                        // Upload the image to Firebase Storage
-                        Reference ref = FirebaseStorage.instance
-                            .ref()
-                            .child('user_images')
-                            .child(FirebaseAuth.instance.currentUser!.uid +
-                                '.jpg');
-
-                        UploadTask uploadTask = ref.putFile(selectedImage!);
-
-                        await uploadTask.whenComplete(() async {
-                          // Get the URL of the uploaded image
-                          String selectedImage = await ref.getDownloadURL();
-
-                          // Update user's information in Firestore with the image URL
-                          await FirebaseFirestore.instance
-                              .collection('Users')
-                              .doc(FirebaseAuth.instance.currentUser!.uid)
-                              .update({
-                            'sUserName': sUserName,
-                            'LastName': LastName,
-                            'uniqueUserName': uniqueUserName,
-                            'sUserEmail': email,
-                            'sUserPhoneNumber': phoneNumber,
-                            // 'sNationality': nationality,
-                            // 'sCity': city,
-                            'UserProfileImage': selectedImage,
-                          });
-                          // Show success message
-                          // ScaffoldMessenger.of(context).showSnackBar(
-                          //   SnackBar(
-                          //     content: Text(context.tr('Your information has been saved successfully')),
-                          //     backgroundColor: Color.fromARGB(255, 149, 181, 236),
-                          //   ),
-                          // );
-
-                          // Navigate back to profile page
-                          // Navigator.of(context).pushReplacement(
-                          //   MaterialPageRoute(
-                          //     builder: (context) => Home(currentIndex: 2),
-                          //   ),
-                          // );
-
-                          //  Navigator.of(context).pop();
-                          showInSnackBar(
-                              context.tr(
-                                  'Your information has been saved successfully'),
-                              Colors.green,
-                              Colors.white,
-                              3,
-                              context,
-                              _scaffoldKey);
-
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => Home(currentIndex: 2),
-                            ),
-                          );
-                        });
-                      } else {
-                        // If no image selected, update user's information without changing the image
-                        await FirebaseFirestore.instance
-                            .collection('Users')
-                            .doc(FirebaseAuth.instance.currentUser!.uid)
-                            .update({
-                          'sUserName': sUserName,
-                          'LastName': LastName,
-                          'uniqueUserName': uniqueUserName,
-                          'sUserEmail': email,
-                          'sUserPhoneNumber': phoneNumber,
-                          // 'sNationality': nationality,
-                          // 'sCity': city,
-                        });
-                        // Navigate back to profile page
-                        //context.pushPage(Home());
-                        //Navigator.of(context).pop();
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => Home(currentIndex: 2),
-                          ),
-                        );
-                      }
-                    }
+                    _showLogoutConfirmationDialog(context);
                   },
                   // Button styling and text
                   style: ButtonStyle(
                     // padding: const EdgeInsets.all(5),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape:
+                    MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Color(0xFF234E5C)),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Color(0xFF234E5C)),
                   ),
-                  child: Padding(
+                  child:  Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
                       context.tr('Save'),
@@ -802,8 +711,161 @@ class EditState extends State<Edit> {
                       ),
                     ),
                   ),
+
                 ),
-              ]),
+
+              ]
+              ),
             ));
+  }
+  void _showLogoutConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          backgroundColor: appTheme.whiteA700,
+          title: Row(
+            children: [
+              //Icon(Icons.logout, color: Colors.orange),
+              SizedBox(width: 10),
+              Text(
+                context.tr("Save Confirmation"),
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+          content: Text(
+            context.tr("Are you sure you want to save your information to display it in your card?"),
+            style: TextStyle(
+              fontFamily: 'Inter',
+              color: Colors.black87,
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.grey, textStyle: TextStyle(
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.bold,
+              ),
+              ),
+              child: Text(context.tr("No")),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Color(0xFF286F8C), textStyle: TextStyle(
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.bold,
+              ),
+              ),
+              child: Text(context.tr("Yes")),
+              onPressed: () async {
+                // showInSnackBar(context.tr('Your information has been saved successfully'),
+                //     Colors.green,Colors.white, 3, context, _scaffoldKey);
+                //
+                // Navigator.of(context).pushReplacement(
+                //   MaterialPageRoute(
+                //     builder: (context) => Home(currentIndex: 2),
+                //   ),
+                // );
+                if (_formKey.currentState!.validate()) {
+                  // Upload image to Firebase Storage
+                  if (selectedImage != null) {
+                    // Upload the image to Firebase Storage
+                    Reference ref = FirebaseStorage.instance
+                        .ref()
+                        .child('user_images')
+                        .child(FirebaseAuth.instance.currentUser!.uid + '.jpg');
+
+                    UploadTask uploadTask = ref.putFile(selectedImage!);
+
+                    await uploadTask.whenComplete(() async {
+                      // Get the URL of the uploaded image
+                      String selectedImage = await ref.getDownloadURL();
+
+                      // Update user's information in Firestore with the image URL
+                      await FirebaseFirestore.instance
+                          .collection('Users')
+                          .doc(FirebaseAuth.instance.currentUser!.uid)
+                          .update({
+                        'sUserName': sUserName,
+                        'LastName': LastName,
+                        'uniqueUserName': uniqueUserName,
+                        'sUserEmail': email,
+                        'sUserPhoneNumber': phoneNumber,
+                        // 'sNationality': nationality,
+                        // 'sCity': city,
+                        'UserProfileImage': selectedImage,
+                      });
+                      // Show success message
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   SnackBar(
+                      //     content: Text(context.tr('Your information has been saved successfully')),
+                      //     backgroundColor: Color.fromARGB(255, 149, 181, 236),
+                      //   ),
+                      // );
+
+                      // Navigate back to profile page
+                      // Navigator.of(context).pushReplacement(
+                      //   MaterialPageRoute(
+                      //     builder: (context) => Home(currentIndex: 2),
+                      //   ),
+                      // );
+
+                      //  Navigator.of(context).pop();
+                      showInSnackBar(context.tr('Your information has been saved successfully'),
+                          Colors.green,Colors.white, 3, context, _scaffoldKey);
+
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => Home(currentIndex: 2),
+                        ),
+                      );
+
+                    });
+                  } else {
+                    // If no image selected, update user's information without changing the image
+                    await FirebaseFirestore.instance
+                        .collection('Users')
+                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .update({
+                      'sUserName': sUserName,
+                      'LastName': LastName,
+                      'uniqueUserName': uniqueUserName,
+                      'sUserEmail': email,
+                      'sUserPhoneNumber': phoneNumber,
+                      // 'sNationality': nationality,
+                      // 'sCity': city,
+                    });
+                    showInSnackBar(context.tr('Your information has been saved successfully'),
+                        Colors.green,Colors.white, 3, context, _scaffoldKey);
+                    // Navigate back to profile page
+                    //context.pushPage(Home());
+                    //Navigator.of(context).pop();
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => Home(currentIndex: 2),
+                      ),
+                    );
+
+
+                  }
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

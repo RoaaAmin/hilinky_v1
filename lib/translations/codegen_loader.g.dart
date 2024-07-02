@@ -245,6 +245,7 @@ class CodegenLoader extends AssetLoader {
     "Save Confirmation": "تأكيد الحفظ",
     "Are you sure you want to save your information to display it in your card?":"هل أنت متأكد أنك تريد حفظ معلوماتك لعرضها في بطاقتك؟",
     "Are you sure you want to save your information?": "هل أنت متأكد أنك تريد حفظ المعلومات الخاصة بك؟",
+    "Are you sure you want to save your card's information?": "هل أنت متأكد أنك تريد حفظ معلومات بطاقتك؟"
   };
   static const Map<String, dynamic> en = {
     "Select Your Language": "Select Your Language",
@@ -473,7 +474,8 @@ class CodegenLoader extends AssetLoader {
     "No":"No",
     "Save Confirmation":"Save Confirmation",
     "Are you sure you want to save your information to display it in your card?":"Are you sure you want to save your information to display it in your card?",
-    "Are you sure you want to save your information?":"Are you sure you want to save your information?"
+    "Are you sure you want to save your information?":"Are you sure you want to save your information?",
+    "Are you sure you want to save your card's information?":"Are you sure you want to save your card's information?",
   };
 
   static const Map<String, Map<String, dynamic>> mapLocales = {
